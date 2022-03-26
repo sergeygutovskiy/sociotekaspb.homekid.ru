@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://localhost:8000";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.25.0.js"></script>
+
+    <script src="../docs/js/theme-default-3.25.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="kompanii">
+                    <a href="#kompanii">Компании</a>
+                </li>
+                                    <ul id="tocify-subheader-kompanii" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="kompanii-GETapi-client-v1-company">
+                        <a href="#kompanii-GETapi-client-v1-company">Получить компанию авторизованного юзера</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="kompanii-PUTapi-client-v1-company">
+                        <a href="#kompanii-PUTapi-client-v1-company">Обновить компанию авторизованного юзера</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="iuzery">
+                    <a href="#iuzery">Юзеры</a>
+                </li>
+                                    <ul id="tocify-subheader-iuzery" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="iuzery-POSTapi-client-v1-users-login">
+                        <a href="#iuzery-POSTapi-client-v1-users-login">Войти в аккаунт</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="kategorii-slovarei">
+                    <a href="#kategorii-slovarei">Категории словарей</a>
+                </li>
+                                    <ul id="tocify-subheader-kategorii-slovarei" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">
+                        <a href="#kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">Получить словарь по категории</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: March 26 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>Мега дока</p>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost:8000</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>Отправте запрос на <strong>/users/login</strong>, чтобы получить токен</p>
+
+        <h1 id="kompanii">Компании</h1>
+
+    
+
+            <h2 id="kompanii-GETapi-client-v1-company">Получить компанию авторизованного юзера</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-client-v1-company">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/client/v1/company" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/client/v1/company"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-client-v1-company">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 54
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: null,
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Компания 11&quot;,
+        &quot;full_name&quot;: &quot;Полное название компании&quot;,
+        &quot;owner&quot;: &quot;Владелец&quot;,
+        &quot;responsible_for_providing_information&quot;: &quot;Ответственный&quot;,
+        &quot;organization_type_id&quot;: 2,
+        &quot;district_id&quot;: 1,
+        &quot;is_has_education_license&quot;: false,
+        &quot;is_has_mdedical_license&quot;: true,
+        &quot;is_has_innovative_platform&quot;: true,
+        &quot;status&quot;: &quot;pending&quot;,
+        &quot;rejected_status_description&quot;: null
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-client-v1-company" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-client-v1-company"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-client-v1-company"></code></pre>
+</span>
+<span id="execution-error-GETapi-client-v1-company" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-client-v1-company"></code></pre>
+</span>
+<form id="form-GETapi-client-v1-company" data-method="GET"
+      data-path="api/client/v1/company"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-client-v1-company', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-client-v1-company"
+                    onclick="tryItOut('GETapi-client-v1-company');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-client-v1-company"
+                    onclick="cancelTryOut('GETapi-client-v1-company');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-client-v1-company" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/client/v1/company</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-client-v1-company" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-client-v1-company"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="kompanii-PUTapi-client-v1-company">Обновить компанию авторизованного юзера</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-client-v1-company">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/client/v1/company" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"Компания 1\",
+    \"full_name\": \"Полное название компании\",
+    \"owner\": \"Владелец\",
+    \"responsible_for_providing_information\": \"Ответственный\",
+    \"organization_type_id\": 1,
+    \"district_id\": 1,
+    \"is_has_education_license\": false,
+    \"is_has_mdedical_license\": false,
+    \"is_has_innovative_platform\": false
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/client/v1/company"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "Компания 1",
+    "full_name": "Полное название компании",
+    "owner": "Владелец",
+    "responsible_for_providing_information": "Ответственный",
+    "organization_type_id": 1,
+    "district_id": 1,
+    "is_has_education_license": false,
+    "is_has_mdedical_license": false,
+    "is_has_innovative_platform": false
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-client-v1-company">
+</span>
+<span id="execution-results-PUTapi-client-v1-company" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-client-v1-company"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-client-v1-company"></code></pre>
+</span>
+<span id="execution-error-PUTapi-client-v1-company" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-client-v1-company"></code></pre>
+</span>
+<form id="form-PUTapi-client-v1-company" data-method="PUT"
+      data-path="api/client/v1/company"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-client-v1-company', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-client-v1-company"
+                    onclick="tryItOut('PUTapi-client-v1-company');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-client-v1-company"
+                    onclick="cancelTryOut('PUTapi-client-v1-company');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-client-v1-company" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/client/v1/company</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-client-v1-company" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-client-v1-company"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTapi-client-v1-company"
+               value="Компания 1"
+               data-component="body" hidden>
+    <br>
+<p>Краткое наименование организации</p>
+        </p>
+                <p>
+            <b><code>full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="full_name"
+               data-endpoint="PUTapi-client-v1-company"
+               value="Полное название компании"
+               data-component="body" hidden>
+    <br>
+<p>Полное наименование организации</p>
+        </p>
+                <p>
+            <b><code>owner</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="owner"
+               data-endpoint="PUTapi-client-v1-company"
+               value="Владелец"
+               data-component="body" hidden>
+    <br>
+<p>Руководитель организации</p>
+        </p>
+                <p>
+            <b><code>responsible_for_providing_information</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="responsible_for_providing_information"
+               data-endpoint="PUTapi-client-v1-company"
+               value="Ответственный"
+               data-component="body" hidden>
+    <br>
+<p>Ответственный за предоставление информации</p>
+        </p>
+                <p>
+            <b><code>organization_type_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="organization_type_id"
+               data-endpoint="PUTapi-client-v1-company"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>Тип организации</p>
+        </p>
+                <p>
+            <b><code>district_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="district_id"
+               data-endpoint="PUTapi-client-v1-company"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>Район</p>
+        </p>
+                <p>
+            <b><code>is_has_education_license</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="PUTapi-client-v1-company" hidden>
+            <input type="radio" name="is_has_education_license"
+                   value="true"
+                   data-endpoint="PUTapi-client-v1-company"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-client-v1-company" hidden>
+            <input type="radio" name="is_has_education_license"
+                   value="false"
+                   data-endpoint="PUTapi-client-v1-company"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>Наличие лицензии на осуществление образовательной деятельности</p>
+        </p>
+                <p>
+            <b><code>is_has_mdedical_license</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="PUTapi-client-v1-company" hidden>
+            <input type="radio" name="is_has_mdedical_license"
+                   value="true"
+                   data-endpoint="PUTapi-client-v1-company"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-client-v1-company" hidden>
+            <input type="radio" name="is_has_mdedical_license"
+                   value="false"
+                   data-endpoint="PUTapi-client-v1-company"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>Наличие лицензии на осуществление медицинской деятельности</p>
+        </p>
+                <p>
+            <b><code>is_has_innovative_platform</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="PUTapi-client-v1-company" hidden>
+            <input type="radio" name="is_has_innovative_platform"
+                   value="true"
+                   data-endpoint="PUTapi-client-v1-company"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-client-v1-company" hidden>
+            <input type="radio" name="is_has_innovative_platform"
+                   value="false"
+                   data-endpoint="PUTapi-client-v1-company"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>Наличие инновационной площадки в организации</p>
+        </p>
+        </form>
+
+        <h1 id="iuzery">Юзеры</h1>
+
+    
+
+            <h2 id="iuzery-POSTapi-client-v1-users-login">Войти в аккаунт</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-client-v1-users-login">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/client/v1/users/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"login\": \"user1\",
+    \"password\": \"1234\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/client/v1/users/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "login": "user1",
+    "password": "1234"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-client-v1-users-login">
+</span>
+<span id="execution-results-POSTapi-client-v1-users-login" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-client-v1-users-login"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-client-v1-users-login"></code></pre>
+</span>
+<span id="execution-error-POSTapi-client-v1-users-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-client-v1-users-login"></code></pre>
+</span>
+<form id="form-POSTapi-client-v1-users-login" data-method="POST"
+      data-path="api/client/v1/users/login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-client-v1-users-login', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-client-v1-users-login"
+                    onclick="tryItOut('POSTapi-client-v1-users-login');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-client-v1-users-login"
+                    onclick="cancelTryOut('POSTapi-client-v1-users-login');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-client-v1-users-login" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/client/v1/users/login</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>login</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="login"
+               data-endpoint="POSTapi-client-v1-users-login"
+               value="user1"
+               data-component="body" hidden>
+    <br>
+<p>Логин</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-client-v1-users-login"
+               value="1234"
+               data-component="body" hidden>
+    <br>
+<p>Пароль</p>
+        </p>
+        </form>
+
+        <h1 id="kategorii-slovarei">Категории словарей</h1>
+
+    
+
+            <h2 id="kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">Получить словарь по категории</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-client-v1-dictionary-categories--category--dictionaries">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/client/v1/dictionary-categories/district/dictionaries" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/client/v1/dictionary-categories/district/dictionaries"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-client-v1-dictionary-categories--category--dictionaries">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: null,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 6,
+            &quot;label&quot;: &quot;Район №0&quot;
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;label&quot;: &quot;Район №1&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;label&quot;: &quot;Район №2&quot;
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;label&quot;: &quot;Район №3&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;label&quot;: &quot;Район №4&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-client-v1-dictionary-categories--category--dictionaries"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-client-v1-dictionary-categories--category--dictionaries"></code></pre>
+</span>
+<span id="execution-error-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-client-v1-dictionary-categories--category--dictionaries"></code></pre>
+</span>
+<form id="form-GETapi-client-v1-dictionary-categories--category--dictionaries" data-method="GET"
+      data-path="api/client/v1/dictionary-categories/{category}/dictionaries"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-client-v1-dictionary-categories--category--dictionaries', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-client-v1-dictionary-categories--category--dictionaries"
+                    onclick="tryItOut('GETapi-client-v1-dictionary-categories--category--dictionaries');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-client-v1-dictionary-categories--category--dictionaries"
+                    onclick="cancelTryOut('GETapi-client-v1-dictionary-categories--category--dictionaries');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/client/v1/dictionary-categories/{category}/dictionaries</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-client-v1-dictionary-categories--category--dictionaries"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>category</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="category"
+               data-endpoint="GETapi-client-v1-dictionary-categories--category--dictionaries"
+               value="district"
+               data-component="url" hidden>
+    <br>
+<p>Категория (district | organization-type)</p>
+            </p>
+                    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

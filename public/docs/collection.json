@@ -1,0 +1,213 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:8000"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "31b870cc-e959-40c5-b58b-e15f149e061a",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "\u041a\u043e\u043c\u043f\u0430\u043d\u0438\u0438",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044e \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u044e\u0437\u0435\u0440\u0430",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/client\/v1\/company",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/client\/v1\/company"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"error\":null,\"data\":{\"name\":\"\\u041a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u044f 11\",\"full_name\":\"\\u041f\\u043e\\u043b\\u043d\\u043e\\u0435 \\u043d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0438\",\"owner\":\"\\u0412\\u043b\\u0430\\u0434\\u0435\\u043b\\u0435\\u0446\",\"responsible_for_providing_information\":\"\\u041e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u044b\\u0439\",\"organization_type_id\":2,\"district_id\":1,\"is_has_education_license\":false,\"is_has_mdedical_license\":true,\"is_has_innovative_platform\":true,\"status\":\"pending\",\"rejected_status_description\":null}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044e \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u044e\u0437\u0435\u0440\u0430",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/client\/v1\/company",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/client\/v1\/company"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"\u041a\u043e\u043c\u043f\u0430\u043d\u0438\u044f 1\",\"full_name\":\"\u041f\u043e\u043b\u043d\u043e\u0435 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438\",\"owner\":\"\u0412\u043b\u0430\u0434\u0435\u043b\u0435\u0446\",\"responsible_for_providing_information\":\"\u041e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439\",\"organization_type_id\":1,\"district_id\":1,\"is_has_education_license\":false,\"is_has_mdedical_license\":false,\"is_has_innovative_platform\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "\u042e\u0437\u0435\u0440\u044b",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u0412\u043e\u0439\u0442\u0438 \u0432 \u0430\u043a\u043a\u0430\u0443\u043d\u0442",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/client\/v1\/users\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/client\/v1\/users\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"login\":\"user1\",\"password\":\"1234\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 \u0441\u043b\u043e\u0432\u0430\u0440\u0435\u0439",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0441\u043b\u043e\u0432\u0430\u0440\u044c \u043f\u043e \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/client\/v1\/dictionary-categories\/:category\/dictionaries",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/client\/v1\/dictionary-categories\/:category\/dictionaries",
+                            "variable": [
+                                {
+                                    "id": "category",
+                                    "key": "category",
+                                    "value": "district",
+                                    "description": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f (district | organization-type)"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"error\":null,\"data\":[{\"id\":6,\"label\":\"\\u0420\\u0430\\u0439\\u043e\\u043d \\u21160\"},{\"id\":7,\"label\":\"\\u0420\\u0430\\u0439\\u043e\\u043d \\u21161\"},{\"id\":8,\"label\":\"\\u0420\\u0430\\u0439\\u043e\\u043d \\u21162\"},{\"id\":9,\"label\":\"\\u0420\\u0430\\u0439\\u043e\\u043d \\u21163\"},{\"id\":10,\"label\":\"\\u0420\\u0430\\u0439\\u043e\\u043d \\u21164\"}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer"
+    }
+}
