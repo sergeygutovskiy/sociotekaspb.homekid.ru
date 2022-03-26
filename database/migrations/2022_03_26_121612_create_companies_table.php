@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('full_name');
             
             $table->string('owner');
-            $table->string('responsible_for_providing_information');
+            $table->string('responsible');
 
             $table->unsignedBigInteger('organization_type_id');
             $table->foreign('organization_type_id')->references('id')->on('dictionaries');
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->boolean('is_has_mdedical_license');
             $table->boolean('is_has_innovative_platform');
 
-            $table->enum('status', [ 'confirmed', 'pending', 'rejected' ])->default('confirmed');
+            $table->enum('status', [ 'accepted', 'pending', 'rejected' ])->default('accepted');
             $table->text('rejected_status_description')->nullable();
 
             $table->timestamps();

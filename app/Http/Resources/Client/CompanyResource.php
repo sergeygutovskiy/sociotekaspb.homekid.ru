@@ -13,7 +13,7 @@ class CompanyResource extends JsonResource
             'full_name' => $this->full_name,
 
             'owner' => $this->owner,
-            'responsible_for_providing_information' => $this->responsible_for_providing_information,
+            'responsible' => $this->responsible,
 
             'organization_type_id' => $this->organization_type_id,
             'district_id' => $this->district_id,

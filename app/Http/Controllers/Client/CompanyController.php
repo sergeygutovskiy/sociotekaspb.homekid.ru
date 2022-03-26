@@ -37,7 +37,7 @@ class CompanyController extends Controller
      * @bodyParam name string required Краткое наименование организации Example: Компания 1
      * @bodyParam full_name string required Полное наименование организации Example: Полное название компании
      * @bodyParam owner string required Руководитель организации Example: Владелец
-     * @bodyParam responsible_for_providing_information string required Ответственный за предоставление информации Example: Ответственный
+     * @bodyParam responsible string required Ответственный за предоставление информации Example: Ответственный
      * @bodyParam organization_type_id int required Тип организации Example: 1
      * @bodyParam district_id int required Район Example: 1
      * @bodyParam is_has_education_license bool required Наличие лицензии на осуществление образовательной деятельности Example: false
@@ -51,7 +51,7 @@ class CompanyController extends Controller
             'name' => 'required',
             'full_name' => 'required',
             'owner' => 'required',
-            'responsible_for_providing_information' => 'required',
+            'responsible' => 'required',
             'organization_type_id' => 'required|numeric|exists:dictionaries,id',
             'district_id' => 'required|numeric|exists:dictionaries,id',
             'is_has_education_license' => 'required|boolean',

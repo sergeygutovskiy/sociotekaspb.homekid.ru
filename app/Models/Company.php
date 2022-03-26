@@ -13,7 +13,7 @@ class Company extends Model
         'name',
         'full_name',
         'owner',
-        'responsible_for_providing_information',
+        'responsible',
         'organization_type_id',
         'district_id',
         'is_has_education_license',
