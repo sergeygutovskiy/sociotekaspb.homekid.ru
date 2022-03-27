@@ -64,7 +64,7 @@ class CompanyController extends Controller
             return response()->json([
                 'error' => 'Ошибка валидации полей',
                 'data' => null,
-            ], 401);
+            ], 400);
         }
 
         $validated = $validator->validated();

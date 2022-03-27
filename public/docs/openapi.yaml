@@ -7,195 +7,6 @@ servers:
   -
     url: 'http://localhost:8000'
 paths:
-  /api/client/v1/company:
-    get:
-      summary: 'Получить компанию авторизованного юзера'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: null
-                  data:
-                    name: 'Компания 11'
-                    full_name: 'Полное название компании'
-                    owner: Владелец
-                    responsible_for_providing_information: Ответственный
-                    organization_type_id: 2
-                    district_id: 1
-                    is_has_education_license: false
-                    is_has_mdedical_license: true
-                    is_has_innovative_platform: true
-                    status: pending
-                    rejected_status_description: null
-                properties:
-                  error:
-                    type: string
-                    example: null
-                  data:
-                    type: object
-                    example:
-                      name: 'Компания 11'
-                      full_name: 'Полное название компании'
-                      owner: Владелец
-                      responsible_for_providing_information: Ответственный
-                      organization_type_id: 2
-                      district_id: 1
-                      is_has_education_license: false
-                      is_has_mdedical_license: true
-                      is_has_innovative_platform: true
-                      status: pending
-                      rejected_status_description: null
-      tags:
-        - Компании
-    put:
-      summary: 'Обновить компанию авторизованного юзера'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Компании
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Краткое наименование организации'
-                  example: 'Компания 1'
-                full_name:
-                  type: string
-                  description: 'Полное наименование организации'
-                  example: 'Полное название компании'
-                owner:
-                  type: string
-                  description: 'Руководитель организации'
-                  example: Владелец
-                responsible_for_providing_information:
-                  type: string
-                  description: 'Ответственный за предоставление информации'
-                  example: Ответственный
-                organization_type_id:
-                  type: integer
-                  description: 'Тип организации'
-                  example: 1
-                district_id:
-                  type: integer
-                  description: Район
-                  example: 1
-                is_has_education_license:
-                  type: boolean
-                  description: 'Наличие лицензии на осуществление образовательной деятельности'
-                  example: false
-                is_has_mdedical_license:
-                  type: boolean
-                  description: 'Наличие лицензии на осуществление медицинской деятельности'
-                  example: false
-                is_has_innovative_platform:
-                  type: boolean
-                  description: 'Наличие инновационной площадки в организации'
-                  example: false
-              required:
-                - name
-                - full_name
-                - owner
-                - responsible_for_providing_information
-                - organization_type_id
-                - district_id
-                - is_has_education_license
-                - is_has_mdedical_license
-                - is_has_innovative_platform
-  /api/client/v1/users/login:
-    post:
-      summary: 'Войти в аккаунт'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Юзеры
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                login:
-                  type: string
-                  description: Логин
-                  example: user1
-                password:
-                  type: string
-                  description: Пароль
-                  example: '1234'
-              required:
-                - login
-                - password
-      security: []
   '/api/client/v1/dictionary-categories/{category}/dictionaries':
     get:
       summary: 'Получить словарь по категории'
@@ -282,15 +93,233 @@ paths:
         required: true
         schema:
           type: string
+  /api/client/v1/company:
+    get:
+      summary: 'Получить компанию авторизованного юзера'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: null
+                  data:
+                    name: 'Компания 11'
+                    full_name: 'Полное название компании'
+                    owner: Владелец
+                    responsible: null
+                    organization_type_id: 2
+                    district_id: 1
+                    is_has_education_license: false
+                    is_has_mdedical_license: true
+                    is_has_innovative_platform: true
+                    status: pending
+                    rejected_status_description: null
+                properties:
+                  error:
+                    type: string
+                    example: null
+                  data:
+                    type: object
+                    example:
+                      name: 'Компания 11'
+                      full_name: 'Полное название компании'
+                      owner: Владелец
+                      responsible: null
+                      organization_type_id: 2
+                      district_id: 1
+                      is_has_education_license: false
+                      is_has_mdedical_license: true
+                      is_has_innovative_platform: true
+                      status: pending
+                      rejected_status_description: null
+      tags:
+        - Компании
+    put:
+      summary: 'Обновить компанию авторизованного юзера'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Компании
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Краткое наименование организации'
+                  example: 'Компания 1'
+                full_name:
+                  type: string
+                  description: 'Полное наименование организации'
+                  example: 'Полное название компании'
+                owner:
+                  type: string
+                  description: 'Руководитель организации'
+                  example: Владелец
+                responsible:
+                  type: string
+                  description: 'Ответственный за предоставление информации'
+                  example: Ответственный
+                organization_type_id:
+                  type: integer
+                  description: 'Тип организации'
+                  example: 1
+                district_id:
+                  type: integer
+                  description: Район
+                  example: 1
+                is_has_education_license:
+                  type: boolean
+                  description: 'Наличие лицензии на осуществление образовательной деятельности'
+                  example: false
+                is_has_mdedical_license:
+                  type: boolean
+                  description: 'Наличие лицензии на осуществление медицинской деятельности'
+                  example: false
+                is_has_innovative_platform:
+                  type: boolean
+                  description: 'Наличие инновационной площадки в организации'
+                  example: false
+              required:
+                - name
+                - full_name
+                - owner
+                - responsible
+                - organization_type_id
+                - district_id
+                - is_has_education_license
+                - is_has_mdedical_license
+                - is_has_innovative_platform
+  /api/client/v1/users/login:
+    post:
+      summary: 'Войти в аккаунт'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Юзеры
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: Логин
+                  example: user1
+                password:
+                  type: string
+                  description: Пароль
+                  example: '1234'
+              required:
+                - login
+                - password
+      security: []
+  /api/client/v1/users/check:
+    post:
+      summary: 'Проверить токен'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Юзеры
 tags:
+  -
+    name: 'Категории словарей'
+    description: ''
   -
     name: Компании
     description: ''
   -
     name: Юзеры
-    description: ''
-  -
-    name: 'Категории словарей'
     description: ''
 components:
   securitySchemes:

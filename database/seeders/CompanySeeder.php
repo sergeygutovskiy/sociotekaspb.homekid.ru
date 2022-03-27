@@ -16,7 +16,7 @@ class CompanySeeder extends Seeder
             'full_name' => 'Полное название компании',
 
             'owner' => 'Владелец',
-            'responsible_for_providing_information' => 'Ответственный',
+            'responsible' => 'Ответственный',
 
             'organization_type_id' => 1,
             'district_id' => 1,
@@ -35,7 +35,7 @@ class CompanySeeder extends Seeder
             'full_name' => 'Полное название компании',
 
             'owner' => 'Владелец',
-            'responsible_for_providing_information' => 'Ответственный',
+            'responsible' => 'Ответственный',
 
             'organization_type_id' => 4,
             'district_id' => 1,
@@ -54,7 +54,7 @@ class CompanySeeder extends Seeder
             'full_name' => 'Полное название компании',
 
             'owner' => 'Владелец',
-            'responsible_for_providing_information' => 'Ответственный',
+            'responsible' => 'Ответственный',
 
             'organization_type_id' => 3,
             'district_id' => 2,

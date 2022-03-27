@@ -10,6 +10,27 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     /**
+     * Проверить токен
+     * 
+     * @group Юзеры
+     * 
+     * @authenticated
+     */
+    public function check(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json([
+            'error' => null,
+            'data' => [
+                'id' => $user->id,
+                'login' => $user->login,
+                'is_admin' => false,
+            ],
+        ]);
+    }
+
+    /**
      * Войти в аккаунт
      * 
      * @group Юзеры
@@ -28,7 +49,7 @@ class AuthController extends Controller
             return response()->json([
                 'error' => 'Пользователь не найден',
                 'data' => null,
-            ], 401);
+            ], 404);
         }
             
         $user = User::firstWhere('login', $login);
@@ -37,16 +58,24 @@ class AuthController extends Controller
             return response()->json([
                 'error' => 'Пользователь не найден',
                 'data' => null,
-            ], 401); 
+            ], 404); 
         }
         
+        $user->tokens()->delete();
         $token = $user->createToken('auth_token')->plainTextToken;
         
         return response()->json([
             'error' => null,
             'data' => [
-                'access_token' => $token,
-                'token_type' => 'Bearer',
+                'user' => [
+                    'id' => $user->id,
+                    'login' => $user->login,
+                    'is_admin' => false,
+                ],
+                'token' => [
+                    'value' => $token,
+                    'type' => 'Bearer',
+                ]
             ],
         ]);
     }

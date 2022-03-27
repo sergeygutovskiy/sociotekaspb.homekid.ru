@@ -70,6 +70,16 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="kategorii-slovarei">
+                    <a href="#kategorii-slovarei">Категории словарей</a>
+                </li>
+                                    <ul id="tocify-subheader-kategorii-slovarei" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">
+                        <a href="#kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">Получить словарь по категории</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="kompanii">
                     <a href="#kompanii">Компании</a>
                 </li>
@@ -82,7 +92,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-3" class="tocify-header">
+                    <ul id="tocify-header-4" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="iuzery">
                     <a href="#iuzery">Юзеры</a>
                 </li>
@@ -90,15 +100,8 @@
                                                     <li class="tocify-item level-2" data-unique="iuzery-POSTapi-client-v1-users-login">
                         <a href="#iuzery-POSTapi-client-v1-users-login">Войти в аккаунт</a>
                     </li>
-                                                    </ul>
-                            </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="kategorii-slovarei">
-                    <a href="#kategorii-slovarei">Категории словарей</a>
-                </li>
-                                    <ul id="tocify-subheader-kategorii-slovarei" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">
-                        <a href="#kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">Получить словарь по категории</a>
+                                    <li class="tocify-item level-2" data-unique="iuzery-POSTapi-client-v1-users-check">
+                        <a href="#iuzery-POSTapi-client-v1-users-check">Проверить токен</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -112,7 +115,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 26 2022</li>
+        <li>Last updated: March 27 2022</li>
     </ul>
 </div>
 
@@ -127,9 +130,154 @@
 <pre><code class="language-yaml">http://localhost:8000</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>Отправте запрос на <strong>/users/login</strong>, чтобы получить токен</p>
+
+        <h1 id="kategorii-slovarei">Категории словарей</h1>
+
+    
+
+            <h2 id="kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">Получить словарь по категории</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-client-v1-dictionary-categories--category--dictionaries">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/client/v1/dictionary-categories/district/dictionaries" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/client/v1/dictionary-categories/district/dictionaries"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-client-v1-dictionary-categories--category--dictionaries">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: null,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 6,
+            &quot;label&quot;: &quot;Район №0&quot;
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;label&quot;: &quot;Район №1&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;label&quot;: &quot;Район №2&quot;
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;label&quot;: &quot;Район №3&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;label&quot;: &quot;Район №4&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-client-v1-dictionary-categories--category--dictionaries"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-client-v1-dictionary-categories--category--dictionaries"></code></pre>
+</span>
+<span id="execution-error-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-client-v1-dictionary-categories--category--dictionaries"></code></pre>
+</span>
+<form id="form-GETapi-client-v1-dictionary-categories--category--dictionaries" data-method="GET"
+      data-path="api/client/v1/dictionary-categories/{category}/dictionaries"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-client-v1-dictionary-categories--category--dictionaries', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-client-v1-dictionary-categories--category--dictionaries"
+                    onclick="tryItOut('GETapi-client-v1-dictionary-categories--category--dictionaries');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-client-v1-dictionary-categories--category--dictionaries"
+                    onclick="cancelTryOut('GETapi-client-v1-dictionary-categories--category--dictionaries');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/client/v1/dictionary-categories/{category}/dictionaries</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-client-v1-dictionary-categories--category--dictionaries"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>category</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="category"
+               data-endpoint="GETapi-client-v1-dictionary-categories--category--dictionaries"
+               value="district"
+               data-component="url" hidden>
+    <br>
+<p>Категория (district | organization-type)</p>
+            </p>
+                    </form>
 
         <h1 id="kompanii">Компании</h1>
 
@@ -184,7 +332,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 54
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -195,7 +343,7 @@ access-control-allow-origin: *
         &quot;name&quot;: &quot;Компания 11&quot;,
         &quot;full_name&quot;: &quot;Полное название компании&quot;,
         &quot;owner&quot;: &quot;Владелец&quot;,
-        &quot;responsible_for_providing_information&quot;: &quot;Ответственный&quot;,
+        &quot;responsible&quot;: null,
         &quot;organization_type_id&quot;: 2,
         &quot;district_id&quot;: 1,
         &quot;is_has_education_license&quot;: false,
@@ -278,7 +426,7 @@ access-control-allow-origin: *
     \"name\": \"Компания 1\",
     \"full_name\": \"Полное название компании\",
     \"owner\": \"Владелец\",
-    \"responsible_for_providing_information\": \"Ответственный\",
+    \"responsible\": \"Ответственный\",
     \"organization_type_id\": 1,
     \"district_id\": 1,
     \"is_has_education_license\": false,
@@ -303,7 +451,7 @@ let body = {
     "name": "Компания 1",
     "full_name": "Полное название компании",
     "owner": "Владелец",
-    "responsible_for_providing_information": "Ответственный",
+    "responsible": "Ответственный",
     "organization_type_id": 1,
     "district_id": 1,
     "is_has_education_license": false,
@@ -400,9 +548,9 @@ fetch(url, {
 <p>Руководитель организации</p>
         </p>
                 <p>
-            <b><code>responsible_for_providing_information</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+            <b><code>responsible</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
-               name="responsible_for_providing_information"
+               name="responsible"
                data-endpoint="PUTapi-client-v1-company"
                value="Ответственный"
                data-component="body" hidden>
@@ -608,11 +756,7 @@ fetch(url, {
         </p>
         </form>
 
-        <h1 id="kategorii-slovarei">Категории словарей</h1>
-
-    
-
-            <h2 id="kategorii-slovarei-GETapi-client-v1-dictionary-categories--category--dictionaries">Получить словарь по категории</h2>
+            <h2 id="iuzery-POSTapi-client-v1-users-check">Проверить токен</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -620,13 +764,13 @@ fetch(url, {
 
 
 
-<span id="example-requests-GETapi-client-v1-dictionary-categories--category--dictionaries">
+<span id="example-requests-POSTapi-client-v1-users-check">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/client/v1/dictionary-categories/district/dictionaries" \
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/client/v1/users/check" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -634,7 +778,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/client/v1/dictionary-categories/district/dictionaries"
+    "http://localhost:8000/api/client/v1/users/check"
 );
 
 const headers = {
@@ -644,114 +788,62 @@ const headers = {
 };
 
 fetch(url, {
-    method: "GET",
+    method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-client-v1-dictionary-categories--category--dictionaries">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 55
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;error&quot;: null,
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 6,
-            &quot;label&quot;: &quot;Район №0&quot;
-        },
-        {
-            &quot;id&quot;: 7,
-            &quot;label&quot;: &quot;Район №1&quot;
-        },
-        {
-            &quot;id&quot;: 8,
-            &quot;label&quot;: &quot;Район №2&quot;
-        },
-        {
-            &quot;id&quot;: 9,
-            &quot;label&quot;: &quot;Район №3&quot;
-        },
-        {
-            &quot;id&quot;: 10,
-            &quot;label&quot;: &quot;Район №4&quot;
-        }
-    ]
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>
+<span id="example-responses-POSTapi-client-v1-users-check">
+</span>
+<span id="execution-results-POSTapi-client-v1-users-check" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-client-v1-dictionary-categories--category--dictionaries"></span>:
+                id="execution-response-status-POSTapi-client-v1-users-check"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-client-v1-dictionary-categories--category--dictionaries"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-client-v1-users-check"></code></pre>
 </span>
-<span id="execution-error-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>
+<span id="execution-error-POSTapi-client-v1-users-check" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-client-v1-dictionary-categories--category--dictionaries"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-client-v1-users-check"></code></pre>
 </span>
-<form id="form-GETapi-client-v1-dictionary-categories--category--dictionaries" data-method="GET"
-      data-path="api/client/v1/dictionary-categories/{category}/dictionaries"
+<form id="form-POSTapi-client-v1-users-check" data-method="POST"
+      data-path="api/client/v1/users/check"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-client-v1-dictionary-categories--category--dictionaries', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-client-v1-users-check', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-client-v1-dictionary-categories--category--dictionaries"
-                    onclick="tryItOut('GETapi-client-v1-dictionary-categories--category--dictionaries');">Try it out ⚡
+                    id="btn-tryout-POSTapi-client-v1-users-check"
+                    onclick="tryItOut('POSTapi-client-v1-users-check');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-client-v1-dictionary-categories--category--dictionaries"
-                    onclick="cancelTryOut('GETapi-client-v1-dictionary-categories--category--dictionaries');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-client-v1-users-check"
+                    onclick="cancelTryOut('POSTapi-client-v1-users-check');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-client-v1-users-check" hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/client/v1/dictionary-categories/{category}/dictionaries</code></b>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/client/v1/users/check</code></b>
         </p>
                 <p>
-            <label id="auth-GETapi-client-v1-dictionary-categories--category--dictionaries" hidden>Authorization header:
+            <label id="auth-POSTapi-client-v1-users-check" hidden>Authorization header:
                 <b><code>Bearer </code></b><input type="text"
                                                                 name="Authorization"
                                                                 data-prefix="Bearer "
-                                                                data-endpoint="GETapi-client-v1-dictionary-categories--category--dictionaries"
+                                                                data-endpoint="POSTapi-client-v1-users-check"
                                                                 data-component="header"></label>
         </p>
-                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>category</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="category"
-               data-endpoint="GETapi-client-v1-dictionary-categories--category--dictionaries"
-               value="district"
-               data-component="url" hidden>
-    <br>
-<p>Категория (district | organization-type)</p>
-            </p>
-                    </form>
+                </form>
 
     
 
