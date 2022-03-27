@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\CompanyStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +26,7 @@ class CompanySeeder extends Seeder
             'is_has_mdedical_license' => true,
             'is_has_innovative_platform' => false,
 
-            'status' => 'confirmed'
+            'status' => CompanyStatus::Accepted,
         ]);
 
         DB::table('companies')->insert([
@@ -44,7 +45,7 @@ class CompanySeeder extends Seeder
             'is_has_mdedical_license' => true,
             'is_has_innovative_platform' => true,
 
-            'status' => 'pending'
+            'status' => CompanyStatus::Pending,
         ]);
 
         DB::table('companies')->insert([
@@ -63,7 +64,7 @@ class CompanySeeder extends Seeder
             'is_has_mdedical_license' => false,
             'is_has_innovative_platform' => false,
 
-            'status' => 'rejected',
+            'status' => CompanyStatus::Rejected,
             'rejected_status_description' => 'Говно съело мочу.'
         ]);
     }

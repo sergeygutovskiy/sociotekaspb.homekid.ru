@@ -12,6 +12,14 @@ php artisan db:seed
 ```
 php artisan serve --port=8081
 ```
+Запустить тесты
+```
+php artisan test --env=testing
+```
+Запустить тесты параллельно с ересозданеим БД
+```
+php artisan test --env=testing --parallel --recreate-databases
+```
 
 # Фикстуры
 
