@@ -10,17 +10,23 @@ class CompanyResource extends JsonResource
     {
         return [
             'id' => $this->id,
+
             'name' => $this->name,
             'full_name' => $this->full_name,
 
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'site' => $this->site,
+
             'owner' => $this->owner,
             'responsible' => $this->responsible,
+            'responsible_phone' => $this->responsible_phone,
 
             'organization_type_id' => $this->organization_type_id,
             'district_id' => $this->district_id,
 
-            'is_has_education_license' => $this->is_has_education_license,
-            'is_has_mdedical_license' => $this->is_has_mdedical_license,
+            'education_license' => $this->education_license,
+            'medical_license' => $this->medical_license,
             'is_has_innovative_platform' => $this->is_has_innovative_platform,
 
             'status' => $this->status,

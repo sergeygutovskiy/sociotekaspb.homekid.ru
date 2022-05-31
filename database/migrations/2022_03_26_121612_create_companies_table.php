@@ -22,8 +22,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('full_name');
             
+            $table->string('phone');
+            $table->string('email');
+            $table->string('site');
+
             $table->string('owner');
             $table->string('responsible');
+            $table->string('responsible_phone');
 
             $table->unsignedBigInteger('organization_type_id');
             $table->foreign('organization_type_id')->references('id')->on('dictionaries');
@@ -31,8 +36,9 @@ return new class extends Migration
             $table->unsignedBigInteger('district_id');
             $table->foreign('district_id')->references('id')->on('dictionaries');
 
-            $table->boolean('is_has_education_license');
-            $table->boolean('is_has_mdedical_license');
+            $table->json('education_license')->nullable();
+            $table->json('medical_license')->nullable();
+
             $table->boolean('is_has_innovative_platform');
 
             $table->enum('status', [ 'accepted', 'pending', 'rejected' ])->default('accepted');

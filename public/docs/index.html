@@ -115,7 +115,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 27 2022</li>
+        <li>Last updated: May 31 2022</li>
     </ul>
 </div>
 
@@ -130,7 +130,7 @@
 <pre><code class="language-yaml">http://localhost:8081</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>Отправте запрос на <strong>/users/login</strong>, чтобы получить токен</p>
 
@@ -187,7 +187,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 56
+x-ratelimit-remaining: 59
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -197,23 +197,23 @@ access-control-allow-origin: *
     &quot;data&quot;: [
         {
             &quot;id&quot;: 6,
-            &quot;label&quot;: &quot;Район №0&quot;
-        },
-        {
-            &quot;id&quot;: 7,
             &quot;label&quot;: &quot;Район №1&quot;
         },
         {
-            &quot;id&quot;: 8,
+            &quot;id&quot;: 7,
             &quot;label&quot;: &quot;Район №2&quot;
         },
         {
-            &quot;id&quot;: 9,
+            &quot;id&quot;: 8,
             &quot;label&quot;: &quot;Район №3&quot;
         },
         {
-            &quot;id&quot;: 10,
+            &quot;id&quot;: 9,
             &quot;label&quot;: &quot;Район №4&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;label&quot;: &quot;Район №5&quot;
         }
     ]
 }</code>
@@ -332,7 +332,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 55
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -341,16 +341,27 @@ access-control-allow-origin: *
     &quot;error&quot;: null,
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;Компания 11&quot;,
-        &quot;full_name&quot;: &quot;Полное название компании&quot;,
+        &quot;name&quot;: &quot;Компания 1&quot;,
+        &quot;full_name&quot;: &quot;Полное название компании 1&quot;,
+        &quot;phone&quot;: &quot;+7 (911) 999-12-71&quot;,
+        &quot;email&quot;: &quot;test@test.com&quot;,
+        &quot;site&quot;: &quot;https://test.com&quot;,
         &quot;owner&quot;: &quot;Владелец&quot;,
-        &quot;responsible&quot;: null,
-        &quot;organization_type_id&quot;: 2,
+        &quot;responsible&quot;: &quot;Ответственный&quot;,
+        &quot;responsible_phone&quot;: &quot;+7 (911) 281-15-75&quot;,
+        &quot;organization_type_id&quot;: 1,
         &quot;district_id&quot;: 1,
-        &quot;is_has_education_license&quot;: false,
-        &quot;is_has_mdedical_license&quot;: true,
+        &quot;education_license&quot;: {
+            &quot;number&quot;: 1,
+            &quot;date&quot;: &quot;2022-05-29&quot;,
+            &quot;type&quot;: 3
+        },
+        &quot;medical_license&quot;: {
+            &quot;number&quot;: 2,
+            &quot;date&quot;: &quot;2022-05-29&quot;
+        },
         &quot;is_has_innovative_platform&quot;: true,
-        &quot;status&quot;: &quot;pending&quot;,
+        &quot;status&quot;: &quot;accepted&quot;,
         &quot;rejected_status_description&quot;: null
     }
 }</code>
@@ -426,12 +437,23 @@ access-control-allow-origin: *
     --data "{
     \"name\": \"Компания 1\",
     \"full_name\": \"Полное название компании\",
+    \"phone\": \"8 (800) 123 45-67\",
+    \"email\": \"site@yandex.ru\",
+    \"site\": \"https:\\/\\/site\",
     \"owner\": \"Владелец\",
     \"responsible\": \"Ответственный\",
+    \"responsible_phone\": \"8 (800) 123 45-67\",
     \"organization_type_id\": 1,
     \"district_id\": 1,
-    \"is_has_education_license\": false,
-    \"is_has_mdedical_license\": false,
+    \"education_license\": {
+        \"number\": 14,
+        \"date\": \"repellat\",
+        \"type\": \"blanditiis\"
+    },
+    \"medical_license\": {
+        \"number\": 15,
+        \"date\": \"officiis\"
+    },
     \"is_has_innovative_platform\": false
 }"
 </code></pre></div>
@@ -451,12 +473,23 @@ const headers = {
 let body = {
     "name": "Компания 1",
     "full_name": "Полное название компании",
+    "phone": "8 (800) 123 45-67",
+    "email": "site@yandex.ru",
+    "site": "https:\/\/site",
     "owner": "Владелец",
     "responsible": "Ответственный",
+    "responsible_phone": "8 (800) 123 45-67",
     "organization_type_id": 1,
     "district_id": 1,
-    "is_has_education_license": false,
-    "is_has_mdedical_license": false,
+    "education_license": {
+        "number": 14,
+        "date": "repellat",
+        "type": "blanditiis"
+    },
+    "medical_license": {
+        "number": 15,
+        "date": "officiis"
+    },
     "is_has_innovative_platform": false
 };
 
@@ -539,6 +572,36 @@ fetch(url, {
 <p>Полное наименование организации</p>
         </p>
                 <p>
+            <b><code>phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="phone"
+               data-endpoint="PUTapi-client-v1-company"
+               value="8 (800) 123 45-67"
+               data-component="body" hidden>
+    <br>
+<p>Номер телефона организации</p>
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="PUTapi-client-v1-company"
+               value="site@yandex.ru"
+               data-component="body" hidden>
+    <br>
+<p>Электронная почта организации</p>
+        </p>
+                <p>
+            <b><code>site</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="site"
+               data-endpoint="PUTapi-client-v1-company"
+               value="https://site"
+               data-component="body" hidden>
+    <br>
+<p>Ссылка на официальный сайт организации</p>
+        </p>
+                <p>
             <b><code>owner</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="owner"
@@ -557,6 +620,16 @@ fetch(url, {
                data-component="body" hidden>
     <br>
 <p>Ответственный за предоставление информации</p>
+        </p>
+                <p>
+            <b><code>responsible_phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="responsible_phone"
+               data-endpoint="PUTapi-client-v1-company"
+               value="8 (800) 123 45-67"
+               data-component="body" hidden>
+    <br>
+<p>Телефон ответственного за предоставление информации</p>
         </p>
                 <p>
             <b><code>organization_type_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -579,46 +652,72 @@ fetch(url, {
 <p>Район</p>
         </p>
                 <p>
-            <b><code>is_has_education_license</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
-                <label data-endpoint="PUTapi-client-v1-company" hidden>
-            <input type="radio" name="is_has_education_license"
-                   value="true"
-                   data-endpoint="PUTapi-client-v1-company"
-                   data-component="body"
-            >
-            <code>true</code>
-        </label>
-        <label data-endpoint="PUTapi-client-v1-company" hidden>
-            <input type="radio" name="is_has_education_license"
-                   value="false"
-                   data-endpoint="PUTapi-client-v1-company"
-                   data-component="body"
-            >
-            <code>false</code>
-        </label>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>education_license</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>Лицензия на осуществление образовательной деятельности</p>
+            </summary>
+                                                <p>
+                        <b><code>education_license.number</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="education_license.number"
+               data-endpoint="PUTapi-client-v1-company"
+               value="14"
+               data-component="body" hidden>
     <br>
-<p>Наличие лицензии на осуществление образовательной деятельности</p>
+<p>Номер лицензии</p>
+                    </p>
+                                                                <p>
+                        <b><code>education_license.date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="education_license.date"
+               data-endpoint="PUTapi-client-v1-company"
+               value="repellat"
+               data-component="body" hidden>
+    <br>
+<p>Дата выдачи лицензии</p>
+                    </p>
+                                                                <p>
+                        <b><code>education_license.type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="education_license.type"
+               data-endpoint="PUTapi-client-v1-company"
+               value="blanditiis"
+               data-component="body" hidden>
+    <br>
+<p>Вид деятельности</p>
+                    </p>
+                                    </details>
         </p>
                 <p>
-            <b><code>is_has_mdedical_license</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
-                <label data-endpoint="PUTapi-client-v1-company" hidden>
-            <input type="radio" name="is_has_mdedical_license"
-                   value="true"
-                   data-endpoint="PUTapi-client-v1-company"
-                   data-component="body"
-            >
-            <code>true</code>
-        </label>
-        <label data-endpoint="PUTapi-client-v1-company" hidden>
-            <input type="radio" name="is_has_mdedical_license"
-                   value="false"
-                   data-endpoint="PUTapi-client-v1-company"
-                   data-component="body"
-            >
-            <code>false</code>
-        </label>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>medical_license</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>Лицензия на осуществление медицинской деятельности</p>
+            </summary>
+                                                <p>
+                        <b><code>medical_license.number</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="medical_license.number"
+               data-endpoint="PUTapi-client-v1-company"
+               value="15"
+               data-component="body" hidden>
     <br>
-<p>Наличие лицензии на осуществление медицинской деятельности</p>
+<p>Номер лицензии</p>
+                    </p>
+                                                                <p>
+                        <b><code>medical_license.date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="medical_license.date"
+               data-endpoint="PUTapi-client-v1-company"
+               value="officiis"
+               data-component="body" hidden>
+    <br>
+<p>Дата выдачи лицензии</p>
+                    </p>
+                                    </details>
         </p>
                 <p>
             <b><code>is_has_innovative_platform</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;

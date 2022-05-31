@@ -12,19 +12,28 @@ class Company extends Model
     protected $fillable = [
         'name',
         'full_name',
+        
+        'phone',
+        'site',
+        'email',
+        
         'owner',
         'responsible',
+        'responsible_phone',
+        
         'organization_type_id',
         'district_id',
-        'is_has_education_license',
-        'is_has_mdedical_license',
+        
+        'education_license',
+        'medical_license',
         'is_has_innovative_platform',
+        
         'status',
     ];
 
     protected $casts = [
-        'is_has_education_license' => 'boolean',
-        'is_has_mdedical_license' => 'boolean',
+        'education_license' => 'array',
+        'medical_license' => 'array',
         'is_has_innovative_platform' => 'boolean',
     ];
 }

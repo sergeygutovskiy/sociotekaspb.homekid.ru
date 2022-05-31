@@ -45,19 +45,19 @@ paths:
                   data:
                     -
                       id: 6
-                      label: 'Район №0'
-                    -
-                      id: 7
                       label: 'Район №1'
                     -
-                      id: 8
+                      id: 7
                       label: 'Район №2'
                     -
-                      id: 9
+                      id: 8
                       label: 'Район №3'
                     -
-                      id: 10
+                      id: 9
                       label: 'Район №4'
+                    -
+                      id: 10
+                      label: 'Район №5'
                 properties:
                   error:
                     type: string
@@ -67,19 +67,19 @@ paths:
                     example:
                       -
                         id: 6
-                        label: 'Район №0'
-                      -
-                        id: 7
                         label: 'Район №1'
                       -
-                        id: 8
+                        id: 7
                         label: 'Район №2'
                       -
-                        id: 9
+                        id: 8
                         label: 'Район №3'
                       -
-                        id: 10
+                        id: 9
                         label: 'Район №4'
+                      -
+                        id: 10
+                        label: 'Район №5'
                     items:
                       type: object
       tags:
@@ -130,16 +130,25 @@ paths:
                   error: null
                   data:
                     id: 1
-                    name: 'Компания 11'
-                    full_name: 'Полное название компании'
+                    name: 'Компания 1'
+                    full_name: 'Полное название компании 1'
+                    phone: '+7 (911) 999-12-71'
+                    email: test@test.com
+                    site: 'https://test.com'
                     owner: Владелец
-                    responsible: null
-                    organization_type_id: 2
+                    responsible: Ответственный
+                    responsible_phone: '+7 (911) 281-15-75'
+                    organization_type_id: 1
                     district_id: 1
-                    is_has_education_license: false
-                    is_has_mdedical_license: true
+                    education_license:
+                      number: 1
+                      date: '2022-05-29'
+                      type: 3
+                    medical_license:
+                      number: 2
+                      date: '2022-05-29'
                     is_has_innovative_platform: true
-                    status: pending
+                    status: accepted
                     rejected_status_description: null
                 properties:
                   error:
@@ -149,16 +158,25 @@ paths:
                     type: object
                     example:
                       id: 1
-                      name: 'Компания 11'
-                      full_name: 'Полное название компании'
+                      name: 'Компания 1'
+                      full_name: 'Полное название компании 1'
+                      phone: '+7 (911) 999-12-71'
+                      email: test@test.com
+                      site: 'https://test.com'
                       owner: Владелец
-                      responsible: null
-                      organization_type_id: 2
+                      responsible: Ответственный
+                      responsible_phone: '+7 (911) 281-15-75'
+                      organization_type_id: 1
                       district_id: 1
-                      is_has_education_license: false
-                      is_has_mdedical_license: true
+                      education_license:
+                        number: 1
+                        date: '2022-05-29'
+                        type: 3
+                      medical_license:
+                        number: 2
+                        date: '2022-05-29'
                       is_has_innovative_platform: true
-                      status: pending
+                      status: accepted
                       rejected_status_description: null
       tags:
         - Компании
@@ -205,6 +223,18 @@ paths:
                   type: string
                   description: 'Полное наименование организации'
                   example: 'Полное название компании'
+                phone:
+                  type: string
+                  description: 'Номер телефона организации'
+                  example: '8 (800) 123 45-67'
+                email:
+                  type: string
+                  description: 'Электронная почта организации'
+                  example: site@yandex.ru
+                site:
+                  type: string
+                  description: 'Ссылка на официальный сайт организации'
+                  example: 'https://site'
                 owner:
                   type: string
                   description: 'Руководитель организации'
@@ -213,6 +243,10 @@ paths:
                   type: string
                   description: 'Ответственный за предоставление информации'
                   example: Ответственный
+                responsible_phone:
+                  type: string
+                  description: 'Телефон ответственного за предоставление информации'
+                  example: '8 (800) 123 45-67'
                 organization_type_id:
                   type: integer
                   description: 'Тип организации'
@@ -221,14 +255,36 @@ paths:
                   type: integer
                   description: Район
                   example: 1
-                is_has_education_license:
-                  type: boolean
-                  description: 'Наличие лицензии на осуществление образовательной деятельности'
-                  example: false
-                is_has_mdedical_license:
-                  type: boolean
-                  description: 'Наличие лицензии на осуществление медицинской деятельности'
-                  example: false
+                education_license:
+                  type: object
+                  description: 'Лицензия на осуществление образовательной деятельности'
+                  example: []
+                  properties:
+                    number:
+                      type: integer
+                      description: 'Номер лицензии'
+                      example: 14
+                    date:
+                      type: string
+                      description: 'Дата выдачи лицензии'
+                      example: repellat
+                    type:
+                      type: string
+                      description: 'Вид деятельности'
+                      example: blanditiis
+                medical_license:
+                  type: object
+                  description: 'Лицензия на осуществление медицинской деятельности'
+                  example: []
+                  properties:
+                    number:
+                      type: integer
+                      description: 'Номер лицензии'
+                      example: 15
+                    date:
+                      type: string
+                      description: 'Дата выдачи лицензии'
+                      example: officiis
                 is_has_innovative_platform:
                   type: boolean
                   description: 'Наличие инновационной площадки в организации'
@@ -236,12 +292,14 @@ paths:
               required:
                 - name
                 - full_name
+                - phone
+                - email
+                - site
                 - owner
                 - responsible
+                - responsible_phone
                 - organization_type_id
                 - district_id
-                - is_has_education_license
-                - is_has_mdedical_license
                 - is_has_innovative_platform
   /api/client/v1/users/login:
     post:

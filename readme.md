@@ -1,5 +1,13 @@
 # Команды
 
+Запуск с нуля
+```
+php artisan migrate:fresh
+php artisan db:seed
+php artisan test --env=testing --parallel --recreate-databases
+php artisan serve --port=8081
+```
+
 Пересобрать миграции
 ```
 php artisan migrate:fresh
@@ -19,6 +27,10 @@ php artisan test --env=testing
 Запустить тесты параллельно с ересозданеим БД
 ```
 php artisan test --env=testing --parallel --recreate-databases
+```
+Обновить документацию
+```
+php artisan scribe:generate
 ```
 
 # Фикстуры
@@ -52,61 +64,59 @@ DB::table('users')->insert([
 DB::table('companies')->insert([
     'id' => 1,
     'user_id' => 1,
+    
+    'phone' => '+7 (911) 999-12-71',
+    'site' => 'https://test.com',
+    'email' => 'test@test.com',
+    
     'name' => 'Компания 1',
-    'full_name' => 'Полное название компании',
+    'full_name' => 'Полное название компании 1',
 
     'owner' => 'Владелец',
-    'responsible_for_providing_information' => 'Ответственный',
+    'responsible' => 'Ответственный',
+    'responsible_phone' => '+7 (911) 281-15-75',
 
     'organization_type_id' => 1,
     'district_id' => 1,
 
-    'is_has_education_license' => true,
-    'is_has_mdedical_license' => true,
-    'is_has_innovative_platform' => false,
+    'education_license' => json_encode([
+        'number' => 1,
+        'date' => Carbon::now()->toDateString(),
+        'type' => 'Дошкольное образование',
+    ]),
+    'medical_license' => json_encode([
+        'number' => 2,
+        'date' => Carbon::now()->toDateString(),
+    ]),
+    'is_has_innovative_platform' => true,
 
-    'status' => 'confirmed'
+    'status' => CompanyStatus::Accepted,
 ]);
 ```
 ``` php
 DB::table('companies')->insert([
     'id' => 2,
     'user_id' => 2,
+    
+    'phone' => '+7 (911) 999-12-71',
+    'site' => 'https://test2.com',
+    'email' => 'test@test2.com',
+    
     'name' => 'Компания 2',
-    'full_name' => 'Полное название компании',
+    'full_name' => 'Полное название компании 2',
 
-    'owner' => 'Владелец',
-    'responsible_for_providing_information' => 'Ответственный',
+    'owner' => 'Владелец 2',
+    'responsible' => 'Ответственный 2',
+    'responsible_phone' => '+7 (911) 281-15-75',
 
-    'organization_type_id' => 4,
-    'district_id' => 1,
-
-    'is_has_education_license' => true,
-    'is_has_mdedical_license' => true,
-    'is_has_innovative_platform' => true,
-
-    'status' => 'pending'
-]);
-```
-``` php
-DB::table('companies')->insert([
-    'id' => 3,
-    'user_id' => 3,
-    'name' => 'Компания 3',
-    'full_name' => 'Полное название компании',
-
-    'owner' => 'Владелец',
-    'responsible_for_providing_information' => 'Ответственный',
-
-    'organization_type_id' => 3,
+    'organization_type_id' => 2,
     'district_id' => 2,
 
-    'is_has_education_license' => false,
-    'is_has_mdedical_license' => false,
+    'education_license' => null,
+    'medical_license' => null,
     'is_has_innovative_platform' => false,
 
-    'status' => 'rejected',
-    'rejected_status_description' => 'Говно съело мочу.'
+    'status' => CompanyStatus::Accepted,
 ]);
 ```
 
@@ -153,3 +163,7 @@ for ( $i = 1; $i <= 5; $i++ )
 Добавлен пакет ```fruitcake/laravel-cors```
 <br>
 Сейчас доступны любые адреса 
+
+# API
+
+```/docs```

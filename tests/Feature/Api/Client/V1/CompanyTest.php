@@ -26,22 +26,30 @@ class CompanyTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertExactJson([
-                'data.id' => $company->id,
-                'data.name' => $company->name,
-                'data.full_name' => $company->full_name,
+                'data' => [
+                    'id' => $company->id,
+                    'name' => $company->name,
+                    'full_name' => $company->full_name,
+        
+                    'email' => $company->email,
+                    'site' => $company->site,
+                    'phone' => $company->phone,
     
-                'data.owner' => $company->owner,
-                'data.responsible' => $company->responsible,
-    
-                'data.organization_type_id' => $company->organization_type_id,
-                'data.district_id' => $company->district_id,
-    
-                'data.is_has_education_license' => $company->is_has_education_license,
-                'data.is_has_mdedical_license' => $company->is_has_mdedical_license,
-                'data.is_has_innovative_platform' => $company->is_has_innovative_platform,
-    
-                'data.status' => $company->status,
-                'data.rejected_status_description' => $company->rejected_status_description,
+                    'owner' => $company->owner,
+                    'responsible' => $company->responsible,
+                    'responsible_phone' => $company->responsible_phone,
+        
+                    'organization_type_id' => $company->organization_type_id,
+                    'district_id' => $company->district_id,
+        
+                    'education_license' => $company->education_license,
+                    'medical_license' => $company->medical_license,
+                    
+                    'is_has_innovative_platform' => $company->is_has_innovative_platform,
+        
+                    'status' => $company->status,
+                    'rejected_status_description' => $company->rejected_status_description,
+                ],
                 
                 'error' => null,
             ])
