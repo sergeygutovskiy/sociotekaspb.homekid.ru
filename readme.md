@@ -24,7 +24,7 @@ php artisan serve --port=8081
 ```
 php artisan test --env=testing
 ```
-Запустить тесты параллельно с ересозданеим БД
+Запустить тесты параллельно с пересозданием БД
 ```
 php artisan test --env=testing --parallel --recreate-databases
 ```
