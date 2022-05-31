@@ -23,7 +23,7 @@ class CompanyController extends Controller
         $company = $user->company;
 
         return response()->json([
-            'error' => null,
+            'error' => 'Ошибка валидации',
             'data' => new CompanyResource($company),
         ]);
     }
