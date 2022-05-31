@@ -131,24 +131,19 @@ paths:
                   data:
                     id: 1
                     name: 'Компания 1'
-                    full_name: 'Полное название компании 1'
-                    phone: '+7 (911) 999-12-71'
-                    email: test@test.com
-                    site: 'https://test.com'
+                    full_name: 'Полное название компании'
+                    phone: '8 (800) 123 45-67'
+                    email: site@yandex.ru
+                    site: 'https://site'
                     owner: Владелец
                     responsible: Ответственный
-                    responsible_phone: '+7 (911) 281-15-75'
+                    responsible_phone: '8 (800) 123 45-67'
                     organization_type_id: 1
                     district_id: 1
-                    education_license:
-                      number: 1
-                      date: '2022-05-29'
-                      type: 3
-                    medical_license:
-                      number: 2
-                      date: '2022-05-29'
-                    is_has_innovative_platform: true
-                    status: accepted
+                    education_license: null
+                    medical_license: null
+                    is_has_innovative_platform: false
+                    status: pending
                     rejected_status_description: null
                 properties:
                   error:
@@ -159,24 +154,19 @@ paths:
                     example:
                       id: 1
                       name: 'Компания 1'
-                      full_name: 'Полное название компании 1'
-                      phone: '+7 (911) 999-12-71'
-                      email: test@test.com
-                      site: 'https://test.com'
+                      full_name: 'Полное название компании'
+                      phone: '8 (800) 123 45-67'
+                      email: site@yandex.ru
+                      site: 'https://site'
                       owner: Владелец
                       responsible: Ответственный
-                      responsible_phone: '+7 (911) 281-15-75'
+                      responsible_phone: '8 (800) 123 45-67'
                       organization_type_id: 1
                       district_id: 1
-                      education_license:
-                        number: 1
-                        date: '2022-05-29'
-                        type: 3
-                      medical_license:
-                        number: 2
-                        date: '2022-05-29'
-                      is_has_innovative_platform: true
-                      status: accepted
+                      education_license: null
+                      medical_license: null
+                      is_has_innovative_platform: false
+                      status: pending
                       rejected_status_description: null
       tags:
         - Компании
@@ -257,34 +247,34 @@ paths:
                   example: 1
                 education_license:
                   type: object
-                  description: 'Лицензия на осуществление образовательной деятельности'
+                  description: 'optional Лицензия на осуществление образовательной деятельности'
                   example: []
                   properties:
                     number:
                       type: integer
                       description: 'Номер лицензии'
-                      example: 14
+                      example: 1234
                     date:
                       type: string
                       description: 'Дата выдачи лицензии'
-                      example: repellat
+                      example: 22.05.2022
                     type:
                       type: string
                       description: 'Вид деятельности'
-                      example: blanditiis
+                      example: 'Дошкольное образование'
                 medical_license:
                   type: object
-                  description: 'Лицензия на осуществление медицинской деятельности'
+                  description: 'optional Лицензия на осуществление медицинской деятельности'
                   example: []
                   properties:
                     number:
                       type: integer
                       description: 'Номер лицензии'
-                      example: 15
+                      example: 1234
                     date:
                       type: string
                       description: 'Дата выдачи лицензии'
-                      example: officiis
+                      example: 22.05.2022
                 is_has_innovative_platform:
                   type: boolean
                   description: 'Наличие инновационной площадки в организации'

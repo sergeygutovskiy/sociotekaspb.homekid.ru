@@ -48,16 +48,16 @@ class CompanyController extends Controller
      * @bodyParam organization_type_id int required Тип организации Example: 1
      * @bodyParam district_id int required Район Example: 1
      * 
-     * @bodyParam education_license object Лицензия на осуществление образовательной деятельности Example:
+     * @bodyParam education_license object optional Лицензия на осуществление образовательной деятельности
      * @bodyParam education_license.number int Номер лицензии Example: 1234
      * @bodyParam education_license.type string Вид деятельности Example: Дошкольное образование
      * @bodyParam education_license.date string Дата выдачи лицензии Example: 22.05.2022
      * 
-     * @bodyParam medical_license object Лицензия на осуществление медицинской деятельности
-     * @bodyParam medical_license.number int Номер лицензии 1234
-     * @bodyParam medical_license.date string Дата выдачи лицензии  22.05.2022
+     * @bodyParam medical_license object optional Лицензия на осуществление медицинской деятельности
+     * @bodyParam medical_license.number int Номер лицензии Example: 1234
+     * @bodyParam medical_license.date string Дата выдачи лицензии Example: 22.05.2022
      * 
-     * @bodyParam is_has_innovative_platform bool required Наличие инновационной площадки в организации Example: false
+     * @bodyParam is_has_innovative_platform bool required Наличие инновационной площадки в организации
      * 
      */
     public function update(Request $request)
@@ -77,14 +77,14 @@ class CompanyController extends Controller
             'organization_type_id' => 'required|numeric|exists:dictionaries,id',
             'district_id' => 'required|numeric|exists:dictionaries,id',
             
-            'education_license' => 'array:number,date,type|nullable',
-            'education_license.number' => 'required|numeric',
-            'education_license.date' => 'required|date_format:d.m.Y',
-            'education_license.type' => 'required',
+            'education_license' => 'array:number,date,type|required|nullable',
+            'education_license.number' => 'required_with:education_license|numeric',
+            'education_license.date' => 'required_with:education_license|date_format:d.m.Y',
+            'education_license.type' => 'required_with:education_license',
 
-            'medical_license' => 'array:number,date|nullable',
-            'medical_license.number' => 'required|numeric',
-            'medical_license.date' => 'required|date_format:d.m.Y',
+            'medical_license' => 'array:number,date|required|nullable',
+            'medical_license.number' => 'required_with:medical_license|numeric',
+            'medical_license.date' => 'required_with:medical_license|date_format:d.m.Y',
             
             'is_has_innovative_platform' => 'required|boolean',
         ]);
@@ -92,7 +92,7 @@ class CompanyController extends Controller
         if ( $validator->fails() ) 
         {
             return response()->json([
-                'error' => 'Ошибка валидации полей',
+                'error' => null,
                 'data' => null,
             ], 400);
         }
