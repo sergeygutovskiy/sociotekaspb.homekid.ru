@@ -77,12 +77,12 @@ class CompanyController extends Controller
             'organization_type_id' => 'required|numeric|exists:dictionaries,id',
             'district_id' => 'required|numeric|exists:dictionaries,id',
             
-            'education_license' => 'array:number,date,type|required|nullable',
+            'education_license' => 'array|size:3|nullable|present',
             'education_license.number' => 'required_with:education_license|numeric',
             'education_license.date' => 'required_with:education_license|date_format:d.m.Y',
             'education_license.type' => 'required_with:education_license',
 
-            'medical_license' => 'array:number,date|required|nullable',
+            'medical_license' => 'array|size:2|nullable|present',
             'medical_license.number' => 'required_with:medical_license|numeric',
             'medical_license.date' => 'required_with:medical_license|date_format:d.m.Y',
             
@@ -94,6 +94,7 @@ class CompanyController extends Controller
             return response()->json([
                 'error' => 'Ошибка валидации',
                 'data' => null,
+                'meta' => $validator->errors()
             ], 400);
         }
 
