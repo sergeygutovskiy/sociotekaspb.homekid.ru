@@ -140,8 +140,8 @@ paths:
                     responsible_phone: '8 (800) 123 45-67'
                     organization_type_id: 1
                     district_id: 1
-                    education_license: null
-                    medical_license: null
+                    education_license: []
+                    medical_license: []
                     is_has_innovative_platform: false
                     status: pending
                     rejected_status_description: null
@@ -163,8 +163,8 @@ paths:
                       responsible_phone: '8 (800) 123 45-67'
                       organization_type_id: 1
                       district_id: 1
-                      education_license: null
-                      medical_license: null
+                      education_license: []
+                      medical_license: []
                       is_has_innovative_platform: false
                       status: pending
                       rejected_status_description: null
@@ -278,7 +278,7 @@ paths:
                 is_has_innovative_platform:
                   type: boolean
                   description: 'Наличие инновационной площадки в организации'
-                  example: false
+                  example: true
               required:
                 - name
                 - full_name
