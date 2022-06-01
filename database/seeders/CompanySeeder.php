@@ -31,12 +31,12 @@ class CompanySeeder extends Seeder
 
             'education_license' => json_encode([
                 'number' => 1,
-                'date' => Carbon::now()->toDateString(),
+                'date' => Carbon::now()->format('d.m.Y'),
                 'type' => 'Дошкольное образование',
             ]),
             'medical_license' => json_encode([
                 'number' => 2,
-                'date' => Carbon::now()->toDateString(),
+                'date' => Carbon::now()->format('d.m.Y'),
             ]),
             'is_has_innovative_platform' => true,
 
