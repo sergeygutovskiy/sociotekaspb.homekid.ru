@@ -2,6 +2,10 @@
 /public/hot
 /storage/*.key
 /vendor
+/.idea
+/.vscode
+/public/docs
+.scribe
 .env
 .env.backup
 .phpunit.result.cache
@@ -9,6 +13,3 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.idea
-/.vscode
-.scribe
