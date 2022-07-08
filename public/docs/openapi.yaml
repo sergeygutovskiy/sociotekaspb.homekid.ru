@@ -131,19 +131,24 @@ paths:
                   data:
                     id: 1
                     name: 'Компания 1'
-                    full_name: 'Полное название компании'
-                    phone: '8 (800) 123 45-67'
-                    email: site@yandex.ru
-                    site: 'https://site'
+                    full_name: 'Полное название компании 1'
+                    phone: '+7 (911) 999-12-71'
+                    email: test@test.com
+                    site: 'https://test.com'
                     owner: Владелец
                     responsible: Ответственный
-                    responsible_phone: '8 (800) 123 45-67'
+                    responsible_phone: '+7 (911) 281-15-75'
                     organization_type_id: 1
                     district_id: 1
-                    education_license: []
-                    medical_license: []
-                    is_has_innovative_platform: false
-                    status: pending
+                    education_license:
+                      date: 08.07.2022
+                      type: 'Дошкольное образование'
+                      number: 1
+                    medical_license:
+                      date: 08.07.2022
+                      number: 2
+                    is_has_innovative_platform: true
+                    status: accepted
                     rejected_status_description: null
                 properties:
                   error:
@@ -154,19 +159,24 @@ paths:
                     example:
                       id: 1
                       name: 'Компания 1'
-                      full_name: 'Полное название компании'
-                      phone: '8 (800) 123 45-67'
-                      email: site@yandex.ru
-                      site: 'https://site'
+                      full_name: 'Полное название компании 1'
+                      phone: '+7 (911) 999-12-71'
+                      email: test@test.com
+                      site: 'https://test.com'
                       owner: Владелец
                       responsible: Ответственный
-                      responsible_phone: '8 (800) 123 45-67'
+                      responsible_phone: '+7 (911) 281-15-75'
                       organization_type_id: 1
                       district_id: 1
-                      education_license: []
-                      medical_license: []
-                      is_has_innovative_platform: false
-                      status: pending
+                      education_license:
+                        date: 08.07.2022
+                        type: 'Дошкольное образование'
+                        number: 1
+                      medical_license:
+                        date: 08.07.2022
+                        number: 2
+                      is_has_innovative_platform: true
+                      status: accepted
                       rejected_status_description: null
       tags:
         - Компании
@@ -278,7 +288,7 @@ paths:
                 is_has_innovative_platform:
                   type: boolean
                   description: 'Наличие инновационной площадки в организации'
-                  example: true
+                  example: false
               required:
                 - name
                 - full_name

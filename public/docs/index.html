@@ -115,7 +115,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 1 2022</li>
+        <li>Last updated: July 8 2022</li>
     </ul>
 </div>
 
@@ -342,19 +342,26 @@ access-control-allow-origin: *
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;name&quot;: &quot;Компания 1&quot;,
-        &quot;full_name&quot;: &quot;Полное название компании&quot;,
-        &quot;phone&quot;: &quot;8 (800) 123 45-67&quot;,
-        &quot;email&quot;: &quot;site@yandex.ru&quot;,
-        &quot;site&quot;: &quot;https://site&quot;,
+        &quot;full_name&quot;: &quot;Полное название компании 1&quot;,
+        &quot;phone&quot;: &quot;+7 (911) 999-12-71&quot;,
+        &quot;email&quot;: &quot;test@test.com&quot;,
+        &quot;site&quot;: &quot;https://test.com&quot;,
         &quot;owner&quot;: &quot;Владелец&quot;,
         &quot;responsible&quot;: &quot;Ответственный&quot;,
-        &quot;responsible_phone&quot;: &quot;8 (800) 123 45-67&quot;,
+        &quot;responsible_phone&quot;: &quot;+7 (911) 281-15-75&quot;,
         &quot;organization_type_id&quot;: 1,
         &quot;district_id&quot;: 1,
-        &quot;education_license&quot;: [],
-        &quot;medical_license&quot;: [],
-        &quot;is_has_innovative_platform&quot;: false,
-        &quot;status&quot;: &quot;pending&quot;,
+        &quot;education_license&quot;: {
+            &quot;date&quot;: &quot;08.07.2022&quot;,
+            &quot;type&quot;: &quot;Дошкольное образование&quot;,
+            &quot;number&quot;: 1
+        },
+        &quot;medical_license&quot;: {
+            &quot;date&quot;: &quot;08.07.2022&quot;,
+            &quot;number&quot;: 2
+        },
+        &quot;is_has_innovative_platform&quot;: true,
+        &quot;status&quot;: &quot;accepted&quot;,
         &quot;rejected_status_description&quot;: null
     }
 }</code>
@@ -447,7 +454,7 @@ access-control-allow-origin: *
         \"number\": 1234,
         \"date\": \"22.05.2022\"
     },
-    \"is_has_innovative_platform\": true
+    \"is_has_innovative_platform\": false
 }"
 </code></pre></div>
 
@@ -483,7 +490,7 @@ let body = {
         "number": 1234,
         "date": "22.05.2022"
     },
-    "is_has_innovative_platform": true
+    "is_has_innovative_platform": false
 };
 
 fetch(url, {
