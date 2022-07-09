@@ -1,3 +1,8 @@
+# TODO
+- Обновить список категорий справочников в доке
+- Написать названия полей в доке для создания проекта
+- Вынести логику валидаторов в отдельные классы
+
 # Команды
 
 Запуск с нуля
@@ -31,6 +36,11 @@ php artisan test --env=testing --parallel --recreate-databases
 Обновить документацию
 ```
 php artisan scribe:generate
+```
+Обновить пакеты бекенда
+```
+composer install
+composer update
 ```
 
 # Фикстуры
@@ -136,25 +146,91 @@ DB::table('dictionary_categories')->insert([
     'slug' => 'district',
 ]);
 ```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 3,
+    'name' => 'Реализация для гражданина',
+    'slug' => 'implementation-for-citizen',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 4,
+    'name' => 'Категория',
+    'slug' => 'category',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 5,
+    'name' => 'Форма социального обслуживания',
+    'slug' => 'form-of-social-service',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 6,
+    'name' => 'Привлечение добровольцев и волонтеров',
+    'slug' => 'engagement-of-volunteers',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 7,
+    'name' => 'Целевая группа',
+    'slug' => 'target-group',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 8,
+    'name' => 'Статус',
+    'slug' => 'job-status',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 9,
+    'name' => 'Вид услуги',
+    'slug' => 'service-type',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 10,
+    'name' => 'Наименование работ',
+    'slug' => 'work-name',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 11,
+    'name' => 'Обстоятельства признания нуждаемости',
+    'slug' => 'circumstances-of-recognition-of-need',
+]);
+```
+``` php
+DB::table('dictionary_categories')->insert([
+    'id' => 12,
+    'name' => 'Категория по РНСУ',
+    'slug' => 'rnsu-category',
+]);
+```
 
 ## Словари
 
 ``` php
-for ( $i = 1; $i <= 5; $i++ )
-{
-    DB::table('dictionaries')->insert([
-        'category_id' => 1,
-        'label' => 'Тип огранизации №' . $i,
-    ]);
-}
-```
-``` php
-for ( $i = 1; $i <= 5; $i++ )
-{
-    DB::table('dictionaries')->insert([
-        'category_id' => 2,
-        'label' => 'Район №' . $i,
-    ]);
+$dictionary_categories = DictionaryCategory::all();
+
+// create dictionary item for each category
+foreach ($dictionary_categories as $category) {
+    // 5 times
+    for ($i = 0; $i < 5; $i++) {
+        Dictionary::create([
+            'category_id' => $category->id,
+            'label' => strtolower($category->name . ' №' . $i+1) 
+        ]);
+    }
 }
 ```
 

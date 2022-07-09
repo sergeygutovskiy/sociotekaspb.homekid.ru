@@ -141,11 +141,11 @@ paths:
                     organization_type_id: 1
                     district_id: 1
                     education_license:
-                      date: 08.07.2022
+                      date: 09.07.2022
                       type: 'Дошкольное образование'
                       number: 1
                     medical_license:
-                      date: 08.07.2022
+                      date: 09.07.2022
                       number: 2
                     is_has_innovative_platform: true
                     status: accepted
@@ -169,11 +169,11 @@ paths:
                       organization_type_id: 1
                       district_id: 1
                       education_license:
-                        date: 08.07.2022
+                        date: 09.07.2022
                         type: 'Дошкольное образование'
                         number: 1
                       medical_license:
-                        date: 08.07.2022
+                        date: 09.07.2022
                         number: 2
                       is_has_innovative_platform: true
                       status: accepted
@@ -288,7 +288,7 @@ paths:
                 is_has_innovative_platform:
                   type: boolean
                   description: 'Наличие инновационной площадки в организации'
-                  example: false
+                  example: true
               required:
                 - name
                 - full_name
@@ -301,6 +301,349 @@ paths:
                 - organization_type_id
                 - district_id
                 - is_has_innovative_platform
+  /api/client/v1/jobs/projects:
+    post:
+      summary: 'Создать проект'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Проекты
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                primary_info:
+                  type: object
+                  description: test
+                  example: []
+                  properties:
+                    name:
+                      type: string
+                      description: test
+                      example: test
+                    purpose:
+                      type: string
+                      description: test
+                      example: test
+                    objectives:
+                      type: string
+                      description: test
+                      example: test
+                    annotation:
+                      type: string
+                      description: test
+                      example: test
+                    main_results:
+                      type: string
+                      description: test
+                      example: test
+                    brief_description_of_resources:
+                      type: string
+                      description: test
+                      example: test
+                    best_practice:
+                      type: string
+                      description: test
+                      example: test
+                    social_outcome:
+                      type: string
+                      description: test
+                      example: test
+                    photo_file_path:
+                      type: string
+                      description: test
+                      example: test
+                    video_link:
+                      type: string
+                      description: test
+                      example: test
+                    implementation_for_citizen_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    category_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    form_of_social_service_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    engagement_of_volunteers_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    target_group_ids:
+                      type: array
+                      description: test
+                      example:
+                        - 1
+                        - 2
+                      items:
+                        type: integer
+                    is_possibility_in_remote:
+                      type: boolean
+                      description: test
+                      example: false
+                    is_innovation_site:
+                      type: boolean
+                      description: test
+                      example: false
+                    is_has_expert_opinion:
+                      type: boolean
+                      description: test
+                      example: false
+                    is_has_expert_review:
+                      type: boolean
+                      description: test
+                      example: false
+                    is_has_innovative_platform:
+                      type: boolean
+                      description: test
+                      example: false
+                experience:
+                  type: object
+                  description: test
+                  example: []
+                  properties:
+                    results_in_district_and_media:
+                      type: object
+                      description: 'optional test'
+                      example: []
+                      properties:
+                        desc:
+                          type: string
+                          description: test
+                          example: test
+                        link:
+                          type: string
+                          description: test
+                          example: test
+                    results_on_television:
+                      type: object
+                      description: 'optional test'
+                      example: []
+                      properties:
+                        desc:
+                          type: string
+                          description: test
+                          example: test
+                        link:
+                          type: string
+                          description: test
+                          example: test
+                    results_at_various_levels_events:
+                      type: object
+                      description: 'optional test'
+                      example: []
+                      properties:
+                        desc:
+                          type: string
+                          description: test
+                          example: test
+                        link:
+                          type: string
+                          description: test
+                          example: test
+                    results_in_article:
+                      type: object
+                      description: 'optional test'
+                      example: []
+                      properties:
+                        desc:
+                          type: string
+                          description: test
+                          example: test
+                        link:
+                          type: string
+                          description: test
+                          example: test
+                    results_on_website_of_institution:
+                      type: object
+                      description: 'optional test'
+                      example: []
+                      properties:
+                        desc:
+                          type: string
+                          description: test
+                          example: test
+                        link:
+                          type: string
+                          description: test
+                          example: test
+                    conducting_master_classes:
+                      type: object
+                      description: 'optional test'
+                      example: []
+                      properties:
+                        desc:
+                          type: string
+                          description: test
+                          example: test
+                        link:
+                          type: string
+                          description: test
+                          example: test
+                    results_on_radio:
+                      type: object
+                      description: 'optional test'
+                      example: []
+                      properties:
+                        desc:
+                          type: string
+                          description: test
+                          example: test
+                        link:
+                          type: string
+                          description: test
+                          example: test
+                info:
+                  type: object
+                  description: test
+                  example: []
+                  properties:
+                    implementation_period:
+                      type: string
+                      description: test
+                      example: test
+                    technologies_forms_methods:
+                      type: string
+                      description: test
+                      example: test
+                    main_results:
+                      type: string
+                      description: test
+                      example: test
+                    diagnostic_toolkit:
+                      type: string
+                      description: test
+                      example: test
+                    prevalence:
+                      type: string
+                      description: test
+                      example: test
+                    is_participant:
+                      type: boolean
+                      description: test
+                      example: false
+                    organizer:
+                      type: string
+                      description: test
+                      example: test
+                    status_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    service_type_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    work_name_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    recognition_of_need_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    rnsu_category_id:
+                      type: integer
+                      description: test
+                      example: 1
+                    partner_ids:
+                      type: array
+                      description: test
+                      example:
+                        - 1
+                        - 2
+                      items:
+                        type: integer
+                contacts:
+                  type: object
+                  description: test
+                  example: []
+                  properties:
+                    responsible_name:
+                      type: string
+                      description: test
+                      example: test
+                    email:
+                      type: string
+                      description: test
+                      example: test
+                    phone:
+                      type: string
+                      description: test
+                      example: test
+                participants:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      total_number_of_participants:
+                        type: integer
+                        description: test
+                        example: 1
+                      number_of_families:
+                        type: integer
+                        description: test
+                        example: 1
+                      number_of_children:
+                        type: integer
+                        description: test
+                        example: 1
+                      number_of_men:
+                        type: integer
+                        description: test
+                        example: 1
+                      number_of_women:
+                        type: integer
+                        description: test
+                        example: 1
+                      reporting_period_year:
+                        type: integer
+                        description: test
+                        example: 2022
+                    required:
+                      - total_number_of_participants
+                      - number_of_families
+                      - number_of_children
+                      - number_of_men
+                      - number_of_women
+                      - reporting_period_year
+              required:
+                - primary_info
+                - experience
+                - info
+                - contacts
   /api/client/v1/users/login:
     post:
       summary: 'Войти в аккаунт'
@@ -377,6 +720,9 @@ tags:
     description: ''
   -
     name: Компании
+    description: ''
+  -
+    name: Проекты
     description: ''
   -
     name: Юзеры

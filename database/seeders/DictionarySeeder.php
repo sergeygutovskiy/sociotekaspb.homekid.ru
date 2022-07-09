@@ -2,27 +2,25 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dictionary;
+use App\Models\DictionaryCategory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DictionarySeeder extends Seeder
 {
     public function run()
     {
-        for ( $i = 1; $i <= 5; $i++ )
-        {
-            DB::table('dictionaries')->insert([
-                'category_id' => 1,
-                'label' => 'Тип огранизации №' . $i,
-            ]);
-        }
+        $dictionary_categories = DictionaryCategory::all();
 
-        for ( $i = 1; $i <= 5; $i++ )
-        {
-            DB::table('dictionaries')->insert([
-                'category_id' => 2,
-                'label' => 'Район №' . $i,
-            ]);
+        // create dictionary item for each category
+        foreach ($dictionary_categories as $category) {
+            // 5 times
+            for ($i = 0; $i < 5; $i++) {
+                Dictionary::create([
+                    'category_id' => $category->id,
+                    'label' => strtolower($category->name . ' №' . $i+1) 
+                ]);
+            }
         }
     }
 }

@@ -93,6 +93,16 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="proekty">
+                    <a href="#proekty">Проекты</a>
+                </li>
+                                    <ul id="tocify-subheader-proekty" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="proekty-POSTapi-client-v1-jobs-projects">
+                        <a href="#proekty-POSTapi-client-v1-jobs-projects">Создать проект</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="iuzery">
                     <a href="#iuzery">Юзеры</a>
                 </li>
@@ -115,7 +125,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 8 2022</li>
+        <li>Last updated: July 9 2022</li>
     </ul>
 </div>
 
@@ -130,7 +140,7 @@
 <pre><code class="language-yaml">http://localhost:8081</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>Отправте запрос на <strong>/users/login</strong>, чтобы получить токен</p>
 
@@ -352,12 +362,12 @@ access-control-allow-origin: *
         &quot;organization_type_id&quot;: 1,
         &quot;district_id&quot;: 1,
         &quot;education_license&quot;: {
-            &quot;date&quot;: &quot;08.07.2022&quot;,
+            &quot;date&quot;: &quot;09.07.2022&quot;,
             &quot;type&quot;: &quot;Дошкольное образование&quot;,
             &quot;number&quot;: 1
         },
         &quot;medical_license&quot;: {
-            &quot;date&quot;: &quot;08.07.2022&quot;,
+            &quot;date&quot;: &quot;09.07.2022&quot;,
             &quot;number&quot;: 2
         },
         &quot;is_has_innovative_platform&quot;: true,
@@ -454,7 +464,7 @@ access-control-allow-origin: *
         \"number\": 1234,
         \"date\": \"22.05.2022\"
     },
-    \"is_has_innovative_platform\": false
+    \"is_has_innovative_platform\": true
 }"
 </code></pre></div>
 
@@ -490,7 +500,7 @@ let body = {
         "number": 1234,
         "date": "22.05.2022"
     },
-    "is_has_innovative_platform": false
+    "is_has_innovative_platform": true
 };
 
 fetch(url, {
@@ -739,6 +749,1023 @@ fetch(url, {
         </label>
     <br>
 <p>Наличие инновационной площадки в организации</p>
+        </p>
+        </form>
+
+        <h1 id="proekty">Проекты</h1>
+
+    
+
+            <h2 id="proekty-POSTapi-client-v1-jobs-projects">Создать проект</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-client-v1-jobs-projects">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8081/api/client/v1/jobs/projects" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"primary_info\": {
+        \"name\": \"test\",
+        \"purpose\": \"test\",
+        \"objectives\": \"test\",
+        \"annotation\": \"test\",
+        \"main_results\": \"test\",
+        \"brief_description_of_resources\": \"test\",
+        \"best_practice\": \"test\",
+        \"social_outcome\": \"test\",
+        \"photo_file_path\": \"test\",
+        \"video_link\": \"test\",
+        \"implementation_for_citizen_id\": 1,
+        \"category_id\": 1,
+        \"form_of_social_service_id\": 1,
+        \"engagement_of_volunteers_id\": 1,
+        \"target_group_ids\": [
+            1,
+            2
+        ],
+        \"is_possibility_in_remote\": false,
+        \"is_innovation_site\": false,
+        \"is_has_expert_opinion\": false,
+        \"is_has_expert_review\": false,
+        \"is_has_innovative_platform\": false
+    },
+    \"experience\": {
+        \"results_in_district_and_media\": {
+            \"desc\": \"test\",
+            \"link\": \"test\"
+        },
+        \"results_on_television\": {
+            \"desc\": \"test\",
+            \"link\": \"test\"
+        },
+        \"results_at_various_levels_events\": {
+            \"desc\": \"test\",
+            \"link\": \"test\"
+        },
+        \"results_in_article\": {
+            \"desc\": \"test\",
+            \"link\": \"test\"
+        },
+        \"results_on_website_of_institution\": {
+            \"desc\": \"test\",
+            \"link\": \"test\"
+        },
+        \"conducting_master_classes\": {
+            \"desc\": \"test\",
+            \"link\": \"test\"
+        },
+        \"results_on_radio\": {
+            \"desc\": \"test\",
+            \"link\": \"test\"
+        }
+    },
+    \"info\": {
+        \"implementation_period\": \"test\",
+        \"technologies_forms_methods\": \"test\",
+        \"main_results\": \"test\",
+        \"diagnostic_toolkit\": \"test\",
+        \"prevalence\": \"test\",
+        \"is_participant\": false,
+        \"organizer\": \"test\",
+        \"status_id\": 1,
+        \"service_type_id\": 1,
+        \"work_name_id\": 1,
+        \"recognition_of_need_id\": 1,
+        \"rnsu_category_id\": 1,
+        \"partner_ids\": [
+            1,
+            2
+        ]
+    },
+    \"contacts\": {
+        \"responsible_name\": \"test\",
+        \"email\": \"test\",
+        \"phone\": \"test\"
+    },
+    \"participants\": [
+        {
+            \"total_number_of_participants\": 1,
+            \"number_of_families\": 1,
+            \"number_of_children\": 1,
+            \"number_of_men\": 1,
+            \"number_of_women\": 1,
+            \"reporting_period_year\": 2022
+        }
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8081/api/client/v1/jobs/projects"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "primary_info": {
+        "name": "test",
+        "purpose": "test",
+        "objectives": "test",
+        "annotation": "test",
+        "main_results": "test",
+        "brief_description_of_resources": "test",
+        "best_practice": "test",
+        "social_outcome": "test",
+        "photo_file_path": "test",
+        "video_link": "test",
+        "implementation_for_citizen_id": 1,
+        "category_id": 1,
+        "form_of_social_service_id": 1,
+        "engagement_of_volunteers_id": 1,
+        "target_group_ids": [
+            1,
+            2
+        ],
+        "is_possibility_in_remote": false,
+        "is_innovation_site": false,
+        "is_has_expert_opinion": false,
+        "is_has_expert_review": false,
+        "is_has_innovative_platform": false
+    },
+    "experience": {
+        "results_in_district_and_media": {
+            "desc": "test",
+            "link": "test"
+        },
+        "results_on_television": {
+            "desc": "test",
+            "link": "test"
+        },
+        "results_at_various_levels_events": {
+            "desc": "test",
+            "link": "test"
+        },
+        "results_in_article": {
+            "desc": "test",
+            "link": "test"
+        },
+        "results_on_website_of_institution": {
+            "desc": "test",
+            "link": "test"
+        },
+        "conducting_master_classes": {
+            "desc": "test",
+            "link": "test"
+        },
+        "results_on_radio": {
+            "desc": "test",
+            "link": "test"
+        }
+    },
+    "info": {
+        "implementation_period": "test",
+        "technologies_forms_methods": "test",
+        "main_results": "test",
+        "diagnostic_toolkit": "test",
+        "prevalence": "test",
+        "is_participant": false,
+        "organizer": "test",
+        "status_id": 1,
+        "service_type_id": 1,
+        "work_name_id": 1,
+        "recognition_of_need_id": 1,
+        "rnsu_category_id": 1,
+        "partner_ids": [
+            1,
+            2
+        ]
+    },
+    "contacts": {
+        "responsible_name": "test",
+        "email": "test",
+        "phone": "test"
+    },
+    "participants": [
+        {
+            "total_number_of_participants": 1,
+            "number_of_families": 1,
+            "number_of_children": 1,
+            "number_of_men": 1,
+            "number_of_women": 1,
+            "reporting_period_year": 2022
+        }
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-client-v1-jobs-projects">
+</span>
+<span id="execution-results-POSTapi-client-v1-jobs-projects" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-client-v1-jobs-projects"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-client-v1-jobs-projects"></code></pre>
+</span>
+<span id="execution-error-POSTapi-client-v1-jobs-projects" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-client-v1-jobs-projects"></code></pre>
+</span>
+<form id="form-POSTapi-client-v1-jobs-projects" data-method="POST"
+      data-path="api/client/v1/jobs/projects"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-client-v1-jobs-projects', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-client-v1-jobs-projects"
+                    onclick="tryItOut('POSTapi-client-v1-jobs-projects');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-client-v1-jobs-projects"
+                    onclick="cancelTryOut('POSTapi-client-v1-jobs-projects');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-client-v1-jobs-projects" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/client/v1/jobs/projects</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-client-v1-jobs-projects" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-client-v1-jobs-projects"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>primary_info</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+<br>
+<p>test</p>
+            </summary>
+                                                <p>
+                        <b><code>primary_info.name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.name"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.purpose</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.purpose"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.objectives</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.objectives"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.annotation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.annotation"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.main_results</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.main_results"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.brief_description_of_resources</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.brief_description_of_resources"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.best_practice</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.best_practice"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.social_outcome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.social_outcome"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.photo_file_path</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.photo_file_path"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.video_link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="primary_info.video_link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.implementation_for_citizen_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="primary_info.implementation_for_citizen_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="primary_info.category_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.form_of_social_service_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="primary_info.form_of_social_service_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.engagement_of_volunteers_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="primary_info.engagement_of_volunteers_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.target_group_ids</code></b>&nbsp;&nbsp;<small>integer[]</small>  &nbsp;
+                <input type="number"
+               name="primary_info.target_group_ids[0]"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               data-component="body" hidden>
+        <input type="number"
+               name="primary_info.target_group_ids[1]"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.is_possibility_in_remote</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_possibility_in_remote"
+                   value="true"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_possibility_in_remote"
+                   value="false"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.is_innovation_site</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_innovation_site"
+                   value="true"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_innovation_site"
+                   value="false"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.is_has_expert_opinion</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_has_expert_opinion"
+                   value="true"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_has_expert_opinion"
+                   value="false"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.is_has_expert_review</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_has_expert_review"
+                   value="true"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_has_expert_review"
+                   value="false"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>primary_info.is_has_innovative_platform</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_has_innovative_platform"
+                   value="true"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="primary_info.is_has_innovative_platform"
+                   value="false"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+<br>
+<p>test</p>
+            </summary>
+                                                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience.results_in_district_and_media</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>optional test</p>
+            </summary>
+                                                <p>
+                        <b><code>experience.results_in_district_and_media.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_in_district_and_media.desc"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>experience.results_in_district_and_media.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_in_district_and_media.link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                                                                    <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience.results_on_television</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>optional test</p>
+            </summary>
+                                                <p>
+                        <b><code>experience.results_on_television.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_on_television.desc"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>experience.results_on_television.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_on_television.link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                                                                    <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience.results_at_various_levels_events</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>optional test</p>
+            </summary>
+                                                <p>
+                        <b><code>experience.results_at_various_levels_events.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_at_various_levels_events.desc"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>experience.results_at_various_levels_events.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_at_various_levels_events.link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                                                                    <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience.results_in_article</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>optional test</p>
+            </summary>
+                                                <p>
+                        <b><code>experience.results_in_article.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_in_article.desc"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>experience.results_in_article.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_in_article.link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                                                                    <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience.results_on_website_of_institution</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>optional test</p>
+            </summary>
+                                                <p>
+                        <b><code>experience.results_on_website_of_institution.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_on_website_of_institution.desc"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>experience.results_on_website_of_institution.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_on_website_of_institution.link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                                                                    <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience.conducting_master_classes</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>optional test</p>
+            </summary>
+                                                <p>
+                        <b><code>experience.conducting_master_classes.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.conducting_master_classes.desc"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>experience.conducting_master_classes.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.conducting_master_classes.link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                                                                    <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>experience.results_on_radio</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+<p>optional test</p>
+            </summary>
+                                                <p>
+                        <b><code>experience.results_on_radio.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_on_radio.desc"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>experience.results_on_radio.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="experience.results_on_radio.link"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                                        </details>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>info</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+<br>
+<p>test</p>
+            </summary>
+                                                <p>
+                        <b><code>info.implementation_period</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="info.implementation_period"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.technologies_forms_methods</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="info.technologies_forms_methods"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.main_results</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="info.main_results"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.diagnostic_toolkit</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="info.diagnostic_toolkit"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.prevalence</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="info.prevalence"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.is_participant</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="info.is_participant"
+                   value="true"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
+            <input type="radio" name="info.is_participant"
+                   value="false"
+                   data-endpoint="POSTapi-client-v1-jobs-projects"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.organizer</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="info.organizer"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.status_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="info.status_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.service_type_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="info.service_type_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.work_name_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="info.work_name_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.recognition_of_need_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="info.recognition_of_need_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.rnsu_category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="info.rnsu_category_id"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>info.partner_ids</code></b>&nbsp;&nbsp;<small>integer[]</small>  &nbsp;
+                <input type="number"
+               name="info.partner_ids[0]"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               data-component="body" hidden>
+        <input type="number"
+               name="info.partner_ids[1]"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>contacts</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+<br>
+<p>test</p>
+            </summary>
+                                                <p>
+                        <b><code>contacts.responsible_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="contacts.responsible_name"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>contacts.email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="contacts.email"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>contacts.phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="contacts.phone"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="test"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>participants</code></b>&nbsp;&nbsp;<small>object[]</small>     <i>optional</i> &nbsp;
+<br>
+
+            </summary>
+                                                <p>
+                        <b><code>participants[].total_number_of_participants</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="participants.0.total_number_of_participants"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>participants[].number_of_families</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="participants.0.number_of_families"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>participants[].number_of_children</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="participants.0.number_of_children"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>participants[].number_of_men</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="participants.0.number_of_men"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>participants[].number_of_women</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="participants.0.number_of_women"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                                                <p>
+                        <b><code>participants[].reporting_period_year</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="participants.0.reporting_period_year"
+               data-endpoint="POSTapi-client-v1-jobs-projects"
+               value="2022"
+               data-component="body" hidden>
+    <br>
+<p>test</p>
+                    </p>
+                                    </details>
         </p>
         </form>
 
