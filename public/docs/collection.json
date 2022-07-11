@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "b3d14545-68d3-4a7e-80a4-7dd2df70ec87",
+        "_postman_id": "606638f4-3e81-41e0-9fd8-fa12976cead7",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -134,7 +134,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"error\":null,\"data\":{\"id\":1,\"name\":\"\\u041a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u044f 1\",\"full_name\":\"\\u041f\\u043e\\u043b\\u043d\\u043e\\u0435 \\u043d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0438 1\",\"phone\":\"+7 (911) 999-12-71\",\"email\":\"test@test.com\",\"site\":\"https:\\\/\\\/test.com\",\"owner\":\"\\u0412\\u043b\\u0430\\u0434\\u0435\\u043b\\u0435\\u0446\",\"responsible\":\"\\u041e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u044b\\u0439\",\"responsible_phone\":\"+7 (911) 281-15-75\",\"organization_type_id\":1,\"district_id\":1,\"education_license\":{\"date\":\"09.07.2022\",\"type\":\"\\u0414\\u043e\\u0448\\u043a\\u043e\\u043b\\u044c\\u043d\\u043e\\u0435 \\u043e\\u0431\\u0440\\u0430\\u0437\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\",\"number\":1},\"medical_license\":{\"date\":\"09.07.2022\",\"number\":2},\"is_has_innovative_platform\":true,\"status\":\"accepted\",\"rejected_status_description\":null}}",
+                            "body": "{\"error\":null,\"data\":{\"id\":1,\"name\":\"\\u041a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u044f 1\",\"full_name\":\"\\u041f\\u043e\\u043b\\u043d\\u043e\\u0435 \\u043d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0438 1\",\"phone\":\"+7 (911) 999-12-71\",\"email\":\"test@test.com\",\"site\":\"https:\\\/\\\/test.com\",\"owner\":\"\\u0412\\u043b\\u0430\\u0434\\u0435\\u043b\\u0435\\u0446\",\"responsible\":\"\\u041e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u044b\\u0439\",\"responsible_phone\":\"+7 (911) 281-15-75\",\"organization_type_id\":1,\"district_id\":1,\"education_license\":{\"date\":\"11.07.2022\",\"type\":\"\\u0414\\u043e\\u0448\\u043a\\u043e\\u043b\\u044c\\u043d\\u043e\\u0435 \\u043e\\u0431\\u0440\\u0430\\u0437\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\",\"number\":1},\"medical_license\":{\"date\":\"11.07.2022\",\"number\":2},\"is_has_innovative_platform\":true,\"status\":\"accepted\",\"rejected_status_description\":null}}",
                             "name": ""
                         }
                     ]
@@ -195,7 +195,53 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"primary_info\":{\"name\":\"test\",\"purpose\":\"test\",\"objectives\":\"test\",\"annotation\":\"test\",\"main_results\":\"test\",\"brief_description_of_resources\":\"test\",\"best_practice\":\"test\",\"social_outcome\":\"test\",\"photo_file_path\":\"test\",\"video_link\":\"test\",\"implementation_for_citizen_id\":1,\"category_id\":1,\"form_of_social_service_id\":1,\"engagement_of_volunteers_id\":1,\"target_group_ids\":[1,2],\"is_possibility_in_remote\":false,\"is_innovation_site\":false,\"is_has_expert_opinion\":false,\"is_has_expert_review\":false,\"is_has_innovative_platform\":false},\"experience\":{\"results_in_district_and_media\":{\"desc\":\"test\",\"link\":\"test\"},\"results_on_television\":{\"desc\":\"test\",\"link\":\"test\"},\"results_at_various_levels_events\":{\"desc\":\"test\",\"link\":\"test\"},\"results_in_article\":{\"desc\":\"test\",\"link\":\"test\"},\"results_on_website_of_institution\":{\"desc\":\"test\",\"link\":\"test\"},\"conducting_master_classes\":{\"desc\":\"test\",\"link\":\"test\"},\"results_on_radio\":{\"desc\":\"test\",\"link\":\"test\"}},\"info\":{\"implementation_period\":\"test\",\"technologies_forms_methods\":\"test\",\"main_results\":\"test\",\"diagnostic_toolkit\":\"test\",\"prevalence\":\"test\",\"is_participant\":false,\"organizer\":\"test\",\"status_id\":1,\"service_type_id\":1,\"work_name_id\":1,\"recognition_of_need_id\":1,\"rnsu_category_id\":1,\"partner_ids\":[1,2]},\"contacts\":{\"responsible_name\":\"test\",\"email\":\"test\",\"phone\":\"test\"},\"participants\":[{\"total_number_of_participants\":1,\"number_of_families\":1,\"number_of_children\":1,\"number_of_men\":1,\"number_of_women\":1,\"reporting_period_year\":2022}]}"
+                            "raw": "{\"primary_info\":{\"name\":\"test\",\"purpose\":\"test\",\"objectives\":\"test\",\"annotation\":\"test\",\"main_qualitative_results\":\"test\",\"brief_description_of_resources\":\"test\",\"best_practice\":\"test\",\"social_outcome\":\"test\",\"photo_file_path\":\"test\",\"video_link\":\"test\",\"implementation_for_citizen_id\":1,\"category_id\":1,\"form_of_social_service_id\":1,\"engagement_of_volunteers_id\":1,\"target_group_ids\":[1,2],\"is_possibility_in_remote\":false,\"is_innovation_site\":false,\"is_has_expert_opinion\":false,\"is_has_expert_review\":false,\"is_has_expert_feedback\":false},\"experience\":{\"results_in_district_and_media\":{\"desc\":\"test\",\"link\":\"test\"},\"results_on_television\":{\"desc\":\"test\",\"link\":\"test\"},\"results_at_various_levels_events\":{\"desc\":\"test\",\"link\":\"test\"},\"results_in_article\":{\"desc\":\"test\",\"link\":\"test\"},\"results_on_website_of_institution\":{\"desc\":\"test\",\"link\":\"test\"},\"conducting_master_classes\":{\"desc\":\"test\",\"link\":\"test\"},\"results_on_radio\":{\"desc\":\"test\",\"link\":\"test\"}},\"info\":{\"implementation_period\":\"test\",\"technologies_forms_methods\":\"test\",\"main_quantitative_results\":\"test\",\"diagnostic_toolkit\":\"test\",\"prevalence\":\"test\",\"is_participant\":false,\"organizer\":\"test\",\"status_id\":1,\"service_type_id\":1,\"work_name_id\":1,\"recognition_of_need_id\":1,\"rnsu_category_id\":1,\"partner_ids\":[1,2]},\"contacts\":{\"responsible_name\":\"test\",\"email\":\"test\",\"phone\":\"test\"},\"participants\":[{\"total_number_of_participants\":1,\"number_of_families\":1,\"number_of_children\":1,\"number_of_men\":1,\"number_of_women\":1,\"reporting_period_year\":2022}]}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "\u0424\u0430\u0439\u043b\u044b",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0444\u0430\u0439\u043b",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/client\/v1\/files",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/client\/v1\/files"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "category",
+                                    "value": "job_project_photo",
+                                    "type": "text",
+                                    "description": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f ['job_project_photo']"
+                                },
+                                {
+                                    "key": "file",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
                         },
                         "description": ""
                     },

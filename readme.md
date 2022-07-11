@@ -1,7 +1,5 @@
 # TODO
 - Обновить список категорий справочников в доке
-- Написать названия полей в доке для создания проекта
-- Вынести логику валидаторов в отдельные классы
 
 # Команды
 
@@ -100,7 +98,7 @@ DB::table('companies')->insert([
     ]),
     'is_has_innovative_platform' => true,
 
-    'status' => CompanyStatus::Accepted,
+    'status' => CompanyStatus::ACCEPTED,
 ]);
 ```
 ``` php
@@ -126,7 +124,7 @@ DB::table('companies')->insert([
     'medical_license' => null,
     'is_has_innovative_platform' => false,
 
-    'status' => CompanyStatus::Accepted,
+    'status' => CompanyStatus::ACCEPTED,
 ]);
 ```
 

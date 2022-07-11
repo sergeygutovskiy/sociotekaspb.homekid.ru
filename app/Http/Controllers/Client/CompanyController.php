@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Client;
 
 use App\Enums\CompanyStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Client\Company\StoreRequest;
 use App\Http\Resources\Client\CompanyResource;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
@@ -60,46 +60,10 @@ class CompanyController extends Controller
      * @bodyParam is_has_innovative_platform bool required Наличие инновационной площадки в организации
      * 
      */
-    public function update(Request $request)
+    public function update(StoreRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'full_name' => 'required',
-
-            'phone' => 'required',
-            'email' => 'required',
-            'site' => 'required',
-
-            'owner' => 'required',
-            'responsible' => 'required',
-            'responsible_phone' => 'required',
-
-            'organization_type_id' => 'required|numeric|exists:dictionaries,id',
-            'district_id' => 'required|numeric|exists:dictionaries,id',
-            
-            'education_license' => 'array|size:3|nullable|present',
-            'education_license.number' => 'required_with:education_license|numeric',
-            'education_license.date' => 'required_with:education_license|date_format:d.m.Y',
-            'education_license.type' => 'required_with:education_license',
-
-            'medical_license' => 'array|size:2|nullable|present',
-            'medical_license.number' => 'required_with:medical_license|numeric',
-            'medical_license.date' => 'required_with:medical_license|date_format:d.m.Y',
-            
-            'is_has_innovative_platform' => 'required|boolean',
-        ]);
-
-        if ( $validator->fails() ) 
-        {
-            return response()->json([
-                'error' => 'Ошибка валидации',
-                'data' => null,
-                'meta' => $validator->errors()
-            ], 400);
-        }
-
-        $validated = $validator->validated();
-        $validated['status'] = CompanyStatus::Pending;
+        $validated = $request->validated();
+        $validated['status'] = CompanyStatus::PENDING;
 
         $user = $request->user();
         $company = $user->company;

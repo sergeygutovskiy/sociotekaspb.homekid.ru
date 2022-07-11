@@ -15,7 +15,7 @@ class Project extends Model
         'job_id',
         'implementation_period',
         'technologies_forms_methods',
-        'main_results',
+        'main_quantitative_results',
         'diagnostic_toolkit',
         'prevalence',
         'is_participant',

@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string('implementation_period');
             $table->string('technologies_forms_methods');
-            $table->string('main_results');
+            $table->string('main_quantitative_results');
             $table->string('diagnostic_toolkit');
             $table->string('prevalence');
 

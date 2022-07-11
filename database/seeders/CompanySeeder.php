@@ -40,7 +40,7 @@ class CompanySeeder extends Seeder
             ]),
             'is_has_innovative_platform' => true,
 
-            'status' => CompanyStatus::Accepted,
+            'status' => CompanyStatus::ACCEPTED,
         ]);
 
         DB::table('companies')->insert([
@@ -65,7 +65,7 @@ class CompanySeeder extends Seeder
             'medical_license' => null,
             'is_has_innovative_platform' => false,
 
-            'status' => CompanyStatus::Accepted,
+            'status' => CompanyStatus::ACCEPTED,
         ]);
     }
 }

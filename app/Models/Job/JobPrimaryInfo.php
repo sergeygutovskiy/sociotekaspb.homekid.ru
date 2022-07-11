@@ -14,7 +14,7 @@ class JobPrimaryInfo extends Model
         'purpose',
         'objectives',
         'annotation',
-        'main_results',
+        'main_qualitative_results',
         'brief_description_of_resources',
         'best_practice',
         'social_outcome',
@@ -27,7 +27,7 @@ class JobPrimaryInfo extends Model
         'is_innovation_site',
         'is_has_expert_opinion',
         'is_has_expert_review',
-        'is_has_innovative_platform',
+        'is_has_expert_feedback',
         'photo_file_path',
         'video_link'
     ];

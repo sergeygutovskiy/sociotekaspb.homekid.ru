@@ -141,11 +141,11 @@ paths:
                     organization_type_id: 1
                     district_id: 1
                     education_license:
-                      date: 09.07.2022
+                      date: 11.07.2022
                       type: 'Дошкольное образование'
                       number: 1
                     medical_license:
-                      date: 09.07.2022
+                      date: 11.07.2022
                       number: 2
                     is_has_innovative_platform: true
                     status: accepted
@@ -169,11 +169,11 @@ paths:
                       organization_type_id: 1
                       district_id: 1
                       education_license:
-                        date: 09.07.2022
+                        date: 11.07.2022
                         type: 'Дошкольное образование'
                         number: 1
                       medical_license:
-                        date: 09.07.2022
+                        date: 11.07.2022
                         number: 2
                       is_has_innovative_platform: true
                       status: accepted
@@ -339,68 +339,68 @@ paths:
               properties:
                 primary_info:
                   type: object
-                  description: test
+                  description: 'Общая информация из первого шага'
                   example: []
                   properties:
                     name:
                       type: string
-                      description: test
+                      description: 'Наименование проекта'
                       example: test
                     purpose:
                       type: string
-                      description: test
+                      description: Цель
                       example: test
                     objectives:
                       type: string
-                      description: test
+                      description: Задачи
                       example: test
                     annotation:
                       type: string
-                      description: test
+                      description: Аннотация
                       example: test
-                    main_results:
+                    main_qualitative_results:
                       type: string
-                      description: test
+                      description: 'Основные качественные результаты реализации проекта'
                       example: test
                     brief_description_of_resources:
                       type: string
-                      description: test
+                      description: 'Краткое описание необходимого ресурсного обеспечения'
                       example: test
                     best_practice:
                       type: string
-                      description: test
+                      description: 'Лучшая практика по мнению руководства организации'
                       example: test
                     social_outcome:
                       type: string
-                      description: test
+                      description: 'Социальный результат'
                       example: test
                     photo_file_path:
                       type: string
-                      description: test
+                      description: Фотография
                       example: test
                     video_link:
                       type: string
-                      description: test
+                      description: 'Видео ролик'
                       example: test
                     implementation_for_citizen_id:
                       type: integer
-                      description: test
+                      description: 'Реализация для гражданина'
                       example: 1
                     category_id:
                       type: integer
-                      description: test
+                      description: Категория
                       example: 1
                     form_of_social_service_id:
                       type: integer
-                      description: test
+                      description: 'Форма социального обслуживания (сопровождения)'
                       example: 1
                     engagement_of_volunteers_id:
                       type: integer
-                      description: test
+                      description: 'Привлечение добровольцев и волонтеров'
                       example: 1
                     target_group_ids:
                       type: array
-                      description: test
+                      description: 'Целевые группы'
                       example:
                         - 1
                         - 2
@@ -408,27 +408,27 @@ paths:
                         type: integer
                     is_possibility_in_remote:
                       type: boolean
-                      description: test
+                      description: 'Возможность реализации в дистанционном формате'
                       example: false
                     is_innovation_site:
                       type: boolean
-                      description: test
+                      description: 'Апробация на инновационной площадке'
                       example: false
                     is_has_expert_opinion:
                       type: boolean
-                      description: test
+                      description: 'Наличие экспертного заключения'
                       example: false
                     is_has_expert_review:
                       type: boolean
-                      description: test
+                      description: 'Наличие экспертной рецензии'
                       example: false
-                    is_has_innovative_platform:
+                    is_has_expert_feedback:
                       type: boolean
-                      description: test
+                      description: 'Наличие экспертного отзыва'
                       example: false
                 experience:
                   type: object
-                  description: test
+                  description: Опыт
                   example: []
                   properties:
                     results_in_district_and_media:
@@ -438,11 +438,11 @@ paths:
                       properties:
                         desc:
                           type: string
-                          description: test
+                          description: Описание
                           example: test
                         link:
                           type: string
-                          description: test
+                          description: Ссылка
                           example: test
                     results_on_television:
                       type: object
@@ -451,11 +451,11 @@ paths:
                       properties:
                         desc:
                           type: string
-                          description: test
+                          description: Описание
                           example: test
                         link:
                           type: string
-                          description: test
+                          description: Ссылка
                           example: test
                     results_at_various_levels_events:
                       type: object
@@ -464,11 +464,11 @@ paths:
                       properties:
                         desc:
                           type: string
-                          description: test
+                          description: Описание
                           example: test
                         link:
                           type: string
-                          description: test
+                          description: Ссылка
                           example: test
                     results_in_article:
                       type: object
@@ -477,11 +477,11 @@ paths:
                       properties:
                         desc:
                           type: string
-                          description: test
+                          description: Описание
                           example: test
                         link:
                           type: string
-                          description: test
+                          description: Ссылка
                           example: test
                     results_on_website_of_institution:
                       type: object
@@ -490,11 +490,11 @@ paths:
                       properties:
                         desc:
                           type: string
-                          description: test
+                          description: Описание
                           example: test
                         link:
                           type: string
-                          description: test
+                          description: Ссылка
                           example: test
                     conducting_master_classes:
                       type: object
@@ -503,11 +503,11 @@ paths:
                       properties:
                         desc:
                           type: string
-                          description: test
+                          description: Описание
                           example: test
                         link:
                           type: string
-                          description: test
+                          description: Ссылка
                           example: test
                     results_on_radio:
                       type: object
@@ -516,26 +516,26 @@ paths:
                       properties:
                         desc:
                           type: string
-                          description: test
+                          description: Описание
                           example: test
                         link:
                           type: string
-                          description: test
+                          description: Ссылка
                           example: test
                 info:
                   type: object
-                  description: test
+                  description: 'Информация из первого шага для проекта'
                   example: []
                   properties:
                     implementation_period:
                       type: string
-                      description: test
+                      description: 'Период реализации проекта'
                       example: test
                     technologies_forms_methods:
                       type: string
-                      description: test
+                      description: 'Технологии, формы, методы'
                       example: test
-                    main_results:
+                    main_quantitative_results:
                       type: string
                       description: test
                       example: test
@@ -549,35 +549,35 @@ paths:
                       example: test
                     is_participant:
                       type: boolean
-                      description: test
+                      description: 'Участник?'
                       example: false
                     organizer:
                       type: string
-                      description: test
+                      description: 'Название организатора (Если участник)'
                       example: test
                     status_id:
                       type: integer
-                      description: test
+                      description: 'Статус проекта'
                       example: 1
                     service_type_id:
                       type: integer
-                      description: test
+                      description: 'Вид услуги'
                       example: 1
                     work_name_id:
                       type: integer
-                      description: test
+                      description: 'Наименование работ'
                       example: 1
                     recognition_of_need_id:
                       type: integer
-                      description: test
+                      description: 'Обстоятельства признания нуждаемости'
                       example: 1
                     rnsu_category_id:
                       type: integer
-                      description: test
+                      description: 'Категория по РНСУ'
                       example: 1
                     partner_ids:
                       type: array
-                      description: test
+                      description: Партнеры
                       example:
                         - 1
                         - 2
@@ -585,7 +585,7 @@ paths:
                         type: integer
                 contacts:
                   type: object
-                  description: test
+                  description: 'Контакты проекта'
                   example: []
                   properties:
                     responsible_name:
@@ -602,7 +602,7 @@ paths:
                       example: test
                 participants:
                   type: array
-                  description: ''
+                  description: Участники
                   example:
                     - []
                   items:
@@ -610,27 +610,27 @@ paths:
                     properties:
                       total_number_of_participants:
                         type: integer
-                        description: test
+                        description: 'Общее количество участников за отчетный период'
                         example: 1
                       number_of_families:
                         type: integer
-                        description: test
+                        description: 'Количество семей'
                         example: 1
                       number_of_children:
                         type: integer
-                        description: test
+                        description: 'Количество детей'
                         example: 1
                       number_of_men:
                         type: integer
-                        description: test
+                        description: 'Количество мужчин'
                         example: 1
                       number_of_women:
                         type: integer
-                        description: test
+                        description: 'Количество женщин'
                         example: 1
                       reporting_period_year:
                         type: integer
-                        description: test
+                        description: 'Отчётный период'
                         example: 2022
                     required:
                       - total_number_of_participants
@@ -644,6 +644,54 @@ paths:
                 - experience
                 - info
                 - contacts
+                - participants
+  /api/client/v1/files:
+    post:
+      summary: 'Загрузить файл'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Файлы
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Файл
+                category:
+                  type: string
+                  description: "Категория ['job_project_photo']"
+                  example: job_project_photo
+              required:
+                - file
+                - category
   /api/client/v1/users/login:
     post:
       summary: 'Войти в аккаунт'
@@ -723,6 +771,9 @@ tags:
     description: ''
   -
     name: Проекты
+    description: ''
+  -
+    name: Файлы
     description: ''
   -
     name: Юзеры

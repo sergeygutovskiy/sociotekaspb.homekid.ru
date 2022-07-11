@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('purpose');
             $table->string('objectives');
             $table->string('annotation');
-            $table->string('main_results');
+            $table->string('main_qualitative_results');
             $table->string('photo_file_path');
             $table->string('brief_description_of_resources');
             $table->string('best_practice');
@@ -45,7 +45,7 @@ return new class extends Migration
             $table->boolean('is_innovation_site');
             $table->boolean('is_has_expert_opinion');
             $table->boolean('is_has_expert_review');
-            $table->boolean('is_has_innovative_platform');
+            $table->boolean('is_has_expert_feedback');
 
             $table->timestamps();
         });

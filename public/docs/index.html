@@ -30,9 +30,9 @@
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="../docs/js/tryitout-3.29.1.js"></script>
+    <script src="../docs/js/tryitout-3.33.2.js"></script>
 
-    <script src="../docs/js/theme-default-3.29.1.js"></script>
+    <script src="../docs/js/theme-default-3.33.2.js"></script>
 
 </head>
 
@@ -103,6 +103,16 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="faily">
+                    <a href="#faily">Файлы</a>
+                </li>
+                                    <ul id="tocify-subheader-faily" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="faily-POSTapi-client-v1-files">
+                        <a href="#faily-POSTapi-client-v1-files">Загрузить файл</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="iuzery">
                     <a href="#iuzery">Юзеры</a>
                 </li>
@@ -125,7 +135,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 9 2022</li>
+        <li>Last updated: July 11 2022</li>
     </ul>
 </div>
 
@@ -140,7 +150,7 @@
 <pre><code class="language-yaml">http://localhost:8081</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>Отправте запрос на <strong>/users/login</strong>, чтобы получить токен</p>
 
@@ -362,12 +372,12 @@ access-control-allow-origin: *
         &quot;organization_type_id&quot;: 1,
         &quot;district_id&quot;: 1,
         &quot;education_license&quot;: {
-            &quot;date&quot;: &quot;09.07.2022&quot;,
+            &quot;date&quot;: &quot;11.07.2022&quot;,
             &quot;type&quot;: &quot;Дошкольное образование&quot;,
             &quot;number&quot;: 1
         },
         &quot;medical_license&quot;: {
-            &quot;date&quot;: &quot;09.07.2022&quot;,
+            &quot;date&quot;: &quot;11.07.2022&quot;,
             &quot;number&quot;: 2
         },
         &quot;is_has_innovative_platform&quot;: true,
@@ -780,7 +790,7 @@ fetch(url, {
         \"purpose\": \"test\",
         \"objectives\": \"test\",
         \"annotation\": \"test\",
-        \"main_results\": \"test\",
+        \"main_qualitative_results\": \"test\",
         \"brief_description_of_resources\": \"test\",
         \"best_practice\": \"test\",
         \"social_outcome\": \"test\",
@@ -798,7 +808,7 @@ fetch(url, {
         \"is_innovation_site\": false,
         \"is_has_expert_opinion\": false,
         \"is_has_expert_review\": false,
-        \"is_has_innovative_platform\": false
+        \"is_has_expert_feedback\": false
     },
     \"experience\": {
         \"results_in_district_and_media\": {
@@ -833,7 +843,7 @@ fetch(url, {
     \"info\": {
         \"implementation_period\": \"test\",
         \"technologies_forms_methods\": \"test\",
-        \"main_results\": \"test\",
+        \"main_quantitative_results\": \"test\",
         \"diagnostic_toolkit\": \"test\",
         \"prevalence\": \"test\",
         \"is_participant\": false,
@@ -884,7 +894,7 @@ let body = {
         "purpose": "test",
         "objectives": "test",
         "annotation": "test",
-        "main_results": "test",
+        "main_qualitative_results": "test",
         "brief_description_of_resources": "test",
         "best_practice": "test",
         "social_outcome": "test",
@@ -902,7 +912,7 @@ let body = {
         "is_innovation_site": false,
         "is_has_expert_opinion": false,
         "is_has_expert_review": false,
-        "is_has_innovative_platform": false
+        "is_has_expert_feedback": false
     },
     "experience": {
         "results_in_district_and_media": {
@@ -937,7 +947,7 @@ let body = {
     "info": {
         "implementation_period": "test",
         "technologies_forms_methods": "test",
-        "main_results": "test",
+        "main_quantitative_results": "test",
         "diagnostic_toolkit": "test",
         "prevalence": "test",
         "is_participant": false,
@@ -1032,7 +1042,7 @@ fetch(url, {
             <summary style="padding-bottom: 10px;">
                 <b><code>primary_info</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
 <br>
-<p>test</p>
+<p>Общая информация из первого шага</p>
             </summary>
                                                 <p>
                         <b><code>primary_info.name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1042,7 +1052,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Наименование проекта</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.purpose</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1052,7 +1062,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Цель</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.objectives</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1062,7 +1072,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Задачи</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.annotation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1072,17 +1082,17 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Аннотация</p>
                     </p>
                                                                 <p>
-                        <b><code>primary_info.main_results</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                        <b><code>primary_info.main_qualitative_results</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
-               name="primary_info.main_results"
+               name="primary_info.main_qualitative_results"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Основные качественные результаты реализации проекта</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.brief_description_of_resources</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1092,7 +1102,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Краткое описание необходимого ресурсного обеспечения</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.best_practice</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1102,7 +1112,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Лучшая практика по мнению руководства организации</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.social_outcome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1112,7 +1122,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Социальный результат</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.photo_file_path</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1122,7 +1132,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Фотография</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.video_link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1132,7 +1142,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Видео ролик</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.implementation_for_citizen_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1142,7 +1152,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Реализация для гражданина</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1152,7 +1162,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Категория</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.form_of_social_service_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1162,7 +1172,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Форма социального обслуживания (сопровождения)</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.engagement_of_volunteers_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1172,7 +1182,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Привлечение добровольцев и волонтеров</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.target_group_ids</code></b>&nbsp;&nbsp;<small>integer[]</small>  &nbsp;
@@ -1185,7 +1195,7 @@ fetch(url, {
                data-endpoint="POSTapi-client-v1-jobs-projects"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Целевые группы</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.is_possibility_in_remote</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
@@ -1206,7 +1216,7 @@ fetch(url, {
             <code>false</code>
         </label>
     <br>
-<p>test</p>
+<p>Возможность реализации в дистанционном формате</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.is_innovation_site</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
@@ -1227,7 +1237,7 @@ fetch(url, {
             <code>false</code>
         </label>
     <br>
-<p>test</p>
+<p>Апробация на инновационной площадке</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.is_has_expert_opinion</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
@@ -1248,7 +1258,7 @@ fetch(url, {
             <code>false</code>
         </label>
     <br>
-<p>test</p>
+<p>Наличие экспертного заключения</p>
                     </p>
                                                                 <p>
                         <b><code>primary_info.is_has_expert_review</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
@@ -1269,12 +1279,12 @@ fetch(url, {
             <code>false</code>
         </label>
     <br>
-<p>test</p>
+<p>Наличие экспертной рецензии</p>
                     </p>
                                                                 <p>
-                        <b><code>primary_info.is_has_innovative_platform</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                        <b><code>primary_info.is_has_expert_feedback</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
                 <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
-            <input type="radio" name="primary_info.is_has_innovative_platform"
+            <input type="radio" name="primary_info.is_has_expert_feedback"
                    value="true"
                    data-endpoint="POSTapi-client-v1-jobs-projects"
                    data-component="body"
@@ -1282,7 +1292,7 @@ fetch(url, {
             <code>true</code>
         </label>
         <label data-endpoint="POSTapi-client-v1-jobs-projects" hidden>
-            <input type="radio" name="primary_info.is_has_innovative_platform"
+            <input type="radio" name="primary_info.is_has_expert_feedback"
                    value="false"
                    data-endpoint="POSTapi-client-v1-jobs-projects"
                    data-component="body"
@@ -1290,7 +1300,7 @@ fetch(url, {
             <code>false</code>
         </label>
     <br>
-<p>test</p>
+<p>Наличие экспертного отзыва</p>
                     </p>
                                     </details>
         </p>
@@ -1299,7 +1309,7 @@ fetch(url, {
             <summary style="padding-bottom: 10px;">
                 <b><code>experience</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
 <br>
-<p>test</p>
+<p>Опыт</p>
             </summary>
                                                 <p>
         <details>
@@ -1309,24 +1319,24 @@ fetch(url, {
 <p>optional test</p>
             </summary>
                                                 <p>
-                        <b><code>experience.results_in_district_and_media.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_in_district_and_media.desc</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_in_district_and_media.desc"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Описание</p>
                     </p>
                                                                 <p>
-                        <b><code>experience.results_in_district_and_media.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_in_district_and_media.link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_in_district_and_media.link"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Ссылка</p>
                     </p>
                                     </details>
         </p>
@@ -1338,24 +1348,24 @@ fetch(url, {
 <p>optional test</p>
             </summary>
                                                 <p>
-                        <b><code>experience.results_on_television.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_on_television.desc</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_on_television.desc"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Описание</p>
                     </p>
                                                                 <p>
-                        <b><code>experience.results_on_television.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_on_television.link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_on_television.link"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Ссылка</p>
                     </p>
                                     </details>
         </p>
@@ -1367,24 +1377,24 @@ fetch(url, {
 <p>optional test</p>
             </summary>
                                                 <p>
-                        <b><code>experience.results_at_various_levels_events.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_at_various_levels_events.desc</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_at_various_levels_events.desc"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Описание</p>
                     </p>
                                                                 <p>
-                        <b><code>experience.results_at_various_levels_events.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_at_various_levels_events.link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_at_various_levels_events.link"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Ссылка</p>
                     </p>
                                     </details>
         </p>
@@ -1396,24 +1406,24 @@ fetch(url, {
 <p>optional test</p>
             </summary>
                                                 <p>
-                        <b><code>experience.results_in_article.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_in_article.desc</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_in_article.desc"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Описание</p>
                     </p>
                                                                 <p>
-                        <b><code>experience.results_in_article.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_in_article.link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_in_article.link"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Ссылка</p>
                     </p>
                                     </details>
         </p>
@@ -1425,24 +1435,24 @@ fetch(url, {
 <p>optional test</p>
             </summary>
                                                 <p>
-                        <b><code>experience.results_on_website_of_institution.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_on_website_of_institution.desc</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_on_website_of_institution.desc"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Описание</p>
                     </p>
                                                                 <p>
-                        <b><code>experience.results_on_website_of_institution.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_on_website_of_institution.link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_on_website_of_institution.link"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Ссылка</p>
                     </p>
                                     </details>
         </p>
@@ -1454,24 +1464,24 @@ fetch(url, {
 <p>optional test</p>
             </summary>
                                                 <p>
-                        <b><code>experience.conducting_master_classes.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.conducting_master_classes.desc</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.conducting_master_classes.desc"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Описание</p>
                     </p>
                                                                 <p>
-                        <b><code>experience.conducting_master_classes.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.conducting_master_classes.link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.conducting_master_classes.link"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Ссылка</p>
                     </p>
                                     </details>
         </p>
@@ -1483,24 +1493,24 @@ fetch(url, {
 <p>optional test</p>
             </summary>
                                                 <p>
-                        <b><code>experience.results_on_radio.desc</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_on_radio.desc</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_on_radio.desc"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Описание</p>
                     </p>
                                                                 <p>
-                        <b><code>experience.results_on_radio.link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                        <b><code>experience.results_on_radio.link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="experience.results_on_radio.link"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Ссылка</p>
                     </p>
                                     </details>
         </p>
@@ -1511,7 +1521,7 @@ fetch(url, {
             <summary style="padding-bottom: 10px;">
                 <b><code>info</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
 <br>
-<p>test</p>
+<p>Информация из первого шага для проекта</p>
             </summary>
                                                 <p>
                         <b><code>info.implementation_period</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1521,7 +1531,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Период реализации проекта</p>
                     </p>
                                                                 <p>
                         <b><code>info.technologies_forms_methods</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1531,12 +1541,12 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Технологии, формы, методы</p>
                     </p>
                                                                 <p>
-                        <b><code>info.main_results</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                        <b><code>info.main_quantitative_results</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
-               name="info.main_results"
+               name="info.main_quantitative_results"
                data-endpoint="POSTapi-client-v1-jobs-projects"
                value="test"
                data-component="body" hidden>
@@ -1582,7 +1592,7 @@ fetch(url, {
             <code>false</code>
         </label>
     <br>
-<p>test</p>
+<p>Участник?</p>
                     </p>
                                                                 <p>
                         <b><code>info.organizer</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
@@ -1592,7 +1602,7 @@ fetch(url, {
                value="test"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Название организатора (Если участник)</p>
                     </p>
                                                                 <p>
                         <b><code>info.status_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1602,7 +1612,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Статус проекта</p>
                     </p>
                                                                 <p>
                         <b><code>info.service_type_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1612,7 +1622,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Вид услуги</p>
                     </p>
                                                                 <p>
                         <b><code>info.work_name_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1622,7 +1632,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Наименование работ</p>
                     </p>
                                                                 <p>
                         <b><code>info.recognition_of_need_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1632,7 +1642,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Обстоятельства признания нуждаемости</p>
                     </p>
                                                                 <p>
                         <b><code>info.rnsu_category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1642,7 +1652,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Категория по РНСУ</p>
                     </p>
                                                                 <p>
                         <b><code>info.partner_ids</code></b>&nbsp;&nbsp;<small>integer[]</small>  &nbsp;
@@ -1655,7 +1665,7 @@ fetch(url, {
                data-endpoint="POSTapi-client-v1-jobs-projects"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Партнеры</p>
                     </p>
                                     </details>
         </p>
@@ -1664,7 +1674,7 @@ fetch(url, {
             <summary style="padding-bottom: 10px;">
                 <b><code>contacts</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
 <br>
-<p>test</p>
+<p>Контакты проекта</p>
             </summary>
                                                 <p>
                         <b><code>contacts.responsible_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1701,9 +1711,9 @@ fetch(url, {
                 <p>
         <details>
             <summary style="padding-bottom: 10px;">
-                <b><code>participants</code></b>&nbsp;&nbsp;<small>object[]</small>     <i>optional</i> &nbsp;
+                <b><code>participants</code></b>&nbsp;&nbsp;<small>object[]</small>  &nbsp;
 <br>
-
+<p>Участники</p>
             </summary>
                                                 <p>
                         <b><code>participants[].total_number_of_participants</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1713,7 +1723,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Общее количество участников за отчетный период</p>
                     </p>
                                                                 <p>
                         <b><code>participants[].number_of_families</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1723,7 +1733,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Количество семей</p>
                     </p>
                                                                 <p>
                         <b><code>participants[].number_of_children</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1733,7 +1743,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Количество детей</p>
                     </p>
                                                                 <p>
                         <b><code>participants[].number_of_men</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1743,7 +1753,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Количество мужчин</p>
                     </p>
                                                                 <p>
                         <b><code>participants[].number_of_women</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1753,7 +1763,7 @@ fetch(url, {
                value="1"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Количество женщин</p>
                     </p>
                                                                 <p>
                         <b><code>participants[].reporting_period_year</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
@@ -1763,9 +1773,130 @@ fetch(url, {
                value="2022"
                data-component="body" hidden>
     <br>
-<p>test</p>
+<p>Отчётный период</p>
                     </p>
                                     </details>
+        </p>
+        </form>
+
+        <h1 id="faily">Файлы</h1>
+
+    
+
+            <h2 id="faily-POSTapi-client-v1-files">Загрузить файл</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-client-v1-files">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8081/api/client/v1/files" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "category=job_project_photo" \
+    --form "file=@/tmp/phpFc4LJN" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8081/api/client/v1/files"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('category', 'job_project_photo');
+body.append('file', document.querySelector('input[name="file"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-client-v1-files">
+</span>
+<span id="execution-results-POSTapi-client-v1-files" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-client-v1-files"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-client-v1-files"></code></pre>
+</span>
+<span id="execution-error-POSTapi-client-v1-files" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-client-v1-files"></code></pre>
+</span>
+<form id="form-POSTapi-client-v1-files" data-method="POST"
+      data-path="api/client/v1/files"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-client-v1-files', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-client-v1-files"
+                    onclick="tryItOut('POSTapi-client-v1-files');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-client-v1-files"
+                    onclick="cancelTryOut('POSTapi-client-v1-files');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-client-v1-files" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/client/v1/files</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-client-v1-files" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-client-v1-files"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>file</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="file"
+               data-endpoint="POSTapi-client-v1-files"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Файл</p>
+        </p>
+                <p>
+            <b><code>category</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="category"
+               data-endpoint="POSTapi-client-v1-files"
+               value="job_project_photo"
+               data-component="body" hidden>
+    <br>
+<p>Категория ['job_project_photo']</p>
         </p>
         </form>
 
