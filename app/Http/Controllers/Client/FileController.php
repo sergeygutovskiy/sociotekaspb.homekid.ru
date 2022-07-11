@@ -45,17 +45,22 @@ class FileController extends Controller
         $fileCategory = $request->input('category');
 
         $pathToSave = 'users/' . Auth::user()->id . '/' . $fileCategory; 
-        $savedPath = $file->store($pathToSave, 'public');
-        if ( !$savedPath ) {
+        $savedFilePath = $file->store($pathToSave, 'public');
+        if ( !$savedFilePath ) {
             return response()->json([
                 'error' => 'Не удалось сохранаить файл',
                 'data' => null
             ], 400);
         }
 
+        $savedFileName = array_slice(explode('/', $savedFilePath), -1)[0];
+
         return response()->json([
             'error' => null,
-            'data' => [ 'path' => $savedPath ]
+            'data' => [
+                'path' => $savedFilePath,
+                'name' => $savedFileName,
+            ]
         ]);
     }
 }
