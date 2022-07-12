@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Enums\FileCategory;
 use App\Http\Controllers\Controller;
+use App\Models\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -44,8 +44,9 @@ class FileController extends Controller
         $file = $request->file('file');
         $fileCategory = $request->input('category');
 
-        $pathToSave = 'users/' . Auth::user()->id . '/' . $fileCategory; 
+        $pathToSave = 'users/' . $request->user()->id . '/' . $fileCategory; 
         $savedFilePath = $file->store($pathToSave, 'public');
+
         if ( !$savedFilePath ) {
             return response()->json([
                 'error' => 'Не удалось сохранаить файл',
@@ -53,13 +54,15 @@ class FileController extends Controller
             ], 400);
         }
 
-        $savedFileName = array_slice(explode('/', $savedFilePath), -1)[0];
+        File::create([
+            'path' => $savedFilePath,
+            'original_name' => $file->getClientOriginalName(), 
+        ]);
 
         return response()->json([
             'error' => null,
             'data' => [
                 'path' => $savedFilePath,
-                'name' => $savedFileName,
             ]
         ]);
     }
