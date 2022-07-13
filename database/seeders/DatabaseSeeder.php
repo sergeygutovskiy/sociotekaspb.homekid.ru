@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             DictionaryCategorySeeder::class,
             DictionarySeeder::class,
             CompanySeeder::class,
+            JobProjectSeeder::class,
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 use Knuckles\Scribe\Scribe;
 
@@ -19,5 +20,7 @@ class AppServiceProvider extends ServiceProvider
             $token = User::first()->createToken('authToken')->plainTextToken;
             $request->headers->add(["Authorization" => "Bearer $token"]);
         });
+
+        JsonResource::withoutWrapping();
     }
 }

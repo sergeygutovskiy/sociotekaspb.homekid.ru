@@ -33,6 +33,11 @@ class JobPrimaryInfo extends Model
     ];
 
     protected $casts = [
-        'target_group_ids' => 'array'
+        'target_group_ids' => 'array',
+        'is_possibility_in_remote' => 'boolean',
+        'is_innovation_site' => 'boolean',
+        'is_has_expert_opinion' => 'boolean',
+        'is_has_expert_review' => 'boolean',
+        'is_has_expert_feedback' => 'boolean',
     ];
 }

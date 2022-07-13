@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Job\Job;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,4 +37,9 @@ class Company extends Model
         'medical_license' => 'array',
         'is_has_innovative_platform' => 'boolean',
     ];
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

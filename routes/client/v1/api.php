@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
 
     Route::prefix('/jobs')->group(function() {
         Route::prefix('/projects')->group(function() {
+            Route::get('/{id}', [ ProjectController::class, 'show' ]);            
             Route::post('/', [ ProjectController::class, 'store' ]);
         });
     });

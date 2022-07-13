@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Client\Job\Implementation;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\Project\StoreRequest;
+use App\Http\Resources\Client\Job\Project\ShowResource;
 use App\Models\Job\Implementation\Project;
 use App\Models\Job\Job;
 use App\Models\Job\JobExperience;
 use App\Models\Job\JobParticipant;
 use App\Models\Job\JobPrimaryInfo;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -112,8 +111,6 @@ class ProjectController extends Controller
      */ 
     public function store(StoreRequest $request)
     {
-        $integer_target_group_ids = array_map('intval', $request->validated('primary_info.target_group_ids'));
-
         $job_primary_info = JobPrimaryInfo::create([
             'name' => $request->validated('primary_info.name'),
             'purpose' => $request->validated('primary_info.purpose'),
@@ -130,7 +127,7 @@ class ProjectController extends Controller
             'category_id' => $request->validated('primary_info.category_id'),
             'form_of_social_service_id' => $request->validated('primary_info.form_of_social_service_id'),
             'engagement_of_volunteers_id' => $request->validated('primary_info.engagement_of_volunteers_id'),
-            'target_group_ids' => $integer_target_group_ids,
+            'target_group_ids' => $request->validated('primary_info.target_group_ids'),
         
             'is_possibility_in_remote' => $request->validated('primary_info.is_possibility_in_remote'),
             'is_innovation_site' => $request->validated('primary_info.is_innovation_site'),
@@ -153,7 +150,7 @@ class ProjectController extends Controller
 
         //
 
-        $job = Job::create([
+        $job = $request->user()->company->jobs()->create([
             'primary_info_id' => $job_primary_info->id,
             'experience_id' => $job_experience->id
         ]);
@@ -172,8 +169,6 @@ class ProjectController extends Controller
         
         //
 
-        $integer_partner_ids = array_map('intval', $request->validated('info.partner_ids'));
-
         $project = Project::create([
             'job_id' => $job->id,
             
@@ -189,7 +184,8 @@ class ProjectController extends Controller
             'work_name_id' => $request->validated('info.work_name_id'),
             'recognition_of_need_id' => $request->validated('info.recognition_of_need_id'),
             'rnsu_category_id' => $request->validated('info.rnsu_category_id'),
-            'partner_ids' => $integer_partner_ids,
+            'partner_ids' => $request->validated('info.partner_ids'),
+
             'contacts_responsible_name' => $request->validated('contacts.responsible_name'),
             'contacts_email' => $request->validated('contacts.email'),
             'contacts_phone' => $request->validated('contacts.phone')
@@ -201,5 +197,29 @@ class ProjectController extends Controller
                 'project_id' => $project->id
             ],
         ]);
+    }
+
+    /**
+     * Получить проект
+     *
+     * @group Проекты
+     * @authenticated
+     * 
+     * @urlParam id int required ID проекта Example: 1
+     * 
+     */ 
+    public function show($id)
+    {
+        $project = Project::find($id);
+
+        if ( is_null($project) )
+        {
+            return response()->json([
+                'error' => 'Проект не найден',
+                'data' => null,
+            ]);
+        }
+
+        return new ShowResource($project);
     }
 }

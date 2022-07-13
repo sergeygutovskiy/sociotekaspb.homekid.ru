@@ -2,6 +2,7 @@
 
 namespace App\Models\Job\Implementation;
 
+use App\Models\Job\Job;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,6 +33,12 @@ class Project extends Model
     ];
 
     protected $casts = [
-        'partner_ids' => 'array'
+        'partner_ids' => 'array',
+        'is_participant' => 'boolean',
     ];
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }
