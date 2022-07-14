@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\Client\Job;
 
+use App\Http\Resources\FileResource;
+use App\Models\File;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class JobPrimaryInfoShowResource extends JsonResource
@@ -14,6 +16,17 @@ class JobPrimaryInfoShowResource extends JsonResource
      */
     public function toArray($request)
     {
+        $photo_file = [
+            'path' => $this->photo_file_path,
+            'original_name' => null,
+        ];
+
+        $photo_db_file = File::where('path', $photo_file['path'])->first();
+        if ( !is_null($photo_db_file) )
+        {
+            $photo_file['original_name'] = $photo_db_file->original_name;
+        }
+
         return [
             'name' => $this->name,
             'purpose' => $this->purpose,
@@ -23,7 +36,7 @@ class JobPrimaryInfoShowResource extends JsonResource
             'brief_description_of_resources' => $this->brief_description_of_resources,
             'best_practice' => $this->best_practice,
             'social_outcome' => $this->social_outcome,
-            'photo_file_path' => $this->photo_file_path,
+            'photo_file' => $photo_file,
             'video_link' => $this->video_link,
 
             'implementation_for_citizen_id' => $this->implementation_for_citizen_id,
