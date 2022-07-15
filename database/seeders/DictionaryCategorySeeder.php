@@ -21,8 +21,6 @@ class DictionaryCategorySeeder extends Seeder
             'slug' => 'district',
         ]);
 
-        // 
-
         DB::table('dictionary_categories')->insert([
             'id' => 3,
             'name' => 'Реализация для гражданина',
@@ -53,8 +51,6 @@ class DictionaryCategorySeeder extends Seeder
             'slug' => 'target-group',
         ]);
 
-        // 
-
         DB::table('dictionary_categories')->insert([
             'id' => 8,
             'name' => 'Статус',
@@ -84,5 +80,11 @@ class DictionaryCategorySeeder extends Seeder
             'name' => 'Категория по РНСУ',
             'slug' => 'rnsu-category',
         ]);
+
+        DB::table('dictionary_categories')->insert([
+            'id' => 13,
+            'name' => 'Партнер',
+            'slug' => 'partner',
+        ]);        
     }
 }

@@ -13,7 +13,15 @@ class DictionaryCategoryController extends Controller
      * @group Категории словарей
      * @authenticated
      * 
-     * @urlParam category string required Категория ['district', 'organization-type', 'implementation-for-citizen', 'category', 'form-of-social-service', 'engagement-of-volunteers', 'target-group', 'job-status', 'service-type', 'work-name', 'circumstances-of-recognition-of-need', 'rnsu-category'] Example: district
+     * @urlParam category string required Категория [
+     *     'district', 'organization-type', 
+     *     'implementation-for-citizen', 'category', 
+     *     'form-of-social-service', 'engagement-of-volunteers', 
+     *     'target-group', 'job-status', 
+     *     'service-type', 'work-name', 
+     *     'circumstances-of-recognition-of-need', 
+     *     'rnsu-category'
+     * ] Example: district
      *
      */
     public function dictionaries(string $category_slug)
