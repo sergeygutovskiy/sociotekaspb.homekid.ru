@@ -12,6 +12,11 @@ class DictionaryCategorySeeder extends Seeder
         DictionaryCategory::insert([
             [ 'name' => 'Тип организации', 'slug' => 'organization-type' ],
             [ 'name' => 'Район', 'slug' => 'district' ],
+            [ 'name' => 'Реализация для гражданина бесплатно/платно', 'slug' => 'payment-method' ],
+            [ 'name' => 'Привлечение добровольцев и волонтеров', 'slug' => 'volunteer' ],
+            [ 'name' => 'Категория', 'slug' => 'needy-category' ],
+            [ 'name' => 'Целевая группа (Категория)', 'slug' => 'needy-category-target-group' ],
+            [ 'name' => 'Форма социального обслуживания', 'slug' => 'social-service' ],
         ]);
     }
 }

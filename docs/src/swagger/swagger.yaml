@@ -152,7 +152,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [organization-type, district]
+            enum: [organization-type, district, payment-method, volunteer, needy-category, needy-category-target-group, social-service]
       security:
       - bearerAuth: []
       responses:
