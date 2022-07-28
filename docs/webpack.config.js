@@ -35,14 +35,6 @@ module.exports = {
     new CleanWebpackPlugin([
       outputPath
     ]),
-    new CopyWebpackPlugin([
-      {
-        // Copy the Swagger OAuth2 redirect file to the project root;
-        // that file handles the OAuth2 redirect after authenticating the end-user.
-        from: require.resolve('swagger-ui/dist/oauth2-redirect.html'),
-        to: './'
-      }
-    ]),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })

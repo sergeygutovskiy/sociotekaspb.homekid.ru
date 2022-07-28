@@ -1,0 +1,151 @@
+openapi: "3.0.0"
+info:
+  version: "0.1"
+  title: "Homekids"
+servers:
+  - url: "http://localhost/api/client/v1"
+    description: "local"
+paths:
+  /users/login:
+    post:
+      tags:
+      - User
+      summary: "Login into account"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login: 
+                  type: string
+                password:
+                  type: string
+              example: 
+                login: "user1"
+                password: "1234"
+      responses:
+        200: 
+          description: "OK"
+
+  /users/check:
+    post:
+      tags:
+      - User
+      summary: "Check if token is valid"
+      security:
+      - bearerAuth: []
+      responses:
+        200: 
+          description: "OK"
+
+  /company:
+    get:
+      tags:
+      - Company
+      summary: "Get company of auth user"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+    post:
+      tags:
+      - Company
+      summary: "Update company of auth user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "Краткое наименование организации"
+                full_name:
+                  type: string
+                  description: "Полное наименование организации"
+                phone:
+                  type: string
+                  description: "Номер телефона организации"
+                email:
+                  type: string
+                  description: "Электронная почта организации"
+                site:
+                  type: string
+                  description: "Ссылка на официальный сайт организации"
+                owner:
+                  type: string
+                  description: "Руководитель организации"
+                responsible:
+                  type: string
+                  description: "Ответственный за предоставление информации"
+                responsible_phone:
+                  type: string
+                  description: "Телефон ответственного за предоставление информации"
+                organization_type_id:
+                  type: number
+                  description: "Тип организации"
+                district_id:
+                  type: number
+                  description: "Район"
+                education_license:
+                  type: object
+                  description: "Лицензия на осуществление образовательной деятельности"
+                  nullable: true
+                  properties:
+                    number:
+                      type: number
+                      description: "Номер лицензии"
+                    type:
+                      type: string
+                      description: "Вид деятельности"
+                    date:
+                      type: string
+                      description: "Дата выдачи лицензии"
+                medical_license:
+                  type: object
+                  description: "Лицензия на осуществление медицинской деятельности"
+                  nullable: true
+                  properties:
+                    number:
+                      type: number
+                      description: "Номер лицензии"
+                    date:
+                      type: string
+                      description: "Дата выдачи лицензии"
+                is_has_innovative_platform:
+                  type: boolean
+                  description: "Наличие инновационной площадки в организации"
+              example:
+                name: "string"
+                full_name: "string"
+                phone: "string"
+                email: "string"
+                site: "string"
+                owner: "string"
+                responsible: "string"
+                responsible_phone: "string"
+                organization_type_id: 1
+                district_id: 1
+                education_license:
+                  number: 100,
+                  type: "string"
+                  date: "30.06.2022"
+                medical_license:
+                  number: 200,
+                  date: "30.06.2022"
+                is_has_innovative_platform: true
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
