@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Проверить токен
-     * 
-     * @group Юзеры
-     * 
-     * @authenticated
-     */
     public function check(Request $request)
     {
         $user = $request->user();
@@ -30,15 +23,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Войти в аккаунт
-     * 
-     * @group Юзеры
-     * 
-     * @bodyParam login string required Логин Example: user1
-     * @bodyParam password string required Пароль Example: 1234
-     * 
-     */
     public function login(Request $request)
     {
         $login = $request->input('login');
