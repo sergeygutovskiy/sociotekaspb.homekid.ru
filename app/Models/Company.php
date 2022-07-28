@@ -37,9 +37,4 @@ class Company extends Model
         'medical_license' => 'array',
         'is_has_innovative_platform' => 'boolean',
     ];
-
-    public function jobs()
-    {
-        return $this->hasMany(Job::class);
-    }
 }
