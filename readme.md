@@ -46,24 +46,10 @@ composer update
 ## Юзеры
 
 ``` php
-DB::table('users')->insert([
-    'id' => 1,
-    'login' => 'user1',
-    'password' => Hash::make('1234'),
-]);
-```
-``` php
-DB::table('users')->insert([
-    'id' => 2,
-    'login' => 'user2',
-    'password' => Hash::make('1234'),
-]);
-```
-``` php
-DB::table('users')->insert([
-    'id' => 3,
-    'login' => 'user3',
-    'password' => Hash::make('1234'),
+User::insert([
+    [ 'login' => 'user1', 'password' => Hash::make('1234') ],
+    [ 'login' => 'user2', 'password' => Hash::make('1234') ],
+    [ 'login' => 'user3', 'password' => Hash::make('1234') ],
 ]);
 ```
 ## Компании
@@ -131,17 +117,14 @@ DB::table('companies')->insert([
 ## Категории словарей
 
 ``` php
-DB::table('dictionary_categories')->insert([
-    'id' => 1,
-    'name' => 'Тип организации',
-    'slug' => 'organization-type',
-]);
-```
-``` php
-DB::table('dictionary_categories')->insert([
-    'id' => 2,
-    'name' => 'Район',
-    'slug' => 'district',
+DictionaryCategory::insert([
+    [ 'name' => 'Тип организации', 'slug' => 'organization-type' ],
+    [ 'name' => 'Район', 'slug' => 'district' ],
+    [ 'name' => 'Реализация для гражданина бесплатно/платно', 'slug' => 'payment-method' ],
+    [ 'name' => 'Привлечение добровольцев и волонтеров', 'slug' => 'volunteer' ],
+    [ 'name' => 'Категория', 'slug' => 'needy-category' ],
+    [ 'name' => 'Целевая группа (Категория)', 'slug' => 'needy-category-target-group' ],
+    [ 'name' => 'Форма социального обслуживания', 'slug' => 'social-service' ],
 ]);
 ```
 
@@ -151,12 +134,14 @@ DB::table('dictionary_categories')->insert([
 $dictionary_categories = DictionaryCategory::all();
 
 // create dictionary item for each category
-foreach ($dictionary_categories as $category) {
+foreach ($dictionary_categories as $category) 
+{
     // 5 times
-    for ($i = 0; $i < 5; $i++) {
+    for ($i = 0; $i < self::DICTIONARIES_PER_CATEGORY_COUNT; $i++) 
+    {
         Dictionary::create([
             'category_id' => $category->id,
-            'label' => strtolower($category->name . ' №' . $i+1) 
+            'label' => strtolower($category->name . ' №' . ($i + 1))
         ]);
     }
 }

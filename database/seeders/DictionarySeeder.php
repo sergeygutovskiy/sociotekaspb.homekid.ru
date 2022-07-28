@@ -15,9 +15,11 @@ class DictionarySeeder extends Seeder
         $dictionary_categories = DictionaryCategory::all();
 
         // create dictionary item for each category
-        foreach ($dictionary_categories as $category) {
+        foreach ($dictionary_categories as $category) 
+        {
             // 5 times
-            for ($i = 0; $i < 5; $i++) {
+            for ($i = 0; $i < self::DICTIONARIES_PER_CATEGORY_COUNT; $i++) 
+            {
                 Dictionary::create([
                     'category_id' => $category->id,
                     'label' => strtolower($category->name . ' №' . ($i + 1))
