@@ -8,8 +8,7 @@ servers:
 paths:
   /users/login:
     post:
-      tags:
-      - User
+      tags: [User]
       summary: "Login into account"
       requestBody:
         required: true
@@ -31,8 +30,7 @@ paths:
 
   /users/check:
     post:
-      tags:
-      - User
+      tags: [User]
       summary: "Check if token is valid"
       security:
       - bearerAuth: []
@@ -51,8 +49,7 @@ paths:
         200:
           description: "OK"
     post:
-      tags:
-      - Company
+      tags: [Company]
       summary: "Update company of auth user"
       requestBody:
         required: true
@@ -138,6 +135,24 @@ paths:
                   number: 200,
                   date: "30.06.2022"
                 is_has_innovative_platform: true
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+  /dictionaries/categories/{category}:
+    get:
+      tags: [Dictionary]
+      summary: "Get all dicionaries of specified category"
+      parameters:
+        - in: path
+          name: category
+          description: "Slug of category"
+          example: "organization-type"
+          required: true
+          schema:
+            type: string
+            enum: [organization-type, district]
       security:
       - bearerAuth: []
       responses:

@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('dictionary_categories');
 
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('dictionaries');
+
             $table->string('label');
 
             $table->timestamps();

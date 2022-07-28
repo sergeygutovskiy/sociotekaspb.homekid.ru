@@ -11,7 +11,7 @@ Route::prefix('/users')->group(function() {
 });
 
 Route::middleware(['auth:sanctum'])->group(function() {
-    Route::get('/dictionary-categories/{category}/dictionaries', [ DictionaryCategoryController::class, 'dictionaries' ]);
+    Route::get('/dictionaries/categories/{category}', [ DictionaryCategoryController::class, 'dictionaries' ]);
 
     Route::prefix('/company')->group(function() {
         Route::get('/', [ CompanyController::class, 'show' ]);

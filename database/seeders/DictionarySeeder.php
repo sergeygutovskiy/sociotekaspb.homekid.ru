@@ -8,7 +8,9 @@ use Illuminate\Database\Seeder;
 
 class DictionarySeeder extends Seeder
 {
-    public function run()
+    const DICTIONARIES_PER_CATEGORY_COUNT = 5;
+
+    public function run(): void
     {
         $dictionary_categories = DictionaryCategory::all();
 
@@ -18,7 +20,7 @@ class DictionarySeeder extends Seeder
             for ($i = 0; $i < 5; $i++) {
                 Dictionary::create([
                     'category_id' => $category->id,
-                    'label' => strtolower($category->name . ' №' . $i+1) 
+                    'label' => strtolower($category->name . ' №' . ($i + 1))
                 ]);
             }
         }

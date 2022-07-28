@@ -2,23 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\DictionaryCategory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DictionaryCategorySeeder extends Seeder
 {
     public function run()
     {
-        DB::table('dictionary_categories')->insert([
-            'id' => 1,
-            'name' => 'Тип организации',
-            'slug' => 'organization-type',
+        DictionaryCategory::insert([
+            [ 'name' => 'Тип организации', 'slug' => 'organization-type' ],
+            [ 'name' => 'Район', 'slug' => 'district' ],
         ]);
-
-        DB::table('dictionary_categories')->insert([
-            'id' => 2,
-            'name' => 'Район',
-            'slug' => 'district',
-        ]);    
     }
 }
