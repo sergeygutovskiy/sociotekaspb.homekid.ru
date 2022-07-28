@@ -1,11 +1,10 @@
 /node_modules
+/docs/node_modules
 /public/hot
-/public/docs
 /storage/*.key
 /vendor
 /.idea
 /.vscode
-.scribe
 .env
 .env.backup
 .phpunit.result.cache

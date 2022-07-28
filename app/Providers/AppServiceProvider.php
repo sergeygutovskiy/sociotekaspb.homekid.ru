@@ -16,11 +16,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        Scribe::beforeResponseCall(function (Request $request) {
-            $token = User::first()->createToken('authToken')->plainTextToken;
-            $request->headers->add(["Authorization" => "Bearer $token"]);
-        });
-
         JsonResource::withoutWrapping();
     }
 }
