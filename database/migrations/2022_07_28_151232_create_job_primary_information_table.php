@@ -44,7 +44,7 @@ return new class extends Migration
             $table->json('review')->nullable();
             $table->json('comment')->nullable();
 
-            $table->text('video')->nullable();
+            $table->string('video')->nullable();
             $table->text('required_resources_description');
 
             $table->string('photo')->nullable();

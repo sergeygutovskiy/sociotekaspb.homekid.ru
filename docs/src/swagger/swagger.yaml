@@ -38,19 +38,35 @@ paths:
         200: 
           description: "OK"
 
-  /company:
+  /users/{user_id}/company:
     get:
       tags:
       - Company
       summary: "Get company of auth user"
+      parameters:
+        - in: path
+          name: user_id
+          description: "ID of user"
+          example: 1
+          required: true
+          schema:
+            type: number
       security:
       - bearerAuth: []
       responses:
         200:
           description: "OK"
-    post:
+    put:
       tags: [Company]
       summary: "Update company of auth user"
+      parameters:
+        - in: path
+          name: user_id
+          description: "ID of user"
+          example: 1
+          required: true
+          schema:
+            type: number
       requestBody:
         required: true
         content:
@@ -128,11 +144,11 @@ paths:
                 organization_type_id: 1
                 district_id: 1
                 education_license:
-                  number: 100,
+                  number: 100
                   type: "string"
                   date: "30.06.2022"
                 medical_license:
-                  number: 200,
+                  number: 200
                   date: "30.06.2022"
                 is_has_innovative_platform: true
       security:

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Client\Company;
 
+use App\Http\Responses\Validation\BadValidationErrorResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -55,10 +56,6 @@ class StoreRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json([
-            'data' => null,
-            'error' => 'Ошибка валидации',
-            'meta' => $validator->errors()
-        ], 400));
+        throw new HttpResponseException(BadValidationErrorResponse::response($validator->errors()));
     }
 }

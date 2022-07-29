@@ -6,34 +6,35 @@ use App\Enums\CompanyStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Company\StoreRequest;
 use App\Http\Resources\Client\CompanyResource;
-use Illuminate\Http\Request;
+use App\Http\Responses\Auth\UserNotFoundErrorResponse;
+use App\Http\Responses\OKResponse;
+use App\Http\Responses\Resources\ResourceOKResponse;
+use App\Models\User;
 
 class CompanyController extends Controller
 {
-    public function show(Request $request)
+    public function show(int $user_id): \Illuminate\Http\JsonResponse
     {
-        $user = $request->user();
+        $user = User::find($user_id);
+        if ( !$user ) return UserNotFoundErrorResponse::response();
+
         $company = $user->company;
 
-        return response()->json([
-            'error' => null,
-            'data' => new CompanyResource($company),
-        ]);
+        return ResourceOKResponse::response(new CompanyResource($company));
     }
 
-    public function update(StoreRequest $request)
+    public function update(int $user_id, StoreRequest $request): \Illuminate\Http\JsonResponse
     {
         $validated = $request->validated();
         $validated['status'] = CompanyStatus::PENDING;
 
-        $user = $request->user();
+        $user = User::find($user_id);
+        if ( !$user ) return UserNotFoundErrorResponse::response();
+        
         $company = $user->company;
 
         $company->update($validated);
 
-        return response()->json([
-            'error' => null,
-            'data' => null,
-        ]);
+        return OKResponse::response();
     }
 }

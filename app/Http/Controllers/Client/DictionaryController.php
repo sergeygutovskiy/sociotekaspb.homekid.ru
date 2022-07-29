@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Client\DictionaryResource;
+use App\Http\Responses\Resources\ResourceNotFoundErrorResponse;
+use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Models\Dictionary;
 
 class DictionaryController extends Controller
@@ -12,17 +14,7 @@ class DictionaryController extends Controller
     {
         $parent = Dictionary::find($id);
 
-        if ( !$parent )
-        {
-            return response()->json([
-                'error' => 'Справочник не найден',
-                'data' => null,
-            ], 404);
-        }
-
-        return response()->json([
-            'error' => null,
-            'data' => DictionaryResource::collection($parent->dictionaries),
-        ]);
+        if ( !$parent ) return ResourceNotFoundErrorResponse::response();
+        return ResourceOKResponse::response(DictionaryResource::collection($parent->dictionaries));
     }
 }
