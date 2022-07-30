@@ -181,6 +181,7 @@ paths:
             - rnsu-category
             - public-work
             - service-name
+            - service-type
             - need-recognition
       security:
       - bearerAuth: []
@@ -212,6 +213,7 @@ paths:
             - rnsu-category
             - public-work
             - service-name
+            - service-type
             - need-recognition
         - in: path
           name: child_category
@@ -232,6 +234,7 @@ paths:
             - rnsu-category
             - public-work
             - service-name
+            - service-type
             - need-recognition
       security:
       - bearerAuth: []
