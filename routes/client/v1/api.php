@@ -4,6 +4,7 @@ use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\CompanyController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
 use App\Http\Controllers\Client\DictionaryController;
+use App\Http\Controllers\Client\Jobs\SocialProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/users')->group(function() {
@@ -14,6 +15,12 @@ Route::prefix('/users')->group(function() {
         Route::prefix('/company')->group(function() {
             Route::get('/', [ CompanyController::class, 'show' ]);
             Route::put('/', [ CompanyController::class, 'update' ]);
+        });
+
+        Route::prefix('/jobs')->group(function() {
+            Route::prefix('/social-projects')->group(function() {
+                Route::post('/', [ SocialProjectController::class, 'store' ]);
+            });
         });
     });
 });

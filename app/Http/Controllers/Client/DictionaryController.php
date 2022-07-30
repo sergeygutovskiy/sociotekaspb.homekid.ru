@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Client\DictionaryResource;
 use App\Http\Responses\Resources\ResourceNotFoundErrorResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Models\Dictionary;
@@ -15,6 +14,6 @@ class DictionaryController extends Controller
         $parent = Dictionary::find($id);
 
         if ( !$parent ) return ResourceNotFoundErrorResponse::response();
-        return ResourceOKResponse::response(DictionaryResource::collection($parent->dictionaries));
+        return ResourceOKResponse::response($parent->dictionaries()->pluck('id')->toArray());
     }
 }

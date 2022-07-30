@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('primary_information_id');
             $table->foreign('primary_information_id')->references('id')->on('job_primary_information');
 
+            $table->unsignedBigInteger('experience_id');
+            $table->foreign('experience_id')->references('id')->on('job_experiences');
+
             $table->timestamps();
         });
     }
