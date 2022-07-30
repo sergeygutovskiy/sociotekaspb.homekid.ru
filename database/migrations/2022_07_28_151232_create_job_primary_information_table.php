@@ -47,8 +47,10 @@ return new class extends Migration
             $table->string('video')->nullable();
             $table->text('required_resources_description');
 
-            $table->string('photo')->nullable();
-            $table->json('gallery');
+            $table->unsignedBigInteger('photo_file_id')->nullable();
+            $table->foreign('photo_file_id')->references('id')->on('user_files');
+
+            $table->json('gallery_file_ids');
 
             $table->boolean('is_best_practice');
             $table->boolean('is_remote_format_possible');

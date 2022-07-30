@@ -46,9 +46,9 @@ class StorePrimaryInformationValidator extends Validator
             'primary.video' => ['present', 'nullable'],
             'primary.required_resources_description' => ['required'],
 
-            'primary.photo' => ['present', 'nullable'],
-            'primary.gallery' => ['array', 'present'],
-            'primary.gallery.*' => ['required'],
+            'primary.photo_file_id' => ['integer', 'exists:user_files,id', 'nullable'],
+            'primary.gallery_file_ids' => ['array', 'present'],
+            'primary.gallery_file_ids.*' => ['integer', 'exists:user_files,id', 'nullable'],
 
             'primary.is_best_practice' => ['boolean'],
             'primary.is_remote_format_possible' => ['boolean'],

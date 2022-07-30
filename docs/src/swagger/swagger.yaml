@@ -355,16 +355,16 @@ paths:
                     required_resources_description:
                       type: string
                       description: "Краткое описание необходимого ресурсного обеспечения *"
-                    photo:
-                      type: string
-                      description: "Обложка"
+                    photo_file_id:
+                      type: number
+                      description: "ID файла обложки"
                       nullable: true
-                    gallery:
+                    gallery_file_ids:
                       type: array
                       description: "Галерея"
                       items:
-                        type: string
-                        description: "Путь к файлу" 
+                        type: number
+                        description: "ID файла галереи" 
                     is_best_practice:
                       type: boolean
                       description: "Лучшая практика по мнению руководства организации"
@@ -567,8 +567,8 @@ paths:
                     description: "description"
                   video: "video" 
                   required_resources_description: "required_resources_description"
-                  photo: "photo"
-                  gallery: ["/your/path1/file1.png", "/your/path1/file2.png"]
+                  photo_file_id: null
+                  gallery_file_ids: []
                   is_best_practice: true
                   is_remote_format_possible: true
                 experience:

@@ -29,8 +29,8 @@ class JobPrimaryInformation extends Model
         'comment',
         'video',
         'required_resources_description',
-        'photo',
-        'gallery',
+        'photo_file_id',
+        'gallery_file_ids',
         'is_best_practice',
         'is_remote_format_possible',
     ];
@@ -44,7 +44,7 @@ class JobPrimaryInformation extends Model
         'expert_opinion' => 'array',
         'review' => 'array',
         'comment' => 'array',
-        'gallery' => 'array',
+        'gallery_file_ids' => 'array',
         'is_best_practice' => 'boolean',
         'is_remote_format_possible' => 'boolean',
     ];
