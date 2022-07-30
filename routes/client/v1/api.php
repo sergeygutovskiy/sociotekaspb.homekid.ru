@@ -5,6 +5,7 @@ use App\Http\Controllers\Client\CompanyController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
 use App\Http\Controllers\Client\DictionaryController;
 use App\Http\Controllers\Client\Jobs\SocialProjectController;
+use App\Http\Controllers\Client\UserFileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/users')->group(function() {
@@ -16,6 +17,8 @@ Route::prefix('/users')->group(function() {
             Route::get('/', [ CompanyController::class, 'show' ]);
             Route::put('/', [ CompanyController::class, 'update' ]);
         });
+
+        Route::post('/files', [ UserFileController::class, 'store' ]);
 
         Route::prefix('/jobs')->group(function() {
             Route::prefix('/social-projects')->group(function() {

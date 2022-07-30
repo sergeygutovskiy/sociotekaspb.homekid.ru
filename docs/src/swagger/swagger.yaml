@@ -206,6 +206,42 @@ paths:
         200:
           description: "OK"
 
+  /users/{user_id}/files:
+    post:
+      tags: [File]
+      summary: "Upload file"
+      parameters:
+        - in: path
+          name: user_id
+          description: "ID of user"
+          example: 1
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                category:
+                  type: string
+                  enum:
+                  - job-primary-photo
+                  - job-primary-gallery
+              required:
+              - file
+              - category
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
   /users/{user_id}/jobs/social-projects:
     post:
       tags: [Social Project]

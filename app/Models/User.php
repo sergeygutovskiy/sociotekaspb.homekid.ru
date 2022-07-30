@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Job::class, 'user_id');
     }
+
+    public function files()
+    {
+        return $this->hasMany(UserFile::class, 'user_id');
+    }
 }
