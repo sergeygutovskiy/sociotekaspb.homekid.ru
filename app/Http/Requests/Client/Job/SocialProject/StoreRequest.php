@@ -6,6 +6,7 @@ use App\Http\Responses\Validation\BadValidationErrorResponse;
 use App\Http\Validators\Job\StoreContactsValidator;
 use App\Http\Validators\Job\StoreExperienceValidator;
 use App\Http\Validators\Job\StorePrimaryInformationValidator;
+use App\Http\Validators\Job\StoreReportingPeriodsValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -36,6 +37,7 @@ class StoreRequest extends FormRequest
             StorePrimaryInformationValidator::rules(),
             StoreExperienceValidator::rules(),
             StoreContactsValidator::rules(),
+            StoreReportingPeriodsValidator::rules(),
         );
     }
 

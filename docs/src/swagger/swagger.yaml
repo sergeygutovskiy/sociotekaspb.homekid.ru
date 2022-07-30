@@ -408,6 +408,35 @@ paths:
                     phone:
                       type: string
                       description: "Контактный телефон *"
+                reporting_periods:
+                  type: array
+                  description: ""
+                  items:
+                    type: object
+                    description: ""
+                    properties:
+                      total:
+                        type: number
+                        description: "Общее количество участников за отчетный период *"
+                      year:
+                        type: number
+                        description: "Отчётный период *"
+                      families:
+                        type: number
+                        description: "Количество семей"
+                        nullable: true
+                      children:
+                        type: number
+                        description: "Количество детей"
+                        nullable: true
+                      men:
+                        type: number
+                        description: "Количество мужчин"
+                        nullable: true
+                      women:
+                        type: number
+                        description: "Количество женщин"
+                        nullable: true
               example:
                 primary:
                   name: "name"
@@ -458,6 +487,13 @@ paths:
                   fio: "fio"
                   email: "email"
                   phone: "phone"
+                reporting_periods:
+                - total: 1
+                  year: 2022
+                  families: 1
+                  children: 1
+                  men: 1
+                  women: 1
       security:
       - bearerAuth: []
       responses:
