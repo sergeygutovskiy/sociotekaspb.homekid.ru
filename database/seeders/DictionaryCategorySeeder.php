@@ -17,6 +17,13 @@ class DictionaryCategorySeeder extends Seeder
             [ 'name' => 'Категория', 'slug' => 'needy-category' ],
             [ 'name' => 'Целевая группа (Категория)', 'slug' => 'needy-category-target-group' ],
             [ 'name' => 'Форма социального обслуживания', 'slug' => 'social-service' ],
+
+            [ 'name' => 'Уровень реализации проекта', 'slug' => 'implementation-level' ],
+            [ 'name' => 'Категории по РНСУ', 'slug' => 'rnsu-category' ],
+            [ 'name' => 'Наименование государственной работы', 'slug' => 'public-work' ],
+            [ 'name' => 'Вид услуги', 'slug' => 'service-type' ],
+            [ 'name' => 'Наименование услуги', 'slug' => 'service-name' ],
+            [ 'name' => 'Обстоятельства признания нуждаемости', 'slug' => 'need-recognition' ],
         ]);
     }
 }

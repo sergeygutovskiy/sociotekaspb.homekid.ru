@@ -169,7 +169,19 @@ paths:
           required: true
           schema:
             type: string
-            enum: [organization-type, district, payment-method, volunteer, needy-category, needy-category-target-group, social-service]
+            enum:
+            - organization-type
+            - district
+            - payment-method
+            - volunteer
+            - needy-category
+            - needy-category-target-group
+            - social-service
+            - implementation-level
+            - rnsu-category
+            - public-work
+            - service-name
+            - need-recognition
       security:
       - bearerAuth: []
       responses:
@@ -248,19 +260,16 @@ paths:
                       description: "Категории *"
                       items:
                         type: number
-                        description: "" 
                     needy_category_target_group_ids:
                       type: array
                       description: "Целевые группы *"
                       items:
                         type: number
-                        description: "" 
                     social_service_ids:
                       type: array
                       description: "Форма социального обслуживания (сопровождения) *"
                       items:
                         type: number
-                        description: "" 
                     qualitative_results:
                       type: string
                       description: "Основные качественные результаты *"
@@ -437,7 +446,66 @@ paths:
                         type: number
                         description: "Количество женщин"
                         nullable: true
+                info:
+                  type: object
+                  description: ""
+                  properties:
+                    participant:
+                      type: object
+                      description: "Вы участник, а не организатор? *"
+                      nullable: true
+                      properties:
+                        description:
+                          type: text
+                          description: "Описание"
+                    implementation_period:
+                      type: object
+                      description: "Период реализации проекта *"
+                      nullable: true
+                      properties:
+                        description:
+                          type: text
+                          description: "Описание"
+                    implementation_level_id:
+                      type: number
+                      description: "Уровень реализации проекта *"
+                    rnsu_category_ids:
+                      type: array
+                      description: "Категории по РНСУ *"
+                      items:
+                        type: number
+                    public_work_ids:
+                      type: array
+                      description: "Наименование государственной работы"
+                      items:
+                        type: number
+                    service_type_ids:
+                      type: array
+                      description: "Вид услуги"
+                      items:
+                        type: number
+                    service_name_ids:
+                      type: array
+                      description: "Наименование услуги"
+                      items:
+                        type: number
+                    need_recognition_ids:
+                      type: array
+                      description: "Обстоятельства признания нуждаемости *"
+                      items:
+                        type: number
               example:
+                info:
+                  participant:
+                    description: "participant" 
+                  implementation_period:
+                    description: "description"
+                  implementation_level_id: 1
+                  rnsu_category_ids: [1, 2]
+                  public_work_ids: [1, 2]
+                  service_type_ids: [1, 2]
+                  service_name_ids: [1, 2]
+                  need_recognition_ids: [1, 2]
                 primary:
                   name: "name"
                   annotation: "annotation"

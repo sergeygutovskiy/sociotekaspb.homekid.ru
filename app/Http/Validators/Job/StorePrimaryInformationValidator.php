@@ -21,12 +21,12 @@ class StorePrimaryInformationValidator extends Validator
 
             'primary.volunteer_id' => ['required', 'integer', 'exists:dictionaries,id'],
 
-            'primary.needy_category_ids' => ['array'],
+            'primary.needy_category_ids' => ['array', 'present'],
             'primary.needy_category_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
-            'primary.needy_category_target_group_ids' => ['array'],
+            'primary.needy_category_target_group_ids' => ['array', 'present'],
             'primary.needy_category_target_group_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
 
-            'primary.social_service_ids' => ['array'],
+            'primary.social_service_ids' => ['array', 'present'],
             'primary.social_service_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
 
             'primary.qualitative_results' => ['required'],
@@ -47,7 +47,7 @@ class StorePrimaryInformationValidator extends Validator
             'primary.required_resources_description' => ['required'],
 
             'primary.photo' => ['present', 'nullable'],
-            'primary.gallery' => ['array'],
+            'primary.gallery' => ['array', 'present'],
             'primary.gallery.*' => ['required'],
 
             'primary.is_best_practice' => ['boolean'],

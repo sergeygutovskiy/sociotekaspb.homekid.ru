@@ -32,7 +32,28 @@ class StoreRequest extends FormRequest
     {
         return array_merge(
             [
+                'info.participant' => ['array', 'size:1', 'nullable', 'present'],
+                'info.participant.description' => ['required_with:info.participant'],
 
+                'info.implementation_period' => ['array', 'size:1', 'nullable', 'present'],
+                'info.implementation_period.description' => ['required_with:info.implementation_period'],
+
+                'info.implementation_level_id' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.rnsu_category_ids' => ['array', 'present'],
+                'info.rnsu_category_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.public_work_ids' => ['array', 'present'],
+                'info.public_work_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.service_type_ids' => ['array', 'present'],
+                'info.service_type_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.service_name_ids' => ['array', 'present'],
+                'info.service_name_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.need_recognition_ids' => ['array', 'present'],
+                'info.need_recognition_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
             ],
             StorePrimaryInformationValidator::rules(),
             StoreExperienceValidator::rules(),

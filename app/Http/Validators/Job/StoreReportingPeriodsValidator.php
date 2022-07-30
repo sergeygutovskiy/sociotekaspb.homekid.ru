@@ -9,7 +9,7 @@ class StoreReportingPeriodsValidator extends Validator
     public static function rules()
     {
         return [
-            'reporting_periods' => ['array'],
+            'reporting_periods' => ['array', 'present'],
             
             'reporting_periods.*.total' => ['integer', 'min:0'],
             'reporting_periods.*.year' => ['integer', 'min:0'],
