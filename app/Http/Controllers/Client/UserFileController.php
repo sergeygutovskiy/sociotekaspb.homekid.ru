@@ -33,6 +33,7 @@ class UserFileController extends Controller
         return OKResponse::response([
             'file' => [
                 'id' => $file->id,
+                'path' => $file->path,
                 'original_name' => $file->original_name,
             ],
         ]);
