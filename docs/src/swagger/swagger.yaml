@@ -188,18 +188,51 @@ paths:
         200:
           description: "OK"
 
-  /dictionaries/{id}:
+  /dictionaries/categories/{parent_category}/{child_category}:
     get:
       tags: [Dictionary]
-      summary: "Get dictionaries of parent dictionary"
+      summary: "Get relationship between dictionaries of parent category and dictionaries of child category"
       parameters:
         - in: path
-          name: id
-          description: "ID of parent dictionary"
-          example: 1
+          name: parent_category
+          description: "Slug of parent category"
+          example: needy-category
           required: true
           schema:
-            type: number
+            type: string
+            enum:
+            - organization-type
+            - district
+            - payment-method
+            - volunteer
+            - needy-category
+            - needy-category-target-group
+            - social-service
+            - implementation-level
+            - rnsu-category
+            - public-work
+            - service-name
+            - need-recognition
+        - in: path
+          name: child_category
+          description: "Slug of child category"
+          example: needy-category-target-group
+          required: true
+          schema:
+            type: string
+            enum:
+            - organization-type
+            - district
+            - payment-method
+            - volunteer
+            - needy-category
+            - needy-category-target-group
+            - social-service
+            - implementation-level
+            - rnsu-category
+            - public-work
+            - service-name
+            - need-recognition
       security:
       - bearerAuth: []
       responses:

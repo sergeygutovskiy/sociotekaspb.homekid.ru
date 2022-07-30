@@ -30,7 +30,7 @@ Route::prefix('/users')->group(function() {
 
 Route::middleware(['auth:sanctum'])->group(function() {
     Route::prefix('/dictionaries')->group(function() {
+        Route::get('/categories/{parent_category_slug}/{child_category_slug}', [ DictionaryCategoryController::class, 'child_dictionaries' ]);
         Route::get('/categories/{category}', [ DictionaryCategoryController::class, 'dictionaries' ]);
-        Route::get('/{id}', [ DictionaryController::class, 'dictionaries_by_parent' ]);
     });
 });

@@ -13,7 +13,7 @@ use App\Models\User;
 
 class CompanyController extends Controller
 {
-    public function show(int $user_id): \Illuminate\Http\JsonResponse
+    public function show(int $user_id)
     {
         $user = User::find($user_id);
         if ( !$user ) return UserNotFoundErrorResponse::response();
@@ -23,7 +23,7 @@ class CompanyController extends Controller
         return ResourceOKResponse::response(new CompanyResource($company));
     }
 
-    public function update(int $user_id, StoreRequest $request): \Illuminate\Http\JsonResponse
+    public function update(int $user_id, StoreRequest $request)
     {
         $validated = $request->validated();
         $validated['status'] = CompanyStatus::PENDING;
