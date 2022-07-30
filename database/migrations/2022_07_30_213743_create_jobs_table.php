@@ -22,6 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('experience_id');
             $table->foreign('experience_id')->references('id')->on('job_experiences');
 
+            $table->unsignedBigInteger('contacts_id');
+            $table->foreign('contacts_id')->references('id')->on('job_contacts');
+
             $table->timestamps();
         });
     }

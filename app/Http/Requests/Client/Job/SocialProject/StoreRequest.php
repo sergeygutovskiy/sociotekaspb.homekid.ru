@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Client\Job\SocialProject;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
+use App\Http\Validators\Job\StoreContactsValidator;
 use App\Http\Validators\Job\StoreExperienceValidator;
 use App\Http\Validators\Job\StorePrimaryInformationValidator;
 use Illuminate\Contracts\Validation\Validator;
@@ -34,6 +35,7 @@ class StoreRequest extends FormRequest
             ],
             StorePrimaryInformationValidator::rules(),
             StoreExperienceValidator::rules(),
+            StoreContactsValidator::rules(),
         );
     }
 

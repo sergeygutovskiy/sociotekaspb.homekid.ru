@@ -395,6 +395,19 @@ paths:
                           type: string
                           description: "Ссылка"
                           nullable: true
+                contacts:
+                  type: object
+                  description: ""
+                  properties:
+                    fio:
+                      type: string
+                      description: "ФИО ответственного лица *"
+                    email:
+                      type: string
+                      description: "Электронная почта *"
+                    phone:
+                      type: string
+                      description: "Контактный телефон *"
               example:
                 primary:
                   name: "name"
@@ -441,6 +454,10 @@ paths:
                   results_seminars:
                     description: "description"
                     link: "link"
+                contacts:
+                  fio: "fio"
+                  email: "email"
+                  phone: "phone"
       security:
       - bearerAuth: []
       responses:
