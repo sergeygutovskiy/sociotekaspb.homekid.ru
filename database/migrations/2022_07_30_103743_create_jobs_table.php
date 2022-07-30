@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->unsignedBigInteger('primary_information_id');
             $table->foreign('primary_information_id')->references('id')->on('job_primary_information');
 

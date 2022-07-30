@@ -4,17 +4,22 @@ namespace App\Http\Controllers\Client\Jobs;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
+use App\Http\Responses\Auth\UserNotFoundErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Models\Job\Job;
 use App\Models\Job\JobContacts;
 use App\Models\Job\JobExperience;
 use App\Models\Job\JobPrimaryInformation;
 use App\Models\Job\JobReportingPeriod;
+use App\Models\User;
 
 class SocialProjectController extends Controller
 {
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request, int $user_id)
     {
+        $user = User::find($user_id);
+        if ( !$user ) return UserNotFoundErrorResponse::response();
+
         $validated_data = $request->validated();
 
         $primary_data = $validated_data['primary'];
@@ -27,7 +32,7 @@ class SocialProjectController extends Controller
         $job_contacts = JobContacts::create($contacts_data);
         $job_experience = JobExperience::create($experience_data);
 
-        $job = Job::create([
+        $job = $user->jobs()->create([
             'primary_information_id' => $job_primary->id,
             'experience_id' => $job_experience->id,
             'contacts_id' => $job_contacts->id,
