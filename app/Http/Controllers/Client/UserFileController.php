@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\UserFile\StoreRequest;
+use App\Http\Resources\Client\UserFileResource;
 use App\Http\Responses\Auth\UserNotFoundErrorResponse;
 use App\Http\Responses\ErrorResponse;
 use App\Http\Responses\OKResponse;
@@ -31,11 +32,7 @@ class UserFileController extends Controller
         ]);
 
         return OKResponse::response([
-            'file' => [
-                'id' => $file->id,
-                'path' => $file->path,
-                'original_name' => $file->original_name,
-            ],
+            'file' => new UserFileResource($file),
         ]);
     }
 }
