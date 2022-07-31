@@ -13,6 +13,7 @@ class Job extends Model
         'primary_information_id',
         'experience_id',
         'contacts_id',
+        'status',
     ];
 
     public function primary_information()

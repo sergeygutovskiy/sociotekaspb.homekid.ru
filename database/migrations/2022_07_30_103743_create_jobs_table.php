@@ -28,6 +28,9 @@ return new class extends Migration
             $table->unsignedBigInteger('contacts_id');
             $table->foreign('contacts_id')->references('id')->on('job_contacts');
 
+            $table->enum('status', [ 'accepted', 'pending', 'rejected' ])->default('accepted');
+            $table->text('rejected_status_description')->nullable();
+
             $table->timestamps();
         });
     }
