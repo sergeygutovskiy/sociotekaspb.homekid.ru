@@ -17,6 +17,7 @@ class SocialProjectResource extends JsonResource
         return [
             'id' => $this->id,
             'status' => $this->job->status,
+            'rejected_status_description' => $this->job->rejected_status_description,
 
             'primary' => new JobPrimaryInformationResource($this->job->primary_information),
             'experience' => new JobExperienceResource($this->job->experience),

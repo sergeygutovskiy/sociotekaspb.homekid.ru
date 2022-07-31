@@ -664,6 +664,91 @@ paths:
       responses:
         200:
           description: "OK"
+          content:
+            application/json:
+              example:
+                error: null
+                data:
+                  id: 1
+                  status: "accepted"
+                  rejected_status_description: null
+                  primary:
+                    name: "name"
+                    annotation: "annotation"
+                    objectives: "objectives"
+                    purpose: "purpose"
+                    payment_method_id: 1
+                    partnership:
+                      description: "description"
+                    volunteer_id: 1
+                    needy_category_ids: [1,2]
+                    needy_category_target_group_ids: [1,2]
+                    social_service_ids: [1,2]
+                    qualitative_results": "qualitative_results"
+                    social_results": "social_results"
+                    replicability": "replicability"
+                    approbation:
+                      description: "description"
+                    expert_opinion:
+                      description: "description"
+                    review:
+                      description: "description"
+                    comment:
+                      description: "description"
+                    video: "video"
+                    required_resources_description: "required_resources_description"
+                    photo_file:
+                      id: 1
+                      path: "users/1/job-primary-photo/uwCBaPuMGtWeuk5W5MWJ2cI6xEMWOESuThIUxML4.png"
+                      original_name: "Screenshot from 2022-07-30 18-08-19.png"
+                    gallery_files:
+                    - id: 1
+                      path: "users/1/job-primary-photo/uwCBaPuMGtWeuk5W5MWJ2cI6xEMWOESuThIUxML4.png"
+                      original_name: "Screenshot from 2022-07-30 18-08-19.png"
+                    - id: 2
+                      path: "users/1/job-primary-photo/uwCBaPuMGtWeuk5W5MWJ2cI6xEMWOESuThIUxML5.png"
+                      original_name: "Screenshot from 2022-07-30 18-08-20.png"
+                    is_best_practice: true
+                    is_remote_format_possible: true
+                  experience:
+                    results_in_journal:
+                      link: "link"
+                      description: "description"
+                    results_of_various_events:
+                      link: "link"
+                      description: "description"
+                    results_info_in_site:
+                      link: "link"
+                      description: "description"
+                    results_info_in_media:
+                      link: "link"
+                      description: "description"
+                    results_seminars:
+                      link: "link"
+                      description: "description"
+                  contacts:
+                    fio: "fio"
+                    email: "email"
+                    phone: "phone"
+                  reporting_periods:
+                  - total: 1
+                    year: 2022
+                    families: 1
+                    children: 1
+                    men: 1
+                    women: 1
+                  info:
+                    participant:
+                      description: "participant"
+                    implementation_period:
+                      description: "description"
+                    implementation_level_id: 1
+                    rnsu_category_ids: [1,2]
+                    public_work_ids: [1,2]
+                    service_type_ids: [1,2]
+                    service_name_ids: [1,2]
+                    need_recognition_ids: [1,2]
+                meta: null
 
 components:
   securitySchemes:
