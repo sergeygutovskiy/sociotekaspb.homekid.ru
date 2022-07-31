@@ -23,6 +23,8 @@ Route::prefix('/users')->group(function() {
         Route::prefix('/jobs')->group(function() {
             Route::prefix('/social-projects')->group(function() {
                 Route::get('/{id}', [ SocialProjectController::class, 'show' ]);
+                Route::put('/{id}', [ SocialProjectController::class, 'update' ]);
+
                 Route::post('/', [ SocialProjectController::class, 'store' ]);
             });
         });

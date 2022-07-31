@@ -750,6 +750,374 @@ paths:
                     service_name_ids: [1,2]
                     need_recognition_ids: [1,2]
                 meta: null
+    put:
+      tags: [Social Project]
+      summary: "Update social project by ID"
+      parameters:
+        - in: path
+          name: user_id
+          description: "ID of user"
+          example: 1
+          required: true
+          schema:
+            type: number
+        - in: path
+          name: id
+          description: "ID of social project"
+          example: 1
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                primary:
+                  type: object
+                  description: ""
+                  properties:
+                    name:
+                      type: string
+                      description: "Наименование проекта *"
+                    annotation:
+                      type: string
+                      description: "Аннотация *"
+                    objectives:
+                      type: string
+                      description: "Основные задачи *"
+                    purpose:
+                      type: string
+                      description: "Цель *"
+                    payment_method_id:
+                      type: number
+                      description: "Реализация для гражданина бесплатно/платно *" 
+                    partnership:
+                      type: object
+                      description: "Взаимодействие, партнерство с другими организациями"
+                      nullable: true
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                    volunteer_id:
+                      type: number
+                      description: "Привлечение добровольцев и волонтеров *" 
+                    needy_category_ids:
+                      type: array
+                      description: "Категории *"
+                      items:
+                        type: number
+                    needy_category_target_group_ids:
+                      type: array
+                      description: "Целевые группы *"
+                      items:
+                        type: number
+                    social_service_ids:
+                      type: array
+                      description: "Форма социального обслуживания (сопровождения) *"
+                      items:
+                        type: number
+                    qualitative_results:
+                      type: string
+                      description: "Основные качественные результаты *"
+                    social_results:
+                      type: string
+                      description: "Социальные результаты *"
+                    replicability:
+                      type: string
+                      description: "Тиражируемость"
+                      nullable: true
+                    approbation:
+                      type: object
+                      description: "Апробация на инновационной площадке/в ресурсном центре"
+                      nullable: true
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                    expert_opinion:
+                      type: object
+                      description: "Наличие экспертного заключения"
+                      nullable: true
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                    review:
+                      type: object
+                      description: "Наличие отзыва"
+                      nullable: true
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                    comment:
+                      type: object
+                      description: "Наличие рецензии"
+                      nullable: true
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                    video:
+                      type: string
+                      description: "Видео ролик"
+                      nullable: true
+                    required_resources_description:
+                      type: string
+                      description: "Краткое описание необходимого ресурсного обеспечения *"
+                    photo_file_id:
+                      type: number
+                      description: "ID файла обложки"
+                      nullable: true
+                    gallery_file_ids:
+                      type: array
+                      description: "Галерея"
+                      items:
+                        type: number
+                        description: "ID файла галереи" 
+                    is_best_practice:
+                      type: boolean
+                      description: "Лучшая практика по мнению руководства организации"
+                    is_remote_format_possible:
+                      type: boolean
+                      description: "Возможность реализации в дистанционном формате"
+                experience:
+                  type: object
+                  description: ""
+                  properties:
+                    results_in_journal:
+                      type: object
+                      nullable: true
+                      description: "Описание результатов в виде статьи, опубликованной в сборнике, журнале"
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                          nullable: true
+                        link:
+                          type: string
+                          description: "Ссылка"
+                          nullable: true
+                    results_of_various_events:
+                      type: object
+                      nullable: true
+                      description: "Представление результатов на мероприятиях различного уровня"
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                          nullable: true
+                        link:
+                          type: string
+                          description: "Ссылка"
+                          nullable: true
+                    results_info_in_site:
+                      type: object
+                      nullable: true
+                      description: "Представление информации о результатах на сайте организации"
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                          nullable: true
+                        link:
+                          type: string
+                          description: "Ссылка"
+                          nullable: true
+                    results_info_in_media:
+                      type: object
+                      nullable: true
+                      description: "Представление информации о результатах в СМИ"
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                          nullable: true
+                        link:
+                          type: string
+                          description: "Ссылка"
+                          nullable: true
+                    results_seminars:
+                      type: object
+                      nullable: true
+                      description: "Проведение мастер-классов (семинаров) по результатам"
+                      properties:
+                        description:
+                          type: string
+                          description: "Описание"
+                          nullable: true
+                        link:
+                          type: string
+                          description: "Ссылка"
+                          nullable: true
+                contacts:
+                  type: object
+                  description: ""
+                  properties:
+                    fio:
+                      type: string
+                      description: "ФИО ответственного лица *"
+                    email:
+                      type: string
+                      description: "Электронная почта *"
+                    phone:
+                      type: string
+                      description: "Контактный телефон *"
+                reporting_periods:
+                  type: array
+                  description: ""
+                  items:
+                    type: object
+                    description: ""
+                    properties:
+                      total:
+                        type: number
+                        description: "Общее количество участников за отчетный период *"
+                      year:
+                        type: number
+                        description: "Отчётный период *"
+                      families:
+                        type: number
+                        description: "Количество семей"
+                        nullable: true
+                      children:
+                        type: number
+                        description: "Количество детей"
+                        nullable: true
+                      men:
+                        type: number
+                        description: "Количество мужчин"
+                        nullable: true
+                      women:
+                        type: number
+                        description: "Количество женщин"
+                        nullable: true
+                info:
+                  type: object
+                  description: ""
+                  properties:
+                    participant:
+                      type: object
+                      description: "Вы участник, а не организатор? *"
+                      nullable: true
+                      properties:
+                        description:
+                          type: text
+                          description: "Описание"
+                    implementation_period:
+                      type: object
+                      description: "Период реализации проекта *"
+                      nullable: true
+                      properties:
+                        description:
+                          type: text
+                          description: "Описание"
+                    implementation_level_id:
+                      type: number
+                      description: "Уровень реализации проекта *"
+                    rnsu_category_ids:
+                      type: array
+                      description: "Категории по РНСУ *"
+                      items:
+                        type: number
+                    public_work_ids:
+                      type: array
+                      description: "Наименование государственной работы"
+                      items:
+                        type: number
+                    service_type_ids:
+                      type: array
+                      description: "Вид услуги"
+                      items:
+                        type: number
+                    service_name_ids:
+                      type: array
+                      description: "Наименование услуги"
+                      items:
+                        type: number
+                    need_recognition_ids:
+                      type: array
+                      description: "Обстоятельства признания нуждаемости *"
+                      items:
+                        type: number
+              example:
+                info:
+                  participant:
+                    description: "participant" 
+                  implementation_period:
+                    description: "description"
+                  implementation_level_id: 1
+                  rnsu_category_ids: [1, 2]
+                  public_work_ids: [1, 2]
+                  service_type_ids: [1, 2]
+                  service_name_ids: [1, 2]
+                  need_recognition_ids: [1, 2]
+                primary:
+                  name: "name"
+                  annotation: "annotation"
+                  objectives: "objectives"
+                  purpose: "purpose"
+                  payment_method_id: 1
+                  partnership:
+                    description: "description"
+                  volunteer_id: 1
+                  needy_category_ids: [1, 2]
+                  needy_category_target_group_ids: [1, 2]
+                  social_service_ids: [1, 2]
+                  qualitative_results: "qualitative_results"
+                  social_results: "social_results"
+                  replicability: "replicability"
+                  approbation:
+                    description: "description"
+                  expert_opinion:
+                    description: "description"
+                  review:
+                    description: "description"
+                  comment:
+                    description: "description"
+                  video: "video" 
+                  required_resources_description: "required_resources_description"
+                  photo_file_id: null
+                  gallery_file_ids: []
+                  is_best_practice: true
+                  is_remote_format_possible: true
+                experience:
+                  results_in_journal:
+                    description: "description"
+                    link: "link"
+                  results_of_various_events:
+                    description: "description"
+                    link: "link"
+                  results_info_in_site:
+                    description: "description"
+                    link: "link"
+                  results_info_in_media:
+                    description: "description"
+                    link: "link"
+                  results_seminars:
+                    description: "description"
+                    link: "link"
+                contacts:
+                  fio: "fio"
+                  email: "email"
+                  phone: "phone"
+                reporting_periods:
+                - total: 1
+                  year: 2022
+                  families: 1
+                  children: 1
+                  men: 1
+                  women: 1
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
 
 components:
   securitySchemes:

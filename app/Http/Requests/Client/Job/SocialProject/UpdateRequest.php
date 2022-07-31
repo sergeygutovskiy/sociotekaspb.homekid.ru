@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Requests\Client\Job\SocialProject;
+
+use App\Http\Responses\Validation\BadValidationErrorResponse;
+use App\Http\Validators\Job\UpdateContactsValidator;
+use App\Http\Validators\Job\UpdateExperienceValidator;
+use App\Http\Validators\Job\UpdatePrimaryInformationValidator;
+use App\Http\Validators\Job\UpdateReportingPeriodsValidator;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
+class UpdateRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public function rules()
+    {
+        return array_merge(
+            [
+                'info.participant' => ['array', 'size:1', 'nullable', 'present'],
+                'info.participant.description' => ['required_with:info.participant'],
+
+                'info.implementation_period' => ['array', 'size:1', 'nullable', 'present'],
+                'info.implementation_period.description' => ['required_with:info.implementation_period'],
+
+                'info.implementation_level_id' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.rnsu_category_ids' => ['array', 'present'],
+                'info.rnsu_category_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.public_work_ids' => ['array', 'present'],
+                'info.public_work_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.service_type_ids' => ['array', 'present'],
+                'info.service_type_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.service_name_ids' => ['array', 'present'],
+                'info.service_name_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.need_recognition_ids' => ['array', 'present'],
+                'info.need_recognition_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+            ],
+            UpdatePrimaryInformationValidator::rules(),
+            UpdateExperienceValidator::rules(),
+            UpdateContactsValidator::rules(),
+            UpdateReportingPeriodsValidator::rules(),
+        );
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(BadValidationErrorResponse::response($validator->errors()));
+    }
+}
