@@ -731,7 +731,8 @@ paths:
                     email: "email"
                     phone: "phone"
                   reporting_periods:
-                  - total: 1
+                  - id: 1
+                    total: 1
                     year: 2022
                     families: 1
                     children: 1

@@ -15,6 +15,7 @@ class JobReportingPeriodResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'total' => $this->total,
             'year' => $this->year,
             'families' => $this->families,
