@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Client\Jobs;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
+use App\Http\Resources\Client\Job\SocialProjectResource;
 use App\Http\Responses\Auth\UserNotFoundErrorResponse;
 use App\Http\Responses\OKResponse;
+use App\Http\Responses\Resources\ResourceNotFoundErrorResponse;
+use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Models\Job\Job;
 use App\Models\Job\JobContacts;
 use App\Models\Job\JobExperience;
 use App\Models\Job\JobPrimaryInformation;
 use App\Models\Job\JobReportingPeriod;
+use App\Models\Job\SocialProject;
 use App\Models\User;
 
 class SocialProjectController extends Controller
@@ -48,5 +52,16 @@ class SocialProjectController extends Controller
                 'id' => $social_project->id 
             ],
         ]);
+    }
+
+    public function show(int $user_id, int $id)
+    {
+        $user = User::find($user_id);
+        if ( !$user ) return UserNotFoundErrorResponse::response();
+
+        $social_project = SocialProject::find($id);
+        if ( !$social_project ) return ResourceNotFoundErrorResponse::response();
+
+        return ResourceOKResponse::response(new SocialProjectResource($social_project));
     }
 }

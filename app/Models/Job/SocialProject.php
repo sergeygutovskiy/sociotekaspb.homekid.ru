@@ -29,4 +29,9 @@ class SocialProject extends Model
         'service_name_ids' => 'array',
         'need_recognition_ids' => 'array',
     ];
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }

@@ -15,6 +15,21 @@ class Job extends Model
         'contacts_id',
     ];
 
+    public function primary_information()
+    {
+        return $this->belongsTo(JobPrimaryInformation::class);
+    }
+
+    public function experience()
+    {
+        return $this->belongsTo(JobExperience::class);
+    }
+
+    public function contacts()
+    {
+        return $this->belongsTo(JobContacts::class);
+    }
+
     public function reporting_periods()
     {
         return $this->hasMany(JobReportingPeriod::class);
