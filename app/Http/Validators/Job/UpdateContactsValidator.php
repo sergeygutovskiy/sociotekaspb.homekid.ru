@@ -9,9 +9,9 @@ class UpdateContactsValidator extends Validator
     public static function rules()
     {
         return [
-            'contacts.fio' => ['required'],
-            'contacts.email' => ['required'],
-            'contacts.phone' => ['required'],
+            'contacts.fio' => ['required', 'string'],
+            'contacts.email' => ['required', 'string'],
+            'contacts.phone' => ['required', 'string'],
         ];
     }
 }

@@ -33,9 +33,9 @@ class UpdateRequest extends FormRequest
         return array_merge(
             [
                 'info.participant' => ['array', 'size:1', 'nullable', 'present'],
-                'info.participant.description' => ['required_with:info.participant'],
+                'info.participant.description' => ['required_with:info.participant', 'string'],
 
-                'info.implementation_period' => ['required'],
+                'info.implementation_period' => ['required', 'string'],
 
                 'info.implementation_level_id' => ['required', 'integer', 'exists:dictionaries,id'],
 
