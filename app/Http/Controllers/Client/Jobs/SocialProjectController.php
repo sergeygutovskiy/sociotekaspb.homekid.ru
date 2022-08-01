@@ -123,10 +123,8 @@ class SocialProjectController extends Controller
 
         // update social project
 
-        $social_project->update(array_merge(
-            $info_data,
-            [ 'status' => JobStatus::PENDING ]
-        ));
+        $social_project->update($info_data);
+        $social_project->job()->update([ 'status' => JobStatus::PENDING ]);
 
         return OKResponse::response();
     }
