@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('job_id')->references('id')->on('jobs');
 
             $table->json('participant')->nullable();
-            $table->json('implementation_period')->nullable();
+            $table->text('implementation_period');
 
             $table->unsignedBigInteger('implementation_level_id');
             $table->foreign('implementation_level_id')->references('id')->on('dictionaries');

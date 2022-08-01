@@ -531,13 +531,8 @@ paths:
                           type: text
                           description: "Описание"
                     implementation_period:
-                      type: object
+                      type: text
                       description: "Период реализации проекта *"
-                      nullable: true
-                      properties:
-                        description:
-                          type: text
-                          description: "Описание"
                     implementation_level_id:
                       type: number
                       description: "Уровень реализации проекта *"
@@ -570,8 +565,7 @@ paths:
                 info:
                   participant:
                     description: "participant" 
-                  implementation_period:
-                    description: "description"
+                  implementation_period: "implementation_period"
                   implementation_level_id: 1
                   rnsu_category_ids: [1, 2]
                   public_work_ids: [1, 2]
@@ -741,8 +735,7 @@ paths:
                   info:
                     participant:
                       description: "participant"
-                    implementation_period:
-                      description: "description"
+                    implementation_period: "implementation_period"
                     implementation_level_id: 1
                     rnsu_category_ids: [1,2]
                     public_work_ids: [1,2]
@@ -1009,13 +1002,8 @@ paths:
                           type: text
                           description: "Описание"
                     implementation_period:
-                      type: object
+                      type: text
                       description: "Период реализации проекта *"
-                      nullable: true
-                      properties:
-                        description:
-                          type: text
-                          description: "Описание"
                     implementation_level_id:
                       type: number
                       description: "Уровень реализации проекта *"
@@ -1048,8 +1036,7 @@ paths:
                 info:
                   participant:
                     description: "participant" 
-                  implementation_period:
-                    description: "description"
+                  implementation_period: "implementation_period"
                   implementation_level_id: 1
                   rnsu_category_ids: [1, 2]
                   public_work_ids: [1, 2]

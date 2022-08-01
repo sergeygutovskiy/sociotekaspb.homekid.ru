@@ -35,8 +35,7 @@ class StoreRequest extends FormRequest
                 'info.participant' => ['array', 'size:1', 'nullable', 'present'],
                 'info.participant.description' => ['required_with:info.participant'],
 
-                'info.implementation_period' => ['array', 'size:1', 'nullable', 'present'],
-                'info.implementation_period.description' => ['required_with:info.implementation_period'],
+                'info.implementation_period' => ['required'],
 
                 'info.implementation_level_id' => ['required', 'integer', 'exists:dictionaries,id'],
 

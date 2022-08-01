@@ -22,7 +22,6 @@ class SocialProject extends Model
 
     protected $casts = [
         'participant' => 'array',
-        'implementation_period' => 'array',
         'rnsu_category_ids' => 'array',
         'public_work_ids' => 'array',
         'service_type_ids' => 'array',
