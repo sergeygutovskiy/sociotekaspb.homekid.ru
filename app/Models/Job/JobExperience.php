@@ -2,6 +2,7 @@
 
 namespace App\Models\Job;
 
+use Database\Factories\Job\ExperienceFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +25,14 @@ class JobExperience extends Model
         'results_info_in_media' => 'array',
         'results_seminars' => 'array',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return ExperienceFactory::new();
+    }
 }

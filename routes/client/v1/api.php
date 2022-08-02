@@ -25,6 +25,7 @@ Route::prefix('/users')->group(function() {
                 Route::get('/{id}', [ SocialProjectController::class, 'show' ]);
                 Route::put('/{id}', [ SocialProjectController::class, 'update' ]);
 
+                Route::get('/', [ SocialProjectController::class, 'index' ]);
                 Route::post('/', [ SocialProjectController::class, 'store' ]);
             });
         });

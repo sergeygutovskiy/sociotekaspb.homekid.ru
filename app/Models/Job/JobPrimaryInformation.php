@@ -2,6 +2,7 @@
 
 namespace App\Models\Job;
 
+use Database\Factories\Job\PrimaryInformationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -48,4 +49,14 @@ class JobPrimaryInformation extends Model
         'is_best_practice' => 'boolean',
         'is_remote_format_possible' => 'boolean',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return PrimaryInformationFactory::new();
+    }
 }

@@ -17,6 +17,7 @@ use App\Models\Job\JobPrimaryInformation;
 use App\Models\Job\JobReportingPeriod;
 use App\Models\Job\SocialProject;
 use App\Models\User;
+use Illuminate\Support\Facades\Request;
 
 class SocialProjectController extends Controller
 {
@@ -127,5 +128,17 @@ class SocialProjectController extends Controller
         $social_project->job()->update([ 'status' => JobStatus::PENDING ]);
 
         return OKResponse::response();
+    }
+
+    public function index(Request $request)
+    {
+        $page = $request->input('page');
+        $limit = $request->input('limit');
+
+        $name_filter = $request->input('filter_name');
+        $status_filter = $request->input('filter_status');
+
+        $items = SocialProject::skip(($page - 1) * $limit)->take($limit);
+        return $items;
     }
 }

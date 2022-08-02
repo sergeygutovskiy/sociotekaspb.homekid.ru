@@ -2,6 +2,7 @@
 
 namespace App\Models\Job;
 
+use Database\Factories\Job\SocialProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,5 +33,10 @@ class SocialProject extends Model
     public function job()
     {
         return $this->belongsTo(Job::class);
+    }
+
+    protected static function newFactory()
+    {
+        return SocialProjectFactory::new();
     }
 }

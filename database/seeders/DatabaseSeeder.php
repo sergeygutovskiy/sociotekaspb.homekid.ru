@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Job\JobSeeder;
+use Database\Seeders\Job\SocialProjectSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,9 @@ class DatabaseSeeder extends Seeder
             DictionaryCategorySeeder::class,
             DictionarySeeder::class,
             CompanySeeder::class,
+            
+            JobSeeder::class,
+            SocialProjectSeeder::class,
         ]);
     }
 }
