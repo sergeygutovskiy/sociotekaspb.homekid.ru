@@ -7,17 +7,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
 use App\Http\Requests\Client\Job\SocialProject\UpdateRequest;
 use App\Http\Resources\Client\Job\SocialProjectResource;
+use App\Http\Resources\Clinet\Job\JobItemListResource;
 use App\Http\Responses\Auth\UserNotFoundErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceNotFoundErrorResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
+use App\Models\Job\Job;
 use App\Models\Job\JobContacts;
 use App\Models\Job\JobExperience;
 use App\Models\Job\JobPrimaryInformation;
 use App\Models\Job\JobReportingPeriod;
 use App\Models\Job\SocialProject;
 use App\Models\User;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class SocialProjectController extends Controller
 {
@@ -130,15 +132,27 @@ class SocialProjectController extends Controller
         return OKResponse::response();
     }
 
-    public function index(Request $request)
+    public function index(Request $request, int $user_id)
     {
+        $user = User::find($user_id);
+        if ( !$user ) return UserNotFoundErrorResponse::response();
+
         $page = $request->input('page');
         $limit = $request->input('limit');
 
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
 
-        $items = SocialProject::skip(($page - 1) * $limit)->take($limit);
-        return $items;
+        $query = Job::with('primary_information');
+        if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
+        if ( $status_filter ) $query = $query->where('status', $status_filter);
+
+        $total = $query->count();
+        $items = $query->skip(($page - 1) * $limit)->take($limit)->get();
+
+        return OKResponse::response([
+            'items' => JobItemListResource::collection($items),
+            'total' => $total,
+        ]);
     }
 }
