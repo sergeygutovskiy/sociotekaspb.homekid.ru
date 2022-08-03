@@ -143,7 +143,7 @@ class SocialProjectController extends Controller
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
 
-        $query = Job::with('primary_information')->whereHas('social_project');
+        $query = $user->jobs()->with('primary_information')->whereHas('social_project');
         if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
         if ( $status_filter ) $query = $query->where('status', $status_filter);
 
