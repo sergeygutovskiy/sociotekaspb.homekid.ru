@@ -4,7 +4,7 @@ namespace App\Http\Resources\Clinet\Job;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class JobItemListResource extends JsonResource
+class SocialProjectItemListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class JobItemListResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'name' => $this->primary_information->name,
-            'rating' => 2,
+            'id' => $this->id,
+            $this->merge(new JobItemListResource($this->job)),
         ];
     }
 }

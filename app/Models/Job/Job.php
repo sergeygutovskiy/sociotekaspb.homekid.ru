@@ -36,8 +36,8 @@ class Job extends Model
         return $this->hasMany(JobReportingPeriod::class);
     }
 
-    public function social_projects()
+    public function social_project()
     {
-        return $this->hasMany(SocialProject::class);
+        return $this->hasOne(SocialProject::class);
     }
 }

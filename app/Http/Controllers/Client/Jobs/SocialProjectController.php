@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
 use App\Http\Requests\Client\Job\SocialProject\UpdateRequest;
 use App\Http\Resources\Client\Job\SocialProjectResource;
-use App\Http\Resources\Clinet\Job\JobItemListResource;
+use App\Http\Resources\Clinet\Job\SocialProjectItemListResource;
 use App\Http\Responses\Auth\UserNotFoundErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceNotFoundErrorResponse;
@@ -56,7 +56,7 @@ class SocialProjectController extends Controller
 
         // create social project from job 
 
-        $social_project = $job->social_projects()->create($info_data);
+        $social_project = $job->social_project()->create($info_data);
 
         return OKResponse::response([
             'social_project' => [ 'id' => $social_project->id ],
@@ -143,7 +143,7 @@ class SocialProjectController extends Controller
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
 
-        $query = Job::with('primary_information');
+        $query = Job::with('primary_information')->whereHas('social_project');
         if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
         if ( $status_filter ) $query = $query->where('status', $status_filter);
 
@@ -151,7 +151,7 @@ class SocialProjectController extends Controller
         $items = $query->skip(($page - 1) * $limit)->take($limit)->get();
 
         return OKResponse::response([
-            'items' => JobItemListResource::collection($items),
+            'items' => SocialProjectItemListResource::collection($items->map(fn($job) => $job->social_project)),
             'total' => $total,
         ]);
     }
