@@ -5,18 +5,14 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\UserFile\StoreRequest;
 use App\Http\Resources\Client\UserFileResource;
-use App\Http\Responses\Auth\UserNotFoundErrorResponse;
 use App\Http\Responses\ErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Models\User;
 
 class UserFileController extends Controller
 {
-    public function store(StoreRequest $request, int $user_id)
+    public function store(StoreRequest $request, User $user)
     {
-        $user = User::find($user_id);
-        if ( !$user ) return UserNotFoundErrorResponse::response();
-
         $file = $request->file('file');
         $file_category = $request->validated('category');
 

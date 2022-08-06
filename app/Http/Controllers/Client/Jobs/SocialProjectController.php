@@ -8,9 +8,7 @@ use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
 use App\Http\Requests\Client\Job\SocialProject\UpdateRequest;
 use App\Http\Resources\Client\Job\SocialProjectResource;
 use App\Http\Resources\Clinet\Job\SocialProjectItemListResource;
-use App\Http\Responses\Auth\UserNotFoundErrorResponse;
 use App\Http\Responses\OKResponse;
-use App\Http\Responses\Resources\ResourceNotFoundErrorResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Http\Services\JobService;
 use App\Models\Job\SocialProject;
@@ -19,11 +17,8 @@ use Illuminate\Http\Request;
 
 class SocialProjectController extends Controller
 {
-    public function store(StoreRequest $request, int $user_id)
+    public function store(StoreRequest $request, User $user)
     {
-        $user = User::find($user_id);
-        if ( !$user ) return UserNotFoundErrorResponse::response();
-
         $job = JobService::create_job($request, $user);
         $social_project = $job->social_project()->create($request->validated('info'));
 
@@ -32,24 +27,15 @@ class SocialProjectController extends Controller
         ]);
     }
 
-    public function show(int $user_id, int $id)
+    public function show(User $user, int $id)
     {
-        $user = User::find($user_id);
-        if ( !$user ) return UserNotFoundErrorResponse::response();
-
-        $social_project = SocialProject::find($id);
-        if ( !$social_project ) return ResourceNotFoundErrorResponse::response();
-
+        $social_project = SocialProject::whereHas('job', fn($q) => $q->where('user_id', $user->id))->findOrFail($id);
         return ResourceOKResponse::response(new SocialProjectResource($social_project));
     }
 
-    public function update(UpdateRequest $request, int $user_id, int $id)
+    public function update(UpdateRequest $request, User $user, int $id)
     {
-        $user = User::find($user_id);
-        if ( !$user ) return UserNotFoundErrorResponse::response();
-
-        $social_project = SocialProject::find($id);
-        if ( !$social_project ) return ResourceNotFoundErrorResponse::response();
+        $social_project = $user->jobs->social_projects()::findOrFail($id);
 
         JobService::update_job($request, $social_project->job);
         $social_project->update($request->validated()['info']);
@@ -57,11 +43,8 @@ class SocialProjectController extends Controller
         return OKResponse::response();
     }
 
-    public function index(Request $request, int $user_id)
+    public function index(Request $request, User $user)
     {
-        $user = User::find($user_id);
-        if ( !$user ) return UserNotFoundErrorResponse::response();
-
         $data = JobService::list($request, $user, JobVariant::SOCIAL_PROJECT);
 
         $total = $data['total'];
