@@ -14,7 +14,7 @@ class SocialProjectController extends Controller
 {
     public function approve(ApproveRequest $request, User $user, $id)
     {
-        $social_project = SocialProject::whereHas('job', fn($q) => $q->where('user_id', $user->id))->findOrFail($id);
+        $social_project = SocialProject::findOrFailByUserId($user->id, $id);
         $is_favorite = $request->validated('is_favorite');
 
         $social_project->job()->update([
@@ -27,7 +27,7 @@ class SocialProjectController extends Controller
 
     public function reject(RejectRequest $request, User $user, $id)
     {
-        $social_project = SocialProject::whereHas('job', fn($q) => $q->where('user_id', $user->id))->findOrFail($id);
+        $social_project = SocialProject::findOrFailByUserId($user->id, $id);
         $comment = $request->validated('comment');
 
         $social_project->job()->update([
