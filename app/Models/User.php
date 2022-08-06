@@ -23,6 +23,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'is_admin' => 'boolean',
+    ];
+
     public function company()
     {
         return $this->hasOne(Company::class, 'user_id');
