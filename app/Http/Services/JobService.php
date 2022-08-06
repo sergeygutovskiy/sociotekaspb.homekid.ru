@@ -103,6 +103,16 @@ class JobService
         if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
         if ( $status_filter ) $query = $query->where('status', $status_filter);
 
+        $sort_by = $request->input('sort_by');
+        $sort_direction = $request->input('sort_direction');
+
+        if (  $sort_by && $sort_direction )
+        {
+            if ( $sort_by === 'created_at' ) $query = $query->orderBy('created_at', $sort_direction);
+            else if ( $sort_by === 'updated_at' ) $query = $query->orderBy('updated_at', $sort_direction);
+            else if ( $sort_by === 'status' ) $query = $query->orderby('status', $sort_direction);
+        }
+
         $total = $query->count();
         $items = $query->skip(($page - 1) * $limit)->take($limit)->get();
 

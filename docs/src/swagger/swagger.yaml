@@ -288,12 +288,27 @@ paths:
           name: filter_name
           schema:
             type: string
-            example: "Elwyn"
+            example: ""
         - in: query
           name: filter_status
           schema:
             type: string
-            example: pending
+            example: ""
+        - in: query
+          name: sort_by
+          schema:
+            type: string
+            enum:
+              - created_at
+              - updated_at
+              - status
+        - in: query
+          name: sort_direction
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
       security:
         - bearerAuth: []
       responses:
