@@ -11,7 +11,7 @@ use App\Http\Resources\Client\Job\SocialProjectResource;
 use App\Http\Resources\Client\Job\SocialProjectItemListResource;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
-use App\Http\Services\JobService;
+use App\Http\Services\Client\JobService;
 use App\Models\Job\SocialProject;
 use App\Models\User;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Http\Services\Client;
 
 use App\Enums\JobStatus;
 use App\Models\Job\Job;

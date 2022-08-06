@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Jobs;
 
-use App\Enums\JobStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Job\ApproveRequest;
 use App\Http\Requests\Admin\Job\RejectRequest;
 use App\Http\Responses\OKResponse;
+use App\Http\Services\Admin\JobService;
 use App\Models\Job\SocialProject;
 use App\Models\User;
 
@@ -15,12 +15,7 @@ class SocialProjectController extends Controller
     public function approve(ApproveRequest $request, User $user, $id)
     {
         $social_project = SocialProject::findOrFailByUserId($user->id, $id);
-        $is_favorite = $request->validated('is_favorite');
-
-        $social_project->job()->update([
-            'is_favorite' => $is_favorite,
-            'status' => JobStatus::ACCEPTED,
-        ]);
+        JobService::approve($request, $social_project->job());
 
         return OKResponse::response();
     }
@@ -28,13 +23,7 @@ class SocialProjectController extends Controller
     public function reject(RejectRequest $request, User $user, $id)
     {
         $social_project = SocialProject::findOrFailByUserId($user->id, $id);
-        $comment = $request->validated('comment');
-
-        $social_project->job()->update([
-            'rejected_status_description' => $comment,
-            'is_favorite' => false,
-            'status' => JobStatus::REJECTED,
-        ]);
+        JobService::reject($request, $social_project->job());
 
         return OKResponse::response();
     }
