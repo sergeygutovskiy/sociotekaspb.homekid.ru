@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client\Jobs;
 
 use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
 use App\Http\Requests\Client\Job\SocialProject\UpdateRequest;
 use App\Http\Resources\Client\Job\SocialProjectResource;
@@ -43,7 +44,7 @@ class SocialProjectController extends Controller
         return OKResponse::response();
     }
 
-    public function index(Request $request, User $user)
+    public function index(ListRequest $request, User $user)
     {
         $data = JobService::list($request, $user, JobVariant::SOCIAL_PROJECT);
 
