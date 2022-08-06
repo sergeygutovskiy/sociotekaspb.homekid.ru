@@ -3,7 +3,6 @@
 use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\CompanyController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
-use App\Http\Controllers\Client\DictionaryController;
 use App\Http\Controllers\Client\Jobs\SocialProjectController;
 use App\Http\Controllers\Client\UserFileController;
 use Illuminate\Support\Facades\Route;
