@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Client\Job\SocialProject;
+namespace App\Http\Requests\Admin\Job;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
-use App\Http\Validators\Job\RejectValidator;
+use App\Http\Validators\Admin\Job\RejectValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

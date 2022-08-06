@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Validators\Job;
+namespace App\Http\Validators\Client\Job\Contacts;
 
 use App\Http\Validators\Validator;
 
-class StoreContactsValidator extends Validator
+class UpdateValidator extends Validator
 {
     public static function rules()
     {

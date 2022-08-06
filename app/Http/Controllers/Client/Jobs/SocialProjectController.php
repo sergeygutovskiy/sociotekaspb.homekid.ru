@@ -8,13 +8,12 @@ use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
 use App\Http\Requests\Client\Job\SocialProject\UpdateRequest;
 use App\Http\Resources\Client\Job\SocialProjectResource;
-use App\Http\Resources\Clinet\Job\SocialProjectItemListResource;
+use App\Http\Resources\Client\Job\SocialProjectItemListResource;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Http\Services\JobService;
 use App\Models\Job\SocialProject;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class SocialProjectController extends Controller
 {

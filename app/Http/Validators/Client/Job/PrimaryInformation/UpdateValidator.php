@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Validators\Job;
+namespace App\Http\Validators\Client\Job\PrimaryInformation;
 
 use App\Http\Validators\Validator;
 
-class UpdatePrimaryInformationValidator extends Validator
+class UpdateValidator extends Validator
 {
     public static function rules()
     {

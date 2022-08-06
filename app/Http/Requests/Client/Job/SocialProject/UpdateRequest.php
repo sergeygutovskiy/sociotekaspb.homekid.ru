@@ -3,10 +3,6 @@
 namespace App\Http\Requests\Client\Job\SocialProject;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
-use App\Http\Validators\Job\UpdateContactsValidator;
-use App\Http\Validators\Job\UpdateExperienceValidator;
-use App\Http\Validators\Job\UpdatePrimaryInformationValidator;
-use App\Http\Validators\Job\UpdateReportingPeriodsValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -54,10 +50,10 @@ class UpdateRequest extends FormRequest
                 'info.need_recognition_ids' => ['array', 'present'],
                 'info.need_recognition_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
             ],
-            UpdatePrimaryInformationValidator::rules(),
-            UpdateExperienceValidator::rules(),
-            UpdateContactsValidator::rules(),
-            UpdateReportingPeriodsValidator::rules(),
+            \App\Http\Validators\Client\Job\PrimaryInformation\UpdateValidator::rules(),
+            \App\Http\Validators\Client\Job\Experience\UpdateValidator::rules(),
+            \App\Http\Validators\Client\Job\Contacts\UpdateValidator::rules(),
+            \App\Http\Validators\Client\Job\ReportingPeriods\UpdateValidator::rules(),
         );
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Validators\Job;
+namespace App\Http\Validators\Admin\Job;
 
 use App\Http\Validators\Validator;
 

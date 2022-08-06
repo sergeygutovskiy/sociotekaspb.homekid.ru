@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Validators\Job;
+namespace App\Http\Validators\Client\Job\Experience;
 
 use App\Http\Validators\Validator;
 
-class StoreExperienceValidator extends Validator
+class StoreValidator extends Validator
 {
     public static function rules()
     {

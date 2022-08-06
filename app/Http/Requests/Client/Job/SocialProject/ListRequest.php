@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Client\Job\SocialProject;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
-use App\Http\Validators\Job\ListValidator;
+use App\Http\Validators\Client\Job\ListValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

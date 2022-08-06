@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Clinet\Job;
+namespace App\Http\Resources\Client\Job;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

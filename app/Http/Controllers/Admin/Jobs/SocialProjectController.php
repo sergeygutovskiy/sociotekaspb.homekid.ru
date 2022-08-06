@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin\Jobs;
 
 use App\Enums\JobStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Client\Job\SocialProject\ApproveRequest;
-use App\Http\Requests\Client\Job\SocialProject\RejectRequest;
+use App\Http\Requests\Admin\Job\ApproveRequest;
+use App\Http\Requests\Admin\Job\RejectRequest;
 use App\Http\Responses\OKResponse;
 use App\Models\Job\SocialProject;
 use App\Models\User;

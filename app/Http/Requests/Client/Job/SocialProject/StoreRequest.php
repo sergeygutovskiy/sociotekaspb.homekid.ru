@@ -3,10 +3,6 @@
 namespace App\Http\Requests\Client\Job\SocialProject;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
-use App\Http\Validators\Job\StoreContactsValidator;
-use App\Http\Validators\Job\StoreExperienceValidator;
-use App\Http\Validators\Job\StorePrimaryInformationValidator;
-use App\Http\Validators\Job\StoreReportingPeriodsValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -54,10 +50,10 @@ class StoreRequest extends FormRequest
                 'info.need_recognition_ids' => ['array', 'present'],
                 'info.need_recognition_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
             ],
-            StorePrimaryInformationValidator::rules(),
-            StoreExperienceValidator::rules(),
-            StoreContactsValidator::rules(),
-            StoreReportingPeriodsValidator::rules(),
+            \App\Http\Validators\Client\Job\PrimaryInformation\StoreValidator::rules(),
+            \App\Http\Validators\Client\Job\Experience\StoreValidator::rules(),
+            \App\Http\Validators\Client\Job\Contacts\StoreValidator::rules(),
+            \App\Http\Validators\Client\Job\ReportingPeriods\StoreValidator::rules(),
         );
     }
 

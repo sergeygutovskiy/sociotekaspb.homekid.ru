@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Validators\Job;
+namespace App\Http\Validators\Client\Job;
 
 use App\Http\Validators\Validator;
 use Illuminate\Validation\Rule;
