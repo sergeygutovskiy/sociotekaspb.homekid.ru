@@ -3,10 +3,10 @@ info:
   version: "0.1"
   title: "Homekids"
 servers:
-  - url: "http://localhost/api/client/v1"
+  - url: "http://localhost/api"
     description: "local"
 paths:
-  /users/login:
+  /client/v1/users/login:
     post:
       tags: [User]
       summary: "Login into account"
@@ -28,7 +28,7 @@ paths:
         200: 
           description: "OK"
 
-  /users/check:
+  /client/v1/users/check:
     post:
       tags: [User]
       summary: "Check if token is valid"
@@ -38,7 +38,7 @@ paths:
         200: 
           description: "OK"
 
-  /users/{user_id}/company:
+  /client/v1/users/{user_id}/company:
     get:
       tags:
       - Company
@@ -151,7 +151,7 @@ paths:
         200:
           description: "OK"
 
-  /dictionaries/categories/{category}:
+  /client/v1/dictionaries/categories/{category}:
     get:
       tags: [Dictionary]
       summary: "Get all dicionaries of specified category"
@@ -183,7 +183,7 @@ paths:
         200:
           description: "OK"
 
-  /dictionaries/categories/{parent_category}/{child_category}:
+  /client/v1/dictionaries/categories/{parent_category}/{child_category}:
     get:
       tags: [Dictionary]
       summary: "Get relationship between dictionaries of parent category and dictionaries of child category"
@@ -236,7 +236,7 @@ paths:
         200:
           description: "OK"
 
-  /users/{user_id}/files:
+  /client/v1/users/{user_id}/files:
     post:
       tags: [File]
       summary: "Upload file"
@@ -266,7 +266,7 @@ paths:
         200:
           description: "OK"
 
-  /users/{user_id}/jobs/social-projects:
+  /client/v1/users/{user_id}/jobs/social-projects:
     get:
       tags: [Social Project]
       summary: "List social projects"
@@ -344,7 +344,7 @@ paths:
         200:
           description: "OK"
 
-  /users/{user_id}/jobs/social-projects/{id}:
+  /client/v1/users/{user_id}/jobs/social-projects/{id}:
     get:
       tags: [Social Project]
       summary: "Get social project by ID"
@@ -416,6 +416,51 @@ paths:
                   $ref: "#/components/schemas/JobReportingPeriodsWithNullableID"
                 info:
                   $ref: "#/components/schemas/SocialProjectJobInfo"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/social-projects/{id}/approve:
+    patch:
+      tags: [Social Project]
+      summary: "Approve social project"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialProjectID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_favorite:
+                  type: boolean
+                  example: true
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/social-projects/{id}/reject:
+    patch:
+      tags: [Social Project]
+      summary: "Reject social project"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialProjectID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  nullable: true
+                  example: null
       security:
       - bearerAuth: []
       responses:

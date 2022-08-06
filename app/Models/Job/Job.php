@@ -14,6 +14,8 @@ class Job extends Model
         'experience_id',
         'contacts_id',
         'status',
+        'is_favorite',
+        'rejected_status_description',
     ];
 
     public function primary_information()

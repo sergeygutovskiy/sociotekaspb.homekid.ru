@@ -36,7 +36,7 @@ class SocialProjectController extends Controller
 
     public function update(UpdateRequest $request, User $user, int $id)
     {
-        $social_project = $user->jobs->social_projects()::findOrFail($id);
+        $social_project = SocialProject::whereHas('job', fn($q) => $q->where('user_id', $user->id))->findOrFail($id);
 
         JobService::update_job($request, $social_project->job);
         $social_project->update($request->validated()['info']);

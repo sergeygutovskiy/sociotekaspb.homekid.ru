@@ -31,6 +31,8 @@ return new class extends Migration
             $table->enum('status', [ 'accepted', 'pending', 'rejected' ])->default('pending');
             $table->text('rejected_status_description')->nullable();
 
+            $table->boolean('is_favorite')->default(false);
+
             $table->timestamps();
         });
     }
