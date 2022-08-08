@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Resources\Admin\Job;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class JobItemListResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        return [
+            'user_id' => $this->user_id,
+            'company_name' => $this->user->company->name,
+            'status' => $this->status,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'name' => $this->primary_information->name,
+            'rating' => [
+                'count' => $this->rating->count,
+                'fields' => [
+                    'is_favorite' => $this->rating->fields->is_favorite,
+                    'is_has_publication' => $this->rating->fields->is_has_publication,
+                    'is_has_approbation' => $this->rating->fields->is_has_approbation,
+                    'is_has_replicability' => $this->rating->fields->is_has_replicability,
+                    'is_has_any_review' => $this->rating->fields->is_has_any_review,
+                ],
+            ],
+        ];
+    }
+}

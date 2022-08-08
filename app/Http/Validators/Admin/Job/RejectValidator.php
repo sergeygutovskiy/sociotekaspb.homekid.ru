@@ -9,7 +9,7 @@ class RejectValidator extends Validator
     public static function rules()
     {
         return [
-           'comment' => ['string', 'nullable'],
+           'comment' => ['required', 'string'],
         ];
     }
 }

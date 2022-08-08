@@ -2,6 +2,7 @@
 
 namespace App\Models\Job;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
@@ -23,6 +24,11 @@ class Job extends Model
     protected $casts = [
         'is_favorite' => 'boolean',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function primary_information()
     {

@@ -95,7 +95,7 @@ class JobService
         ]);
     }
 
-    public static function list(Request $request, User $user, string $job_variant)
+    public static function list(Request $request, string $job_variant, User $user = null)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');
@@ -103,7 +103,12 @@ class JobService
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
 
-        $query = $user->jobs()->with('primary_information')->whereHas($job_variant);
+        $query = null;
+        if ( $user ) $query = $user->jobs()->with('primary_information');
+        else $query = Job::with('primary_information');
+        
+        $query = $query->whereHas($job_variant);
+        
         if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
         if ( $status_filter ) $query = $query->where('status', $status_filter);
 

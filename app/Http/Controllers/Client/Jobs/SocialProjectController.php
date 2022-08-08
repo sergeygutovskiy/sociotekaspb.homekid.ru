@@ -45,7 +45,7 @@ class SocialProjectController extends Controller
 
     public function index(ListRequest $request, User $user)
     {
-        $data = JobService::list($request, $user, JobVariant::SOCIAL_PROJECT);
+        $data = JobService::list($request, JobVariant::SOCIAL_PROJECT, $user);
 
         $total = $data['total'];
         $items = SocialProjectItemListResource::collection($data['items']->map(fn($job) => $job->social_project));
