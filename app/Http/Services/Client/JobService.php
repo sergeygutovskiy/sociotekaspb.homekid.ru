@@ -9,6 +9,7 @@ use App\Models\Job\JobExperience;
 use App\Models\Job\JobPrimaryInformation;
 use App\Models\Job\JobReportingPeriod;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class JobService
@@ -88,7 +89,10 @@ class JobService
             $period->update($period_data);
         }
 
-        $job->update([ 'status' => JobStatus::PENDING ]);
+        $job->update([ 
+            'status' => JobStatus::PENDING,
+            'updated_at' => Carbon::now(),
+        ]);
     }
 
     public static function list(Request $request, User $user, string $job_variant)

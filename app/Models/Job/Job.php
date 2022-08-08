@@ -16,6 +16,7 @@ class Job extends Model
         'status',
         'is_favorite',
         'rejected_status_description',
+        'updated_at',
     ];
 
     public function primary_information()
