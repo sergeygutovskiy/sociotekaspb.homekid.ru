@@ -151,6 +151,40 @@ paths:
         200:
           description: "OK"
 
+  /admin/v1/users/{user_id}/company/approve:
+    patch:
+      tags: [Company]
+      summary: "Approve company"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/company/reject:
+    patch:
+      tags: [Company]
+      summary: "Reject company"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  nullable: true
+                  example: null
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
   /client/v1/dictionaries/categories/{category}:
     get:
       tags: [Dictionary]

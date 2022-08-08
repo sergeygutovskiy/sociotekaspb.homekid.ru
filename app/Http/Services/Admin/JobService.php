@@ -13,8 +13,9 @@ class JobService
         $is_favorite = $request->validated('is_favorite');
 
         $job->update([
-            'is_favorite' => $is_favorite,
             'status' => JobStatus::ACCEPTED,
+            'rejected_status_description' => null,
+            'is_favorite' => $is_favorite,
         ]);
     }
 
@@ -23,9 +24,9 @@ class JobService
         $comment = $request->validated('comment');
 
         $job->update([
+            'status' => JobStatus::REJECTED,
             'rejected_status_description' => $comment,
             'is_favorite' => false,
-            'status' => JobStatus::REJECTED,
         ]);
     } 
 }

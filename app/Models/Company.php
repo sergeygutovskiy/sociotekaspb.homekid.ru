@@ -30,6 +30,7 @@ class Company extends Model
         'is_has_innovative_platform',
         
         'status',
+        'rejected_status_description',
     ];
 
     protected $casts = [
