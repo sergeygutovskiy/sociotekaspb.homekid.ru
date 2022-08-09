@@ -469,7 +469,7 @@ paths:
         200:
           description: "OK"
 
-  /admin/v1/jobs/social-projects:
+  /admin/v1/users/jobs/social-projects:
     get:
       tags: [Social Project]
       summary: "List all social projects"
@@ -486,6 +486,24 @@ paths:
       responses:
         200:
           description: "OK"   
+
+  /admin/v1/users/companies:
+    get:
+      tags: [Company]
+      summary: "List all companies"
+      parameters:
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        - $ref: "#/components/parameters/CompanyListFilterName"
+        - $ref: "#/components/parameters/CompanyListFilterStatus"
+        - $ref: "#/components/parameters/CompanyListFilterDistrictId"
+        - $ref: "#/components/parameters/CompanyListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"  
 
 components:
   securitySchemes:
@@ -915,6 +933,32 @@ components:
         minimum: 0
         maximum: 5
     JobListSortBy:
+      in: query
+      name: sort_by
+      schema:
+        type: string
+        enum:
+          - created_at
+          - updated_at
+          - status
+    CompanyListFilterName:
+      in: query
+      name: filter_name
+      schema:
+        type: string
+        example: ""
+    CompanyListFilterDistrictId:
+      in: query
+      name: filter_district_id
+      schema:
+        type: number
+        example: ""
+    CompanyListFilterStatus:
+      in: query
+      name: filter_status
+      schema:
+        $ref: "#/components/schemas/JobStatus"
+    CompanyListSortBy:
       in: query
       name: sort_by
       schema:

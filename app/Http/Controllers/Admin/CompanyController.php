@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\CompanyStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Company\ApproveRequest;
+use App\Http\Requests\Admin\Company\ListRequest;
 use App\Http\Requests\Admin\Company\RejectRequest;
+use App\Http\Resources\Admin\Company\ItemListResource;
 use App\Http\Responses\OKResponse;
+use App\Http\Services\Admin\CompanyService;
 use App\Models\User;
 
 class CompanyController extends Controller
@@ -33,5 +36,18 @@ class CompanyController extends Controller
         ]);
 
         return OKResponse::response();
+    }
+
+    public function index(ListRequest $request)
+    {
+        $data = CompanyService::list($request);
+
+        $total = $data['total'];
+        $items = ItemListResource::collection($data['items']);
+
+        return OKResponse::response([
+            'items' => $items,
+            'total' => $total,
+        ]);
     }
 }

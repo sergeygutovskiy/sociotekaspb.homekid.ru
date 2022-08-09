@@ -18,6 +18,7 @@ Route::prefix('/users')->group(function() {
             });
         });
     });
-});
 
-Route::get('/jobs/social-projects', [ SocialProjectController::class, 'index' ]);
+    Route::get('/jobs/social-projects', [ SocialProjectController::class, 'index' ]);
+    Route::get('/companies', [ CompanyController::class, 'index' ]);
+});
