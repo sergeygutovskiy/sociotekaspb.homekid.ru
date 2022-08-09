@@ -21,7 +21,7 @@ class ItemListResource extends JsonResource
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'district' => Dictionary::find($this->district_id)->label,
+            'district' => $this->district->label,
         ];
     }
 }

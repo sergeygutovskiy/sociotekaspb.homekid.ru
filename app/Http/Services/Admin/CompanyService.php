@@ -14,7 +14,7 @@ class CompanyService
 
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
-        $district_filter = $request->input('filter_district');
+        $district_filter = $request->input('filter_district_id');
 
         $query = null;
         if ( $name_filter ) $query = Company::where('name', 'like', '%'.$name_filter.'%');
@@ -28,19 +28,25 @@ class CompanyService
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
 
-        if (  $sort_by && $sort_direction )
+        if ( $sort_by && $sort_direction )
         {
-            if ( $sort_by === 'created_at' ) $query = $query->orderBy('created_at', $sort_direction);
-            else if ( $sort_by === 'updated_at' ) $query = $query->orderBy('updated_at', $sort_direction);
-            else if ( $sort_by === 'status' ) $query = $query->orderby('status', $sort_direction);
+            if ( $sort_by === 'created_at' ) $query = $query
+                ? $query->orderBy('created_at', $sort_direction)
+                : Company::orderBy('created_at', $sort_direction);
+            else if ( $sort_by === 'updated_at' ) $query = $query 
+                ? $query->orderBy('updated_at', $sort_direction)
+                : Company::orderBy('updated_at', $sort_direction);
+            else if ( $sort_by === 'status' ) $query = $query
+                ? $query->orderby('status', $sort_direction)
+                : Company::orderby('status', $sort_direction);
         }
         
         $total = $query
             ? $query->count()
             : Company::all()->count();
         $items = $query
-            ? $query->skip(($page - 1) * $limit)->take($limit)->get() 
-            : Company::skip(($page - 1) * $limit)->take($limit)->get();
+            ? $query->with('district')->skip(($page - 1) * $limit)->take($limit)->get() 
+            : Company::with('district')->skip(($page - 1) * $limit)->take($limit)->get();
 
         return [
             'total' => $total,

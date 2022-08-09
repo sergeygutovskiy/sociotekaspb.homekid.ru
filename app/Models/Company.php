@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Job\Job;
+use Database\Factories\CompanyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,4 +38,24 @@ class Company extends Model
         'medical_license' => 'array',
         'is_has_innovative_platform' => 'boolean',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(Dictionary::class, 'district_id');
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return CompanyFactory::new();
+    }
 }
