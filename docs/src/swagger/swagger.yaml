@@ -305,43 +305,12 @@ paths:
       summary: "List social projects"
       parameters:
         - $ref: "#/components/parameters/UserId"
-        - in: query
-          name: page
-          schema:
-            type: number
-            example: 1
-          required: true
-        - in: query
-          name: limit
-          schema:
-            type: number
-            example: 5
-          required: true
-        - in: query
-          name: filter_name
-          schema:
-            type: string
-            example: ""
-        - in: query
-          name: filter_status
-          schema:
-            type: string
-            example: ""
-        - in: query
-          name: sort_by
-          schema:
-            type: string
-            enum:
-              - created_at
-              - updated_at
-              - status
-        - in: query
-          name: sort_direction
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
       security:
         - bearerAuth: []
       responses:
@@ -383,7 +352,7 @@ paths:
       summary: "Get social project by ID"
       parameters:
         - $ref: "#/components/parameters/UserId"
-        - $ref: "#/components/parameters/SocialProjectID"
+        - $ref: "#/components/parameters/SocialProjectId"
       security:
       - bearerAuth: []
       responses:
@@ -431,7 +400,7 @@ paths:
       summary: "Update social project by ID"
       parameters:
         - $ref: "#/components/parameters/UserId"
-        - $ref: "#/components/parameters/SocialProjectID"
+        - $ref: "#/components/parameters/SocialProjectId"
       requestBody:
         required: true
         content:
@@ -461,7 +430,7 @@ paths:
       summary: "Approve social project"
       parameters:
         - $ref: "#/components/parameters/UserId"
-        - $ref: "#/components/parameters/SocialProjectID"
+        - $ref: "#/components/parameters/SocialProjectId"
       requestBody:
         content:
           application/json:
@@ -483,7 +452,7 @@ paths:
       summary: "Reject social project"
       parameters:
         - $ref: "#/components/parameters/UserId"
-        - $ref: "#/components/parameters/SocialProjectID"
+        - $ref: "#/components/parameters/SocialProjectId"
       requestBody:
         content:
           application/json:
@@ -504,44 +473,12 @@ paths:
       tags: [Social Project]
       summary: "List all social projects"
       parameters:
-        - $ref: "#/components/parameters/UserId"
-        - in: query
-          name: page
-          schema:
-            type: number
-            example: 1
-          required: true
-        - in: query
-          name: limit
-          schema:
-            type: number
-            example: 5
-          required: true
-        - in: query
-          name: filter_name
-          schema:
-            type: string
-            example: ""
-        - in: query
-          name: filter_status
-          schema:
-            type: string
-            example: ""
-        - in: query
-          name: sort_by
-          schema:
-            type: string
-            enum:
-              - created_at
-              - updated_at
-              - status
-        - in: query
-          name: sort_direction
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
       security:
         - bearerAuth: []
       responses:
@@ -920,16 +857,22 @@ components:
           type: string
           description: "Оригинальное название"
           example: "Screenshot from 2022-07-30 18-08-19.png"
+    JobStatus:
+      type: string
+      enum:
+        - accepted
+        - rejected
+        - pending
   parameters:
     UserId:
       in: path
       name: user_id
       description: "ID of user"
-      example: 1
       required: true
       schema:
         type: number
-    SocialProjectID:
+        example: 1
+    SocialProjectId:
       in: path
       name: id
       description: "ID of social project"
@@ -937,3 +880,45 @@ components:
       required: true
       schema:
         type: number
+    ListPage:
+      in: query
+      name: page
+      required: true
+      schema:
+        type: number
+        example: 1
+    ListLimit:
+      in: query
+      name: limit
+      required: true
+      schema:
+        type: number
+        example: 5
+    JobListFilterName:
+      in: query
+      name: filter_name
+      schema:
+        type: string
+        example: ""
+    JobListFilterStatus:
+      in: query
+      name: filter_status
+      schema:
+        $ref: "#/components/schemas/JobStatus"
+    JobListSortBy:
+      in: query
+      name: sort_by
+      schema:
+        type: string
+        enum:
+          - created_at
+          - updated_at
+          - status
+    ListSortDirection:
+      in: query
+      name: sort_direction
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
