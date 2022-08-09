@@ -17,6 +17,8 @@ class JobService
             'rejected_status_description' => null,
             'is_favorite' => $is_favorite,
         ]);
+
+        $job->update([ 'rating' => $job->get()->first()->rating_expanded->count ]);
     }
 
     public static function reject(RejectRequest $request, $job)
@@ -28,5 +30,7 @@ class JobService
             'rejected_status_description' => $comment,
             'is_favorite' => false,
         ]);
+
+        $job->update([ 'rating' => $job->get()->first()->rating_expanded->count ]);
     } 
 }

@@ -17,10 +17,9 @@ class JobService
     public static function create_job(Request $request, User $user): Job
     {
         $request_data = $request->all();
-        $validated_data = $request->validated();
 
-        $primary_data = $validated_data['primary'];
-        $contacts_data = $validated_data['contacts'];
+        $primary_data = $request_data['primary'];
+        $contacts_data = $request_data['contacts'];
         $experience_data = $request_data['experience'];
         $reporting_periods_data = $request_data['reporting_periods'];
 
@@ -38,6 +37,10 @@ class JobService
             'contacts_id' => $job_contacts->id,
         ]);
 
+        // set job initial rating
+
+        $job->update([ 'rating' => $job->rating_expanded->count ]);
+
         // create job' reporting periods 
 
         $reporting_periods = array_map(fn($data) => new JobReportingPeriod($data), $reporting_periods_data);
@@ -49,10 +52,9 @@ class JobService
     public static function update_job(Request $request, Job $job): void
     {
         $request_data = $request->all();
-        $validated_data = $request->validated();
 
-        $primary_data = $validated_data['primary'];
-        $contacts_data = $validated_data['contacts'];
+        $primary_data = $request_data['primary'];
+        $contacts_data = $request_data['contacts'];
         $experience_data = $request_data['experience'];
         $reporting_periods_data = $request_data['reporting_periods'];
 
@@ -91,6 +93,7 @@ class JobService
 
         $job->update([ 
             'status' => JobStatus::PENDING,
+            'rating' => $job->rating_expanded->count,
             'updated_at' => Carbon::now(),
         ]);
     }

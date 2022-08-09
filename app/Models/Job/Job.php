@@ -17,6 +17,7 @@ class Job extends Model
         'contacts_id',
         'status',
         'is_favorite',
+        'rating',
         'rejected_status_description',
         'updated_at',
     ];
@@ -55,7 +56,7 @@ class Job extends Model
         return $this->hasOne(SocialProject::class);
     }
 
-    public function getRatingAttribute()
+    public function getRatingExpandedAttribute()
     {
         $is_favorite = $this->is_favorite;
         $is_has_publication = !!$this->experience->results_in_journal;

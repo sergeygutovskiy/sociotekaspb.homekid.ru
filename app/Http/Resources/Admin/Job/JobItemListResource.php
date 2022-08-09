@@ -22,13 +22,13 @@ class JobItemListResource extends JsonResource
             'updated_at' => $this->updated_at,
             'name' => $this->primary_information->name,
             'rating' => [
-                'count' => $this->rating->count,
+                'count' => $this->rating_expanded->count,
                 'fields' => [
-                    'is_favorite' => $this->rating->fields->is_favorite,
-                    'is_has_publication' => $this->rating->fields->is_has_publication,
-                    'is_has_approbation' => $this->rating->fields->is_has_approbation,
-                    'is_has_replicability' => $this->rating->fields->is_has_replicability,
-                    'is_has_any_review' => $this->rating->fields->is_has_any_review,
+                    'is_favorite' => $this->rating_expanded->fields->is_favorite,
+                    'is_has_publication' => $this->rating_expanded->fields->is_has_publication,
+                    'is_has_approbation' => $this->rating_expanded->fields->is_has_approbation,
+                    'is_has_replicability' => $this->rating_expanded->fields->is_has_replicability,
+                    'is_has_any_review' => $this->rating_expanded->fields->is_has_any_review,
                 ],
             ],
         ];

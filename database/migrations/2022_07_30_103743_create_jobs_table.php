@@ -32,6 +32,7 @@ return new class extends Migration
             $table->text('rejected_status_description')->nullable();
 
             $table->boolean('is_favorite')->default(false);
+            $table->unsignedInteger('rating')->default(0)->max(5);
 
             $table->timestamps();
         });
