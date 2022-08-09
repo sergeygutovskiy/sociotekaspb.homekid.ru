@@ -23,7 +23,7 @@ class JobItemListResource extends JsonResource
             'rating' => [
                 'count' => $this->rating_expanded->count,
                 'fields' => [
-                    'is_favorite' => $this->ratrating_expandeding->fields->is_favorite,
+                    'is_favorite' => $this->rating_expanded->fields->is_favorite,
                     'is_has_publication' => $this->rating_expanded->fields->is_has_publication,
                     'is_has_approbation' => $this->rating_expanded->fields->is_has_approbation,
                     'is_has_replicability' => $this->rating_expanded->fields->is_has_replicability,

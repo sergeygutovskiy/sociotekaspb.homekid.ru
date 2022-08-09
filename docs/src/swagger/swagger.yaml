@@ -309,6 +309,7 @@ paths:
         - $ref: "#/components/parameters/ListLimit"
         - $ref: "#/components/parameters/JobListFilterName"
         - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
       security:
@@ -477,6 +478,7 @@ paths:
         - $ref: "#/components/parameters/ListLimit"
         - $ref: "#/components/parameters/JobListFilterName"
         - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
       security:
@@ -905,6 +907,13 @@ components:
       name: filter_status
       schema:
         $ref: "#/components/schemas/JobStatus"
+    JobListFilterRating:
+      in: query
+      name: filter_rating
+      schema:
+        type: number
+        minimum: 0
+        maximum: 5
     JobListSortBy:
       in: query
       name: sort_by

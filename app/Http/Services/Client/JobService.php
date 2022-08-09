@@ -105,6 +105,7 @@ class JobService
 
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
+        $rating_filter = $request->input('filter_rating');
 
         $query = null;
         if ( $user ) $query = $user->jobs()->with('primary_information');
@@ -114,6 +115,7 @@ class JobService
         
         if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
         if ( $status_filter ) $query = $query->where('status', $status_filter);
+        if ( $rating_filter ) $query = $query->where('rating', $rating_filter);
 
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
