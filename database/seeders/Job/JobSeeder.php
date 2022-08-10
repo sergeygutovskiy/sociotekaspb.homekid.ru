@@ -36,5 +36,8 @@ class JobSeeder extends Seeder
 
         $jobs_ids = $job_user->jobs()->saveMany($jobs)->pluck('id');
         $jobs_ids->each(fn($id) => JobReportingPeriod::factory()->count(3)->create([ 'job_id' => $id]));
+
+        $jobs = Job::all();
+        $jobs->each(fn($job) => $job->update([ 'rating' => $job->rating_expanded->count ]));
     }
 }

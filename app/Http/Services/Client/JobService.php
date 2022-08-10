@@ -122,9 +122,11 @@ class JobService
 
         if (  $sort_by && $sort_direction )
         {
-            if ( $sort_by === 'created_at' ) $query = $query->orderBy('created_at', $sort_direction);
-            else if ( $sort_by === 'updated_at' ) $query = $query->orderBy('updated_at', $sort_direction);
-            else if ( $sort_by === 'status' ) $query = $query->orderby('status', $sort_direction);
+            $sort_column = 'created_at';
+            if ( $sort_by === 'updated_at' ) $sort_column = 'updated_at';
+            else if ( $sort_by === 'status' ) $sort_column = 'status';
+
+            $query = $query->orderBy($sort_column, $sort_direction);
         }
 
         $total = $query->count();

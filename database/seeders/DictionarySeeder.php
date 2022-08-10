@@ -14,10 +14,8 @@ class DictionarySeeder extends Seeder
     {
         $dictionary_categories = DictionaryCategory::all();
 
-        // create dictionary item for each category
         foreach ($dictionary_categories as $category) 
         {
-            // 5 times
             for ($i = 0; $i < self::DICTIONARIES_PER_CATEGORY_COUNT; $i++) 
             {
                 Dictionary::create([
@@ -27,9 +25,9 @@ class DictionarySeeder extends Seeder
             }
         }
 
-        $needy_category = DictionaryCategory::where('slug', 'needy-category')->first();
-        $needy_target_group_category = DictionaryCategory::where('slug', 'needy-category-target-group')->first();
-        
+        $needy_category = DictionaryCategory::firstWhere('slug', 'needy-category');
+        $needy_target_group_category = DictionaryCategory::firstWhere('slug', 'needy-category-target-group');
+
         $needy_category_dictionaries = $needy_category->dictionaries();
         $needy_target_group_category_dictionaries = $needy_target_group_category->dictionaries();
 

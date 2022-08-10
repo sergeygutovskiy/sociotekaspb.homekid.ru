@@ -23,7 +23,7 @@ class SocialProjectFactory extends Factory
         return [
             'participant' => [ 'description' => fake()->paragraph() ],
             'implementation_period' => fake()->sentence(),
-            'implementation_level_id' => Dictionary::where('category_id', 8)->first()->id,
+            'implementation_level_id' => Dictionary::firstWhere('category_id', 8)->id,
             'rnsu_category_ids' => Dictionary::where('category_id', 9)->take(2)->get()->pluck('id')->toArray(),
             'public_work_ids' => Dictionary::where('category_id', 10)->take(2)->get()->pluck('id')->toArray(),
             'service_type_ids' => Dictionary::where('category_id', 11)->take(2)->get()->pluck('id')->toArray(),

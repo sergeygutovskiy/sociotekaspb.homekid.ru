@@ -33,8 +33,8 @@ class CompanyFactory extends Factory
             'responsible' => fake()->name(),
             'responsible_phone' => fake()->phoneNumber(),
 
-            'organization_type_id' => Dictionary::where('category_id', 1)->first()->id,
-            'district_id' => Dictionary::where('category_id', 2)->first()->id,
+            'organization_type_id' => Dictionary::firstWhere('category_id', 1)->id,
+            'district_id' => Dictionary::firstWhere('category_id', 2)->id,
 
             'education_license' => [
                 'number' => 1,
