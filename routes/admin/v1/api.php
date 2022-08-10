@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CompanyController;
-use App\Http\Controllers\Admin\Jobs\SocialProjectController;
+use App\Http\Controllers\Admin\Job\SocialProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/users')->group(function() {

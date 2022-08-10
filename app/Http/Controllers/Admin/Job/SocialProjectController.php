@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Jobs;
+namespace App\Http\Controllers\Admin\Job;
 
 use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
