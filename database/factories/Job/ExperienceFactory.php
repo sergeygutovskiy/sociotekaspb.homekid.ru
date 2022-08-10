@@ -20,26 +20,26 @@ class ExperienceFactory extends Factory
     public function definition()
     {
         return [
-            'results_in_journal' => [
-                'description' => fake()->paragraph(),
-                'link' => fake()->url(),
-            ],
-            'results_of_various_events' => [
-                'description' => fake()->paragraph(),
-                'link' => fake()->url(),
-            ],
-            'results_info_in_site' => [
-                'description' => fake()->paragraph(),
-                'link' => fake()->url(),
-            ],
-            'results_info_in_media' => [
-                'description' => fake()->paragraph(),
-                'link' => fake()->url(),
-            ],
-            'results_seminars' => [
-                'description' => fake()->paragraph(),
-                'link' => fake()->url(),
-            ],
+            'results_in_journal' => fake()->randomElement([
+                [ 'description' => fake()->paragraph(), 'link' => fake()->url() ],
+                null,
+            ]),
+            'results_of_various_events' => fake()->randomElement([
+                [ 'description' => fake()->paragraph(), 'link' => fake()->url() ],
+                null,
+            ]),
+            'results_info_in_site' => fake()->randomElement([
+                [ 'description' => fake()->paragraph(), 'link' => fake()->url() ],
+                null,
+            ]),
+            'results_info_in_media' => fake()->randomElement([
+                [ 'description' => fake()->paragraph(), 'link' => fake()->url() ],
+                null,
+            ]),
+            'results_seminars' => fake()->randomElement([
+                [ 'description' => fake()->paragraph(), 'link' => fake()->url() ],
+                null,
+            ]),
         ];
     }
 }

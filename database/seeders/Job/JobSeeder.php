@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\Job;
 
+use App\Enums\JobStatus;
 use App\Models\Job\Job;
 use App\Models\Job\JobContacts;
 use App\Models\Job\JobExperience;
@@ -31,6 +32,8 @@ class JobSeeder extends Seeder
                 'primary_information_id' => $job_primary_information_ids[$i],
                 'experience_id' => $job_experience_ids[$i],
                 'contacts_id' => $job_contacts_ids[$i],
+                'status' => fake()->randomElement([ JobStatus::ACCEPTED, JobStatus::PENDING, JobStatus::REJECTED ]),
+                'created_at' => fake()->dateTimeBetween('-5 years'),
             ]));
         }
 

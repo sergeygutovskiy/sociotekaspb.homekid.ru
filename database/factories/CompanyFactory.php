@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\CompanyStatus;
 use App\Models\Company;
 use App\Models\Dictionary;
 use Carbon\Carbon;
@@ -25,17 +26,13 @@ class CompanyFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'site' => fake()->url(),
             'email' => fake()->email(),
-            
             'name' => fake()->sentence(),
             'full_name' => fake()->sentence(12),
-
             'owner' => fake()->name(),
             'responsible' => fake()->name(),
             'responsible_phone' => fake()->phoneNumber(),
-
             'organization_type_id' => Dictionary::firstWhere('category_id', 1)->id,
             'district_id' => Dictionary::firstWhere('category_id', 2)->id,
-
             'education_license' => [
                 'number' => 1,
                 'date' => Carbon::now()->format('d.m.Y'),
@@ -46,6 +43,8 @@ class CompanyFactory extends Factory
                 'date' => Carbon::now()->format('d.m.Y'),
             ],
             'is_has_innovative_platform' => true,
+            'status' => fake()->randomElement([ CompanyStatus::ACCEPTED, CompanyStatus::PENDING, CompanyStatus::REJECTED ]),
+            'created_at' => fake()->dateTimeBetween('-5 years'),
         ];
     }
 }
