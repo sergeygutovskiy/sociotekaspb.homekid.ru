@@ -11,26 +11,26 @@ class ModelAuthorPolicy
 
     public function create(User $user, User $urlUser)
     {
-        return $user->id === $urlUser->user_id || $user->is_admin;
+        return $user->id === $urlUser->id || $user->is_admin;
     }
 
     public function view(User $user, User $urlUser)
     {
-        return $user->id === $urlUser->user_id || $user->is_admin;
+        return $user->id === $urlUser->id || $user->is_admin;
     }
 
     public function update(User $user, User $urlUser)
     {
-        return $user->id === $urlUser->user_id || $user->is_admin;
+        return $user->id === $urlUser->id || $user->is_admin;
     }
 
     public function delete(User $user, User $urlUser)
     {
-        return $user->id === $urlUser->user_id || $user->is_admin;
+        return $user->id === $urlUser->id || $user->is_admin;
     }
 
     public function list(User $user, User $urlUser)
     {
-        return $user->id === $urlUser->user_id || $user->is_admin;
+        return $user->id === $urlUser->id || $user->is_admin;
     }
 }
