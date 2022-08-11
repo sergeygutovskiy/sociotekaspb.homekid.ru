@@ -426,6 +426,17 @@ paths:
       responses:
         200:
           description: "OK"
+    delete:
+      tags: [Social Project]
+      summary: "Delete social project by ID"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialProjectId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
 
   /admin/v1/users/{user_id}/jobs/social-projects/{id}/approve:
     patch:

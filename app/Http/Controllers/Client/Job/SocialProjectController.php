@@ -52,4 +52,10 @@ class SocialProjectController extends Controller
             'total' => $total,
         ]);
     }
+
+    public function delete(User $user, SocialProject $social_project)
+    {
+        $social_project->delete();
+        return OKResponse::response();
+    }
 }

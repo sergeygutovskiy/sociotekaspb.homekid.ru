@@ -23,6 +23,7 @@ Route::prefix('/users')->group(function() {
             Route::prefix('/social-projects')->group(function() {
                 Route::get('/{social_project}', [ SocialProjectController::class, 'show' ]);
                 Route::put('/{social_project}', [ SocialProjectController::class, 'update' ]);
+                Route::delete('/{social_project}', [ SocialProjectController::class, 'delete' ]);
 
                 Route::get('/', [ SocialProjectController::class, 'index' ]);
                 Route::post('/', [ SocialProjectController::class, 'store' ]);

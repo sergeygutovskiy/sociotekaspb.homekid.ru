@@ -34,6 +34,7 @@ return new class extends Migration
             $table->json('need_recognition_ids');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
