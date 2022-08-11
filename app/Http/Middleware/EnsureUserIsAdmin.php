@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Responses\ErrorResponse;
 use Closure;
 use Illuminate\Http\Request;
@@ -18,6 +19,6 @@ class EnsureUserIsAdmin
     public function handle(Request $request, Closure $next)
     {
         if ( $request->user()->is_admin ) return $next($request);
-        return ErrorResponse::response('Недостаточно прав', 403);
+        return AccessDeniedErrorResponse::response();
     }
 }

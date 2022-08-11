@@ -9,16 +9,20 @@ use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
 use App\Http\Requests\Client\Job\SocialProject\UpdateRequest;
 use App\Http\Resources\Client\Job\SocialProjectResource;
 use App\Http\Resources\Client\Job\SocialProjectItemListResource;
+use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Http\Services\Client\JobService;
 use App\Models\Job\SocialProject;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class SocialProjectController extends Controller
 {
     public function store(StoreRequest $request, User $user)
     {
+        if ( $request->user()->cannot('create', $user) ) return AccessDeniedErrorResponse::response();
+
         $job = JobService::create_job($request, $user);
         $social_project = $job->social_project()->create($request->validated('info'));
 
@@ -27,13 +31,16 @@ class SocialProjectController extends Controller
         ]);
     }
 
-    public function show(User $user, SocialProject $social_project)
+    public function show(Request $request, User $user, SocialProject $social_project)
     {
+        if ( $request->user()->cannot('view', $user) ) return AccessDeniedErrorResponse::response();
         return ResourceOKResponse::response(new SocialProjectResource($social_project));
     }
 
     public function update(UpdateRequest $request, User $user, SocialProject $social_project)
     {
+        if ( $request->user()->cannot('update', $user) ) return AccessDeniedErrorResponse::response();
+
         JobService::update_job($request, $social_project->job);
         $social_project->update($request->validated()['info']);
 
@@ -42,6 +49,8 @@ class SocialProjectController extends Controller
 
     public function index(ListRequest $request, User $user)
     {
+        if ( $request->user()->cannot('list', $user) ) return AccessDeniedErrorResponse::response();
+
         $data = JobService::list($request, JobVariant::SOCIAL_PROJECT, $user);
 
         $total = $data['total'];
@@ -53,8 +62,10 @@ class SocialProjectController extends Controller
         ]);
     }
 
-    public function delete(User $user, SocialProject $social_project)
+    public function delete(Request $request, User $user, SocialProject $social_project)
     {
+        if ( $request->user()->cannot('delete', $user) ) return AccessDeniedErrorResponse::response();
+        
         $social_project->delete();
         return OKResponse::response();
     }
