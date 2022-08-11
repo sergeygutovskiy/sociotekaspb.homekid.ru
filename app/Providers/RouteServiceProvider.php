@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Job\SocialProject;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -29,9 +30,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
-        Route::bind('user', function ($id) {
-            return User::findOrFail($id);
-        });
+        Route::bind('user', fn($id) => User::findOrFail($id));
+        Route::bind('social_project', fn($id, $route) => SocialProject::findOrFailByUserId($route->parameter('user')->id, $id));
 
         $this->routes(function () {
             Route::prefix('api/client/v1')

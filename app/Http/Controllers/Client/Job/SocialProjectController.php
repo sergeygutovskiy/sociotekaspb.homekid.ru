@@ -27,16 +27,13 @@ class SocialProjectController extends Controller
         ]);
     }
 
-    public function show(User $user, int $id)
+    public function show(User $user, SocialProject $social_project)
     {
-        $social_project = SocialProject::findOrFailByUserId($user->id, $id);
         return ResourceOKResponse::response(new SocialProjectResource($social_project));
     }
 
-    public function update(UpdateRequest $request, User $user, int $id)
+    public function update(UpdateRequest $request, User $user, SocialProject $social_project)
     {
-        $social_project = SocialProject::findOrFailByUserId($user->id, $id);
-
         JobService::update_job($request, $social_project->job);
         $social_project->update($request->validated()['info']);
 

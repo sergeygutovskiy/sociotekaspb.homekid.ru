@@ -13,8 +13,8 @@ Route::prefix('/users')->group(function() {
         
         Route::prefix('/jobs')->group(function() {
             Route::prefix('/social-projects')->group(function() {
-                Route::patch('/{id}/approve', [ SocialProjectController::class, 'approve' ]);
-                Route::patch('/{id}/reject', [ SocialProjectController::class, 'reject' ]);
+                Route::patch('/{social_project}/approve', [ SocialProjectController::class, 'approve' ]);
+                Route::patch('/{social_project}/reject', [ SocialProjectController::class, 'reject' ]);
             });
         });
     });

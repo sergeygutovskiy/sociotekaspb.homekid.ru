@@ -16,19 +16,15 @@ use App\Models\User;
 
 class SocialProjectController extends Controller
 {
-    public function approve(ApproveRequest $request, User $user, $id)
+    public function approve(ApproveRequest $request, User $user, SocialProject $social_project)
     {
-        $social_project = SocialProject::findOrFailByUserId($user->id, $id);
         AdminJobService::approve($request, $social_project->job());
-
         return OKResponse::response();
     }
 
-    public function reject(RejectRequest $request, User $user, $id)
+    public function reject(RejectRequest $request, User $user, SocialProject $social_project)
     {
-        $social_project = SocialProject::findOrFailByUserId($user->id, $id);
         AdminJobService::reject($request, $social_project->job());
-
         return OKResponse::response();
     }
 
