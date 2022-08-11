@@ -19,7 +19,7 @@ class CompanyService
         $query = Company::query();
         if ( $name_filter ) $query = $query->where('name', 'like', '%'.$name_filter.'%');
         if ( $status_filter ) $query = $query->where('status', $status_filter);
-        if ( $district_filter ) $query = $query->where('district_id', $district_filter);
+        if ( is_numeric($district_filter) ) $query = $query->where('district_id', $district_filter);
 
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');

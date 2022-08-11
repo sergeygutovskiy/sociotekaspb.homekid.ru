@@ -115,12 +115,12 @@ class JobService
         
         if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
         if ( $status_filter ) $query = $query->where('status', $status_filter);
-        if ( $rating_filter ) $query = $query->where('rating', $rating_filter);
+        if ( is_numeric($rating_filter) ) $query = $query->where('rating', $rating_filter);
 
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
 
-        if (  $sort_by && $sort_direction )
+        if ( $sort_by && $sort_direction )
         {
             $sort_column = 'created_at';
             if ( $sort_by === 'updated_at' ) $sort_column = 'updated_at';
