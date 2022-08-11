@@ -25,7 +25,7 @@ class ListValidator extends Validator
             'sort_by' => [
                 'sometimes',
                 'string',
-                Rule::in([ 'created_at', 'updated_at', 'status' ]),
+                Rule::in([ 'created_at', 'updated_at', 'status', 'rating' ]),
             ],
             'sort_direction' => [
                 'required_with:sort_by',

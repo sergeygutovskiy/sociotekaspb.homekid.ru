@@ -5,6 +5,8 @@ info:
 servers:
   - url: "http://localhost/api"
     description: "local"
+  - url: "http://localhost:8081/api"
+    description: "local 8081"
 paths:
   /client/v1/users/login:
     post:
@@ -941,6 +943,7 @@ components:
           - created_at
           - updated_at
           - status
+          - rating
     CompanyListFilterName:
       in: query
       name: filter_name

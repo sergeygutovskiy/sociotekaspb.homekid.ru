@@ -125,6 +125,7 @@ class JobService
             $sort_column = 'created_at';
             if ( $sort_by === 'updated_at' ) $sort_column = 'updated_at';
             else if ( $sort_by === 'status' ) $sort_column = 'status';
+            else if ( $sort_by === 'rating' ) $sort_column = 'rating';
 
             $query = $query->orderBy($sort_column, $sort_direction);
         }
