@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Client\DictionaryResource;
+use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Models\Job\JobReportingPeriod;
 use stdClass;
 
@@ -19,6 +20,7 @@ class DicionaryController extends Controller
 
             return $dictionary;
         });
-        return DictionaryResource::collection($years_resource);
+
+        return ResourceOKResponse::response(DictionaryResource::collection($years_resource));
     }
 }
