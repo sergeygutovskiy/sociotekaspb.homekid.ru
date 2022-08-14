@@ -312,6 +312,46 @@ paths:
         - $ref: "#/components/parameters/JobListFilterName"
         - $ref: "#/components/parameters/JobListFilterStatus"
         - $ref: "#/components/parameters/JobListFilterRating"
+        - in: query
+          name: filter_is_any_review
+          schema:
+            type: string
+            enum:
+              - 0
+              - 1
+            example: ""
+        - in: query
+          name: filter_is_favorite
+          schema:
+            type: string
+            enum:
+              - 0
+              - 1
+            example: ""
+        - in: query
+          name: filter_is_approbation
+          schema:
+            type: string
+            enum:
+              - 0
+              - 1
+            example: ""
+        - in: query
+          name: filter_is_remote_format
+          schema:
+            type: string
+            enum:
+              - 0
+              - 1
+            example: ""
+        - in: query
+          name: filter_is_publication
+          schema:
+            type: string
+            enum:
+              - 0
+              - 1
+            example: ""
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
       security:
@@ -319,7 +359,6 @@ paths:
       responses:
         200:
           description: "OK"   
-
 
     post:
       tags: [Social Project]

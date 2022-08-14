@@ -108,6 +108,61 @@ class Job extends Model
         return $query->where('rating', $rating);
     }
 
+    public function scopeOptionalIsFavorite(Builder $query, bool | null $is_favorite)
+    {
+        if ( is_null($is_favorite) ) return $query;
+        return $query->where('is_favorite', $is_favorite);
+    }
+
+    public function scopeOptionalHasApprobation(Builder $query, bool | null $is_approbation)
+    {
+        if ( is_null($is_approbation) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn($q) => $is_approbation
+                ? $q->whereNot('approbation', null)
+                : $q->where('approbation', null)
+        );
+    }
+
+    public function scopeOptionalIsRemoteFormat(Builder $query, bool | null $is_remote_format)
+    {
+        if ( is_null($is_remote_format) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn($q) => $q->where('is_remote_format_possible', $is_remote_format)
+        );
+    }
+
+    public function scopeOptionalHasAnyReview(Builder $query, bool | null $is_any_review)
+    {
+        if ( is_null($is_any_review) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn($q) => $q->where(fn($subq) => $is_any_review
+                ? $subq
+                    ->whereNot('expert_opinion', null)
+                    ->orWhereNot('review', null)
+                    ->orWhereNot('comment', null)
+                : $subq
+                    ->where('expert_opinion', null)
+                    ->where('review', null)
+                    ->where('comment', null)
+            )
+        );
+    }
+
+    public function scopeOptionalHasPublication(Builder $query, bool | null $is_publication)
+    {
+        if ( is_null($is_publication) ) return $query;
+        return $query->whereHas(
+            'experience', 
+            fn($q) => $is_publication
+                ? $q->whereNot('results_in_journal', null)
+                : $q->where('results_in_journal', null)
+        );
+    }
+
     public function scopeOptionalOrderBy(Builder $query, string | null $order_by, string | null $dir)
     {
         if ( is_null($order_by) || !strlen($order_by) ) return $query;

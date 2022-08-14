@@ -117,6 +117,13 @@ class JobService
         $status_filter = $request->input('filter_status');
         $rating_filter = $request->input('filter_rating');
 
+        $is_any_review_filter = $request->input('filter_is_any_review');
+        $is_approbation_filter = $request->input('filter_is_approbation');
+        $is_remote_format_filter = $request->input('filter_is_remote_format');
+        $is_favorite_filter = $request->input('filter_is_favorite');
+        $is_publication_filter = $request->input('filter_is_publication');
+
+
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
 
@@ -126,6 +133,11 @@ class JobService
             ->optionalHasNameLike($name_filter)
             ->optionalHasStatus($status_filter)
             ->optionalHasRating($rating_filter)
+            ->optionalHasAnyReview($is_any_review_filter)
+            ->optionalHasApprobation($is_approbation_filter)
+            ->optionalHasPublication($is_publication_filter)
+            ->optionalIsRemoteFormat($is_remote_format_filter)
+            ->optionalIsFavorite($is_favorite_filter)
             ->optionalOrderBy($sort_by, $sort_direction)
         ;
 

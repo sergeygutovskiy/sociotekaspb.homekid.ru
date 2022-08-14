@@ -21,6 +21,10 @@ class ListValidator extends Validator
                 'string',
                 Rule::in([ JobStatus::ACCEPTED, JobStatus::PENDING, JobStatus::REJECTED ]),
             ],
+            'filter_is_any_review' => ['sometimes', 'boolean'],
+            'filter_is_favorite' => ['sometimes', 'boolean'],
+            'filter_is_approbation' => ['sometimes', 'boolean'],
+            'filter_is_remote_format' => ['sometimes', 'boolean'],
 
             'sort_by' => [
                 'sometimes',
