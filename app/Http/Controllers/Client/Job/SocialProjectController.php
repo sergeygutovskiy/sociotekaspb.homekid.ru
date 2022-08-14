@@ -51,14 +51,14 @@ class SocialProjectController extends Controller
     {
         if ( $request->user()->cannot('list', $user) ) return AccessDeniedErrorResponse::response();
 
-        $data = JobService::list($request, JobVariant::SOCIAL_PROJECT, $user);
+        $list_query = JobService::list_by_user($request, JobVariant::SOCIAL_PROJECT, $user);
 
-        $total = $data['total'];
-        $items = SocialProjectItemListResource::collection($data['items']->map(fn($job) => $job->social_project));
+        $paginated = JobService::paginate($request, $list_query);
+        $items = SocialProjectItemListResource::collection($paginated->items->map(fn($job) => $job->social_project));
 
         return OKResponse::response([
             'items' => $items,
-            'total' => $total,
+            'total' => $paginated->total,
         ]);
     }
 

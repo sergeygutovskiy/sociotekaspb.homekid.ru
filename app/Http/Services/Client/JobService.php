@@ -11,6 +11,7 @@ use App\Models\Job\JobReportingPeriod;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use stdClass;
 
 class JobService
 {
@@ -98,44 +99,48 @@ class JobService
         ]);
     }
 
-    public static function list(Request $request, string $job_variant, User $user = null)
+    public static function list_all(Request $request, string $job_variant)
     {
-        $page = $request->input('page');
-        $limit = $request->input('limit');
+        $query = Job::query();
+        return self::list($request, $job_variant, $query);
+    }
 
+    public static function list_by_user(Request $request, string $job_variant, User $user)
+    {
+        $query = $user->jobs();
+        return self::list($request, $job_variant, $query);
+    }
+
+    private static function list(Request $request, string $job_variant, $initial_query)
+    {
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
         $rating_filter = $request->input('filter_rating');
 
-        $query = null;
-        if ( $user ) $query = $user->jobs()->with('primary_information');
-        else $query = Job::with('primary_information');
-        
-        $query = $query->whereHas($job_variant);
-        
-        if ( $name_filter ) $query = $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name_filter.'%'));
-        if ( $status_filter ) $query = $query->where('status', $status_filter);
-        if ( is_numeric($rating_filter) ) $query = $query->where('rating', $rating_filter);
-
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
 
-        if ( $sort_by && $sort_direction )
-        {
-            $sort_column = 'created_at';
-            if ( $sort_by === 'updated_at' ) $sort_column = 'updated_at';
-            else if ( $sort_by === 'status' ) $sort_column = 'status';
-            else if ( $sort_by === 'rating' ) $sort_column = 'rating';
+        $query = $initial_query
+            ->whereHas($job_variant)
+            ->with('primary_information')
+            ->optionalHasNameLike($name_filter)
+            ->optionalHasStatus($status_filter)
+            ->optionalHasRating($rating_filter)
+            ->optionalOrderBy($sort_by, $sort_direction)
+        ;
 
-            $query = $query->orderBy($sort_column, $sort_direction);
-        }
+        return $query;
+    }
 
-        $total = $query->count();
-        $items = $query->skip(($page - 1) * $limit)->take($limit)->get();
+    public static function paginate(Request $request, $query)
+    {
+        $page = $request->input('page');
+        $limit = $request->input('limit');
 
-        return [
-            'total' => $total,
-            'items' => $items,
-        ];
+        $paginated = new stdClass();
+        $paginated->total = $query->count();
+        $paginated->items = $query->skip(($page - 1) * $limit)->take($limit)->get();
+
+        return $paginated;
     }
 }

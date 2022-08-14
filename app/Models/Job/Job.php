@@ -5,6 +5,7 @@ namespace App\Models\Job;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\Eloquent\Builder;
 use stdClass;
 
 class Job extends Model
@@ -87,5 +88,40 @@ class Job extends Model
         $rating->fields = $rating_fields;
 
         return $rating;
+    }
+
+    public function scopeOptionalHasNameLike(Builder $query, string | null $name)
+    {
+        if ( is_null($name) || !strlen($name) ) return $query;
+        return $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name.'%'));
+    }
+
+    public function scopeOptionalHasStatus(Builder $query, string | null $status)
+    {
+        if ( is_null($status) || !strlen($status) ) return $query;
+        return $query->where('status', $status);
+    }
+
+    public function scopeOptionalHasRating(Builder $query, int | null $rating)
+    {
+        if ( is_null($rating) ) return $query;
+        return $query->where('rating', $rating);
+    }
+
+    public function scopeOptionalOrderBy(Builder $query, string | null $order_by, string | null $dir)
+    {
+        if ( is_null($order_by) || !strlen($order_by) ) return $query;
+        if ( is_null($dir) || !strlen($dir) ) return $query;
+
+        $order_col = 'id';
+        switch ($order_by)
+        {
+            case 'created_at': $order_col = 'created_at'; break;
+            case 'updated_at': $order_col = 'updated_at'; break;
+            case 'status': $order_col = 'status'; break;
+            case 'rating': $order_col = 'rating'; break;            
+        }
+
+        return $query->orderBy($order_col, $dir);
     }
 }
