@@ -33,6 +33,7 @@ return new class extends Migration
             $table->json('needy_category_target_group_ids');
 
             $table->json('social_service_ids');
+            $table->json('rnsu_category_ids');
             
             $table->text('qualitative_results');
             $table->text('social_results');

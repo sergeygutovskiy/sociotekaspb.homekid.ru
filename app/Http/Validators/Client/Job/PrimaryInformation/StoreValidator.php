@@ -29,6 +29,9 @@ class StoreValidator extends Validator
             'primary.social_service_ids' => ['array', 'present'],
             'primary.social_service_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
 
+            'primary.rnsu_category_ids' => ['array', 'present'],
+            'primary.rnsu_category_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
             'primary.qualitative_results' => ['required', 'string'],
             'primary.social_results' => ['required', 'string'],
             'primary.replicability' => ['present', 'nullable', 'string'],

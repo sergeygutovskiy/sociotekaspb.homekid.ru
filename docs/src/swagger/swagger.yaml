@@ -626,6 +626,12 @@ components:
           type: string
           description: "Социальные результаты *"
           example: "Социальные результаты"
+        rnsu_category_ids:
+          type: array
+          description: "Категории по РНСУ *"
+          items:
+            type: number
+          example: [81, 82]
         replicability:
           type: string
           description: "Тиражируемость"
@@ -883,12 +889,6 @@ components:
           type: number
           description: "Уровень реализации проекта *"
           example: 71
-        rnsu_category_ids:
-          type: array
-          description: "Категории по РНСУ *"
-          items:
-            type: number
-          example: [81, 82]
         public_work_ids:
           type: array
           description: "Наименование государственной работы"

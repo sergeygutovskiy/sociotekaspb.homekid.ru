@@ -25,7 +25,6 @@ return new class extends Migration
             $table->unsignedBigInteger('implementation_level_id');
             $table->foreign('implementation_level_id')->references('id')->on('dictionaries');
 
-            $table->json('rnsu_category_ids');
             $table->json('public_work_ids');
 
             $table->json('service_type_ids');

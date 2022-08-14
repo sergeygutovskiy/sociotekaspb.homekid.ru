@@ -32,11 +32,7 @@ class UpdateRequest extends FormRequest
                 'info.participant.description' => ['required_with:info.participant', 'string'],
 
                 'info.implementation_period' => ['required', 'string'],
-
                 'info.implementation_level_id' => ['required', 'integer', 'exists:dictionaries,id'],
-
-                'info.rnsu_category_ids' => ['array', 'present'],
-                'info.rnsu_category_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
 
                 'info.public_work_ids' => ['array', 'present'],
                 'info.public_work_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],

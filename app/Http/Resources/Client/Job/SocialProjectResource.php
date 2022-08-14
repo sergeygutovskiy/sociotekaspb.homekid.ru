@@ -28,7 +28,6 @@ class SocialProjectResource extends JsonResource
                 'participant' => $this->participant,
                 'implementation_period' => $this->implementation_period,
                 'implementation_level_id' => $this->implementation_level_id,
-                'rnsu_category_ids' => $this->rnsu_category_ids,
                 'public_work_ids' => $this->public_work_ids,
                 'service_type_ids' => $this->service_type_ids,
                 'service_name_ids' => $this->service_name_ids,

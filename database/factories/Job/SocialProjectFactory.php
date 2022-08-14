@@ -24,7 +24,6 @@ class SocialProjectFactory extends Factory
             'participant' => [ 'description' => fake()->paragraph() ],
             'implementation_period' => fake()->sentence(),
             'implementation_level_id' => fake()->randomElement(Dictionary::where('category_id', 8)->pluck('id')),
-            'rnsu_category_ids' => fake()->randomElements(Dictionary::where('category_id', 9)->pluck('id'), 2),
             'public_work_ids' => fake()->randomElements(Dictionary::where('category_id', 10)->pluck('id'), 2),
             'service_type_ids' => fake()->randomElements(Dictionary::where('category_id', 11)->pluck('id'), 2),
             'service_name_ids' => fake()->randomElements(Dictionary::where('category_id', 12)->pluck('id'), 2),

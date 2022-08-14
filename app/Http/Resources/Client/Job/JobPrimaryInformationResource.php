@@ -33,6 +33,7 @@ class JobPrimaryInformationResource extends JsonResource
             'needy_category_ids' => $this->needy_category_ids,
             'needy_category_target_group_ids' => $this->needy_category_target_group_ids,
             'social_service_ids' => $this->social_service_ids,
+            'rnsu_category_ids' => $this->rnsu_category_ids,
             'qualitative_results' => $this->qualitative_results,
             'social_results' => $this->social_results,
             'replicability' => $this->replicability,
