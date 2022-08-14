@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Client\Job;
 
-use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
@@ -13,6 +12,7 @@ use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Http\Services\Client\JobService;
+use App\Http\Services\Client\SocialProjectService;
 use App\Models\Job\SocialProject;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,10 +51,8 @@ class SocialProjectController extends Controller
     {
         if ( $request->user()->cannot('list', $user) ) return AccessDeniedErrorResponse::response();
 
-        $list_query = JobService::list_by_user($request, JobVariant::SOCIAL_PROJECT, $user);
-
-        $paginated = JobService::paginate($request, $list_query);
-        $items = SocialProjectItemListResource::collection($paginated->items->map(fn($job) => $job->social_project));
+        $paginated = SocialProjectService::list_by_user($request, $user);
+        $items = SocialProjectItemListResource::collection($paginated->items);
 
         return OKResponse::response([
             'items' => $items,

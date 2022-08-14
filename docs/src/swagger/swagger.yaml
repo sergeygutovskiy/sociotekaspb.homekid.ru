@@ -304,86 +304,34 @@ paths:
   /client/v1/users/{user_id}/jobs/social-projects:
     get:
       tags: [Social Project]
-      summary: "List social projects"
+      summary: "List social projects of user"
       parameters:
         - $ref: "#/components/parameters/UserId"
+        
         - $ref: "#/components/parameters/ListPage"
         - $ref: "#/components/parameters/ListLimit"
+        
         - $ref: "#/components/parameters/JobListFilterName"
         - $ref: "#/components/parameters/JobListFilterStatus"
         - $ref: "#/components/parameters/JobListFilterRating"
-        - in: query
-          name: filter_year
-          description: "Год"
-          schema:
-            type: number
-            format: year
-            example: ""
-        - in: query
-          name: filter_is_any_review
-          description: "Экспертное заключение, рецензия, отзыв"
-          schema:
-            type: string
-            enum: ['0', '1']
-            example: ""
-        - in: query
-          name: filter_volunteer_id
-          description: "Привлечение добровольцев/волонтеров"
-          schema:
-            type: number
-            example: ""
-        - in: query
-          name: filter_is_favorite
-          description: "Включен в виртуальную гостиную"
-          schema:
-            type: string
-            enum: ['0', '1']
-            example: ""
-        - in: query
-          name: filter_is_approbation
-          description: "Апробация на инновационной площадке / в ресурсном центре"
-          schema:
-            type: string
-            enum: ['0', '1']
-            example: ""
-        - in: query
-          name: filter_is_remote_format
-          description: "Возможность реализации в дистанционном формате"
-          schema:
-            type: string
-            enum: ['0', '1']
-            example: ""
-        - in: query
-          name: filter_is_publication
-          description: "Наличие публикации"
-          schema:
-            type: string
-            enum: ['0', '1']
-            example: ""
-        - in: query
-          name: filter_rnsu_category_ids
-          description: "Категории РНСУ"
-          schema:
-            type: string
-            example: ""
-        - in: query
-          name: filter_needy_category_ids
-          description: "Категории"
-          schema:
-            type: string
-            example: ""
-        - in: query
-          name: filter_needy_category_target_group_ids
-          description: "Целевые группы"
-          schema:
-            type: string
-            example: ""
-        - in: query
-          name: filter_social_service_ids
-          description: "Формы социального обслуживания (сопровождения)"
-          schema:
-            type: string
-            example: ""
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        
+        - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
+        - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
+        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+        
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
       security:
@@ -558,11 +506,32 @@ paths:
       tags: [Social Project]
       summary: "List all social projects"
       parameters:
+        - $ref: "#/components/parameters/UserId"
+        
         - $ref: "#/components/parameters/ListPage"
         - $ref: "#/components/parameters/ListLimit"
+        
         - $ref: "#/components/parameters/JobListFilterName"
         - $ref: "#/components/parameters/JobListFilterStatus"
         - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        
+        - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
+        - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
+        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+        
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
       security:
@@ -979,7 +948,7 @@ components:
     SocialProjectId:
       in: path
       name: id
-      description: "ID of social project"
+      description: "Social project ID"
       example: 1
       required: true
       schema:
@@ -987,7 +956,7 @@ components:
     ListPage:
       in: query
       name: page
-      description: "Страница"
+      description: "[common] Page"
       required: true
       schema:
         type: number
@@ -995,7 +964,7 @@ components:
     ListLimit:
       in: query
       name: limit
-      description: "Кол-во записей на странице"
+      description: "[common] Items per page"
       required: true
       schema:
         type: number
@@ -1003,28 +972,111 @@ components:
     JobListFilterName:
       in: query
       name: filter_name
-      description: "Название"
+      description: "[common] Название"
       schema:
         type: string
         example: ""
     JobListFilterStatus:
       in: query
       name: filter_status
-      description: "Статус"
+      description: "[common] Статус"
       schema:
         $ref: "#/components/schemas/JobStatus"
     JobListFilterRating:
       in: query
       name: filter_rating
-      description: "Рейтинг"
+      description: "[common] Рейтинг"
       schema:
         type: number
         minimum: 0
         maximum: 5
+    JobListFilterYear:
+      in: query
+      name: filter_year
+      description: "[common] Год"
+      schema:
+        type: number
+        format: year
+        example: ""
+    JobListFilterIsAnyReview:
+      in: query
+      name: filter_is_any_review
+      description: "[common] Экспертное заключение, рецензия, отзыв"
+      schema:
+        type: string
+        enum: ['0', '1']
+        example: ""
+    JobListFilterVolunteer:
+      in: query
+      name: filter_volunteer_id
+      description: "[common] Привлечение добровольцев/волонтеров"
+      schema:
+        type: number
+        example: ""
+    JobListFilterIsFavorite:
+      in: query
+      name: filter_is_favorite
+      description: "[common] Включен в виртуальную гостиную"
+      schema:
+        type: string
+        enum: ['0', '1']
+        example: ""
+    JobListFilterIsApprobation:
+      in: query
+      name: filter_is_approbation
+      description: "[common] Апробация на инновационной площадке / в ресурсном центре"
+      schema:
+        type: string
+        enum: ['0', '1']
+        example: ""
+    JobListFilterIsRemoteFormat:
+      in: query
+      name: filter_is_remote_format
+      description: "[common] Возможность реализации в дистанционном формате"
+      schema:
+        type: string
+        enum: ['0', '1']
+        example: ""
+    JobListFilterIsPublication:
+      in: query
+      name: filter_is_publication
+      description: "[common] Наличие публикации"
+      schema:
+        type: string
+        enum: ['0', '1']
+        example: ""
+    JobListFilterRrnsuCategoryIds:
+      in: query
+      name: filter_rnsu_category_ids
+      description: "[common] Категории РНСУ"
+      schema:
+        type: string
+        example: ""
+    JobListFilterNeedyCategoryIds:
+      in: query
+      name: filter_needy_category_ids
+      description: "[common] Категории"
+      schema:
+        type: string
+        example: ""
+    JobListFilterNeedyCategoryTargetGroupIds:
+      in: query
+      name: filter_needy_category_target_group_ids
+      description: "[common] Целевые группы"
+      schema:
+        type: string
+        example: ""
+    JobListFilterSocialServiceIds:
+      in: query
+      name: filter_social_service_ids
+      description: "[common] Формы социального обслуживания (сопровождения)"
+      schema:
+        type: string
+        example: ""
     JobListSortBy:
       in: query
       name: sort_by
-      description: "Поле для сортировки"
+      description: "[common] Sort column"
       schema:
         type: string
         enum:
@@ -1032,6 +1084,44 @@ components:
           - updated_at
           - status
           - rating
+    JobListAdditionFilterServiceTypeIds:
+      in: query
+      name: filter_service_type_ids
+      description: "Виды услуг"
+      schema:
+        type: string
+    JobListAdditionFilterServiceNameIds:
+      in: query
+      name: filter_service_name_ids
+      description: "Наименования услуг"
+      schema:
+        type: string
+    JobListAdditionFilterPublicWorkIds:
+      in: query
+      name: filter_public_work_ids
+      description: "Наименования государственной работ"
+      schema:
+        type: string
+    JobListAdditionFilterImplementationLevelId:
+      in: query
+      name: filter_implementation_level_id
+      description: "Уровни реализации проекта"
+      schema:
+        type: number
+    JobListAdditionFilterIsParticipant:
+      in: query
+      name: filter_is_participant
+      description: "Участник?"
+      schema:
+        type: string
+        enum: [0, 1]
+    JobListAdditionFilterNeedRecognitionIds:
+      in: query
+      name: filter_need_recognition_ids
+      description: "Обстоятельства признания нуждаемости"
+      schema:
+        type: string
+        example: ""
     CompanyListFilterName:
       in: query
       name: filter_name
@@ -1055,7 +1145,7 @@ components:
     CompanyListSortBy:
       in: query
       name: sort_by
-      description: "Поле для сортировки"
+      description: "Sort column"
       schema:
         type: string
         enum:
@@ -1065,7 +1155,7 @@ components:
     ListSortDirection:
       in: query
       name: sort_direction
-      description: "Направление сортировки"
+      description: "Sort direction"
       schema:
         type: string
         enum:

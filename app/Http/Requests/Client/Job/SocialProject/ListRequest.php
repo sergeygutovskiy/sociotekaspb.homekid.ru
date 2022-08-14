@@ -4,6 +4,7 @@ namespace App\Http\Requests\Client\Job\SocialProject;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
 use App\Http\Validators\Client\Job\ListValidator;
+use App\Http\Validators\Client\Job\SocialProject\ListValidator as SocialProjectListValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -28,8 +29,8 @@ class ListRequest extends FormRequest
     public function rules()
     {
         return array_merge(
-            [],
             ListValidator::rules(),
+            SocialProjectListValidator::rules(),
         );
     }
 

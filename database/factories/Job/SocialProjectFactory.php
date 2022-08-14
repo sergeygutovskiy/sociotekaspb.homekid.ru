@@ -21,7 +21,7 @@ class SocialProjectFactory extends Factory
     public function definition()
     {
         return [
-            'participant' => [ 'description' => fake()->paragraph() ],
+            'participant' => fake()->randomElement([ [ 'description' => fake()->paragraph() ], null ]),
             'implementation_period' => fake()->sentence(),
             'implementation_level_id' => fake()->randomElement(Dictionary::where('category_id', 8)->pluck('id')),
             'public_work_ids' => fake()->randomElements(Dictionary::where('category_id', 10)->pluck('id'), 2),
