@@ -30,14 +30,14 @@ class SocialProjectController extends Controller
 
     public function index(ListRequest $request)
     {
-        $data = ClientJobService::list($request, JobVariant::SOCIAL_PROJECT);
+        $list_query = ClientJobService::list_all($request, JobVariant::SOCIAL_PROJECT);
 
-        $total = $data['total'];
-        $items = SocialProjectItemListResource::collection($data['items']->map(fn($job) => $job->social_project));
+        $paginated = ClientJobService::paginate($request, $list_query);
+        $items = SocialProjectItemListResource::collection($paginated->items->map(fn($job) => $job->social_project));
 
         return OKResponse::response([
             'items' => $items,
-            'total' => $total,
+            'total' => $paginated->total,
         ]);
     }
 }
