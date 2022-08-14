@@ -90,31 +90,31 @@ class Job extends Model
         return $rating;
     }
 
-    public function scopeOptionalHasNameLike(Builder $query, string | null $name)
+    public function scopeOptionalHasNameLike(Builder $query, ?string $name)
     {
         if ( is_null($name) || !strlen($name) ) return $query;
         return $query->whereHas('primary_information', fn($q) => $q->where('name', 'like', '%'.$name.'%'));
     }
 
-    public function scopeOptionalHasStatus(Builder $query, string | null $status)
+    public function scopeOptionalHasStatus(Builder $query, ?string $status)
     {
         if ( is_null($status) || !strlen($status) ) return $query;
         return $query->where('status', $status);
     }
 
-    public function scopeOptionalHasRating(Builder $query, int | null $rating)
+    public function scopeOptionalHasRating(Builder $query, ?int $rating)
     {
         if ( is_null($rating) ) return $query;
         return $query->where('rating', $rating);
     }
 
-    public function scopeOptionalIsFavorite(Builder $query, bool | null $is_favorite)
+    public function scopeOptionalIsFavorite(Builder $query, ?bool $is_favorite)
     {
         if ( is_null($is_favorite) ) return $query;
         return $query->where('is_favorite', $is_favorite);
     }
 
-    public function scopeOptionalHasApprobation(Builder $query, bool | null $is_approbation)
+    public function scopeOptionalHasApprobation(Builder $query, ?bool $is_approbation)
     {
         if ( is_null($is_approbation) ) return $query;
         return $query->whereHas(
@@ -125,7 +125,7 @@ class Job extends Model
         );
     }
 
-    public function scopeOptionalIsRemoteFormat(Builder $query, bool | null $is_remote_format)
+    public function scopeOptionalIsRemoteFormat(Builder $query, ?bool $is_remote_format)
     {
         if ( is_null($is_remote_format) ) return $query;
         return $query->whereHas(
@@ -134,7 +134,7 @@ class Job extends Model
         );
     }
 
-    public function scopeOptionalHasAnyReview(Builder $query, bool | null $is_any_review)
+    public function scopeOptionalHasAnyReview(Builder $query, ?bool $is_any_review)
     {
         if ( is_null($is_any_review) ) return $query;
         return $query->whereHas(
@@ -152,7 +152,7 @@ class Job extends Model
         );
     }
 
-    public function scopeOptionalHasPublication(Builder $query, bool | null $is_publication)
+    public function scopeOptionalHasPublication(Builder $query, ?bool $is_publication)
     {
         if ( is_null($is_publication) ) return $query;
         return $query->whereHas(
@@ -163,7 +163,7 @@ class Job extends Model
         );
     }
 
-    public function scopeOptionalHasRnsuCategoryIds(Builder $query, array | null $ids)
+    public function scopeOptionalHasRnsuCategoryIds(Builder $query, ?array $ids)
     {
         if ( is_null($ids) ) return $query;
         return $query->whereHas(
@@ -172,7 +172,7 @@ class Job extends Model
         );
     }
 
-    public function scopeOptionalHasNeedyCategoryIds(Builder $query, array | null $ids)
+    public function scopeOptionalHasNeedyCategoryIds(Builder $query, ?array $ids)
     {
         if ( is_null($ids) ) return $query;
         return $query->whereHas(
@@ -181,7 +181,7 @@ class Job extends Model
         );
     }
 
-    public function scopeOptionalHasNeedyCategoryTargetGroupIds(Builder $query, array | null $ids)
+    public function scopeOptionalHasNeedyCategoryTargetGroupIds(Builder $query, ?array $ids)
     {
         if ( is_null($ids) ) return $query;
         return $query->whereHas(
@@ -191,7 +191,7 @@ class Job extends Model
     }
     
 
-    public function scopeOptionalOrderBy(Builder $query, string | null $order_by, string | null $dir)
+    public function scopeOptionalOrderBy(Builder $query, ?string $order_by, ?string $dir)
     {
         if ( is_null($order_by) || !strlen($order_by) ) return $query;
         if ( is_null($dir) || !strlen($dir) ) return $query;
