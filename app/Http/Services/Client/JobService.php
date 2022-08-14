@@ -3,6 +3,7 @@
 namespace App\Http\Services\Client;
 
 use App\Enums\JobStatus;
+use App\Http\Validators\Validator;
 use App\Models\Job\Job;
 use App\Models\Job\JobContacts;
 use App\Models\Job\JobExperience;
@@ -122,7 +123,15 @@ class JobService
         $is_remote_format_filter = $request->input('filter_is_remote_format');
         $is_favorite_filter = $request->input('filter_is_favorite');
         $is_publication_filter = $request->input('filter_is_publication');
+        
+        $rnsu_category_ids_filter = $request->input('filter_rnsu_category_ids');
+        $rnsu_category_ids_filter = Validator::parse_query_ids($rnsu_category_ids_filter);
 
+        $needy_category_ids_filter = $request->input('filter_needy_category_ids');
+        $needy_category_ids_filter = Validator::parse_query_ids($needy_category_ids_filter);
+
+        $needy_category_target_group_ids_filter = $request->input('filter_needy_category_target_group_ids');
+        $needy_category_target_group_ids_filter = Validator::parse_query_ids($needy_category_target_group_ids_filter);
 
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
@@ -137,6 +146,9 @@ class JobService
             ->optionalHasApprobation($is_approbation_filter)
             ->optionalHasPublication($is_publication_filter)
             ->optionalIsRemoteFormat($is_remote_format_filter)
+            ->optionalHasRnsuCategoryIds($rnsu_category_ids_filter)
+            ->optionalHasNeedyCategoryIds($needy_category_ids_filter)
+            ->optionalHasNeedyCategoryTargetGroupIds($needy_category_target_group_ids_filter)
             ->optionalIsFavorite($is_favorite_filter)
             ->optionalOrderBy($sort_by, $sort_direction)
         ;

@@ -352,6 +352,21 @@ paths:
               - 0
               - 1
             example: ""
+        - in: query
+          name: filter_rnsu_category_ids
+          schema:
+            type: string
+            example: ""
+        - in: query
+          name: filter_needy_category_ids
+          schema:
+            type: string
+            example: ""
+        - in: query
+          name: filter_needy_category_target_group_ids
+          schema:
+            type: string
+            example: ""
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
       security:

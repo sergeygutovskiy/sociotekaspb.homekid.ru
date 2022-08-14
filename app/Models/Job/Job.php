@@ -163,6 +163,34 @@ class Job extends Model
         );
     }
 
+    public function scopeOptionalHasRnsuCategoryIds(Builder $query, array | null $ids)
+    {
+        if ( is_null($ids) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn($q) => $q->whereJsonContains('rnsu_category_ids', $ids)
+        );
+    }
+
+    public function scopeOptionalHasNeedyCategoryIds(Builder $query, array | null $ids)
+    {
+        if ( is_null($ids) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn($q) => $q->whereJsonContains('needy_category_ids', $ids)
+        );
+    }
+
+    public function scopeOptionalHasNeedyCategoryTargetGroupIds(Builder $query, array | null $ids)
+    {
+        if ( is_null($ids) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn($q) => $q->whereJsonContains('needy_category_target_group_ids', $ids)
+        );
+    }
+    
+
     public function scopeOptionalOrderBy(Builder $query, string | null $order_by, string | null $dir)
     {
         if ( is_null($order_by) || !strlen($order_by) ) return $query;

@@ -26,6 +26,10 @@ class ListValidator extends Validator
             'filter_is_approbation' => ['sometimes', 'boolean'],
             'filter_is_remote_format' => ['sometimes', 'boolean'],
 
+            'filter_rnsu_category_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
+            'filter_needy_category_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
+            'filter_needy_category_target_group_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
+
             'sort_by' => [
                 'sometimes',
                 'string',
