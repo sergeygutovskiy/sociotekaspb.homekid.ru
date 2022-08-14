@@ -314,56 +314,54 @@ paths:
         - $ref: "#/components/parameters/JobListFilterRating"
         - in: query
           name: filter_is_any_review
+          description: "Экспертное заключение, рецензия, отзыв"
           schema:
             type: string
-            enum:
-              - 0
-              - 1
+            enum: ['0', '1']
             example: ""
         - in: query
           name: filter_is_favorite
+          description: "Включен в виртуальную гостиную"
           schema:
             type: string
-            enum:
-              - 0
-              - 1
+            enum: ['0', '1']
             example: ""
         - in: query
           name: filter_is_approbation
+          description: "Апробация на инновационной площадке / в ресурсном центре"
           schema:
             type: string
-            enum:
-              - 0
-              - 1
+            enum: ['0', '1']
             example: ""
         - in: query
           name: filter_is_remote_format
+          description: "Возможность реализации в дистанционном формате"
           schema:
             type: string
-            enum:
-              - 0
-              - 1
+            enum: ['0', '1']
             example: ""
         - in: query
           name: filter_is_publication
+          description: "Наличие публикации"
           schema:
             type: string
-            enum:
-              - 0
-              - 1
+            enum: ['0', '1']
             example: ""
         - in: query
           name: filter_rnsu_category_ids
+          description: "Категории РНСУ"
           schema:
             type: string
             example: ""
         - in: query
           name: filter_needy_category_ids
+          description: "Категории"
           schema:
             type: string
             example: ""
         - in: query
           name: filter_needy_category_target_group_ids
+          description: "Целевые группы"
           schema:
             type: string
             example: ""
@@ -970,6 +968,7 @@ components:
     ListPage:
       in: query
       name: page
+      description: "Страница"
       required: true
       schema:
         type: number
@@ -977,6 +976,7 @@ components:
     ListLimit:
       in: query
       name: limit
+      description: "Кол-во записей на странице"
       required: true
       schema:
         type: number
@@ -984,17 +984,20 @@ components:
     JobListFilterName:
       in: query
       name: filter_name
+      description: "Название"
       schema:
         type: string
         example: ""
     JobListFilterStatus:
       in: query
       name: filter_status
+      description: "Статус"
       schema:
         $ref: "#/components/schemas/JobStatus"
     JobListFilterRating:
       in: query
       name: filter_rating
+      description: "Рейтинг"
       schema:
         type: number
         minimum: 0
@@ -1002,6 +1005,7 @@ components:
     JobListSortBy:
       in: query
       name: sort_by
+      description: "Поле для сортировки"
       schema:
         type: string
         enum:
@@ -1012,23 +1016,27 @@ components:
     CompanyListFilterName:
       in: query
       name: filter_name
+      description: "Короткое название"
       schema:
         type: string
         example: ""
     CompanyListFilterDistrictId:
       in: query
       name: filter_district_id
+      description: "Район"
       schema:
         type: number
         example: ""
     CompanyListFilterStatus:
       in: query
       name: filter_status
+      description: "Статус"
       schema:
         $ref: "#/components/schemas/JobStatus"
     CompanyListSortBy:
       in: query
       name: sort_by
+      description: "Поле для сортировки"
       schema:
         type: string
         enum:
@@ -1038,6 +1046,7 @@ components:
     ListSortDirection:
       in: query
       name: sort_direction
+      description: "Направление сортировки"
       schema:
         type: string
         enum:
