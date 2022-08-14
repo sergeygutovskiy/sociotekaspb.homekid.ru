@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\CompanyController;
+use App\Http\Controllers\Client\DicionaryController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
 use App\Http\Controllers\Client\Job\SocialProjectController;
 use App\Http\Controllers\Client\UserFileController;
@@ -32,9 +33,9 @@ Route::prefix('/users')->group(function() {
     });
 });
 
-Route::middleware(['auth:sanctum'])->group(function() {
-    Route::prefix('/dictionaries')->group(function() {
-        Route::get('/categories/{parent_category_slug}/{child_category_slug}', [ DictionaryCategoryController::class, 'child_dictionaries' ]);
-        Route::get('/categories/{category}', [ DictionaryCategoryController::class, 'dictionaries' ]);
-    });
+Route::prefix('/dictionaries')->group(function() {
+    Route::get('/categories/{parent_category_slug}/{child_category_slug}', [ DictionaryCategoryController::class, 'child_dictionaries' ]);
+    Route::get('/categories/{category}', [ DictionaryCategoryController::class, 'dictionaries' ]);
+
+    Route::get('/jobs/reporting-periods/years', [ DicionaryController::class, 'job_reporting_period_years' ]);
 });
