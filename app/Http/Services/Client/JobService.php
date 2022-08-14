@@ -117,13 +117,15 @@ class JobService
         $name_filter = $request->input('filter_name');
         $status_filter = $request->input('filter_status');
         $rating_filter = $request->input('filter_rating');
+        $year_filter = $request->input('filter_year');
 
         $is_any_review_filter = $request->input('filter_is_any_review');
         $is_approbation_filter = $request->input('filter_is_approbation');
         $is_remote_format_filter = $request->input('filter_is_remote_format');
         $is_favorite_filter = $request->input('filter_is_favorite');
         $is_publication_filter = $request->input('filter_is_publication');
-        
+        $volunteer_id_filter = $request->input('filter_volunteer_id');
+
         $rnsu_category_ids_filter = $request->input('filter_rnsu_category_ids');
         $rnsu_category_ids_filter = Validator::parse_query_ids($rnsu_category_ids_filter);
 
@@ -132,6 +134,9 @@ class JobService
 
         $needy_category_target_group_ids_filter = $request->input('filter_needy_category_target_group_ids');
         $needy_category_target_group_ids_filter = Validator::parse_query_ids($needy_category_target_group_ids_filter);
+
+        $social_service_ids_filter = $request->input('filter_social_service_ids');
+        $social_service_ids_filter = Validator::parse_query_ids($social_service_ids_filter);
 
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
@@ -142,13 +147,16 @@ class JobService
             ->optionalHasNameLike($name_filter)
             ->optionalHasStatus($status_filter)
             ->optionalHasRating($rating_filter)
+            ->optionalHasReportingPeriodOfYear($year_filter)
+            ->optionalHasVolunteer($volunteer_id_filter)
             ->optionalHasAnyReview($is_any_review_filter)
             ->optionalHasApprobation($is_approbation_filter)
             ->optionalHasPublication($is_publication_filter)
             ->optionalIsRemoteFormat($is_remote_format_filter)
-            ->optionalHasRnsuCategoryIds($rnsu_category_ids_filter)
-            ->optionalHasNeedyCategoryIds($needy_category_ids_filter)
-            ->optionalHasNeedyCategoryTargetGroupIds($needy_category_target_group_ids_filter)
+            ->optionalHasRnsuCategories($rnsu_category_ids_filter)
+            ->optionalHasNeedyCategories($needy_category_ids_filter)
+            ->optionalHasNeedyCategoryTargetGroups($needy_category_target_group_ids_filter)
+            ->optionalHasSocialServices($social_service_ids_filter)
             ->optionalIsFavorite($is_favorite_filter)
             ->optionalOrderBy($sort_by, $sort_direction)
         ;

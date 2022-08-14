@@ -313,11 +313,24 @@ paths:
         - $ref: "#/components/parameters/JobListFilterStatus"
         - $ref: "#/components/parameters/JobListFilterRating"
         - in: query
+          name: filter_year
+          description: "Год"
+          schema:
+            type: number
+            format: year
+            example: ""
+        - in: query
           name: filter_is_any_review
           description: "Экспертное заключение, рецензия, отзыв"
           schema:
             type: string
             enum: ['0', '1']
+            example: ""
+        - in: query
+          name: filter_volunteer_id
+          description: "Привлечение добровольцев/волонтеров"
+          schema:
+            type: number
             example: ""
         - in: query
           name: filter_is_favorite
@@ -362,6 +375,12 @@ paths:
         - in: query
           name: filter_needy_category_target_group_ids
           description: "Целевые группы"
+          schema:
+            type: string
+            example: ""
+        - in: query
+          name: filter_social_service_ids
+          description: "Формы социального обслуживания (сопровождения)"
           schema:
             type: string
             example: ""
@@ -627,7 +646,7 @@ components:
           example: [58, 59]
         social_service_ids:
           type: array
-          description: "Форма социального обслуживания (сопровождения) *"
+          description: "Формы социального обслуживания (сопровождения) *"
           items:
             type: number
           example: [61, 62]

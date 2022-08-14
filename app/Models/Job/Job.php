@@ -119,7 +119,7 @@ class Job extends Model
         if ( is_null($is_approbation) ) return $query;
         return $query->whereHas(
             'primary_information', 
-            fn($q) => $is_approbation
+            fn(Builder $q) => $is_approbation
                 ? $q->whereNot('approbation', null)
                 : $q->where('approbation', null)
         );
@@ -130,7 +130,7 @@ class Job extends Model
         if ( is_null($is_remote_format) ) return $query;
         return $query->whereHas(
             'primary_information', 
-            fn($q) => $q->where('is_remote_format_possible', $is_remote_format)
+            fn(Builder $q) => $q->where('is_remote_format_possible', $is_remote_format)
         );
     }
 
@@ -139,7 +139,7 @@ class Job extends Model
         if ( is_null($is_any_review) ) return $query;
         return $query->whereHas(
             'primary_information', 
-            fn($q) => $q->where(fn($subq) => $is_any_review
+            fn(Builder $q) => $q->where(fn($subq) => $is_any_review
                 ? $subq
                     ->whereNot('expert_opinion', null)
                     ->orWhereNot('review', null)
@@ -157,39 +157,65 @@ class Job extends Model
         if ( is_null($is_publication) ) return $query;
         return $query->whereHas(
             'experience', 
-            fn($q) => $is_publication
+            fn(Builder $q) => $is_publication
                 ? $q->whereNot('results_in_journal', null)
                 : $q->where('results_in_journal', null)
         );
     }
 
-    public function scopeOptionalHasRnsuCategoryIds(Builder $query, ?array $ids)
+    public function scopeOptionalHasVolunteer(Builder $query, ?int $volunteer_id)
     {
-        if ( is_null($ids) ) return $query;
+        if ( is_null($volunteer_id) ) return $query;
         return $query->whereHas(
             'primary_information', 
-            fn($q) => $q->whereJsonContains('rnsu_category_ids', $ids)
+            fn(Builder $q) => $q->where('volunteer_id', $volunteer_id)
         );
     }
 
-    public function scopeOptionalHasNeedyCategoryIds(Builder $query, ?array $ids)
+    public function scopeOptionalHasRnsuCategories(Builder $query, ?array $ids)
     {
         if ( is_null($ids) ) return $query;
         return $query->whereHas(
             'primary_information', 
-            fn($q) => $q->whereJsonContains('needy_category_ids', $ids)
+            fn(Builder $q) => $q->whereJsonContains('rnsu_category_ids', $ids)
         );
     }
 
-    public function scopeOptionalHasNeedyCategoryTargetGroupIds(Builder $query, ?array $ids)
+    public function scopeOptionalHasNeedyCategories(Builder $query, ?array $ids)
     {
         if ( is_null($ids) ) return $query;
         return $query->whereHas(
             'primary_information', 
-            fn($q) => $q->whereJsonContains('needy_category_target_group_ids', $ids)
+            fn(Builder $q) => $q->whereJsonContains('needy_category_ids', $ids)
+        );
+    }
+
+    public function scopeOptionalHasNeedyCategoryTargetGroups(Builder $query, ?array $ids)
+    {
+        if ( is_null($ids) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn(Builder $q) => $q->whereJsonContains('needy_category_target_group_ids', $ids)
+        );
+    }
+
+    public function scopeOptionalHasSocialServices(Builder $query, ?array $ids)
+    {
+        if ( is_null($ids) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn(Builder $q) => $q->whereJsonContains('social_service_ids', $ids)
         );
     }
     
+    public function scopeOptionalHasReportingPeriodOfYear(Builder $query, ?int $year)
+    {
+        if ( is_null($year) ) return $query;
+        return $query->whereHas(
+            'reporting_periods',
+            fn(Builder $q) => $q->where('year', $year)
+        );
+    }
 
     public function scopeOptionalOrderBy(Builder $query, ?string $order_by, ?string $dir)
     {

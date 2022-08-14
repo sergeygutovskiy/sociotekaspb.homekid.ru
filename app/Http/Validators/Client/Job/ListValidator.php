@@ -13,14 +13,18 @@ class ListValidator extends Validator
         return [
             'page' => ['required', 'integer', 'min:1'],
             'limit' => ['required', 'integer', 'min:1'],
-            
-            'name_filter' => ['sometimes', 'string'],
-            'rating_filter' => ['sometimes', 'integer', 'min:0', 'max:5'],
-            'name_status' => [
+
+            'filter_name' => ['sometimes', 'string'],
+            'filter_rating' => ['sometimes', 'integer', 'min:0', 'max:5'],
+            'filter_status' => [
                 'sometimes',
                 'string',
                 Rule::in([ JobStatus::ACCEPTED, JobStatus::PENDING, JobStatus::REJECTED ]),
             ],
+
+            'filter_year' => ['sometimes', 'digits:4', 'integer', 'min:1900'],
+            'filter_volunteer_id' => ['sometimes', 'integer'],
+
             'filter_is_any_review' => ['sometimes', 'boolean'],
             'filter_is_favorite' => ['sometimes', 'boolean'],
             'filter_is_approbation' => ['sometimes', 'boolean'],
@@ -30,6 +34,7 @@ class ListValidator extends Validator
             'filter_rnsu_category_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_needy_category_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_needy_category_target_group_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
+            'filter_social_service_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
 
             'sort_by' => [
                 'sometimes',
