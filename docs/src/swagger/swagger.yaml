@@ -328,6 +328,7 @@ paths:
         - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
         - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
         - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
         
         - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
@@ -528,7 +529,8 @@ paths:
         - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
         - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
         - $ref: "#/components/parameters/JobListFilterVolunteer"
-        
+        - $ref: "#/components/parameters/JobListFilterYear"
+
         - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
         - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
