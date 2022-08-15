@@ -33,4 +33,9 @@ class ModelAuthorPolicy
     {
         return $user->id === $urlUser->id || $user->is_admin;
     }
+
+    public function download(User $user, User $urlUser)
+    {
+        return $user->id === $urlUser->id || $user->is_admin;
+    }
 }

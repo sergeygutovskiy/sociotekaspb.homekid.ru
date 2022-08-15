@@ -2,6 +2,7 @@
 
 namespace App\Models\Job;
 
+use App\Models\Dictionary;
 use Database\Factories\Job\SocialProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,31 @@ class SocialProject extends Model
         return $this->belongsTo(Job::class);
     }
 
+    public function implementation_level()
+    {
+        return $this->belongsTo(Dictionary::class, 'implementation_level_id');
+    }
+    
+    public function public_works()
+    {
+        return Dictionary::whereIn('id', $this->public_work_ids)->get();
+    }
+
+    public function service_types()
+    {
+        return Dictionary::whereIn('id', $this->service_type_ids)->get();
+    }
+
+    public function service_names()
+    {
+        return Dictionary::whereIn('id', $this->service_name_ids)->get();
+    }
+
+    public function need_recognitions()
+    {
+        return Dictionary::whereIn('id', $this->need_recognition_ids)->get();
+    }
+
     protected static function newFactory()
     {
         return SocialProjectFactory::new();
@@ -43,7 +69,7 @@ class SocialProject extends Model
     public static function findOrFailByUserId(int $user_id, int $id): SocialProject
     {
         return SocialProject::whereHas('job', fn($q) => $q->where('user_id', $user_id))->findOrFail($id);
-    }
+    } 
 
     public function scopeOptionalHasServiceTypes(Builder $query, ?array $ids)
     {

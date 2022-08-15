@@ -462,6 +462,24 @@ paths:
         200:
           description: "OK"
 
+  /client/v1/users/{user_id}/jobs/social-projects/{id}/download:
+    get:
+      tags: [Social Project]
+      summary: "Download info about social project in pdf file"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialProjectId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
   /admin/v1/users/{user_id}/jobs/social-projects/{id}/approve:
     patch:
       tags: [Social Project]

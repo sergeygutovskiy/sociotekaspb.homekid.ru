@@ -49,7 +49,7 @@ class Job extends Model
 
     public function reporting_periods()
     {
-        return $this->hasMany(JobReportingPeriod::class);
+        return $this->hasMany(JobReportingPeriod::class)->orderBy('year', 'desc');
     }
 
     public function social_project()

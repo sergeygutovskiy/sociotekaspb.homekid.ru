@@ -16,6 +16,8 @@ use App\Http\Services\Client\SocialProjectService;
 use App\Models\Job\SocialProject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
 
 class SocialProjectController extends Controller
 {
@@ -66,5 +68,13 @@ class SocialProjectController extends Controller
         
         $social_project->delete();
         return OKResponse::response();
+    }
+
+    public function download(Request $request, User $user, SocialProject $social_project)
+    {
+        if ( $request->user()->cannot('download', $user) ) return AccessDeniedErrorResponse::response();
+
+        $pdf = Pdf::loadView('pdf.job.social-project.index', [ 'social_project' => $social_project ]);
+        return $pdf->download(Str::slug($social_project->job->primary_information->name) . '.pdf');
     }
 }

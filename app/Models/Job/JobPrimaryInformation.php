@@ -2,6 +2,7 @@
 
 namespace App\Models\Job;
 
+use App\Models\Dictionary;
 use Database\Factories\Job\PrimaryInformationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -60,5 +61,35 @@ class JobPrimaryInformation extends Model
     protected static function newFactory()
     {
         return PrimaryInformationFactory::new();
+    }
+
+    public function needy_categories()
+    {
+        return Dictionary::whereIn('id', $this->needy_category_ids)->get();
+    }
+
+    public function needy_category_target_groups()
+    {
+        return Dictionary::whereIn('id', $this->needy_category_target_group_ids)->get();
+    }
+
+    public function social_services()
+    {
+        return Dictionary::whereIn('id', $this->social_service_ids)->get();
+    }
+
+    public function rnsu_categories()
+    {
+        return Dictionary::whereIn('id', $this->rnsu_category_ids)->get();
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Dictionary::class, 'payment_method_id');
+    }
+
+    public function volunteer()
+    {
+        return $this->belongsTo(Dictionary::class, 'volunteer_id');
     }
 }
