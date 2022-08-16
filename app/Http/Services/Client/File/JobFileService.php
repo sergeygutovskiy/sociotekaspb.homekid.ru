@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Services\Client;
+namespace App\Http\Services\Client\File;
 
 use App\Models\Job\Job;
-use App\Models\Job\SocialProject;
+use App\Models\Job\Variant\SocialProject;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 
-class JobPDFService
+class JobFileService
 {
     private static function download(Job $job, string $view, array $data)
     {

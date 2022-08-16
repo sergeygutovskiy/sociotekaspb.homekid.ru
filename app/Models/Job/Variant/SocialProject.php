@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models\Job;
+namespace App\Models\Job\Variant;
 
 use App\Models\Dictionary;
+use App\Models\Job\Job;
 use Database\Factories\Job\SocialProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

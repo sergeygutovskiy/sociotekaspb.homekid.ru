@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Client\Job;
+namespace App\Http\Resources\Client\Job\Variant\SocialProject;
 
+use App\Http\Resources\Client\Job\ItemListResource as JobItemListResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SocialProjectItemListResource extends JsonResource
+class ItemListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

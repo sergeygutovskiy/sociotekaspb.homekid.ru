@@ -3,7 +3,7 @@
 namespace Database\Seeders\Job;
 
 use App\Models\Job\Job;
-use App\Models\Job\SocialProject;
+use App\Models\Job\Variant\SocialProject;
 use Illuminate\Database\Seeder;
 
 class SocialProjectSeeder extends Seeder

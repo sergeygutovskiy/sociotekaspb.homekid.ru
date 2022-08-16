@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Services\Client;
+namespace App\Http\Services\Client\Job\Variant;
 
 use App\Enums\JobVariant;
+use App\Http\Services\Client\Job\JobService;
 use App\Http\Validators\Validator;
-use App\Models\Job\SocialProject;
+use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
 use Illuminate\Http\Request;
 

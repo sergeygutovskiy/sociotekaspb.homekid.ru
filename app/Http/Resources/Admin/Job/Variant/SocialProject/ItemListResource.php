@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Client\Job;
+namespace App\Http\Resources\Admin\Job\Variant\SocialProject;
 
+use App\Http\Resources\Admin\Job\ItemListResource as JobItemListResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class JobReportingPeriodResource extends JsonResource
+class ItemListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +17,7 @@ class JobReportingPeriodResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'total' => $this->total,
-            'year' => $this->year,
-            'families' => $this->families,
-            'children' => $this->children,
-            'men' => $this->men,
-            'women' => $this->women,            
+            $this->merge(new JobItemListResource($this->job)),
         ];
     }
 }

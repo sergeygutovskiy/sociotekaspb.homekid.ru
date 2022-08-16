@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
 use App\Http\Requests\Client\Job\SocialProject\UpdateRequest;
-use App\Http\Resources\Client\Job\SocialProjectResource;
-use App\Http\Resources\Client\Job\SocialProjectItemListResource;
+use App\Http\Resources\Client\Job\Variant\SocialProject\ItemListResource;
+use App\Http\Resources\Client\Job\Variant\SocialProject\Resource;
 use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
-use App\Http\Services\Client\JobPDFService;
-use App\Http\Services\Client\JobService;
-use App\Http\Services\Client\SocialProjectService;
-use App\Models\Job\SocialProject;
+use App\Http\Services\Client\File\JobFileService;
+use App\Http\Services\Client\Job\JobService;
+use App\Http\Services\Client\Job\Variant\SocialProjectService;
+use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,7 @@ class SocialProjectController extends Controller
     public function show(Request $request, User $user, SocialProject $social_project)
     {
         if ( $request->user()->cannot('view', $user) ) return AccessDeniedErrorResponse::response();
-        return ResourceOKResponse::response(new SocialProjectResource($social_project));
+        return ResourceOKResponse::response(new Resource($social_project));
     }
 
     public function update(UpdateRequest $request, User $user, SocialProject $social_project)
@@ -53,7 +53,7 @@ class SocialProjectController extends Controller
         if ( $request->user()->cannot('list', $user) ) return AccessDeniedErrorResponse::response();
 
         $paginated = SocialProjectService::list_by_user($request, $user);
-        $items = SocialProjectItemListResource::collection($paginated->items);
+        $items = ItemListResource::collection($paginated->items);
 
         return OKResponse::response([
             'items' => $items,
@@ -64,7 +64,7 @@ class SocialProjectController extends Controller
     public function delete(Request $request, User $user, SocialProject $social_project)
     {
         if ( $request->user()->cannot('delete', $user) ) return AccessDeniedErrorResponse::response();
-        
+
         $social_project->job->delete();
         $social_project->delete();
 
@@ -75,6 +75,6 @@ class SocialProjectController extends Controller
     {
         if ( $request->user()->cannot('download', $user) ) return AccessDeniedErrorResponse::response();
 
-        return JobPDFService::downloadSocialProject($social_project);
+        return JobFileService::downloadSocialProject($social_project);
     }
 }

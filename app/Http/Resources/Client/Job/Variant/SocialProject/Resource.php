@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Resources\Client\Job;
+namespace App\Http\Resources\Client\Job\Variant\SocialProject;
 
+use App\Http\Resources\Client\Job\ContactsResource;
+use App\Http\Resources\Client\Job\ExperienceResource;
+use App\Http\Resources\Client\Job\PrimaryInformationResource;
+use App\Http\Resources\Client\Job\ReportingPeriodResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SocialProjectResource extends JsonResource
+class Resource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,10 +23,10 @@ class SocialProjectResource extends JsonResource
             'status' => $this->job->status,
             'rejected_status_description' => $this->job->rejected_status_description,
 
-            'primary' => new JobPrimaryInformationResource($this->job->primary_information),
-            'experience' => new JobExperienceResource($this->job->experience),
-            'contacts' => new JobContactsResource($this->job->contacts),
-            'reporting_periods' => JobReportingPeriodResource::collection($this->job->reporting_periods),
+            'primary' => new PrimaryInformationResource($this->job->primary_information),
+            'experience' => new ExperienceResource($this->job->experience),
+            'contacts' => new ContactsResource($this->job->contacts),
+            'reporting_periods' => ReportingPeriodResource::collection($this->job->reporting_periods),
 
             'info' => [
                 'participant' => $this->participant,

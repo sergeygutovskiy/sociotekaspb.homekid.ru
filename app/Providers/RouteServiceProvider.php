@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Job\SocialProject;
+use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

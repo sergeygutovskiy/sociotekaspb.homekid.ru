@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Admin\Job;
+namespace App\Http\Resources\Client\Job;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class JobItemListResource extends JsonResource
+class ItemListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,7 @@ class JobItemListResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'user_id' => $this->user_id,
-            'company_name' => $this->user->company->name,
+            'is_favorite' => $this->is_favorite,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -3,7 +3,7 @@
 namespace Database\Factories\Job;
 
 use App\Models\Dictionary;
-use App\Models\Job\SocialProject;
+use App\Models\Job\Variant\SocialProject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

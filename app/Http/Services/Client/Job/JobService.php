@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\Client;
+namespace App\Http\Services\Client\Job;
 
 use App\Enums\JobStatus;
 use App\Http\Validators\Validator;

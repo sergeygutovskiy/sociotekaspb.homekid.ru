@@ -6,7 +6,7 @@ use App\Http\Resources\Client\UserFileResource;
 use App\Models\UserFile;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class JobPrimaryInformationResource extends JsonResource
+class PrimaryInformationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

@@ -2,7 +2,7 @@
 
 namespace App\Models\Job;
 
-use App\Models\Company;
+use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
