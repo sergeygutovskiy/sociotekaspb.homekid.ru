@@ -69,7 +69,9 @@ class SocialProject extends Model
 
     public static function findOrFailByUserId(int $user_id, int $id): SocialProject
     {
-        return SocialProject::whereHas('job', fn($q) => $q->where('user_id', $user_id))->findOrFail($id);
+        return SocialProject::withTrashed()
+            ->whereHas('job', fn($q) => $q->where('user_id', $user_id))
+            ->findOrFail($id);
     } 
 
     public function scopeOptionalHasServiceTypes(Builder $query, ?array $ids)

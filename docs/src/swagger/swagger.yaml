@@ -416,6 +416,8 @@ paths:
                       rejected_status_description:
                         type: string
                         nullable: true
+                      is_deleted:
+                        type: boolean
                       primary:
                         $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
                       experience:
