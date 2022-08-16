@@ -548,6 +548,7 @@ paths:
         - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
         - $ref: "#/components/parameters/JobListFilterVolunteer"
         - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
 
         - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
@@ -588,6 +589,7 @@ paths:
         - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
         - $ref: "#/components/parameters/JobListFilterVolunteer"
         - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
 
         - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
@@ -1134,6 +1136,13 @@ components:
       in: query
       name: filter_social_service_ids
       description: "[common] Формы социального обслуживания (сопровождения)"
+      schema:
+        type: string
+        example: ""
+    JobListFilterCompanyName:
+      in: query
+      name: filter_company
+      description: "[common] Название компании"
       schema:
         type: string
         example: ""

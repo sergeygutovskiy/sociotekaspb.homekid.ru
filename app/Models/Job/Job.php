@@ -2,6 +2,7 @@
 
 namespace App\Models\Job;
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,11 @@ class Job extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function company()
+    {
+        return $this->user->company();
     }
 
     public function primary_information()
@@ -215,6 +221,15 @@ class Job extends Model
         return $query->whereHas(
             'reporting_periods',
             fn(Builder $q) => $q->where('year', $year)
+        );
+    }
+
+    public function scopeOptionalHasCompany(Builder $query, ?string $company)
+    {
+        if ( is_null($company) ) return $query;
+        return $query->whereHas(
+            'user',
+            fn(Builder $q) => $q->whereHas('company', fn($qq) => $qq->where('name', 'like', '%'.$company.'%'))
         );
     }
 

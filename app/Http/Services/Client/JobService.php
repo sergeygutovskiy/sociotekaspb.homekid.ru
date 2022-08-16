@@ -102,13 +102,17 @@ class JobService
 
     public static function list_all(Request $request, string $job_variant)
     {
-        $query = Job::query();
+        $company_filter = $request->input('filter_company');
+
+        $query = Job::optionalHasCompany($company_filter);
         return self::list($request, $job_variant, $query);
     }
 
     public static function list_all_deleted(Request $request, string $job_variant)
     {
-        $query = Job::onlyTrashed();
+        $company_filter = $request->input('filter_company');
+
+        $query = Job::onlyTrashed()->optionalHasCompany($company_filter);
         return self::list($request, $job_variant, $query);
     }
 

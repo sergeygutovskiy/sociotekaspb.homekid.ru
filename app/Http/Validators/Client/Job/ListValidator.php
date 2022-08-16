@@ -35,6 +35,7 @@ class ListValidator extends Validator
             'filter_needy_category_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_needy_category_target_group_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_social_service_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
+            'filter_company' => ['sometimes', 'string'],
 
             'sort_by' => [
                 'sometimes',
