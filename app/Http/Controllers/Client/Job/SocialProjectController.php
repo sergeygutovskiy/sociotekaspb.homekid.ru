@@ -11,13 +11,12 @@ use App\Http\Resources\Client\Job\SocialProjectItemListResource;
 use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
+use App\Http\Services\Client\JobPDFService;
 use App\Http\Services\Client\JobService;
 use App\Http\Services\Client\SocialProjectService;
 use App\Models\Job\SocialProject;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Str;
 
 class SocialProjectController extends Controller
 {
@@ -72,9 +71,8 @@ class SocialProjectController extends Controller
 
     public function download(Request $request, User $user, SocialProject $social_project)
     {
-        if ( $request->user()->cannot('download', $user) ) return AccessDeniedErrorResponse::response();
+        // if ( $request->user()->cannot('download', $user) ) return AccessDeniedErrorResponse::response();
 
-        $pdf = Pdf::loadView('pdf.job.social-project.index', [ 'social_project' => $social_project ]);
-        return $pdf->download(Str::slug($social_project->job->primary_information->name) . '.pdf');
+        return JobPDFService::downloadSocialProject($social_project);
     }
 }

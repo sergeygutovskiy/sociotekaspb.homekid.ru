@@ -1,5 +1,5 @@
 <h2>Отчетные периоды</h2>
-@foreach ($social_project->job->reporting_periods as $reporting_period)
+@foreach ($reporting_periods as $reporting_period)
     <h3>{{ $reporting_period->year }}</h3>
     <div>
         <div>Общее количество участников за отчетный период: <span>{{ $reporting_period->total }}</span></div>

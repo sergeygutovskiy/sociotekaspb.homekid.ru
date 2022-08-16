@@ -1,15 +1,15 @@
 <h2>Опыт</h2>
 <div class="text-block">
     <h3>Описание результатов в виде статьи, опубликованной в сборнике, журнале</h3>
-    @if ($social_project->job->experience->results_in_journal)
+    @if ( $experience->results_in_journal )
         <dl>
             <div>
                 <dt>Описание</dt>
-                <dd>{{ $social_project->job->experience->results_in_journal['description'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_in_journal['description'] ?? 'Нет' }}</dd>
             </div>
             <div>
                 <dt>Ссылка</dt>
-                <dd>{{ $social_project->job->experience->results_in_journal['link'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_in_journal['link'] ?? 'Нет' }}</dd>
             </div>
         </dl>
     @else
@@ -18,15 +18,15 @@
 </div>
 <div class="text-block">
     <h3>Представление результатов на мероприятиях различного уровня</h3>
-    @if ($social_project->job->experience->results_of_various_events)
+    @if ( $experience->results_of_various_events )
         <dl>
             <div>
                 <dt>Описание</dt>
-                <dd>{{ $social_project->job->experience->results_of_various_events['description'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_of_various_events['description'] ?? 'Нет' }}</dd>
             </div>
             <div>
                 <dt>Ссылка</dt>
-                <dd>{{ $social_project->job->experience->results_of_various_events['link'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_of_various_events['link'] ?? 'Нет' }}</dd>
             </div>
         </dl>
     @else
@@ -35,15 +35,15 @@
 </div>
 <div class="text-block">
     <h3>Представление информации о результатах на сайте организации</h3>
-    @if ($social_project->job->experience->results_info_in_site)
+    @if ( $experience->results_info_in_site )
         <dl>
             <div>
                 <dt>Описание</dt>
-                <dd>{{ $social_project->job->experience->results_info_in_site['description'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_info_in_site['description'] ?? 'Нет' }}</dd>
             </div>
             <div>
                 <dt>Ссылка</dt>
-                <dd>{{ $social_project->job->experience->results_info_in_site['link'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_info_in_site['link'] ?? 'Нет' }}</dd>
             </div>
         </dl>
     @else
@@ -52,15 +52,15 @@
 </div>
 <div class="text-block">
     <h3>Представление информации о результатах в СМИ</h3>
-    @if ($social_project->job->experience->results_info_in_media)
+    @if ( $experience->results_info_in_media )
         <dl>
             <div>
                 <dt>Описание</dt>
-                <dd>{{ $social_project->job->experience->results_info_in_media['description'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_info_in_media['description'] ?? 'Нет' }}</dd>
             </div>
             <div>
                 <dt>Ссылка</dt>
-                <dd>{{ $social_project->job->experience->results_info_in_media['link'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_info_in_media['link'] ?? 'Нет' }}</dd>
             </div>
         </dl>
     @else
@@ -69,15 +69,15 @@
 </div>
 <div class="text-block">
     <h3>Проведение мастер-классов (семинаров) по результатам</h3>
-    @if ($social_project->job->experience->results_seminars)
+    @if ( $experience->results_seminars )
         <dl>
             <div>
                 <dt>Описание</dt>
-                <dd>{{ $social_project->job->experience->results_seminars['description'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_seminars['description'] ?? 'Нет' }}</dd>
             </div>
             <div>
                 <dt>Ссылка</dt>
-                <dd>{{ $social_project->job->experience->results_seminars['link'] ?? 'Нет' }}</dd>
+                <dd>{{ $experience->results_seminars['link'] ?? 'Нет' }}</dd>
             </div>
         </dl>
     @else

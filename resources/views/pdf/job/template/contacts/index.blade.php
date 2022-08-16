@@ -2,18 +2,18 @@
 <div class="text-block">
     <h3>ФИО ответственного лица</h3>
     <p>
-        {{ $social_project->job->contacts->fio }}
+        {{ $contacts->fio }}
     </p>
 </div>
 <div class="text-block">
     <h3>Электронная почта</h3>
     <p>
-        {{ $social_project->job->contacts->fio }}
+        {{ $contacts->fio }}
     </p>
 </div>
 <div class="text-block">
     <h3>Контактный телефон</h3>
     <p>
-        {{ $social_project->job->contacts->phone }}
+        {{ $contacts->phone }}
     </p>
 </div>
