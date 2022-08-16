@@ -19,7 +19,7 @@ class ItemListResource extends JsonResource
             'company_name' => $this->user->company->name,
             'status' => $this->status,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'deleted_at' => $this->deleted_at,
             'name' => $this->primary_information->name,
             'rating' => [
                 'count' => $this->rating_expanded->count,
