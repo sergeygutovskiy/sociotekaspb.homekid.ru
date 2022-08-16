@@ -35,6 +35,7 @@ return new class extends Migration
             $table->unsignedInteger('rating')->default(0)->max(5);
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

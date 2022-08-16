@@ -106,6 +106,12 @@ class JobService
         return self::list($request, $job_variant, $query);
     }
 
+    public static function list_all_deleted(Request $request, string $job_variant)
+    {
+        $query = Job::onlyTrashed();
+        return self::list($request, $job_variant, $query);
+    }
+
     public static function list_by_user(Request $request, string $job_variant, User $user)
     {
         $query = $user->jobs();
@@ -142,7 +148,7 @@ class JobService
         $sort_direction = $request->input('sort_direction');
 
         $query = $initial_query
-            ->whereHas($job_variant)
+            ->whereHas($job_variant, fn($q) => $q->withTrashed())
             ->with('primary_information')
             ->optionalHasNameLike($name_filter)
             ->optionalHasStatus($status_filter)

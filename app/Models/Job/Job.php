@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use stdClass;
 
 class Job extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'primary_information_id',
@@ -54,7 +55,7 @@ class Job extends Model
 
     public function social_project()
     {
-        return $this->hasOne(SocialProject::class);
+        return $this->hasOne(SocialProject::class)->withTrashed();
     }
 
     public function getRatingExpandedAttribute()

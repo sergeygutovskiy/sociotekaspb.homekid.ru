@@ -33,7 +33,7 @@ class SocialProject extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Job::class)->withTrashed();
     }
 
     public function implementation_level()

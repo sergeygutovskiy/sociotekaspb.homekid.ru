@@ -65,13 +65,15 @@ class SocialProjectController extends Controller
     {
         if ( $request->user()->cannot('delete', $user) ) return AccessDeniedErrorResponse::response();
         
+        $social_project->job->delete();
         $social_project->delete();
+
         return OKResponse::response();
     }
 
     public function download(Request $request, User $user, SocialProject $social_project)
     {
-        // if ( $request->user()->cannot('download', $user) ) return AccessDeniedErrorResponse::response();
+        if ( $request->user()->cannot('download', $user) ) return AccessDeniedErrorResponse::response();
 
         return JobPDFService::downloadSocialProject($social_project);
     }

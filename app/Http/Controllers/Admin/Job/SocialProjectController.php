@@ -37,4 +37,15 @@ class SocialProjectController extends Controller
             'total' => $paginated->total,
         ]);
     }
+
+    public function index_deleted(ListRequest $request)
+    {
+        $paginated = SocialProjectService::list_all_deleted($request);
+        $items = SocialProjectItemListResource::collection($paginated->items);
+
+        return OKResponse::response([
+            'items' => $items,
+            'total' => $paginated->total,
+        ]);
+    }
 }

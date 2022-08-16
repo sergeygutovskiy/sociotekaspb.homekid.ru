@@ -13,12 +13,16 @@ Route::prefix('/users')->group(function() {
         
         Route::prefix('/jobs')->group(function() {
             Route::prefix('/social-projects')->group(function() {
-                Route::patch('/{social_project}/approve', [ SocialProjectController::class, 'approve' ]);
-                Route::patch('/{social_project}/reject', [ SocialProjectController::class, 'reject' ]);
+                Route::prefix('/{social_project}')->group(function() {
+                    Route::patch('/approve', [ SocialProjectController::class, 'approve' ]);
+                    Route::patch('/reject', [ SocialProjectController::class, 'reject' ]);
+                });
             });
         });
     });
 
     Route::get('/jobs/social-projects', [ SocialProjectController::class, 'index' ]);
+    Route::get('/jobs/social-projects/deleted', [ SocialProjectController::class, 'index_deleted' ]);
+
     Route::get('/companies', [ CompanyController::class, 'index' ]);
 });
