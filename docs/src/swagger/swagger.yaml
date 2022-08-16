@@ -56,13 +56,7 @@ paths:
       tags: [Company]
       summary: "Update company of auth user"
       parameters:
-        - in: path
-          name: user_id
-          description: "ID of user"
-          example: 1
-          required: true
-          schema:
-            type: number
+        - $ref: "#/components/parameters/UserId"
       requestBody:
         required: true
         content:
@@ -152,6 +146,24 @@ paths:
       responses:
         200:
           description: "OK"
+
+  /client/v1/users/{user_id}/company/download:
+    get:
+      tags:
+      - Company
+      summary: "Download pdf file with company of auth user"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
 
   /admin/v1/users/{user_id}/company/approve:
     patch:
@@ -475,7 +487,7 @@ paths:
         200:
           description: "OK"
           content:
-            application/octet-stream:
+            application/pdf:
               schema:
                 type: string
                 format: binary

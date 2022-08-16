@@ -49,6 +49,11 @@ class Company extends Model
         return $this->belongsTo(Dictionary::class, 'district_id');
     }
 
+    public function organization_type()
+    {
+        return $this->belongsTo(Dictionary::class, 'organization_type_id');
+    }
+
     /**
      * Create a new factory instance for the model.
      *

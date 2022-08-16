@@ -12,10 +12,11 @@ Route::prefix('/users')->group(function() {
     Route::post('/login', [ AuthController::class, 'login' ]);
     Route::post('/check', [ AuthController::class, 'check' ])->middleware('auth:sanctum');
 
-    Route::prefix('/{user}')->middleware('auth:sanctum')->group(function() {
+    Route::prefix('/{user}')->group(function() {
         Route::prefix('/company')->group(function() {
             Route::get('/', [ CompanyController::class, 'show' ]);
             Route::put('/', [ CompanyController::class, 'update' ]);
+            Route::get('/download', [ CompanyController::class, 'download' ]);
         });
 
         Route::post('/files', [ UserFileController::class, 'store' ]);
