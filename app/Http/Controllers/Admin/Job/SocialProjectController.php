@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Job;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Job\ApproveRequest;
 use App\Http\Requests\Admin\Job\RejectRequest;
+use App\Http\Resources\Admin\Job\DeletedItemListResource;
 use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Resources\Admin\Job\Variant\SocialProject\ItemListResource;
 use App\Http\Services\Admin\JobService;
@@ -41,7 +42,7 @@ class SocialProjectController extends Controller
     public function index_deleted(ListRequest $request)
     {
         $paginated = SocialProjectService::list_all_deleted($request);
-        $items = ItemListResource::collection($paginated->items);
+        $items = DeletedItemListResource::collection($paginated->items);
 
         return OKResponse::response([
             'items' => $items,
