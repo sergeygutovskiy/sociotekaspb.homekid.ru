@@ -148,6 +148,8 @@ class JobService
         $social_service_ids_filter = $request->input('filter_social_service_ids');
         $social_service_ids_filter = Validator::parse_query_ids($social_service_ids_filter);
 
+        $is_practice_placed_in_asi_smarteka_filter = $request->input('filter_is_practice_placed_in_asi_smarteka');
+
         $sort_by = $request->input('sort_by');
         $sort_direction = $request->input('sort_direction');
 
@@ -167,6 +169,7 @@ class JobService
             ->optionalHasNeedyCategoryTargetGroups($needy_category_target_group_ids_filter)
             ->optionalHasSocialServices($social_service_ids_filter)
             ->optionalIsFavorite($is_favorite_filter)
+            ->optionalIsPracticePlacedInAsiSmarteka($is_practice_placed_in_asi_smarteka_filter)
             ->optionalOrderBy($sort_by, $sort_direction)
         ;
 

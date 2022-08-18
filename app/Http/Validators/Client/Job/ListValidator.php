@@ -36,6 +36,7 @@ class ListValidator extends Validator
             'filter_needy_category_target_group_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_social_service_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_company' => ['sometimes', 'string'],
+            'filter_is_practice_placed_in_asi_smarteka' => ['sometimes', 'boolean'],
 
             'sort_by' => [
                 'sometimes',

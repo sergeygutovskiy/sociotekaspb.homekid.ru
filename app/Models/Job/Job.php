@@ -173,6 +173,15 @@ class Job extends Model
         );
     }
 
+    public function scopeOptionalIsPracticePlacedInAsiSmarteka(Builder $query, ?bool $is_practice_placed_in_asi_smarteka)
+    {
+        if ( is_null($is_practice_placed_in_asi_smarteka) ) return $query;
+        return $query->whereHas(
+            'primary_information',
+            fn(Builder $q) => $q->where('is_practice_placed_in_asi_smarteka', $is_practice_placed_in_asi_smarteka)
+        );
+    }
+
     public function scopeOptionalHasVolunteer(Builder $query, ?int $volunteer_id)
     {
         if ( is_null($volunteer_id) ) return $query;
