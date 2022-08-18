@@ -16,8 +16,13 @@ trait ImplementsJob
         return $this->job()->withTrashed();
     }
 
-    public static function findOrFailByUserId(int $user_id, int $id): self
+    public static function findOrFailByUser(int $id, int $user_id): self
     {
         return self::whereHas('job', fn($q) => $q->where('user_id', $user_id))->findOrFail($id);
-    } 
+    }
+
+    public static function findDeletedOrFailByUser(int $id, int $user_id): self
+    {
+        return self::whereHas('job', fn($q) => $q->onlyTrashed()->where('user_id', $user_id))->findOrFail($id);
+    }
 }

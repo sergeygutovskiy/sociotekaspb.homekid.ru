@@ -17,12 +17,18 @@ Route::prefix('/users')->group(function() {
                     Route::patch('/approve', [ SocialProjectController::class, 'approve' ]);
                     Route::patch('/reject', [ SocialProjectController::class, 'reject' ]);
                 });
+
+                Route::patch('/{social_project_deleted}/restore', [ SocialProjectController::class, 'restore' ]);
             });
         });
     });
 
-    Route::get('/jobs/social-projects', [ SocialProjectController::class, 'index' ]);
-    Route::get('/jobs/social-projects/deleted', [ SocialProjectController::class, 'index_deleted' ]);
+    Route::prefix('/jobs')->group(function(){
+        Route::prefix('/social-projects')->group(function(){
+            Route::get('/', [ SocialProjectController::class, 'index' ]);
+            Route::get('/deleted', [ SocialProjectController::class, 'index_deleted' ]);
+        });
+    });
 
     Route::get('/companies', [ CompanyController::class, 'index' ]);
 });

@@ -13,6 +13,7 @@ use App\Http\Responses\OKResponse;
 use App\Http\Services\Client\Job\Variant\SocialProjectService;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class SocialProjectController extends Controller
 {
@@ -25,6 +26,12 @@ class SocialProjectController extends Controller
     public function reject(RejectRequest $request, User $user, SocialProject $social_project)
     {
         JobService::reject($request, $social_project->job());
+        return OKResponse::response();
+    }
+
+    public function restore(Request $request, User $user, SocialProject $social_project)
+    {
+        $social_project->trashed_job->restore();
         return OKResponse::response();
     }
 

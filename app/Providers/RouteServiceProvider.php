@@ -31,7 +31,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         Route::bind('user', fn($id) => User::findOrFail($id));
-        Route::bind('social_project', fn($id, $route) => SocialProject::findOrFailByUserId($route->parameter('user')->id, $id));
+        Route::bind('social_project', fn($id, $route) => SocialProject::findOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('social_project_deleted', fn($id, $route) => SocialProject::findDeletedOrFailByUser($id, $route->parameter('user')->id));
 
         $this->routes(function () {
             Route::prefix('api/client/v1')

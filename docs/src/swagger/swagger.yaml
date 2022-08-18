@@ -538,6 +538,19 @@ paths:
         200:
           description: "OK"
 
+  /admin/v1/users/{user_id}/jobs/social-projects/{id}/restore:
+    patch:
+      tags: [Social Project]
+      summary: "Restore social project from archive"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialProjectId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
   /admin/v1/users/jobs/social-projects:
     get:
       tags: [Social Project]
