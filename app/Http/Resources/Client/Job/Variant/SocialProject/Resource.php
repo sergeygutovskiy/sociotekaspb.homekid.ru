@@ -20,14 +20,15 @@ class Resource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'status' => $this->job->status,
-            'rejected_status_description' => $this->job->rejected_status_description,
-            'is_deleted' => $this->job->trashed(),
+            'status' => $this->trashed_job->status,
+            'rejected_status_description' => $this->trashed_job->rejected_status_description,
+            'is_deleted' => $this->trashed_job->trashed(),
+            'is_favorite' => $this->trashed_job->is_favorite,
 
-            'primary' => new PrimaryInformationResource($this->job->primary_information),
-            'experience' => new ExperienceResource($this->job->experience),
-            'contacts' => new ContactsResource($this->job->contacts),
-            'reporting_periods' => ReportingPeriodResource::collection($this->job->reporting_periods),
+            'primary' => new PrimaryInformationResource($this->trashed_job->primary_information),
+            'experience' => new ExperienceResource($this->trashed_job->experience),
+            'contacts' => new ContactsResource($this->trashed_job->contacts),
+            'reporting_periods' => ReportingPeriodResource::collection($this->trashed_job->reporting_periods),
 
             'info' => [
                 'participant' => $this->participant,

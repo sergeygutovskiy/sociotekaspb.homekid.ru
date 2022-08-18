@@ -419,6 +419,8 @@ paths:
                         nullable: true
                       is_deleted:
                         type: boolean
+                      is_favorite:
+                        type: boolean
                       primary:
                         $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
                       experience:

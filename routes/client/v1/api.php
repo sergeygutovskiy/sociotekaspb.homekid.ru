@@ -24,12 +24,11 @@ Route::prefix('/users')->group(function() {
         Route::prefix('/jobs')->group(function() {
             Route::prefix('/social-projects')->group(function() {
                 Route::prefix('/{social_project}')->group(function() {
-                    Route::get('/', [ SocialProjectController::class, 'show' ]);
                     Route::put('/', [ SocialProjectController::class, 'update' ]);
                     Route::delete('/', [ SocialProjectController::class, 'delete' ]);
-
                     Route::get('/download', [ SocialProjectController::class, 'download' ]);
                 });
+                Route::get('/{social_project_optional_deleted}', [ SocialProjectController::class, 'show' ]);
 
                 Route::get('/', [ SocialProjectController::class, 'index' ]);
                 Route::post('/', [ SocialProjectController::class, 'store' ]);
