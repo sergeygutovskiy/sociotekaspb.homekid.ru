@@ -12,7 +12,12 @@ class DicionaryController extends Controller
 {
     public function job_reporting_period_years()
     {
-        $years = JobReportingPeriod::select('year')->orderBy('year', 'desc')->distinct()->pluck('year');
+        $min_year = JobReportingPeriod::min('year');
+        $max_year = JobReportingPeriod::max('year');
+
+        $years = collect([]);
+        for ( $i = $min_year; $i <= $max_year; $i++ ) $years->add($i);
+        
         $years_resource = $years->map(function($year) {
             $dictionary = new stdClass();
             $dictionary->id = $year;
