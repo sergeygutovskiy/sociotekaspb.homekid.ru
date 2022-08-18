@@ -1073,7 +1073,7 @@ components:
       schema:
         type: number
         minimum: 0
-        maximum: 5
+        maximum: 6
     JobListFilterYear:
       in: query
       name: filter_year

@@ -67,6 +67,7 @@ class Job extends Model
     public function getRatingExpandedAttribute()
     {
         $is_favorite = $this->is_favorite;
+        $is_practice_placed_in_asi_smarteka = $this->primary_information->is_practice_placed_in_asi_smarteka;
         $is_has_publication = !!$this->experience->results_in_journal;
         $is_has_approbation = !!$this->primary_information->approbation;
         $is_has_replicability = !!$this->primary_information->replicability;
@@ -77,6 +78,7 @@ class Job extends Model
         );
 
         $rating_count = $is_favorite 
+            + $is_practice_placed_in_asi_smarteka
             + $is_has_approbation 
             + $is_has_replicability 
             + $is_has_publication
@@ -87,6 +89,7 @@ class Job extends Model
         
         $rating_fields = new stdClass();
         $rating_fields->is_favorite = $is_favorite;
+        $rating_fields->is_practice_placed_in_asi_smarteka = $is_practice_placed_in_asi_smarteka;
         $rating_fields->is_has_publication = $is_has_publication;
         $rating_fields->is_has_approbation = $is_has_approbation;
         $rating_fields->is_has_replicability = $is_has_replicability;

@@ -15,7 +15,7 @@ class ListValidator extends Validator
             'limit' => ['required', 'integer', 'min:1'],
 
             'filter_name' => ['sometimes', 'string'],
-            'filter_rating' => ['sometimes', 'integer', 'min:0', 'max:5'],
+            'filter_rating' => ['sometimes', 'integer', 'min:0', 'max:6'],
             'filter_status' => [
                 'sometimes',
                 'string',
