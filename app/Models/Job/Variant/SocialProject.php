@@ -3,6 +3,10 @@
 namespace App\Models\Job\Variant;
 
 use App\Models\Dictionary;
+use App\Models\Job\Variant\Traits\Fields\HasImplementationLevelField;
+use App\Models\Job\Variant\Traits\Fields\HasNeedRecognitionsField;
+use App\Models\Job\Variant\Traits\Fields\HasPublicWorksField;
+use App\Models\Job\Variant\Traits\Fields\HasServicesField;
 use App\Models\Job\Variant\Traits\ImplementsJob;
 use Database\Factories\Job\SocialProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +16,13 @@ use Illuminate\Database\Eloquent\Builder;
 class SocialProject extends Model
 {
     use HasFactory;
+
     use ImplementsJob;
+    use HasImplementationLevelField,
+        HasPublicWorksField,
+        HasServicesField,
+        HasNeedRecognitionsField
+    ;
 
     protected $fillable = [
         'participant',
@@ -32,64 +42,9 @@ class SocialProject extends Model
         'need_recognition_ids' => 'array',
     ];
 
-    public function implementation_level()
-    {
-        return $this->belongsTo(Dictionary::class, 'implementation_level_id');
-    }
-    
-    public function public_works()
-    {
-        return Dictionary::whereIn('id', $this->public_work_ids)->get();
-    }
-
-    public function service_types()
-    {
-        return Dictionary::whereIn('id', $this->service_type_ids)->get();
-    }
-
-    public function service_names()
-    {
-        return Dictionary::whereIn('id', $this->service_name_ids)->get();
-    }
-
-    public function need_recognitions()
-    {
-        return Dictionary::whereIn('id', $this->need_recognition_ids)->get();
-    }
-
     protected static function newFactory()
     {
         return SocialProjectFactory::new();
-    }
-
-    public function scopeOptionalHasServiceTypes(Builder $query, ?array $ids)
-    {
-        if ( is_null($ids) ) return $query;
-        return $query->whereJsonContains('service_type_ids', $ids);
-    }
-
-    public function scopeOptionalHasServiceNames(Builder $query, ?array $ids)
-    {
-        if ( is_null($ids) ) return $query;
-        return $query->whereJsonContains('service_name_ids', $ids);
-    }
-
-    public function scopeOptionalHasPublicWorks(Builder $query, ?array $ids)
-    {
-        if ( is_null($ids) ) return $query;
-        return $query->whereJsonContains('public_work_ids', $ids);
-    }
-
-    public function scopeOptionalHasNeedRecognitions(Builder $query, ?array $ids)
-    {
-        if ( is_null($ids) ) return $query;
-        return $query->whereJsonContains('need_recognition_ids', $ids);
-    }
-
-    public function scopeOptionalHasImplementationLevel(Builder $query, ?int $implementation_level_id)
-    {
-        if ( is_null($implementation_level_id) ) return $query;
-        return $query->where('implementation_level_id', $implementation_level_id);
     }
 
     public function scopeOptionalIsParticipant(Builder $query, ?bool $is_participant)

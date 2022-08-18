@@ -11,6 +11,11 @@ trait ImplementsJob
         return $this->belongsTo(Job::class);
     }
 
+    public function trashed_job()
+    {
+        return $this->job()->withTrashed();
+    }
+
     public static function findOrFailByUserId(int $user_id, int $id): self
     {
         return self::whereHas('job', fn($q) => $q->where('user_id', $user_id))->findOrFail($id);

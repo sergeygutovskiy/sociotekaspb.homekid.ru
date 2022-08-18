@@ -112,7 +112,7 @@ class JobService
     {
         $company_filter = $request->input('filter_company');
 
-        $query = Job::optionalHasCompany($company_filter);
+        $query = Job::onlyTrashed()->optionalHasCompany($company_filter);
         return self::list($request, $job_variant, $query);
     }
 
@@ -153,7 +153,6 @@ class JobService
 
         $query = $initial_query
             ->whereHas($job_variant)
-            ->with('primary_information')
             ->optionalHasNameLike($name_filter)
             ->optionalHasStatus($status_filter)
             ->optionalHasRating($rating_filter)
