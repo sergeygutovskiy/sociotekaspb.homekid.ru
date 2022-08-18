@@ -3,16 +3,16 @@
 namespace App\Models\Job\Variant;
 
 use App\Models\Dictionary;
-use App\Models\Job\Job;
+use App\Models\Job\Variant\Traits\ImplementsJob;
 use Database\Factories\Job\SocialProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
 class SocialProject extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use ImplementsJob;
 
     protected $fillable = [
         'participant',
@@ -31,11 +31,6 @@ class SocialProject extends Model
         'service_name_ids' => 'array',
         'need_recognition_ids' => 'array',
     ];
-
-    public function job()
-    {
-        return $this->belongsTo(Job::class)->withTrashed();
-    }
 
     public function implementation_level()
     {
@@ -66,13 +61,6 @@ class SocialProject extends Model
     {
         return SocialProjectFactory::new();
     }
-
-    public static function findOrFailByUserId(int $user_id, int $id): SocialProject
-    {
-        return SocialProject::withTrashed()
-            ->whereHas('job', fn($q) => $q->where('user_id', $user_id))
-            ->findOrFail($id);
-    } 
 
     public function scopeOptionalHasServiceTypes(Builder $query, ?array $ids)
     {

@@ -22,8 +22,7 @@ class Resource extends JsonResource
             'id' => $this->id,
             'status' => $this->job->status,
             'rejected_status_description' => $this->job->rejected_status_description,
-
-            'is_deleted' => $this->trashed(),
+            'is_deleted' => $this->job->trashed(),
 
             'primary' => new PrimaryInformationResource($this->job->primary_information),
             'experience' => new ExperienceResource($this->job->experience),

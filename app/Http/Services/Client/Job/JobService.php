@@ -112,7 +112,7 @@ class JobService
     {
         $company_filter = $request->input('filter_company');
 
-        $query = Job::onlyTrashed()->optionalHasCompany($company_filter);
+        $query = Job::optionalHasCompany($company_filter);
         return self::list($request, $job_variant, $query);
     }
 
@@ -152,7 +152,7 @@ class JobService
         $sort_direction = $request->input('sort_direction');
 
         $query = $initial_query
-            ->whereHas($job_variant, fn($q) => $q->withTrashed())
+            ->whereHas($job_variant)
             ->with('primary_information')
             ->optionalHasNameLike($name_filter)
             ->optionalHasStatus($status_filter)
@@ -174,14 +174,14 @@ class JobService
         return $query;
     }
 
-    public static function paginate(Request $request, $query)
+    public static function paginate(Request $request, $query, $relation = null)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');
 
         $paginated = new stdClass();
         $paginated->total = $query->count();
-        $paginated->items = $query->skip(($page - 1) * $limit)->take($limit)->get();
+        $paginated->items = $query->skip(($page - 1) * $limit)->take($limit)->get()->map(fn($job) => $job->{$relation});
 
         return $paginated;
     }

@@ -61,7 +61,7 @@ class Job extends Model
 
     public function social_project()
     {
-        return $this->hasOne(SocialProject::class)->withTrashed();
+        return $this->hasOne(SocialProject::class);
     }
 
     public function getRatingExpandedAttribute()
