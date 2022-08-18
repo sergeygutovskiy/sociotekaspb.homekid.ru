@@ -771,6 +771,10 @@ components:
           type: boolean
           description: "Возможность реализации в дистанционном формате"
           example: true
+        is_practice_placed_in_asi_smarteka:
+          type: boolean
+          description: "Практика размещена в АСИ 'Смартека'"
+          example: true
     JobPrimaryInfoWithFilesID:
       allOf:
         - $ref: "#/components/schemas/JobPrimaryInfo"

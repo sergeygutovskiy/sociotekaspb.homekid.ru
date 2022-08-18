@@ -36,6 +36,7 @@ class JobPrimaryInformation extends Model
         'gallery_file_ids',
         'is_best_practice',
         'is_remote_format_possible',
+        'is_practice_placed_in_asi_smarteka',
     ];
 
     protected $casts = [
@@ -51,6 +52,7 @@ class JobPrimaryInformation extends Model
         'gallery_file_ids' => 'array',
         'is_best_practice' => 'boolean',
         'is_remote_format_possible' => 'boolean',
+        'is_practice_placed_in_asi_smarteka' => 'boolean',
     ];
 
     /**

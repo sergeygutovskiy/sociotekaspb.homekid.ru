@@ -53,8 +53,9 @@ class StoreValidator extends Validator
             'primary.gallery_file_ids' => ['array', 'present'],
             'primary.gallery_file_ids.*' => ['integer', 'exists:user_files,id', 'nullable'],
 
-            'primary.is_best_practice' => ['boolean'],
-            'primary.is_remote_format_possible' => ['boolean'],
+            'primary.is_best_practice' => ['required', 'boolean'],
+            'primary.is_remote_format_possible' => ['required', 'boolean'],
+            'primary.is_practice_placed_in_asi_smarteka' => ['required', 'boolean'],
         ];
     }
 }

@@ -55,6 +55,7 @@ return new class extends Migration
 
             $table->boolean('is_best_practice');
             $table->boolean('is_remote_format_possible');
+            $table->boolean('is_practice_placed_in_asi_smarteka');
 
             $table->timestamps();
         });

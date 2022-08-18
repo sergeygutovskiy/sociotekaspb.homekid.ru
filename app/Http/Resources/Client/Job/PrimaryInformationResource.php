@@ -47,6 +47,7 @@ class PrimaryInformationResource extends JsonResource
             'gallery_files' => UserFileResource::collection($gallery_files),
             'is_best_practice' => $this->is_best_practice,
             'is_remote_format_possible' => $this->is_remote_format_possible,
+            'is_practice_placed_in_asi_smarteka' => $this->is_practice_placed_in_asi_smarteka,
         ];
     }
 }

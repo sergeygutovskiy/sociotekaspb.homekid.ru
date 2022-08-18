@@ -45,6 +45,7 @@ class PrimaryInformationFactory extends Factory
             'gallery_file_ids' => [],
             'is_best_practice' => fake()->boolean(),
             'is_remote_format_possible' => fake()->boolean(),
+            'is_practice_placed_in_asi_smarteka' => fake()->boolean(),
         ];
     }
 }
