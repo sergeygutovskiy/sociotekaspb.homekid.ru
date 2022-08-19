@@ -497,6 +497,60 @@ paths:
                 type: string
                 format: binary
 
+  /admin/v1/users/{user_id}/jobs/social-projects/{id}:
+    get:
+      tags: [Social Project]
+      summary: "Get social project by ID for admin"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialProjectId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      status:
+                        type: string
+                        enum: 
+                        - accepted
+                        - pending
+                        - rejected
+                      rejected_status_description:
+                        type: string
+                        nullable: true
+                      is_deleted:
+                        type: boolean
+                      is_favorite:
+                        type: boolean
+                      primary:
+                        $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
+                      experience:
+                        $ref: "#/components/schemas/JobExperience"
+                      contacts:
+                        $ref: "#/components/schemas/JobContacts"
+                      reporting_periods:
+                        $ref: "#/components/schemas/JobReportingPeriodsWithID"
+                      info:
+                        $ref: "#/components/schemas/SocialProjectJobInfo"
+                  meta:
+                    type: array
+                    nullable: true
+                    example: null
+                  error:
+                    type: string
+                    nullable: true
+                    example: null
+
   /admin/v1/users/{user_id}/jobs/social-projects/{id}/approve:
     patch:
       tags: [Social Project]

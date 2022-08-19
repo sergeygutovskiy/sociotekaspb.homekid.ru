@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Resources\Client\Job\Variant\SocialProject;
+namespace App\Http\Resources\Admin\Job\Variant\SocialProject;
 
-use App\Http\Resources\Client\Job\Resource as JobResource;
+use App\Http\Resources\Admin\Job\Resource as JobResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Resource extends JsonResource
@@ -17,7 +17,7 @@ class Resource extends JsonResource
     {
         return [
             'id' => $this->id,
-            $this->merge(new JobResource($this->job)),
+            $this->merge(new JobResource($this->optional_trashed_job)),
 
             'info' => [
                 'participant' => $this->participant,

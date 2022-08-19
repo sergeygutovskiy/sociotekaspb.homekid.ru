@@ -16,8 +16,8 @@ class DicionaryController extends Controller
         $max_year = JobReportingPeriod::max('year');
 
         $years = collect([]);
-        for ( $i = $min_year; $i <= $max_year; $i++ ) $years->add($i);
-        
+        for ( $i = $min_year; $i <= $max_year; $i++ ) $years->add($i)->reverse();
+
         $years_resource = $years->map(function($year) {
             $dictionary = new stdClass();
             $dictionary->id = $year;

@@ -17,7 +17,7 @@ Route::prefix('/users')->group(function() {
                     Route::patch('/approve', [ SocialProjectController::class, 'approve' ]);
                     Route::patch('/reject', [ SocialProjectController::class, 'reject' ]);
                 });
-
+                Route::get('/{social_project_optional_deleted}', [ SocialProjectController::class, 'show' ]);
                 Route::patch('/{social_project_deleted}/restore', [ SocialProjectController::class, 'restore' ]);
             });
         });

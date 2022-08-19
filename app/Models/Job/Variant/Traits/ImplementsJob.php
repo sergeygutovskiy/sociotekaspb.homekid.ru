@@ -13,6 +13,11 @@ trait ImplementsJob
 
     public function trashed_job()
     {
+        return $this->job()->onlyTrashed();
+    }
+
+    public function optional_trashed_job()
+    {
         return $this->job()->withTrashed();
     }
 

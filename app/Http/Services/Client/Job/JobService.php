@@ -93,11 +93,12 @@ class JobService
             $period->update($period_data);
         }
 
-        $job->update([ 
-            'status' => JobStatus::PENDING,
-            'rating' => $job->rating_expanded->count,
-            'updated_at' => Carbon::now(),
-        ]);
+        $job->status = JobStatus::PENDING;
+        $job->is_favorite = false;
+        $job->updated_at = Carbon::now();
+
+        $job->save();
+        $job->update([ 'rating' => $job->rating_expanded->count ]);
     }
 
     public static function list_all(Request $request, string $job_variant)

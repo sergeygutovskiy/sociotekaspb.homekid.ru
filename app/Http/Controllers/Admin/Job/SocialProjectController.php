@@ -8,8 +8,11 @@ use App\Http\Requests\Admin\Job\RejectRequest;
 use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Resources\Admin\Job\Variant\SocialProject\DeletedItemListResource;
 use App\Http\Resources\Admin\Job\Variant\SocialProject\ItemListResource;
+use App\Http\Resources\Admin\Job\Variant\SocialProject\Resource;
+use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Services\Admin\JobService;
 use App\Http\Responses\OKResponse;
+use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Http\Services\Client\Job\Variant\SocialProjectService;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
@@ -17,6 +20,12 @@ use Illuminate\Http\Request;
 
 class SocialProjectController extends Controller
 {
+    public function show(Request $request, User $user, SocialProject $social_project)
+    {
+        if ( $request->user()->cannot('view', $user) ) return AccessDeniedErrorResponse::response();
+        return ResourceOKResponse::response(new Resource($social_project));
+    }
+
     public function approve(ApproveRequest $request, User $user, SocialProject $social_project)
     {
         JobService::approve($request, $social_project->job());
