@@ -50,5 +50,33 @@ class DictionarySeeder extends Seeder
         $needy_target_group_category_dictionaries->take(2)->update([
             'parent_id' => $needy_category_dictionaries->offset(4)->first()->id
         ]);
+
+        // 
+
+        $service_type_category = DictionaryCategory::firstWhere('slug', 'service-type');
+        $service_name_category = DictionaryCategory::firstWhere('slug', 'service-name');
+
+        $service_type_dictionaries = $service_type_category->dictionaries();
+        $service_name_dictionaries = $service_name_category->dictionaries();
+
+        $service_name_dictionaries->take(10)->update([
+            'parent_id' => $service_type_dictionaries->first()->id
+        ]);
+
+        $service_name_dictionaries->take(8)->update([
+            'parent_id' => $service_type_dictionaries->offset(1)->first()->id
+        ]);
+
+        $service_name_dictionaries->take(6)->update([
+            'parent_id' => $service_type_dictionaries->offset(2)->first()->id
+        ]);
+
+        $service_name_dictionaries->take(4)->update([
+            'parent_id' => $service_type_dictionaries->offset(3)->first()->id
+        ]);
+
+        $service_name_dictionaries->take(2)->update([
+            'parent_id' => $service_type_dictionaries->offset(4)->first()->id
+        ]);
     }
 }
