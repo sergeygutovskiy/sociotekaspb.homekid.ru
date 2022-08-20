@@ -9,7 +9,6 @@ use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Resources\Admin\Job\Variant\SocialProject\DeletedItemListResource;
 use App\Http\Resources\Admin\Job\Variant\SocialProject\ItemListResource;
 use App\Http\Resources\Admin\Job\Variant\SocialProject\Resource;
-use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Services\Admin\JobService;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
@@ -23,7 +22,6 @@ class SocialProjectController extends Controller
 {
     public function show(Request $request, User $user, SocialProject $social_project)
     {
-        if ( $request->user()->cannot('view', $user) ) return AccessDeniedErrorResponse::response();
         return ResourceOKResponse::response(new Resource($social_project));
     }
 

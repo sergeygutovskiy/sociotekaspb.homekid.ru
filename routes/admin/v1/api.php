@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\Job\EduProgramController;
 use App\Http\Controllers\Admin\Job\SocialProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,13 +24,30 @@ Route::prefix('/users')->group(function() {
                 });
                 Route::patch('/{social_project_deleted}/restore', [ SocialProjectController::class, 'restore' ]);
             });
+
+            Route::prefix('/edu-programs')->group(function() {
+                Route::prefix('/{edu_program}')->group(function() {
+                    Route::patch('/approve', [ EduProgramController::class, 'approve' ]);
+                    Route::patch('/reject', [ EduProgramController::class, 'reject' ]);
+                });
+                Route::prefix('/{edu_program_optional_deleted}')->group(function() {
+                    Route::get('/', [ EduProgramController::class, 'show' ]);
+                    Route::get('/download', [ EduProgramController::class, 'download' ]);
+                });
+                Route::patch('/{edu_program_deleted}/restore', [ EduProgramController::class, 'restore' ]);
+            });
         });
     });
 
     Route::prefix('/jobs')->group(function(){
-        Route::prefix('/social-projects')->group(function(){
+        Route::prefix('/social-projects')->group(function() {
             Route::get('/', [ SocialProjectController::class, 'index' ]);
             Route::get('/deleted', [ SocialProjectController::class, 'index_deleted' ]);
+        });
+
+        Route::prefix('/edu-programs')->group(function() {
+            Route::get('/', [ EduProgramController::class, 'index' ]);
+            Route::get('/deleted', [ EduProgramController::class, 'index_deleted' ]);
         });
     });
 
