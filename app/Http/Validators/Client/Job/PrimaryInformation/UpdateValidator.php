@@ -32,6 +32,9 @@ class UpdateValidator extends Validator
             'primary.rnsu_category_ids' => ['array', 'present'],
             'primary.rnsu_category_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
 
+            'primary.need_recognition_ids' => ['array', 'present'],
+            'primary.need_recognition_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
             'primary.qualitative_results' => ['required', 'string'],
             'primary.social_results' => ['required', 'string'],
             'primary.replicability' => ['present', 'nullable', 'string'],

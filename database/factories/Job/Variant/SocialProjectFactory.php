@@ -27,7 +27,6 @@ class SocialProjectFactory extends Factory
             'public_work_ids' => fake()->randomElements(Dictionary::where('category_id', 10)->pluck('id'), 2),
             'service_type_ids' => fake()->randomElements(Dictionary::where('category_id', 11)->pluck('id'), 2),
             'service_name_ids' => fake()->randomElements(Dictionary::where('category_id', 12)->pluck('id'), 2),
-            'need_recognition_ids' => fake()->randomElements(Dictionary::where('category_id', 13)->pluck('id'), 2),
         ];
     }
 }

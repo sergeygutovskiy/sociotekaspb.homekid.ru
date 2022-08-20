@@ -251,6 +251,15 @@ class Job extends Model
         );
     }
 
+    public function scopeOptionalHasNeedRecognitions(Builder $query, ?array $ids)
+    {
+        if ( is_null($ids) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn(Builder $q) => $q->whereJsonContains('need_recognition_ids', $ids)
+        );
+    }
+
     public function scopeOptionalOrderBy(Builder $query, ?string $order_by, ?string $dir)
     {
         if ( is_null($order_by) || !strlen($order_by) ) return $query;

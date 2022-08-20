@@ -52,13 +52,3 @@
         @endif
     </p>
 </div>
-<div class="text-block">
-    <h3>Обстоятельства признания нуждаемости</h3>
-    <p>
-        @if ( $social_project->need_recognitions()->isNotEmpty() )
-            {{ $social_project->need_recognitions()->implode('label', ', ') }}
-        @else
-            Нет
-        @endif
-    </p>
-</div>

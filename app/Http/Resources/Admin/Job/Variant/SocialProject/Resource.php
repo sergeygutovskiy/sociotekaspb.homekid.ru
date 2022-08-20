@@ -26,7 +26,6 @@ class Resource extends JsonResource
                 'public_work_ids' => $this->public_work_ids,
                 'service_type_ids' => $this->service_type_ids,
                 'service_name_ids' => $this->service_name_ids,
-                'need_recognition_ids' => $this->need_recognition_ids,
             ],
         ];
     }

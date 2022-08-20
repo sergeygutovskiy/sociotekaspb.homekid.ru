@@ -30,8 +30,6 @@ return new class extends Migration
             $table->json('service_type_ids');
             $table->json('service_name_ids');
 
-            $table->json('need_recognition_ids');
-
             $table->timestamps();
         });
     }

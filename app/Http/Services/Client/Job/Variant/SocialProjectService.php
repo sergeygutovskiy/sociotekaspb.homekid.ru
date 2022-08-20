@@ -33,7 +33,6 @@ class SocialProjectService
         $service_type_ids_filter = Validator::parse_query_ids($request->validated('filter_service_type_ids'));
         $service_name_ids_filter = Validator::parse_query_ids($request->validated('filter_service_name_ids'));
         $public_work_ids_filter = Validator::parse_query_ids($request->validated('filter_public_work_ids'));
-        $need_recognition_ids_filter = Validator::parse_query_ids($request->validated('filter_need_recognition_ids'));
 
         $implementation_level_id_filter = $request->validated('filter_implementation_level_id');
         $is_participant_filter = $request->validated('filter_is_participant');
@@ -42,7 +41,6 @@ class SocialProjectService
             ->optionalHasServiceTypes($service_type_ids_filter)
             ->optionalHasServiceNames($service_name_ids_filter)
             ->optionalHasPublicWorks($public_work_ids_filter)
-            ->optionalHasNeedRecognitions($need_recognition_ids_filter)
             ->optionalHasImplementationLevel($implementation_level_id_filter)
             ->optionalIsParticipant($is_participant_filter)
         );

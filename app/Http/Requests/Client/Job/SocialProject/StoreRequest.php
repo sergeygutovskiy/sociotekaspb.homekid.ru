@@ -42,9 +42,6 @@ class StoreRequest extends FormRequest
 
                 'info.service_name_ids' => ['array', 'present'],
                 'info.service_name_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
-
-                'info.need_recognition_ids' => ['array', 'present'],
-                'info.need_recognition_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
             ],
             \App\Http\Validators\Client\Job\PrimaryInformation\StoreValidator::rules(),
             \App\Http\Validators\Client\Job\Experience\StoreValidator::rules(),

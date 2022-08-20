@@ -137,17 +137,11 @@ class JobService
         $is_publication_filter = $request->input('filter_is_publication');
         $volunteer_id_filter = $request->input('filter_volunteer_id');
 
-        $rnsu_category_ids_filter = $request->input('filter_rnsu_category_ids');
-        $rnsu_category_ids_filter = Validator::parse_query_ids($rnsu_category_ids_filter);
-
-        $needy_category_ids_filter = $request->input('filter_needy_category_ids');
-        $needy_category_ids_filter = Validator::parse_query_ids($needy_category_ids_filter);
-
-        $needy_category_target_group_ids_filter = $request->input('filter_needy_category_target_group_ids');
-        $needy_category_target_group_ids_filter = Validator::parse_query_ids($needy_category_target_group_ids_filter);
-
-        $social_service_ids_filter = $request->input('filter_social_service_ids');
-        $social_service_ids_filter = Validator::parse_query_ids($social_service_ids_filter);
+        $rnsu_category_ids_filter = Validator::parse_query_ids($request->input('filter_rnsu_category_ids'));
+        $needy_category_ids_filter = Validator::parse_query_ids($request->input('filter_needy_category_ids'));
+        $needy_category_target_group_ids_filter = Validator::parse_query_ids($request->input('filter_needy_category_target_group_ids'));
+        $social_service_ids_filter = Validator::parse_query_ids($request->input('filter_social_service_ids'));
+        $need_recognition_ids_filter = Validator::parse_query_ids($request->validated('filter_need_recognition_ids'));
 
         $is_practice_placed_in_asi_smarteka_filter = $request->input('filter_is_practice_placed_in_asi_smarteka');
 
@@ -169,6 +163,7 @@ class JobService
             ->optionalHasNeedyCategories($needy_category_ids_filter)
             ->optionalHasNeedyCategoryTargetGroups($needy_category_target_group_ids_filter)
             ->optionalHasSocialServices($social_service_ids_filter)
+            ->optionalHasNeedRecognitions($need_recognition_ids_filter)
             ->optionalIsFavorite($is_favorite_filter)
             ->optionalIsPracticePlacedInAsiSmarteka($is_practice_placed_in_asi_smarteka_filter)
             ->optionalOrderBy($sort_by, $sort_direction)

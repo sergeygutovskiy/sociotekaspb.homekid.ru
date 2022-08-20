@@ -20,8 +20,7 @@ class SocialProject extends Model
     use ImplementsJob;
     use HasImplementationLevelField,
         HasPublicWorksField,
-        HasServicesField,
-        HasNeedRecognitionsField
+        HasServicesField
         ;
 
     protected $fillable = [
@@ -31,7 +30,6 @@ class SocialProject extends Model
         'public_work_ids',
         'service_type_ids',
         'service_name_ids',
-        'need_recognition_ids',
     ];
 
     protected $casts = [
@@ -39,7 +37,6 @@ class SocialProject extends Model
         'public_work_ids' => 'array',
         'service_type_ids' => 'array',
         'service_name_ids' => 'array',
-        'need_recognition_ids' => 'array',
     ];
 
     protected static function newFactory()

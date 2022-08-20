@@ -34,7 +34,9 @@ return new class extends Migration
 
             $table->json('social_service_ids');
             $table->json('rnsu_category_ids');
-            
+
+            $table->json('need_recognition_ids');
+
             $table->text('qualitative_results');
             $table->text('social_results');
             $table->text('replicability')->nullable();

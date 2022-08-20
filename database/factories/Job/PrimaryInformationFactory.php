@@ -32,6 +32,7 @@ class PrimaryInformationFactory extends Factory
             'needy_category_target_group_ids' => fake()->randomElements(Dictionary::where('category_id', 6)->pluck('id'), 2),
             'social_service_ids' => fake()->randomElements(Dictionary::where('category_id', 7)->pluck('id'), 2),
             'rnsu_category_ids' => fake()->randomElements(Dictionary::where('category_id', 9)->pluck('id'), 2),
+            'need_recognition_ids' => fake()->randomElements(Dictionary::where('category_id', 13)->pluck('id'), 2),
             'qualitative_results' => fake()->sentence(),
             'social_results' => fake()->sentence(),
             'replicability' => fake()->randomElement([ fake()->sentence(), null ]),

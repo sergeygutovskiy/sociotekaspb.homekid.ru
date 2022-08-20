@@ -88,6 +88,26 @@
     </p>
 </div>
 <div class="text-block">
+    <h3>Обстоятельства признания нуждаемости</h3>
+    <p>
+        @if ( $primary_information->need_recognitions()->isNotEmpty() )
+            {{ $primary_information->need_recognitions()->implode('label', ', ') }}
+        @else
+            Нет
+        @endif
+    </p>
+</div>
+<div class="text-block">
+    <h3>Категории по РНСУ</h3>
+    <p>
+        @if ( $primary_information->rnsu_categories()->isNotEmpty() )
+            {{ $primary_information->rnsu_categories()->implode('label', ', ') }}
+        @else
+            Нет
+        @endif
+    </p>
+</div>
+<div class="text-block">
     <h3>Основные качественные результаты</h3>
     <p>
         {{ $primary_information->qualitative_results }}

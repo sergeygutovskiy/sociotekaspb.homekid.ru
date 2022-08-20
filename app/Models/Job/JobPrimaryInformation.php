@@ -23,6 +23,7 @@ class JobPrimaryInformation extends Model
         'needy_category_target_group_ids',
         'social_service_ids',
         'rnsu_category_ids',
+        'need_recognition_ids',
         'qualitative_results',
         'social_results',
         'replicability',
@@ -45,6 +46,7 @@ class JobPrimaryInformation extends Model
         'needy_category_target_group_ids' => 'array',
         'social_service_ids' => 'array',
         'rnsu_category_ids' => 'array',
+        'need_recognition_ids' => 'array',
         'approbation' => 'array',
         'expert_opinion' => 'array',
         'review' => 'array',
@@ -83,6 +85,11 @@ class JobPrimaryInformation extends Model
     public function rnsu_categories()
     {
         return Dictionary::whereIn('id', $this->rnsu_category_ids)->get();
+    }
+
+    public function need_recognitions()
+    {
+        return Dictionary::whereIn('id', $this->need_recognition_ids)->get();
     }
 
     public function payment()

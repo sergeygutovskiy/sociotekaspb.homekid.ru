@@ -336,6 +336,7 @@ paths:
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
         - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedRecognitionIds"
         - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
         - $ref: "#/components/parameters/JobListFilterVolunteer"
         - $ref: "#/components/parameters/JobListFilterYear"
@@ -343,7 +344,6 @@ paths:
         
         - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
-        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
         - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
         - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
         - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
@@ -513,6 +513,7 @@ paths:
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
         - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedRecognitionIds"
         - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
         - $ref: "#/components/parameters/JobListFilterVolunteer"
         - $ref: "#/components/parameters/JobListFilterYear"
@@ -521,7 +522,6 @@ paths:
 
         - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
-        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
         - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
         - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
         - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
@@ -555,6 +555,7 @@ paths:
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
         - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedRecognitionIds"
         - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
         - $ref: "#/components/parameters/JobListFilterVolunteer"
         - $ref: "#/components/parameters/JobListFilterYear"
@@ -563,7 +564,6 @@ paths:
 
         - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
-        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
         - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
         - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
         - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
@@ -1168,6 +1168,12 @@ components:
           items:
             type: number
           example: [81, 82]
+        need_recognition_ids:
+          type: array
+          description: "Обстоятельства признания нуждаемости *"
+          items:
+            type: number
+          example: [121, 122]
         replicability:
           type: string
           description: "Тиражируемость"
@@ -1447,12 +1453,6 @@ components:
           items:
             type: number
           example: [111, 112]
-        need_recognition_ids:
-          type: array
-          description: "Обстоятельства признания нуждаемости *"
-          items:
-            type: number
-          example: [121, 122]
     EduProgramJobInfo:
       type: object
       description: ""
@@ -1647,6 +1647,13 @@ components:
         type: string
         enum: ['0', '1']
         example: ""
+    JobListFilterNeedRecognitionIds:
+      in: query
+      name: filter_need_recognition_ids
+      description: "[common] Обстоятельства признания нуждаемости"
+      schema:
+        type: string
+        example: ""
     JobListSortBy:
       in: query
       name: sort_by
@@ -1689,13 +1696,6 @@ components:
       schema:
         type: string
         enum: [0, 1]
-    JobListAdditionFilterNeedRecognitionIds:
-      in: query
-      name: filter_need_recognition_ids
-      description: "Обстоятельства признания нуждаемости"
-      schema:
-        type: string
-        example: ""
     JobListAdditionFilterDirectionId:
       in: query
       name: filter_direction_id
