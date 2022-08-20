@@ -3,6 +3,7 @@
 namespace App\Http\Services\Client\File;
 
 use App\Models\Job\Job;
+use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\SocialProject;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
@@ -11,7 +12,7 @@ class JobFileService
 {
     private static function download(Job $job, string $view, array $data)
     {
-        $pdf = Pdf::loadView('pdf.job.' . $view . '.index', array_merge(
+        $pdf = Pdf::loadView('pdf.job.variant.' . $view . '.index', array_merge(
             [
                 'primary_information' => $job->primary_information,
                 'experience' => $job->experience,
@@ -29,6 +30,15 @@ class JobFileService
             $social_project->optional_trashed_job,
             'social-project',
             [ 'social_project' => $social_project ]
+        );
+    }
+
+    public static function downloadEduProgram(EduProgram $edu_program)
+    {
+        return self::download(
+            $edu_program->optional_trashed_job,
+            'edu-program',
+            [ 'edu_program' => $edu_program ]
         );
     }
 }

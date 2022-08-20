@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\Job;
+namespace Database\Seeders\Job\Variant;
 
 use App\Models\Job\Job;
 use App\Models\Job\Variant\SocialProject;
@@ -17,7 +17,7 @@ class SocialProjectSeeder extends Seeder
      */
     public function run()
     {
-        $jobs_ids = Job::all()->pluck('id');
+        $jobs_ids = Job::take(5)->pluck('id');
         $jobs_ids->map(fn($id) => SocialProject::factory()->create([ 'job_id' => $id ]));
     }
 }

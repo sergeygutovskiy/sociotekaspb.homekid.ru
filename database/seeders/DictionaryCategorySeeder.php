@@ -24,6 +24,8 @@ class DictionaryCategorySeeder extends Seeder
             [ 'name' => 'Вид услуги', 'slug' => 'service-type' ],
             [ 'name' => 'Наименование услуги', 'slug' => 'service-name' ],
             [ 'name' => 'Обстоятельства признания нуждаемости', 'slug' => 'need-recognition' ],
+            [ 'name' => 'Направленность', 'slug' => 'direction' ],
+            [ 'name' => 'Форма проведения занятий', 'slug' => 'conducting-classes-form' ],
         ]);
     }
 }

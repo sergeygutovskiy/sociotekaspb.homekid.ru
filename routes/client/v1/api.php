@@ -4,6 +4,7 @@ use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\CompanyController;
 use App\Http\Controllers\Client\DicionaryController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
+use App\Http\Controllers\Client\Job\EduProgramController;
 use App\Http\Controllers\Client\Job\SocialProjectController;
 use App\Http\Controllers\Client\UserFileController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,18 @@ Route::prefix('/users')->group(function() {
 
                 Route::get('/', [ SocialProjectController::class, 'index' ]);
                 Route::post('/', [ SocialProjectController::class, 'store' ]);
+            });
+
+            Route::prefix('/edu-programs')->group(function() {
+                Route::prefix('/{edu_program}')->group(function() {
+                    Route::get('/', [ EduProgramController::class, 'show' ]);
+                    Route::put('/', [ EduProgramController::class, 'update' ]);
+                    Route::delete('/', [ EduProgramController::class, 'delete' ]);
+                    Route::get('/download', [ EduProgramController::class, 'download' ]);
+                });
+
+                Route::get('/', [ EduProgramController::class, 'index' ]);
+                Route::post('/', [ EduProgramController::class, 'store' ]);
             });
         });
     });

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -31,9 +32,14 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         Route::bind('user', fn($id) => User::findOrFail($id));
+        
         Route::bind('social_project', fn($id, $route) => SocialProject::findOrFailByUser($id, $route->parameter('user')->id));
         Route::bind('social_project_deleted', fn($id, $route) => SocialProject::findDeletedOrFailByUser($id, $route->parameter('user')->id));
         Route::bind('social_project_optional_deleted', fn($id, $route) => SocialProject::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
+
+        Route::bind('edu_program', fn($id, $route) => EduProgram::findOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('edu_program_deleted', fn($id, $route) => EduProgram::findDeletedOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('edu_program_optional_deleted', fn($id, $route) => EduProgram::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
 
         $this->routes(function () {
             Route::prefix('api/client/v1')

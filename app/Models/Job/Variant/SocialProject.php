@@ -8,7 +8,7 @@ use App\Models\Job\Variant\Traits\Fields\HasNeedRecognitionsField;
 use App\Models\Job\Variant\Traits\Fields\HasPublicWorksField;
 use App\Models\Job\Variant\Traits\Fields\HasServicesField;
 use App\Models\Job\Variant\Traits\ImplementsJob;
-use Database\Factories\Job\SocialProjectFactory;
+use Database\Factories\Job\Variant\SocialProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,7 +22,7 @@ class SocialProject extends Model
         HasPublicWorksField,
         HasServicesField,
         HasNeedRecognitionsField
-    ;
+        ;
 
     protected $fillable = [
         'participant',

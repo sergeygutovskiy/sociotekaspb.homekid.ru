@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Validators\Client\Job\SocialProject;
+namespace App\Http\Validators\Client\Job\Variant\SocialProject;
 
 use App\Http\Validators\Validator;
 

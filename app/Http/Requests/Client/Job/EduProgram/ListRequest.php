@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Client\Job\SocialProject;
+namespace App\Http\Requests\Client\Job\EduProgram;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
 use App\Http\Validators\Client\Job\ListValidator;
-use App\Http\Validators\Client\Job\Variant\SocialProject\ListValidator as SocialProjectListValidator;
+use App\Http\Validators\Client\Job\Variant\EduProgram\ListValidator as EduProgramListValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -30,7 +30,7 @@ class ListRequest extends FormRequest
     {
         return array_merge(
             ListValidator::rules(),
-            SocialProjectListValidator::rules(),
+            EduProgramListValidator::rules(),
         );
     }
 

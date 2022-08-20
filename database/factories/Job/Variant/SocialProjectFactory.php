@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Job;
+namespace Database\Factories\Job\Variant;
 
 use App\Models\Dictionary;
 use App\Models\Job\Variant\SocialProject;

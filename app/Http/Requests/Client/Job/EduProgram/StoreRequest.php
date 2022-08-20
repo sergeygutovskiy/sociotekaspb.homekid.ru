@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Client\Job\SocialProject;
+namespace App\Http\Requests\Client\Job\EduProgram;
 
 use App\Http\Responses\Validation\BadValidationErrorResponse;
-use App\Http\Validators\Client\Job\ListValidator;
-use App\Http\Validators\Client\Job\Variant\SocialProject\ListValidator as SocialProjectListValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ListRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +27,15 @@ class ListRequest extends FormRequest
     public function rules()
     {
         return array_merge(
-            ListValidator::rules(),
-            SocialProjectListValidator::rules(),
+            [
+                'info.direction_id' => ['required', 'integer', 'exists:dictionaries,id'],
+                'info.conducting_classes_form_id' => ['required', 'integer', 'exists:dictionaries,id'],
+                'info.dates_and_mode_of_study' => ['required', 'string'],
+            ],
+            \App\Http\Validators\Client\Job\PrimaryInformation\StoreValidator::rules(),
+            \App\Http\Validators\Client\Job\Experience\StoreValidator::rules(),
+            \App\Http\Validators\Client\Job\Contacts\StoreValidator::rules(),
+            \App\Http\Validators\Client\Job\ReportingPeriods\StoreValidator::rules(),
         );
     }
 

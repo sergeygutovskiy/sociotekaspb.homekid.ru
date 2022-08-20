@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Validators\Client\Job\Variant\EduProgram;
+
+use App\Http\Validators\Validator;
+
+class ListValidator extends Validator
+{
+    public static function rules()
+    {
+        return [
+            'filter_direction_id' => ['sometimes', 'integer'],
+        ];
+    }
+}

@@ -5,7 +5,7 @@
         @include('pdf.job.template.primary-information.index')
     </div>
     <div class="page-breaker">
-        @include('pdf.job.social-project.info')
+        @include('pdf.job.variant.social-project.info')
     </div>
     <div class="page-breaker">
         @include('pdf.job.template.experience.index')

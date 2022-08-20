@@ -5,7 +5,6 @@ namespace App\Http\Services\Client\Job\Variant;
 use App\Enums\JobVariant;
 use App\Http\Services\Client\Job\JobService;
 use App\Http\Validators\Validator;
-use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -39,7 +38,7 @@ class SocialProjectService
         $implementation_level_id_filter = $request->validated('filter_implementation_level_id');
         $is_participant_filter = $request->validated('filter_is_participant');
 
-        $query = $jobs->whereHas('social_project', fn($q) => $q
+        $query = $jobs->whereHas(JobVariant::SOCIAL_PROJECT, fn($q) => $q
             ->optionalHasServiceTypes($service_type_ids_filter)
             ->optionalHasServiceNames($service_name_ids_filter)
             ->optionalHasPublicWorks($public_work_ids_filter)
@@ -48,6 +47,6 @@ class SocialProjectService
             ->optionalIsParticipant($is_participant_filter)
         );
 
-        return JobService::paginate($request, $query, 'social_project');
+        return JobService::paginate($request, $query, JobVariant::SOCIAL_PROJECT);
     }
 }
