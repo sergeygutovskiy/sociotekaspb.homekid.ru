@@ -42,8 +42,7 @@ paths:
 
   /client/v1/users/{user_id}/company:
     get:
-      tags:
-      - Company
+      tags: [Company - Client]
       summary: "Get company of auth user"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -53,7 +52,7 @@ paths:
         200:
           description: "OK"
     put:
-      tags: [Company]
+      tags: [Company - Client]
       summary: "Update company of auth user"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -149,8 +148,7 @@ paths:
 
   /client/v1/users/{user_id}/company/download:
     get:
-      tags:
-      - Company
+      tags: [Company - Client]
       summary: "Download pdf file with company of auth user"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -167,7 +165,7 @@ paths:
 
   /admin/v1/users/{user_id}/company/approve:
     patch:
-      tags: [Company]
+      tags: [Company - Admin]
       summary: "Approve company"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -179,7 +177,7 @@ paths:
 
   /admin/v1/users/{user_id}/company/reject:
     patch:
-      tags: [Company]
+      tags: [Company - Admin]
       summary: "Reject company"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -319,7 +317,7 @@ paths:
 
   /client/v1/users/{user_id}/jobs/social-projects:
     get:
-      tags: [Social Project]
+      tags: [Job - Social Project - Client]
       summary: "List social projects of user"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -359,7 +357,7 @@ paths:
           description: "OK"   
 
     post:
-      tags: [Social Project]
+      tags: [Job - Social Project - Client]
       summary: "Create social project"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -388,7 +386,7 @@ paths:
 
   /client/v1/users/{user_id}/jobs/social-projects/{id}:
     get:
-      tags: [Social Project]
+      tags: [Job - Social Project - Client]
       summary: "Get social project by ID"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -440,7 +438,7 @@ paths:
                     nullable: true
                     example: null
     put:
-      tags: [Social Project]
+      tags: [Job - Social Project - Client]
       summary: "Update social project by ID"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -468,7 +466,7 @@ paths:
         200:
           description: "OK"
     delete:
-      tags: [Social Project]
+      tags: [Job - Social Project - Client]
       summary: "Delete social project by ID"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -481,7 +479,7 @@ paths:
 
   /client/v1/users/{user_id}/jobs/social-projects/{id}/download:
     get:
-      tags: [Social Project]
+      tags: [Job - Social Project - Client]
       summary: "Download info about social project in pdf file"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -497,9 +495,93 @@ paths:
                 type: string
                 format: binary
 
+  /admin/v1/users/jobs/social-projects:
+    get:
+      tags: [Job - Social Project - Admin]
+      summary: "List all social projects"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
+        - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
+        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+        
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/jobs/social-projects/deleted:
+    get:
+      tags: [Job - Social Project - Admin]
+      summary: "List all deleted social projects"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
+        - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
+        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+        
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
   /admin/v1/users/{user_id}/jobs/social-projects/{id}:
     get:
-      tags: [Social Project]
+      tags: [Job - Social Project - Admin]
       summary: "Get social project by ID for admin"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -551,9 +633,27 @@ paths:
                     nullable: true
                     example: null
 
+  /admin/v1/users/{user_id}/jobs/social-projects/{id}/download:
+    get:
+      tags: [Job - Social Project - Admin]
+      summary: "Download info about social project in pdf file"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialProjectId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
   /admin/v1/users/{user_id}/jobs/social-projects/{id}/approve:
     patch:
-      tags: [Social Project]
+      tags: [Job - Social Project - Admin]
       summary: "Approve social project"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -575,7 +675,7 @@ paths:
 
   /admin/v1/users/{user_id}/jobs/social-projects/{id}/reject:
     patch:
-      tags: [Social Project]
+      tags: [Job - Social Project - Admin]
       summary: "Reject social project"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -597,7 +697,7 @@ paths:
 
   /admin/v1/users/{user_id}/jobs/social-projects/{id}/restore:
     patch:
-      tags: [Social Project]
+      tags: [Job - Social Project - Admin]
       summary: "Restore social project from archive"
       parameters:
         - $ref: "#/components/parameters/UserId"
@@ -607,90 +707,6 @@ paths:
       responses:
         200:
           description: "OK"
-
-  /admin/v1/users/jobs/social-projects:
-    get:
-      tags: [Social Project]
-      summary: "List all social projects"
-      parameters:
-        - $ref: "#/components/parameters/UserId"
-        
-        - $ref: "#/components/parameters/ListPage"
-        - $ref: "#/components/parameters/ListLimit"
-        
-        - $ref: "#/components/parameters/JobListFilterName"
-        - $ref: "#/components/parameters/JobListFilterStatus"
-        - $ref: "#/components/parameters/JobListFilterRating"
-        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
-        - $ref: "#/components/parameters/JobListFilterIsApprobation"
-        - $ref: "#/components/parameters/JobListFilterIsFavorite"
-        - $ref: "#/components/parameters/JobListFilterIsPublication"
-        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
-        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
-        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
-        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
-        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
-        - $ref: "#/components/parameters/JobListFilterVolunteer"
-        - $ref: "#/components/parameters/JobListFilterYear"
-        - $ref: "#/components/parameters/JobListFilterCompanyName"
-        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
-
-        - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
-        - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
-        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
-        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
-        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
-        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
-        
-        - $ref: "#/components/parameters/JobListSortBy"
-        - $ref: "#/components/parameters/ListSortDirection"
-      security:
-        - bearerAuth: []
-      responses:
-        200:
-          description: "OK"
-
-  /admin/v1/users/jobs/social-projects/deleted:
-    get:
-      tags: [Social Project]
-      summary: "List all deleted social projects"
-      parameters:
-        - $ref: "#/components/parameters/UserId"
-        
-        - $ref: "#/components/parameters/ListPage"
-        - $ref: "#/components/parameters/ListLimit"
-        
-        - $ref: "#/components/parameters/JobListFilterName"
-        - $ref: "#/components/parameters/JobListFilterStatus"
-        - $ref: "#/components/parameters/JobListFilterRating"
-        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
-        - $ref: "#/components/parameters/JobListFilterIsApprobation"
-        - $ref: "#/components/parameters/JobListFilterIsFavorite"
-        - $ref: "#/components/parameters/JobListFilterIsPublication"
-        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
-        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
-        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
-        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
-        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
-        - $ref: "#/components/parameters/JobListFilterVolunteer"
-        - $ref: "#/components/parameters/JobListFilterYear"
-        - $ref: "#/components/parameters/JobListFilterCompanyName"
-        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
-
-        - $ref: "#/components/parameters/JobListAdditionFilterImplementationLevelId"
-        - $ref: "#/components/parameters/JobListAdditionFilterIsParticipant"
-        - $ref: "#/components/parameters/JobListAdditionFilterNeedRecognitionIds"
-        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
-        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
-        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
-        
-        - $ref: "#/components/parameters/JobListSortBy"
-        - $ref: "#/components/parameters/ListSortDirection"
-      security:
-        - bearerAuth: []
-      responses:
-        200:
-          description: "OK"  
 
   /admin/v1/users/companies:
     get:

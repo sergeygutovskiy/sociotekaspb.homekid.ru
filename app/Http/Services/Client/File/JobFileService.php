@@ -25,6 +25,10 @@ class JobFileService
 
     public static function downloadSocialProject(SocialProject $social_project)
     {
-        return self::download($social_project->job, 'social-project', [ 'social_project' => $social_project ]);
+        return self::download(
+            $social_project->optional_trashed_job,
+            'social-project',
+            [ 'social_project' => $social_project ]
+        );
     }
 }

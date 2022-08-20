@@ -13,6 +13,7 @@ use App\Http\Responses\Auth\AccessDeniedErrorResponse;
 use App\Http\Services\Admin\JobService;
 use App\Http\Responses\OKResponse;
 use App\Http\Responses\Resources\ResourceOKResponse;
+use App\Http\Services\Client\File\JobFileService;
 use App\Http\Services\Client\Job\Variant\SocialProjectService;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\User;
@@ -24,6 +25,11 @@ class SocialProjectController extends Controller
     {
         if ( $request->user()->cannot('view', $user) ) return AccessDeniedErrorResponse::response();
         return ResourceOKResponse::response(new Resource($social_project));
+    }
+
+    public function download(Request $request, User $user, SocialProject $social_project)
+    {
+        return JobFileService::downloadSocialProject($social_project);
     }
 
     public function approve(ApproveRequest $request, User $user, SocialProject $social_project)
