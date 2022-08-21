@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\Job\ClubController;
 use App\Http\Controllers\Admin\Job\EduProgramController;
 use App\Http\Controllers\Admin\Job\SocialProjectController;
 use App\Http\Controllers\Admin\Job\SocialWorkController;
@@ -49,6 +50,18 @@ Route::prefix('/users')->group(function() {
                 });
                 Route::patch('/{social_work_deleted}/restore', [ SocialWorkController::class, 'restore' ]);
             });
+
+            Route::prefix('/clubs')->group(function() {
+                Route::prefix('/{club}')->group(function() {
+                    Route::patch('/approve', [ ClubController::class, 'approve' ]);
+                    Route::patch('/reject', [ ClubController::class, 'reject' ]);
+                });
+                Route::prefix('/{club_optional_deleted}')->group(function() {
+                    Route::get('/', [ ClubController::class, 'show' ]);
+                    Route::get('/download', [ ClubController::class, 'download' ]);
+                });
+                Route::patch('/{club_deleted}/restore', [ ClubController::class, 'restore' ]);
+            });
         });
     });
 
@@ -66,6 +79,11 @@ Route::prefix('/users')->group(function() {
         Route::prefix('/social-works')->group(function() {
             Route::get('/', [ SocialWorkController::class, 'index' ]);
             Route::get('/deleted', [ SocialWorkController::class, 'index_deleted' ]);
+        });
+
+        Route::prefix('/clubs')->group(function() {
+            Route::get('/', [ ClubController::class, 'index' ]);
+            Route::get('/deleted', [ ClubController::class, 'index_deleted' ]);
         });
     });
 

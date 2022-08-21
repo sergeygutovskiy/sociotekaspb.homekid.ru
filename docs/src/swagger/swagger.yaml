@@ -230,6 +230,9 @@ paths:
             - service-name
             - service-type
             - need-recognition
+            - direction
+            - conducting-classes-form
+            - program-type
       responses:
         200:
           description: "OK"
@@ -1474,6 +1477,384 @@ paths:
         200:
           description: "OK"
 
+  /client/v1/users/{user_id}/jobs/clubs:
+    get:
+      tags: [Job - Club - Client]
+      summary: "List clubs of user"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+        
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+    post:
+      tags: [Job - Club - Client]
+      summary: "Create club"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                primary:
+                  $ref: "#/components/schemas/JobPrimaryInfoWithFilesID"
+                experience: 
+                  $ref: "#/components/schemas/JobExperience"
+                contacts:
+                  $ref: "#/components/schemas/JobContacts"
+                reporting_periods:
+                  $ref: "#/components/schemas/JobReportingPeriods"
+                info:
+                  $ref: "#/components/schemas/ClubJobInfo"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /client/v1/users/{user_id}/jobs/clubs/{id}:
+    get:
+      tags: [Job - Club - Client]
+      summary: "Get club by ID"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      status:
+                        type: string
+                        enum: [ accepted, pending, rejected ]
+                      rejected_status_description:
+                        type: string
+                        nullable: true
+                      is_deleted:
+                        type: boolean
+                      is_favorite:
+                        type: boolean
+                      primary:
+                        $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
+                      experience:
+                        $ref: "#/components/schemas/JobExperience"
+                      contacts:
+                        $ref: "#/components/schemas/JobContacts"
+                      reporting_periods:
+                        $ref: "#/components/schemas/JobReportingPeriodsWithID"
+                      info:
+                        $ref: "#/components/schemas/ClubJobInfo"
+                  meta:
+                    type: array
+                    nullable: true
+                    example: null
+                  error:
+                    type: string
+                    nullable: true
+                    example: null
+    put:
+      tags: [Job - Club - Client]
+      summary: "Update club by ID"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                primary:
+                  $ref: "#/components/schemas/JobPrimaryInfoWithFilesID"
+                experience:
+                  $ref: "#/components/schemas/JobExperience"
+                contacts:
+                  $ref: "#/components/schemas/JobContacts"
+                reporting_periods:
+                  $ref: "#/components/schemas/JobReportingPeriodsWithNullableID"
+                info:
+                  $ref: "#/components/schemas/ClubJobInfo"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+    delete:
+      tags: [Job - Club - Client]
+      summary: "Delete club by ID"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /client/v1/users/{user_id}/jobs/clubs/{id}/download:
+    get:
+      tags: [Job - Club - Client]
+      summary: "Download pdf file with club"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
+  /admin/v1/users/jobs/clubs:
+    get:
+      tags: [Job - Club - Admin]
+      summary: "List all clubs"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/jobs/clubs/deleted:
+    get:
+      tags: [Job - Club - Admin]
+      summary: "List all deleted clubs"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/clubs/{id}:
+    get:
+      tags: [Job - Club - Admin]
+      summary: "Get club by ID for admin"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      status:
+                        type: string
+                        enum: [ accepted, pending, rejected ]
+                      rejected_status_description:
+                        type: string
+                        nullable: true
+                      is_deleted:
+                        type: boolean
+                      is_favorite:
+                        type: boolean
+                      primary:
+                        $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
+                      experience:
+                        $ref: "#/components/schemas/JobExperience"
+                      contacts:
+                        $ref: "#/components/schemas/JobContacts"
+                      reporting_periods:
+                        $ref: "#/components/schemas/JobReportingPeriodsWithID"
+                      info:
+                        $ref: "#/components/schemas/ClubJobInfo"
+                  meta:
+                    type: array
+                    nullable: true
+                    example: null
+                  error:
+                    type: string
+                    nullable: true
+                    example: null
+  
+  /admin/v1/users/{user_id}/jobs/clubs/{id}/download:
+    get:
+      tags: [Job - Club - Admin]
+      summary: "Download info about club in pdf file"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
+  /admin/v1/users/{user_id}/jobs/clubs/{id}/approve:
+    patch:
+      tags: [Job - Club - Admin]
+      summary: "Approve club"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_favorite:
+                  type: boolean
+                  example: true
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/clubs/{id}/reject:
+    patch:
+      tags: [Job - Club - Admin]
+      summary: "Reject club"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  example: "comment"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/clubs/{id}/restore:
+    patch:
+      tags: [Job - Club - Admin]
+      summary: "Restore club from archive"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
 
 components:
   securitySchemes:
@@ -1887,6 +2268,36 @@ components:
         dates_and_mode_of_study:
           type: string
           description: "Сроки, режим занятий *"
+    ClubJobInfo:
+      type: object
+      description: ""
+      properties:
+        public_work_ids:
+          type: array
+          description: "Наименование государственной работы"
+          items:
+            type: number
+          example: [91, 92]
+        service_type_ids:
+          type: array
+          description: "Вид услуги"
+          items:
+            type: number
+          example: [101, 102]
+        service_name_ids:
+          type: array
+          description: "Наименование услуги"
+          items:
+            type: number
+          example: [111, 112]
+        conducting_classes_form_id:
+          type: number
+          description: "Форма проведения занятий *"
+          example: 150
+        schedule:
+          type: string
+          description: "График *"
+          example: "график"
     UserFile:
       type: object
       description: ""
@@ -1935,6 +2346,14 @@ components:
       in: path
       name: id
       description: "social work ID"
+      example: 1
+      required: true
+      schema:
+        type: number
+    ClubId:
+      in: path
+      name: id
+      description: "club ID"
       example: 1
       required: true
       schema:

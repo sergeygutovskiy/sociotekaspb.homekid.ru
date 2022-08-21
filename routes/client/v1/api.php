@@ -4,6 +4,7 @@ use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\CompanyController;
 use App\Http\Controllers\Client\DicionaryController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
+use App\Http\Controllers\Client\Job\ClubController;
 use App\Http\Controllers\Client\Job\EduProgramController;
 use App\Http\Controllers\Client\Job\SocialProjectController;
 use App\Http\Controllers\Client\Job\SocialWorkController;
@@ -58,6 +59,18 @@ Route::prefix('/users')->group(function() {
 
                 Route::get('/', [ SocialWorkController::class, 'index' ]);
                 Route::post('/', [ SocialWorkController::class, 'store' ]);
+            });
+
+            Route::prefix('/clubs')->group(function() {
+                Route::prefix('/{club}')->group(function() {
+                    Route::get('/', [ ClubController::class, 'show' ]);
+                    Route::put('/', [ ClubController::class, 'update' ]);
+                    Route::delete('/', [ ClubController::class, 'delete' ]);
+                    Route::get('/download', [ ClubController::class, 'download' ]);
+                });
+
+                Route::get('/', [ ClubController::class, 'index' ]);
+                Route::post('/', [ ClubController::class, 'store' ]);
             });
         });
     });

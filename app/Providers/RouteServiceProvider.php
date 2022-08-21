@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\Job\Variant\SocialWork;
@@ -46,6 +47,9 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('social_work_deleted', fn($id, $route) => SocialWork::findDeletedOrFailByUser($id, $route->parameter('user')->id));
         Route::bind('social_work_optional_deleted', fn($id, $route) => SocialWork::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
 
+        Route::bind('club', fn($id, $route) => Club::findOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('club_deleted', fn($id, $route) => Club::findDeletedOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('club_optional_deleted', fn($id, $route) => Club::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
 
         $this->routes(function () {
             Route::prefix('api/client/v1')

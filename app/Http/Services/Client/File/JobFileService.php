@@ -3,6 +3,7 @@
 namespace App\Http\Services\Client\File;
 
 use App\Models\Job\Job;
+use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\Job\Variant\SocialWork;
@@ -49,6 +50,15 @@ class JobFileService
             $social_work->optional_trashed_job,
             'social-work',
             [ 'social_work' => $social_work ]
+        );
+    }
+
+    public static function downloadClub(Club $club)
+    {
+        return self::download(
+            $club->optional_trashed_job,
+            'club',
+            [ 'club' => $club ]
         );
     }
 }
