@@ -1267,6 +1267,214 @@ paths:
                 type: string
                 format: binary
 
+  /admin/v1/users/jobs/social-works:
+    get:
+      tags: [Job - Social Work - Admin]
+      summary: "List all social works"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterDirectionId"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+        
+        
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/jobs/social-works/deleted:
+    get:
+      tags: [Job - Social Work - Admin]
+      summary: "List all deleted social works"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterDirectionId"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
+
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/social-works/{id}:
+    get:
+      tags: [Job - Social Work - Admin]
+      summary: "Get social work by ID for admin"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialWorkId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      status:
+                        type: string
+                        enum: [ accepted, pending, rejected ]
+                      rejected_status_description:
+                        type: string
+                        nullable: true
+                      is_deleted:
+                        type: boolean
+                      is_favorite:
+                        type: boolean
+                      primary:
+                        $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
+                      experience:
+                        $ref: "#/components/schemas/JobExperience"
+                      contacts:
+                        $ref: "#/components/schemas/JobContacts"
+                      reporting_periods:
+                        $ref: "#/components/schemas/JobReportingPeriodsWithID"
+                      info:
+                        $ref: "#/components/schemas/SocialWorkJobInfo"
+                  meta:
+                    type: array
+                    nullable: true
+                    example: null
+                  error:
+                    type: string
+                    nullable: true
+                    example: null
+  
+  /admin/v1/users/{user_id}/jobs/social-works/{id}/download:
+    get:
+      tags: [Job - Social Work - Admin]
+      summary: "Download info about social work in pdf file"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialWorkId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
+  /admin/v1/users/{user_id}/jobs/social-works/{id}/approve:
+    patch:
+      tags: [Job - Social Work - Admin]
+      summary: "Approve social work"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialWorkId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_favorite:
+                  type: boolean
+                  example: true
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/social-works/{id}/reject:
+    patch:
+      tags: [Job - Social Work - Admin]
+      summary: "Reject social work"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialWorkId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  example: "comment"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/social-works/{id}/restore:
+    patch:
+      tags: [Job - Social Work - Admin]
+      summary: "Restore social work from archive"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialWorkId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+
 components:
   securitySchemes:
     bearerAuth:
