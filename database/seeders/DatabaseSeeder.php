@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\Job\JobSeeder;
 use Database\Seeders\Job\Variant\EduProgramSeeder;
 use Database\Seeders\Job\Variant\SocialProjectSeeder;
+use Database\Seeders\Job\Variant\SocialWorkSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
             SocialProjectSeeder::class,
             EduProgramSeeder::class,
+            SocialWorkSeeder::class,
         ]);
     }
 }

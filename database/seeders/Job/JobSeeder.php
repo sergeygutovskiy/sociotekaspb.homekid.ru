@@ -13,6 +13,8 @@ use Illuminate\Database\Seeder;
 
 class JobSeeder extends Seeder
 {
+    const JOBS_COUNT = 15;
+
     /**
      * Run the database seeds.
      *
@@ -21,9 +23,9 @@ class JobSeeder extends Seeder
     public function run()
     {
         $job_user = User::first();
-        $job_primary_information_ids = JobPrimaryInformation::factory()->count(10)->create()->pluck('id');
-        $job_experience_ids = JobExperience::factory()->count(10)->create()->pluck('id');
-        $job_contacts_ids = JobContacts::factory()->count(10)->create()->pluck('id');
+        $job_primary_information_ids = JobPrimaryInformation::factory()->count(self::JOBS_COUNT)->create()->pluck('id');
+        $job_experience_ids = JobExperience::factory()->count(self::JOBS_COUNT)->create()->pluck('id');
+        $job_contacts_ids = JobContacts::factory()->count(self::JOBS_COUNT)->create()->pluck('id');
 
         $jobs = collect();
         for ( $i = 0; $i < $job_primary_information_ids->count(); $i++ )

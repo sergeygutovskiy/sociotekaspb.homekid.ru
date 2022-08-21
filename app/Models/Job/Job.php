@@ -4,6 +4,7 @@ namespace App\Models\Job;
 
 use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\SocialProject;
+use App\Models\Job\Variant\SocialWork;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -68,6 +69,11 @@ class Job extends Model
     public function edu_program()
     {
         return $this->hasOne(EduProgram::class);
+    }
+
+    public function social_work()
+    {
+        return $this->hasOne(SocialWork::class);
     }
 
     public function getRatingExpandedAttribute()

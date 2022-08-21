@@ -5,6 +5,7 @@ namespace App\Http\Services\Client\File;
 use App\Models\Job\Job;
 use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\SocialProject;
+use App\Models\Job\Variant\SocialWork;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 
@@ -39,6 +40,15 @@ class JobFileService
             $edu_program->optional_trashed_job,
             'edu-program',
             [ 'edu_program' => $edu_program ]
+        );
+    }
+
+    public static function downloadSocialWork(SocialWork $social_work)
+    {
+        return self::download(
+            $social_work->optional_trashed_job,
+            'social-work',
+            [ 'social_work' => $social_work ]
         );
     }
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\SocialProject;
+use App\Models\Job\Variant\SocialWork;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -40,6 +41,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('edu_program', fn($id, $route) => EduProgram::findOrFailByUser($id, $route->parameter('user')->id));
         Route::bind('edu_program_deleted', fn($id, $route) => EduProgram::findDeletedOrFailByUser($id, $route->parameter('user')->id));
         Route::bind('edu_program_optional_deleted', fn($id, $route) => EduProgram::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
+
+        Route::bind('social_work', fn($id, $route) => SocialWork::findOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('social_work_deleted', fn($id, $route) => SocialWork::findDeletedOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('social_work_optional_deleted', fn($id, $route) => SocialWork::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
+
 
         $this->routes(function () {
             Route::prefix('api/client/v1')

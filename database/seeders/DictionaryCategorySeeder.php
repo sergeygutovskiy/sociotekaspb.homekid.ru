@@ -26,6 +26,7 @@ class DictionaryCategorySeeder extends Seeder
             [ 'name' => 'Обстоятельства признания нуждаемости', 'slug' => 'need-recognition' ],
             [ 'name' => 'Направленность', 'slug' => 'direction' ],
             [ 'name' => 'Форма проведения занятий', 'slug' => 'conducting-classes-form' ],
+            [ 'name' => 'Вид программы', 'slug' => 'program-type' ],
         ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Client\DicionaryController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
 use App\Http\Controllers\Client\Job\EduProgramController;
 use App\Http\Controllers\Client\Job\SocialProjectController;
+use App\Http\Controllers\Client\Job\SocialWorkController;
 use App\Http\Controllers\Client\UserFileController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,18 @@ Route::prefix('/users')->group(function() {
 
                 Route::get('/', [ EduProgramController::class, 'index' ]);
                 Route::post('/', [ EduProgramController::class, 'store' ]);
+            });
+
+            Route::prefix('/social-works')->group(function() {
+                Route::prefix('/{social_work}')->group(function() {
+                    Route::get('/', [ SocialWorkController::class, 'show' ]);
+                    Route::put('/', [ SocialWorkController::class, 'update' ]);
+                    Route::delete('/', [ SocialWorkController::class, 'delete' ]);
+                    Route::get('/download', [ SocialWorkController::class, 'download' ]);
+                });
+
+                Route::get('/', [ SocialWorkController::class, 'index' ]);
+                Route::post('/', [ SocialWorkController::class, 'store' ]);
             });
         });
     });
