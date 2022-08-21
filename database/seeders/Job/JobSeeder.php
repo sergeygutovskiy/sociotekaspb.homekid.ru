@@ -13,7 +13,7 @@ use Illuminate\Database\Seeder;
 
 class JobSeeder extends Seeder
 {
-    const JOBS_COUNT = 15;
+    const JOBS_COUNT = 25;
 
     /**
      * Run the database seeds.

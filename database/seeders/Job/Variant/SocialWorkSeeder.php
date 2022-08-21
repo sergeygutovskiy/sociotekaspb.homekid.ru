@@ -17,7 +17,7 @@ class SocialWorkSeeder extends Seeder
      */
     public function run()
     {
-        $jobs_ids = Job::take(5)->pluck('id');
+        $jobs_ids = Job::offset(15)->take(5)->pluck('id');
         $jobs_ids->map(fn($id) => SocialWork::factory()->create([ 'job_id' => $id ]));
     }
 }
