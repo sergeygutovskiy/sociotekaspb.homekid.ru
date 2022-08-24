@@ -10,4 +10,5 @@ final class JobVariant extends Enum
     const EDU_PROGRAM = 'edu_program';
     const SOCIAL_WORK = 'social_work';
     const CLUB = 'club';
+    const METHODOLOGY = 'methodology';
 }

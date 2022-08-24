@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\Job\ClubController;
 use App\Http\Controllers\Admin\Job\EduProgramController;
+use App\Http\Controllers\Admin\Job\MethodologyController;
 use App\Http\Controllers\Admin\Job\SocialProjectController;
 use App\Http\Controllers\Admin\Job\SocialWorkController;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,18 @@ Route::prefix('/users')->group(function() {
                 });
                 Route::patch('/{club_deleted}/restore', [ ClubController::class, 'restore' ]);
             });
+
+            Route::prefix('/methodologies')->group(function() {
+                Route::prefix('/{methodology}')->group(function() {
+                    Route::patch('/approve', [ MethodologyController::class, 'approve' ]);
+                    Route::patch('/reject', [ MethodologyController::class, 'reject' ]);
+                });
+                Route::prefix('/{methodology_optional_deleted}')->group(function() {
+                    Route::get('/', [ MethodologyController::class, 'show' ]);
+                    Route::get('/download', [ MethodologyController::class, 'download' ]);
+                });
+                Route::patch('/{methodology_deleted}/restore', [ MethodologyController::class, 'restore' ]);
+            });
         });
     });
 
@@ -84,6 +97,11 @@ Route::prefix('/users')->group(function() {
         Route::prefix('/clubs')->group(function() {
             Route::get('/', [ ClubController::class, 'index' ]);
             Route::get('/deleted', [ ClubController::class, 'index_deleted' ]);
+        });
+
+        Route::prefix('/methodologies')->group(function() {
+            Route::get('/', [ MethodologyController::class, 'index' ]);
+            Route::get('/deleted', [ MethodologyController::class, 'index_deleted' ]);
         });
     });
 

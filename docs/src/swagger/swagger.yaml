@@ -233,6 +233,9 @@ paths:
             - direction
             - conducting-classes-form
             - program-type
+            - prevalence
+            - activity-organization-form
+            - application-period
       responses:
         200:
           description: "OK"
@@ -1855,6 +1858,386 @@ paths:
         200:
           description: "OK"
 
+  /client/v1/users/{user_id}/jobs/methodologies:
+    get:
+      tags: [Job - Methodology - Client]
+      summary: "List methodologies of user"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+        
+        - $ref: "#/components/parameters/JobListAdditionFilterDirectionId"
+        - $ref: "#/components/parameters/JobListAdditionFilterApplicationPeriodId"
+        - $ref: "#/components/parameters/JobListAdditionFilterPrevalenceId"
+        - $ref: "#/components/parameters/JobListAdditionFilterIsEffectivenessStudy"
+        
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+    post:
+      tags: [Job - Methodology - Client]
+      summary: "Create methodology"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                primary:
+                  $ref: "#/components/schemas/JobPrimaryInfoWithFilesID"
+                experience: 
+                  $ref: "#/components/schemas/JobExperience"
+                contacts:
+                  $ref: "#/components/schemas/JobContacts"
+                reporting_periods:
+                  $ref: "#/components/schemas/JobReportingPeriods"
+                info:
+                  $ref: "#/components/schemas/MethodologyJobInfo"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /client/v1/users/{user_id}/jobs/methodologies/{id}:
+    get:
+      tags: [Job - Methodology - Client]
+      summary: "Get methodology by ID"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      status:
+                        type: string
+                        enum: [ accepted, pending, rejected ]
+                      rejected_status_description:
+                        type: string
+                        nullable: true
+                      is_deleted:
+                        type: boolean
+                      is_favorite:
+                        type: boolean
+                      primary:
+                        $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
+                      experience:
+                        $ref: "#/components/schemas/JobExperience"
+                      contacts:
+                        $ref: "#/components/schemas/JobContacts"
+                      reporting_periods:
+                        $ref: "#/components/schemas/JobReportingPeriodsWithID"
+                      info:
+                        $ref: "#/components/schemas/MethodologyJobInfo"
+                  meta:
+                    type: array
+                    nullable: true
+                    example: null
+                  error:
+                    type: string
+                    nullable: true
+                    example: null
+    put:
+      tags: [Job - Methodology - Client]
+      summary: "Update methodology by ID"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                primary:
+                  $ref: "#/components/schemas/JobPrimaryInfoWithFilesID"
+                experience:
+                  $ref: "#/components/schemas/JobExperience"
+                contacts:
+                  $ref: "#/components/schemas/JobContacts"
+                reporting_periods:
+                  $ref: "#/components/schemas/JobReportingPeriodsWithNullableID"
+                info:
+                  $ref: "#/components/schemas/MethodologyJobInfo"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+    delete:
+      tags: [Job - Methodology - Client]
+      summary: "Delete methodology by ID"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /client/v1/users/{user_id}/jobs/methodologies/{id}/download:
+    get:
+      tags: [Job - Methodology - Client]
+      summary: "Download pdf file with methodology"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
+  /admin/v1/users/jobs/methodologies:
+    get:
+      tags: [Job - Methodology - Admin]
+      summary: "List all methodologies"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterDirectionId"
+        - $ref: "#/components/parameters/JobListAdditionFilterApplicationPeriodId"
+        - $ref: "#/components/parameters/JobListAdditionFilterPrevalenceId"
+        - $ref: "#/components/parameters/JobListAdditionFilterIsEffectivenessStudy"
+        
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/jobs/methodologies/deleted:
+    get:
+      tags: [Job - Methodology - Admin]
+      summary: "List all deleted methodologies"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        
+        - $ref: "#/components/parameters/ListPage"
+        - $ref: "#/components/parameters/ListLimit"
+        
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterStatus"
+        - $ref: "#/components/parameters/JobListFilterRating"
+        - $ref: "#/components/parameters/JobListFilterIsAnyReview"
+        - $ref: "#/components/parameters/JobListFilterIsApprobation"
+        - $ref: "#/components/parameters/JobListFilterIsFavorite"
+        - $ref: "#/components/parameters/JobListFilterIsPublication"
+        - $ref: "#/components/parameters/JobListFilterIsRemoteFormat"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryIds"
+        - $ref: "#/components/parameters/JobListFilterSocialServiceIds"
+        - $ref: "#/components/parameters/JobListFilterVolunteer"
+        - $ref: "#/components/parameters/JobListFilterYear"
+        - $ref: "#/components/parameters/JobListFilterCompanyName"
+        - $ref: "#/components/parameters/JobListFilterlIsPracticePlacedInAsiSmarteka"
+
+        - $ref: "#/components/parameters/JobListAdditionFilterDirectionId"
+        - $ref: "#/components/parameters/JobListAdditionFilterApplicationPeriodId"
+        - $ref: "#/components/parameters/JobListAdditionFilterPrevalenceId"
+        - $ref: "#/components/parameters/JobListAdditionFilterIsEffectivenessStudy"
+
+        - $ref: "#/components/parameters/JobListSortBy"
+        - $ref: "#/components/parameters/ListSortDirection"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/methodologies/{id}:
+    get:
+      tags: [Job - Methodology - Admin]
+      summary: "Get methodology by ID for admin"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      status:
+                        type: string
+                        enum: [ accepted, pending, rejected ]
+                      rejected_status_description:
+                        type: string
+                        nullable: true
+                      is_deleted:
+                        type: boolean
+                      is_favorite:
+                        type: boolean
+                      primary:
+                        $ref: "#/components/schemas/JobPrimaryInfoWithFilesExpanded"
+                      experience:
+                        $ref: "#/components/schemas/JobExperience"
+                      contacts:
+                        $ref: "#/components/schemas/JobContacts"
+                      reporting_periods:
+                        $ref: "#/components/schemas/JobReportingPeriodsWithID"
+                      info:
+                        $ref: "#/components/schemas/SocialWorkJobInfo"
+                  meta:
+                    type: array
+                    nullable: true
+                    example: null
+                  error:
+                    type: string
+                    nullable: true
+                    example: null
+  
+  /admin/v1/users/{user_id}/jobs/methodologies/{id}/download:
+    get:
+      tags: [Job - Methodology - Admin]
+      summary: "Download info about methodology in pdf file"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
+  /admin/v1/users/{user_id}/jobs/methodologies/{id}/approve:
+    patch:
+      tags: [Job - Methodology - Admin]
+      summary: "Approve methodology"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_favorite:
+                  type: boolean
+                  example: true
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/methodologies/{id}/reject:
+    patch:
+      tags: [Job - Methodology - Admin]
+      summary: "Reject methodology"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  example: "comment"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /admin/v1/users/{user_id}/jobs/methodologies/{id}/restore:
+    patch:
+      tags: [Job - Methodology - Admin]
+      summary: "Restore methodology from archive"
+      parameters:
+        - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
 
 components:
   securitySchemes:
@@ -2298,6 +2681,49 @@ components:
           type: string
           description: "График *"
           example: "график"
+    MethodologyJobInfo:
+      type: object
+      description: ""
+      properties:
+        direction_id:
+          type: number
+          description: "Направленность"
+          example: 131
+        prevalence_id:
+          type: number
+          description: "Распространенность"
+          example: 161
+        activity_organization_form_id:
+          type: number
+          description: "Форма организации деятельности при реализации технологии/методики"
+          example: 171
+        application_period_id:
+          type: number
+          description: "Период применения"
+          example: 182
+        authors:
+          type: string
+          description: "Автор(ы) (составитель) технологии/методики, информация о согласовании (при наличии)"
+          example: null
+          nullable: true
+        effectiveness_study:
+          type: string
+          description: "Исследование эффективности или доказательности методики/технологии"
+          example: null
+          nullable: true
+        effectiveness_study_link:
+          type: string
+          description: "Ссылка на сайт"
+          example: null
+          nullable: true
+        realized_cycles:
+          type: string
+          description: "Количество реализованных полных циклов"
+          example: "Количество реализованных полных циклов"
+        cycle_duration:
+          type: string
+          description: "Продолжительность одного цикла"
+          example: "Продолжительность одного цикла"
     UserFile:
       type: object
       description: ""
@@ -2321,7 +2747,7 @@ components:
     UserId:
       in: path
       name: user_id
-      description: "ID of user"
+      description: "User id"
       required: true
       schema:
         type: number
@@ -2329,7 +2755,7 @@ components:
     SocialProjectId:
       in: path
       name: id
-      description: "Social project ID"
+      description: "Social project Id"
       example: 1
       required: true
       schema:
@@ -2337,7 +2763,7 @@ components:
     EduProgramId:
       in: path
       name: id
-      description: "Edu program ID"
+      description: "Edu program Id"
       example: 1
       required: true
       schema:
@@ -2345,7 +2771,7 @@ components:
     SocialWorkId:
       in: path
       name: id
-      description: "social work ID"
+      description: "Social work Id"
       example: 1
       required: true
       schema:
@@ -2353,7 +2779,15 @@ components:
     ClubId:
       in: path
       name: id
-      description: "club ID"
+      description: "Club Id"
+      example: 1
+      required: true
+      schema:
+        type: number
+    MethodologyId:
+      in: path
+      name: id
+      description: "Methodology Id"
       example: 1
       required: true
       schema:
@@ -2548,6 +2982,28 @@ components:
       description: "Направленность"
       schema:
         type: string
+        example: ""
+    JobListAdditionFilterApplicationPeriodId:
+      in: query
+      name: filter_application_period_id
+      description: "Форма организации деятельности при реализации технологии/методики"
+      schema:
+        type: number
+        example: ""
+    JobListAdditionFilterPrevalenceId:
+      in: query
+      name: filter_prevalence_id
+      description: "Распространенность методики"
+      schema:
+        type: number
+        example: ""
+    JobListAdditionFilterIsEffectivenessStudy:
+      in: query
+      name: filter_is_effectiveness_study
+      description: "Исследование эффективности или доказательности методики/технологии"
+      schema:
+        type: string
+        enum: [0, 1]
         example: ""
     CompanyListFilterName:
       in: query

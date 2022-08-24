@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Models\Job\Variant;
+
+use App\Models\Job\Variant\Traits\Fields\HasActivityOrganizationFormIdField;
+use App\Models\Job\Variant\Traits\Fields\HasApplicationPeriodField;
+use App\Models\Job\Variant\Traits\Fields\HasDirectionField;
+use App\Models\Job\Variant\Traits\Fields\HasPrevalenceField;
+use App\Models\Job\Variant\Traits\ImplementsJob;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Methodology extends Model
+{
+    use HasFactory;
+    use ImplementsJob,
+        HasDirectionField,
+        HasPrevalenceField,
+        HasApplicationPeriodField,
+        HasActivityOrganizationFormIdField
+        ;
+
+    protected $fillable = [
+        'direction_id',
+        'prevalence_id',
+        'activity_organization_form_id',
+        'application_period_id',
+        'authors',
+        'effectiveness_study',
+        'effectiveness_study_link',
+        'realized_cycles',
+        'cycle_duration',
+    ];
+
+    protected $casts = [];
+
+    public function scopeOptionalIsHasEffectivenessStudy(Builder $query, ?bool $is_has_effectiveness_study)
+    {
+        if ( is_null($is_has_effectiveness_study) ) return $query;
+        return $is_has_effectiveness_study
+            ? $query->whereNotNull('effectiveness_study')
+            : $query->whereNull('effectiveness_study');
+    }
+}

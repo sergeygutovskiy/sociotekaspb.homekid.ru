@@ -27,6 +27,9 @@ class DictionaryCategorySeeder extends Seeder
             [ 'name' => 'Направленность', 'slug' => 'direction' ],
             [ 'name' => 'Форма проведения занятий', 'slug' => 'conducting-classes-form' ],
             [ 'name' => 'Вид программы', 'slug' => 'program-type' ],
+            [ 'name' => 'Распространенность методики', 'slug' => 'prevalence' ],
+            [ 'name' => 'Форма организации деятельности при реализации технологии/методики', 'slug' => 'activity-organization-form' ],
+            [ 'name' => 'Период применения (продолжительность реализации)', 'slug' => 'application-period' ],
         ]);
     }
 }

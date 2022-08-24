@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\EduProgram;
+use App\Models\Job\Variant\Methodology;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\Job\Variant\SocialWork;
 use App\Models\User;
@@ -51,12 +52,16 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('club_deleted', fn($id, $route) => Club::findDeletedOrFailByUser($id, $route->parameter('user')->id));
         Route::bind('club_optional_deleted', fn($id, $route) => Club::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
 
+        Route::bind('methodology', fn($id, $route) => Methodology::findOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('methodology_deleted', fn($id, $route) => Methodology::findDeletedOrFailByUser($id, $route->parameter('user')->id));
+        Route::bind('methodology_optional_deleted', fn($id, $route) => Methodology::findOptionalDeletedOrFailByUser($id, $route->parameter('user')->id));
+
         $this->routes(function () {
             Route::prefix('api/client/v1')
                 ->middleware('api')
                 ->group(base_path('routes/client/v1/api.php'));
-            
-                Route::prefix('api/admin/v1')
+
+            Route::prefix('api/admin/v1')
                 ->middleware([ 'api', 'auth:sanctum', 'auth.admin'])
                 ->group(base_path('routes/admin/v1/api.php'));
 

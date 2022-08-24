@@ -6,6 +6,7 @@ use App\Http\Controllers\Client\DicionaryController;
 use App\Http\Controllers\Client\DictionaryCategoryController;
 use App\Http\Controllers\Client\Job\ClubController;
 use App\Http\Controllers\Client\Job\EduProgramController;
+use App\Http\Controllers\Client\Job\MethodologyController;
 use App\Http\Controllers\Client\Job\SocialProjectController;
 use App\Http\Controllers\Client\Job\SocialWorkController;
 use App\Http\Controllers\Client\UserFileController;
@@ -71,6 +72,18 @@ Route::prefix('/users')->group(function() {
 
                 Route::get('/', [ ClubController::class, 'index' ]);
                 Route::post('/', [ ClubController::class, 'store' ]);
+            });
+
+            Route::prefix('/methodologies')->group(function() {
+                Route::prefix('/{methodology}')->group(function() {
+                    Route::get('/', [ MethodologyController::class, 'show' ]);
+                    Route::put('/', [ MethodologyController::class, 'update' ]);
+                    Route::delete('/', [ MethodologyController::class, 'delete' ]);
+                    Route::get('/download', [ MethodologyController::class, 'download' ]);
+                });
+
+                Route::get('/', [ MethodologyController::class, 'index' ]);
+                Route::post('/', [ MethodologyController::class, 'store' ]);
             });
         });
     });

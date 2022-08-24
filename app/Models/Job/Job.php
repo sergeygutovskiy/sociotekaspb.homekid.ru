@@ -4,6 +4,7 @@ namespace App\Models\Job;
 
 use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\EduProgram;
+use App\Models\Job\Variant\Methodology;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\Job\Variant\SocialWork;
 use App\Models\User;
@@ -80,6 +81,11 @@ class Job extends Model
     public function club()
     {
         return $this->hasOne(Club::class);
+    }
+
+    public function methodology()
+    {
+        return $this->hasOne(Methodology::class);
     }
 
     public function getRatingExpandedAttribute()

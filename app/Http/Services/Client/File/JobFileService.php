@@ -5,6 +5,7 @@ namespace App\Http\Services\Client\File;
 use App\Models\Job\Job;
 use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\EduProgram;
+use App\Models\Job\Variant\Methodology;
 use App\Models\Job\Variant\SocialProject;
 use App\Models\Job\Variant\SocialWork;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -59,6 +60,15 @@ class JobFileService
             $club->optional_trashed_job,
             'club',
             [ 'club' => $club ]
+        );
+    }
+
+    public static function downloadMethodology(Methodology $methodology)
+    {
+        return self::download(
+            $methodology->optional_trashed_job,
+            'methodology',
+            [ 'methodology' => $methodology ]
         );
     }
 }
