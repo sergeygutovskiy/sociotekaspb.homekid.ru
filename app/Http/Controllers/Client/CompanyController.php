@@ -22,7 +22,7 @@ class CompanyController extends Controller
 
     public function update(StoreRequest $request, User $user)
     {
-        $validated = $request->validated();
+        $validated = $request->all();
         $validated['status'] = CompanyStatus::PENDING;
 
         $company = $user->company;

@@ -23,7 +23,7 @@ class JobService
 
     public static function reject(RejectRequest $request, $job)
     {
-        $comment = $request->validated('comment');
+        $comment = $request->input('comment');
 
         $job->update([
             'status' => JobStatus::REJECTED,

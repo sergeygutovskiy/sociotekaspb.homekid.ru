@@ -27,7 +27,7 @@ class CompanyController extends Controller
 
     public function reject(RejectRequest $request, User $user)
     {
-        $comment = $request->validated('comment');
+        $comment = $request->input('comment');
 
         $company = $user->company;
         $company->update([
