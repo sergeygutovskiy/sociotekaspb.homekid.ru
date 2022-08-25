@@ -53,3 +53,33 @@
         {{ $methodology->effectiveness_study_link ?? 'Нет' }}
     </p>
 </div>
+<div class="text-block">
+    <h3>Вид услуги</h3>
+    <p>
+        @if ( $methodology->service_types()->isNotEmpty() )
+            {{ $methodology->service_types()->implode('label', ', ') }}
+        @else
+            Нет
+        @endif
+    </p>
+</div>
+<div class="text-block">
+    <h3>Наименование услуги</h3>
+    <p>
+        @if ( $methodology->service_names()->isNotEmpty() )
+            {{ $methodology->service_names()->implode('label', ', ') }}
+        @else
+            Нет
+        @endif
+    </p>
+</div>
+<div class="text-block">
+    <h3>Наименование государственной работы</h3>
+    <p>
+        @if ( $methodology->public_works()->isNotEmpty() )
+            {{ $methodology->public_works()->implode('label', ', ') }}
+        @else
+            Нет
+        @endif
+    </p>
+</div>

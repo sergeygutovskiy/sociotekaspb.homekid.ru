@@ -34,6 +34,7 @@ class StoreRequest extends FormRequest
                 'info.application_period_id' => ['required', 'integer', 'exists:dictionaries,id'],
 
                 'info.authors' => ['present', 'nullable', 'string'],
+                'info.publication_link' => ['present', 'nullable', 'string'],
 
                 'info.effectiveness_study' => ['present', 'nullable', 'string'],
                 'info.effectiveness_study_link' => ['present', 'nullable', 'string'],
@@ -41,6 +42,15 @@ class StoreRequest extends FormRequest
                 'info.realized_cycles' => ['required', 'string'],
                 'info.realized_cycles' => ['required', 'string'],
                 'info.cycle_duration' => ['required', 'string'],
+
+                'info.public_work_ids' => ['array', 'present'],
+                'info.public_work_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.service_type_ids' => ['array', 'present'],
+                'info.service_type_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
+
+                'info.service_name_ids' => ['array', 'present'],
+                'info.service_name_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
             ],
             \App\Http\Validators\Client\Job\PrimaryInformation\StoreValidator::rules(),
             \App\Http\Validators\Client\Job\Experience\StoreValidator::rules(),

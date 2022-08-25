@@ -1888,6 +1888,9 @@ paths:
         - $ref: "#/components/parameters/JobListAdditionFilterApplicationPeriodId"
         - $ref: "#/components/parameters/JobListAdditionFilterPrevalenceId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsEffectivenessStudy"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
         
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
@@ -2064,6 +2067,9 @@ paths:
         - $ref: "#/components/parameters/JobListAdditionFilterApplicationPeriodId"
         - $ref: "#/components/parameters/JobListAdditionFilterPrevalenceId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsEffectivenessStudy"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
         
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
@@ -2104,6 +2110,9 @@ paths:
         - $ref: "#/components/parameters/JobListAdditionFilterApplicationPeriodId"
         - $ref: "#/components/parameters/JobListAdditionFilterPrevalenceId"
         - $ref: "#/components/parameters/JobListAdditionFilterIsEffectivenessStudy"
+        - $ref: "#/components/parameters/JobListAdditionFilterPublicWorkIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceNameIds"
+        - $ref: "#/components/parameters/JobListAdditionFilterServiceTypeIds"
 
         - $ref: "#/components/parameters/JobListSortBy"
         - $ref: "#/components/parameters/ListSortDirection"
@@ -2724,13 +2733,36 @@ components:
           type: string
           description: "Продолжительность одного цикла"
           example: "Продолжительность одного цикла"
+        public_work_ids:
+          type: array
+          description: "Наименование государственной работы"
+          items:
+            type: number
+          example: [91, 92]
+        service_type_ids:
+          type: array
+          description: "Вид услуги"
+          items:
+            type: number
+          example: [101, 102]
+        service_name_ids:
+          type: array
+          description: "Наименование услуги"
+          items:
+            type: number
+          example: [111, 112]
+        publication_link:
+          type: string
+          description: "Ссылка на публикацию"
+          nullable: true
+          example: null
     UserFile:
       type: object
       description: ""
       properties:
         id:
           type: number
-          description: ""
+          description: "File id"
           example: 1
         path:
           type: string

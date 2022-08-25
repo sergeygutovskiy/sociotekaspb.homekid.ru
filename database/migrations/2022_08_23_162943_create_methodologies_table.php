@@ -32,6 +32,7 @@ return new class extends Migration
             $table->foreign('application_period_id')->references('id')->on('dictionaries');
 
             $table->text('authors')->nullable();
+            $table->string('publication_link')->nullable();
             
             $table->text('effectiveness_study')->nullable();
             $table->string('effectiveness_study_link')->nullable();
@@ -39,7 +40,10 @@ return new class extends Migration
             $table->text('realized_cycles');
             $table->text('cycle_duration');
 
+            $table->json('public_work_ids');
 
+            $table->json('service_type_ids');
+            $table->json('service_name_ids');
 
             $table->timestamps();
         });

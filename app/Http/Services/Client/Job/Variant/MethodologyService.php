@@ -4,6 +4,7 @@ namespace App\Http\Services\Client\Job\Variant;
 
 use App\Enums\JobVariant;
 use App\Http\Services\Client\Job\JobService;
+use App\Http\Validators\Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -34,11 +35,18 @@ class MethodologyService
         $filter_prevalence_id = $request->validated('filter_prevalence_id');
         $filter_is_effectiveness_study = $request->validated('filter_is_effectiveness_study');
 
+        $service_type_ids_filter = Validator::parse_query_ids($request->validated('filter_service_type_ids'));
+        $service_name_ids_filter = Validator::parse_query_ids($request->validated('filter_service_name_ids'));
+        $public_work_ids_filter = Validator::parse_query_ids($request->validated('filter_public_work_ids'));
+
         $query = $jobs->whereHas(JobVariant::METHODOLOGY, fn($q) => $q
             ->optionalHasDirection($filter_direction_id)
             ->optionalHasPrevalence($filter_prevalence_id)
             ->optionalHasApplicationPeriod($filter_application_period_id)
             ->optionalIsHasEffectivenessStudy($filter_is_effectiveness_study)
+            ->optionalHasServiceTypes($service_type_ids_filter)
+            ->optionalHasServiceNames($service_name_ids_filter)
+            ->optionalHasPublicWorks($public_work_ids_filter)
         );
 
         return JobService::paginate($request, $query, JobVariant::METHODOLOGY);

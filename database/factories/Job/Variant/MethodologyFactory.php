@@ -30,6 +30,10 @@ class MethodologyFactory extends Factory
           'effectiveness_study_link' => fake()->randomElement([ fake()->url(), null ]),
           'realized_cycles' => fake()->paragraph(),
           'cycle_duration' => fake()->paragraph(),
+          'publication_link' => fake()->randomElement([ fake()->url(), null ]),
+          'public_work_ids' => fake()->randomElements(Dictionary::where('category_id', 10)->pluck('id'), 2),
+          'service_type_ids' => fake()->randomElements(Dictionary::where('category_id', 11)->pluck('id'), 2),
+          'service_name_ids' => fake()->randomElements(Dictionary::where('category_id', 12)->pluck('id'), 2),
         ];
     }
 }
