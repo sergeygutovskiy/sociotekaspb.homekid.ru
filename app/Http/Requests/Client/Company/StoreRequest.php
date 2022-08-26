@@ -42,12 +42,12 @@ class StoreRequest extends FormRequest
             'district_id' => 'required|numeric|exists:dictionaries,id',
             
             'education_license' => 'array|size:3|nullable|present',
-            'education_license.number' => 'required_with:education_license|numeric',
+            'education_license.number' => 'required_with:education_license|string',
             'education_license.date' => 'required_with:education_license|date_format:d.m.Y',
             'education_license.type' => 'required_with:education_license',
 
             'medical_license' => 'array|size:2|nullable|present',
-            'medical_license.number' => 'required_with:medical_license|numeric',
+            'medical_license.number' => 'required_with:medical_license|string',
             'medical_license.date' => 'required_with:medical_license|date_format:d.m.Y',
             
             'is_has_innovative_platform' => 'required|boolean'
