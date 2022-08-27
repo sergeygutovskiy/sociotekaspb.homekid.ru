@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('{any}', function() { return view('app'); })->where('any', '.*');
+Route::get('/', fn() => view('app'));
+Route::get('/account{any}', fn() => view('account.app'))->where('any', '.*');
