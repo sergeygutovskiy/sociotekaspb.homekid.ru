@@ -1822,6 +1822,31 @@ paths:
         200:
           description: "OK"
 
+
+  /public/v1/users/jobs/clubs/approved/{id}:
+    get:
+      tags: [Job - Club - Public]
+      summary: "Get approved club with approved company by ID"
+      parameters:
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/users/jobs/clubs/best/{id}:
+    get:
+      tags: [Job - Club - Public]
+      summary: "Get best club by ID"
+      parameters:
+        - $ref: "#/components/parameters/ClubId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
   /client/v1/users/{user_id}/jobs/methodologies:
     get:
       tags: [Job - Methodology - Client]

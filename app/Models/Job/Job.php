@@ -2,6 +2,8 @@
 
 namespace App\Models\Job;
 
+use App\Enums\CompanyStatus;
+use App\Enums\JobStatus;
 use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\Methodology;
@@ -275,6 +277,19 @@ class Job extends Model
         return $query->whereHas(
             'primary_information', 
             fn(Builder $q) => $q->whereJsonContains('need_recognition_ids', $ids)
+        );
+    }
+
+    public function scopeApproved(Builder $query)
+    {
+        return $query->where('status', JobStatus::ACCEPTED);
+    }
+
+    public function scopeWithApprovedCompany(Builder $query)
+    {
+        return $query->whereHas(
+            'user',
+            fn(Builder $q) => $q->whereHas('company', fn($qq) => $qq->where('status', CompanyStatus::ACCEPTED))
         );
     }
 
