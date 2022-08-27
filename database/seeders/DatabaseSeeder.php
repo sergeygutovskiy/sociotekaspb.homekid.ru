@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             SocialWorkSeeder::class,
             ClubSeeder::class,
             MethodologySeeder::class,
+            RnsuCategoryGroupSeeder::class,
         ]);
     }
 }

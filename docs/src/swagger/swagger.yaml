@@ -198,7 +198,7 @@ paths:
 
   /client/v1/dictionaries/jobs/reporting-periods/years:
     get:
-      tags: [Dictionary]
+      tags: [Dictionary - Client]
       summary: "Get all years of reporting periods"
       responses:
         200:
@@ -206,90 +206,54 @@ paths:
 
   /client/v1/dictionaries/categories/{category}:
     get:
-      tags: [Dictionary]
+      tags: [Dictionary - Client]
       summary: "Get all dicionaries of specified category"
       parameters:
-        - in: path
-          name: category
-          description: "Slug of category"
-          example: "organization-type"
-          required: true
-          schema:
-            type: string
-            enum:
-            - organization-type
-            - district
-            - payment-method
-            - volunteer
-            - needy-category
-            - needy-category-target-group
-            - social-service
-            - implementation-level
-            - rnsu-category
-            - public-work
-            - service-name
-            - service-type
-            - need-recognition
-            - direction
-            - conducting-classes-form
-            - program-type
-            - prevalence
-            - activity-organization-form
-            - application-period
+        - $ref: "#/components/parameters/DicionaryCategory"
       responses:
         200:
           description: "OK"
 
   /client/v1/dictionaries/categories/{parent_category}/{child_category}:
     get:
-      tags: [Dictionary]
+      tags: [Dictionary - Client]
       summary: "Get relationship between dictionaries of parent category and dictionaries of child category"
       parameters:
-        - in: path
-          name: parent_category
-          description: "Slug of parent category"
-          example: needy-category
-          required: true
-          schema:
-            type: string
-            enum:
-            - organization-type
-            - district
-            - payment-method
-            - volunteer
-            - needy-category
-            - needy-category-target-group
-            - social-service
-            - implementation-level
-            - rnsu-category
-            - public-work
-            - service-name
-            - service-type
-            - need-recognition
-        - in: path
-          name: child_category
-          description: "Slug of child category"
-          example: needy-category-target-group
-          required: true
-          schema:
-            type: string
-            enum:
-            - organization-type
-            - district
-            - payment-method
-            - volunteer
-            - needy-category
-            - needy-category-target-group
-            - social-service
-            - implementation-level
-            - rnsu-category
-            - public-work
-            - service-name
-            - service-type
-            - need-recognition
+        - $ref: "#/components/parameters/DicionaryCategory"
+        - $ref: "#/components/parameters/DicionaryCategory"
       responses:
         200:
           description: "OK"
+
+  /public/v1/dictionaries/jobs/reporting-periods/years:
+    get:
+      tags: [Dictionary - Public]
+      summary: "Get all years of reporting periods"
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/dictionaries/categories/{category}:
+    get:
+      tags: [Dictionary - Public]
+      summary: "Get all dicionaries of specified category"
+      parameters:
+        - $ref: "#/components/parameters/DicionaryCategory"
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/dictionaries/categories/{parent_category}/{child_category}:
+    get:
+      tags: [Dictionary - Public]
+      summary: "Get relationship between dictionaries of parent category and dictionaries of child category"
+      parameters:
+        - $ref: "#/components/parameters/DicionaryCategory"
+        - $ref: "#/components/parameters/DicionaryCategory"
+      responses:
+        200:
+          description: "OK"
+
 
   /client/v1/users/{user_id}/files:
     post:
@@ -2248,6 +2212,14 @@ paths:
         200:
           description: "OK"
 
+  /public/v1/dictionaries/categories/rnsu-category/groups:
+    get:
+      tags: [Dictionary - Public]
+      summary: "Get groups of rnsu dictionary category"
+      responses:
+        200:
+          description: "OK"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -3076,3 +3048,31 @@ components:
         enum:
           - asc
           - desc
+    DicionaryCategory:
+      in: path
+      name: category
+      description: "Slug of category"
+      example: "organization-type"
+      required: true
+      schema:
+        type: string
+        enum:
+        - organization-type
+        - district
+        - payment-method
+        - volunteer
+        - needy-category
+        - needy-category-target-group
+        - social-service
+        - implementation-level
+        - rnsu-category
+        - public-work
+        - service-name
+        - service-type
+        - need-recognition
+        - direction
+        - conducting-classes-form
+        - program-type
+        - prevalence
+        - activity-organization-form
+        - application-period
