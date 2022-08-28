@@ -30,8 +30,8 @@ class Resource extends JsonResource
                 ],
             ],
             'year' => [
-                'min' => $this->year->min,
-                'max' => $this->year->max,
+                'start' => $this->year->min,
+                'end' => $this->year->max,
             ],
         ];
     }
