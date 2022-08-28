@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Public\Job;
+namespace App\Http\Controllers\Public\Job\Variant;
 
 use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
@@ -12,7 +12,7 @@ class SocialProjectController extends Controller
 {
     public function show_approved(int $id)
     {
-        $job = JobService::approvedWithApprovedCompany(JobVariant::SOCIAL_PROJECT, $id)->firstOrFail();
+        $job = JobService::approved_with_approved_company(JobVariant::SOCIAL_PROJECT, $id)->firstOrFail();
         return ResourceOKResponse::response(new Resource($job->social_project));
     }
 

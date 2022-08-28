@@ -180,7 +180,10 @@ class JobService
 
         $paginated = new stdClass();
         $paginated->total = $query->count();
-        $paginated->items = $query->skip(($page - 1) * $limit)->take($limit)->get()->map(fn($job) => $job->{$relation});
+        $paginated->items = is_null($relation)
+            ? $query->skip(($page - 1) * $limit)->take($limit)->get()
+            : $query->skip(($page - 1) * $limit)->take($limit)->get()->map(fn($job) => $job->{$relation})
+            ;
 
         return $paginated;
     }

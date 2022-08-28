@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\Public\DicionaryController;
 use App\Http\Controllers\Public\DictionaryCategoryController;
-use App\Http\Controllers\Public\Job\ClubController;
-use App\Http\Controllers\Public\Job\EduProgramController;
-use App\Http\Controllers\Public\Job\MethodologyController;
-use App\Http\Controllers\Public\Job\SocialProjectController;
-use App\Http\Controllers\Public\Job\SocialWorkController;
+use App\Http\Controllers\Public\Job\JobController;
+use App\Http\Controllers\Public\Job\Variant\ClubController;
+use App\Http\Controllers\Public\Job\Variant\EduProgramController;
+use App\Http\Controllers\Public\Job\Variant\MethodologyController;
+use App\Http\Controllers\Public\Job\Variant\SocialProjectController;
+use App\Http\Controllers\Public\Job\Variant\SocialWorkController;
 use App\Http\Controllers\Public\RnsuCategoryGroupController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,8 @@ Route::prefix('/dictionaries')->group(function() {
 });
 
 Route::prefix('/users/jobs')->group(function () {
+    Route::get('/all/best', [ JobController::class, 'list_best' ]);
+    
     Route::prefix('/clubs')->group(function () {
         Route::get('/approved/{id}', [ ClubController::class, 'show_approved' ]);
         Route::get('/best/{id}', [ ClubController::class, 'show_best' ]);

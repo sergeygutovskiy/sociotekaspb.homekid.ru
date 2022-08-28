@@ -232,6 +232,15 @@ class Job extends Model
         );
     }
 
+    public function scopeOptionalHasPayment(Builder $query, ?int $payment_id)
+    {
+        if ( is_null($payment_id) ) return $query;
+        return $query->whereHas(
+            'primary_information', 
+            fn(Builder $q) => $q->where('payment_method_id', $payment_id)
+        );
+    }
+
     public function scopeOptionalHasRnsuCategories(Builder $query, ?array $ids)
     {
         if ( is_null($ids) ) return $query;
@@ -306,6 +315,36 @@ class Job extends Model
             'user',
             fn(Builder $q) => $q->whereHas('company', fn($qq) => $qq->where('status', CompanyStatus::ACCEPTED))
         );
+    }
+
+    public function scopeOptionalWithCompanyWithDistrict(Builder $query, ?int $district_id)
+    {
+        if ( is_null($district_id) ) return $query;
+
+        return $query->whereHas(
+            'user',
+            fn(Builder $q) => $q->whereHas(
+                'company', 
+                fn($qq) => $qq->where('district_id', $district_id))
+        );
+    }
+
+    public function scopeOptionalWithCompanyWithOrganisationType(Builder $query, ?int $organization_type_id)
+    {
+        if ( is_null($organization_type_id) ) return $query;
+
+        return $query->whereHas(
+            'user',
+            fn(Builder $q) => $q->whereHas(
+                'company', 
+                fn($qq) => $qq->where('organization_type_id', $organization_type_id))
+        );
+    }
+
+    public function scopeOptionalHasVariant(Builder $query, ?string $variant)
+    {
+        if ( is_null($variant) ) return $query;
+        return $query->whereHas($variant);
     }
 
     public function scopeOptionalOrderBy(Builder $query, ?string $order_by, ?string $dir)
