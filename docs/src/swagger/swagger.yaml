@@ -254,7 +254,6 @@ paths:
         200:
           description: "OK"
 
-
   /client/v1/users/{user_id}/files:
     post:
       tags: [File]
@@ -672,6 +671,30 @@ paths:
         200:
           description: "OK"
 
+  /public/v1/users/jobs/social-projects/approved/{id}:
+    get:
+      tags: [Job - Social Project - Public]
+      summary: "Get approved social project with approved company by ID"
+      parameters:
+        - $ref: "#/components/parameters/SocialProjectId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/users/jobs/social-projects/best/{id}:
+    get:
+      tags: [Job - Social Project - Public]
+      summary: "Get best social project by ID"
+      parameters:
+        - $ref: "#/components/parameters/SocialProjectId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
   /admin/v1/users/companies:
     get:
       tags: [Company - Admin]
@@ -1062,6 +1085,30 @@ paths:
         200:
           description: "OK"
 
+  /public/v1/users/jobs/edu-programs/approved/{id}:
+    get:
+      tags: [Job - Edu Program - Public]
+      summary: "Get approved edu program with approved company by ID"
+      parameters:
+        - $ref: "#/components/parameters/EduProgramId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/users/jobs/edu-programs/best/{id}:
+    get:
+      tags: [Job - Edu Program - Public]
+      summary: "Get best edu program by ID"
+      parameters:
+        - $ref: "#/components/parameters/EduProgramId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
   /client/v1/users/{user_id}/jobs/social-works:
     get:
       tags: [Job - Social Work - Client]
@@ -1437,6 +1484,30 @@ paths:
       summary: "Restore social work from archive"
       parameters:
         - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/SocialWorkId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/users/jobs/social-works/approved/{id}:
+    get:
+      tags: [Job - Social Work - Public]
+      summary: "Get approved social work with approved company by ID"
+      parameters:
+        - $ref: "#/components/parameters/SocialWorkId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/users/jobs/social-works/best/{id}:
+    get:
+      tags: [Job - Social Work - Public]
+      summary: "Get best social work by ID"
+      parameters:
         - $ref: "#/components/parameters/SocialWorkId"
       security:
       - bearerAuth: []
@@ -1821,7 +1892,6 @@ paths:
       responses:
         200:
           description: "OK"
-
 
   /public/v1/users/jobs/clubs/approved/{id}:
     get:
@@ -2230,6 +2300,30 @@ paths:
       summary: "Restore methodology from archive"
       parameters:
         - $ref: "#/components/parameters/UserId"
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/users/jobs/methodologies/approved/{id}:
+    get:
+      tags: [Job - Methodology - Public]
+      summary: "Get approved methodology with approved company by ID"
+      parameters:
+        - $ref: "#/components/parameters/MethodologyId"
+      security:
+      - bearerAuth: []
+      responses:
+        200:
+          description: "OK"
+
+  /public/v1/users/jobs/methodologies/best/{id}:
+    get:
+      tags: [Job - Methodology - Public]
+      summary: "Get best methodology by ID"
+      parameters:
         - $ref: "#/components/parameters/MethodologyId"
       security:
       - bearerAuth: []

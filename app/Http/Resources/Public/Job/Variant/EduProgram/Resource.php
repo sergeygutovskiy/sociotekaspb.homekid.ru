@@ -18,6 +18,12 @@ class Resource extends JsonResource
         return [
             'id' => $this->id,
             $this->merge(new JobResource($this->job)),
+
+            'info' => [
+                'direction_id' => $this->direction_id,
+                'conducting_classes_form_id' => $this->conducting_classes_form_id,
+                'dates_and_mode_of_study' => $this->dates_and_mode_of_study,
+            ],
         ];
     }
 }

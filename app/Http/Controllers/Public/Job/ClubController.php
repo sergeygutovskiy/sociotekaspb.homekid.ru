@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Public\Job;
 
 use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Public\Job\Variant\Club\BestResource;
 use App\Http\Resources\Public\Job\Variant\Club\Resource;
 use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Http\Services\Public\JobService;
