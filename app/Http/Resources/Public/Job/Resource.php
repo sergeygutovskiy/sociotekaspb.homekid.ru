@@ -17,7 +17,7 @@ class Resource extends JsonResource
     {
         return [
             'primary' => new PrimaryInformationResource($this->primary_information),
-            'comapny' => $this->company->name,
+            'company' => new CompanyResource($this->company),
             'rating' => [
                 'count' => $this->rating_expanded->count,
                 'fields' => [
