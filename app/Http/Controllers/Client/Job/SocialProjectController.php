@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client\Job;
 
+use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\SocialProject\ListRequest;
 use App\Http\Requests\Client\Job\SocialProject\StoreRequest;
@@ -24,8 +25,9 @@ class SocialProjectController extends Controller
     {
         if ( $request->user()->cannot('create', $user) ) return AccessDeniedErrorResponse::response();
 
-        $job = JobService::create_job($request, $user);
+        $job = JobService::create_job($request, $user, JobVariant::SOCIAL_PROJECT);
         $social_project = $job->social_project()->create($request->validated('info'));
+        $job->update(['variant_id' => $social_project->id]);
 
         return OKResponse::response([
             'social_project' => [ 'id' => $social_project->id ],

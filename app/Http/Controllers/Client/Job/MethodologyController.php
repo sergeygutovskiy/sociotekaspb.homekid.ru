@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client\Job;
 
+use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\Methodology\ListRequest;
 use App\Http\Requests\Client\Job\Methodology\StoreRequest;
@@ -24,11 +25,12 @@ class MethodologyController extends Controller
     {
         if ( $request->user()->cannot('create', $user) ) return AccessDeniedErrorResponse::response();
 
-        $job = JobService::create_job($request, $user);
-        $club = $job->methodology()->create($request->validated('info'));
+        $job = JobService::create_job($request, $user, JobVariant::METHODOLOGY);
+        $methodology = $job->methodology()->create($request->validated('info'));
+        $job->update(['variant_id' => $methodology->id]);
 
         return OKResponse::response([
-            'club' => [ 'id' => $club->id ],
+            'methodology' => [ 'id' => $methodology->id ],
         ]);
     }
 

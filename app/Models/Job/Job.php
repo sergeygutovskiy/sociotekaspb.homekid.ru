@@ -29,6 +29,8 @@ class Job extends Model
         'rating',
         'rejected_status_description',
         'updated_at',
+        'variant',
+        'variant_id',
     ];
 
     protected $casts = [

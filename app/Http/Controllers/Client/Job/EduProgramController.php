@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client\Job;
 
+use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\EduProgram\ListRequest;
 use App\Http\Requests\Client\Job\EduProgram\StoreRequest;
@@ -24,8 +25,9 @@ class EduProgramController extends Controller
     {
         if ( $request->user()->cannot('create', $user) ) return AccessDeniedErrorResponse::response();
 
-        $job = JobService::create_job($request, $user);
+        $job = JobService::create_job($request, $user, JobVariant::EDU_PROGRAM);
         $edu_program = $job->edu_program()->create($request->validated('info'));
+        $job->update(['variant_id' => $edu_program->id]);
 
         return OKResponse::response([
             'edu_program' => [ 'id' => $edu_program->id ],

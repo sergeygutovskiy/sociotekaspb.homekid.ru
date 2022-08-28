@@ -16,7 +16,7 @@ use stdClass;
 
 class JobService
 {
-    public static function create_job(Request $request, User $user): Job
+    public static function create_job(Request $request, User $user, string $variant): Job
     {
         $request_data = $request->all();
 
@@ -37,6 +37,7 @@ class JobService
             'primary_information_id' => $job_primary->id,
             'experience_id' => $job_experience->id,
             'contacts_id' => $job_contacts->id,
+            'variant' => $variant,
         ]);
 
         // set job initial rating

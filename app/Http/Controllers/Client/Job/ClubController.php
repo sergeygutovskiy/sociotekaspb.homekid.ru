@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client\Job;
 
+use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\Job\Club\ListRequest;
 use App\Http\Requests\Client\Job\Club\StoreRequest;
@@ -24,8 +25,9 @@ class ClubController extends Controller
     {
         if ( $request->user()->cannot('create', $user) ) return AccessDeniedErrorResponse::response();
 
-        $job = JobService::create_job($request, $user);
+        $job = JobService::create_job($request, $user, JobVariant::CLUB);
         $club = $job->club()->create($request->validated('info'));
+        $job->update(['variant_id' => $club->id]);
 
         return OKResponse::response([
             'club' => [ 'id' => $club->id ],
