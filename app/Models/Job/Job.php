@@ -92,6 +92,19 @@ class Job extends Model
         return $this->hasOne(Methodology::class);
     }
 
+    public function getYearAttribute()
+    {
+        $years = $this->reporting_periods->pluck('year');
+        $min_year = $years->min();
+        $max_year = $years->max();
+
+        $year = new stdClass();
+        $year->min = $min_year;
+        $year->max = $max_year;
+
+        return $year;
+    }
+
     public function getRatingExpandedAttribute()
     {
         $is_favorite = $this->is_favorite;

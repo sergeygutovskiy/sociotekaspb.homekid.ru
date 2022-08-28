@@ -29,6 +29,10 @@ class Resource extends JsonResource
                     'is_has_any_review' => $this->rating_expanded->fields->is_has_any_review,
                 ],
             ],
+            'year' => [
+                'min' => $this->year->min,
+                'max' => $this->year->max,
+            ],
         ];
     }
 }
