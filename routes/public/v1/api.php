@@ -25,26 +25,31 @@ Route::prefix('/users/jobs')->group(function () {
     Route::get('/all/best', [ JobController::class, 'list_best' ]);
     
     Route::prefix('/clubs')->group(function () {
+        Route::get('/approved', [ ClubController::class, 'list_approved' ]);
         Route::get('/approved/{id}', [ ClubController::class, 'show_approved' ]);
         Route::get('/best/{id}', [ ClubController::class, 'show_best' ]);
     });
 
     Route::prefix('/social-projects')->group(function () {
+        Route::get('/approved', [ SocialProjectController::class, 'list_approved' ]);
         Route::get('/approved/{id}', [ SocialProjectController::class, 'show_approved' ]);
         Route::get('/best/{id}', [ SocialProjectController::class, 'show_best' ]);
     });
 
     Route::prefix('/edu-programs')->group(function () {
+        Route::get('/approved', [ EduProgramController::class, 'list_approved' ]);
         Route::get('/approved/{id}', [ EduProgramController::class, 'show_approved' ]);
         Route::get('/best/{id}', [ EduProgramController::class, 'show_best' ]);
     });
 
     Route::prefix('/social-works')->group(function () {
+        Route::get('/approved', [ SocialWorkController::class, 'list_approved' ]);
         Route::get('/approved/{id}', [ SocialWorkController::class, 'show_approved' ]);
         Route::get('/best/{id}', [ SocialWorkController::class, 'show_best' ]);
     });
 
     Route::prefix('/methodologies')->group(function () {
+        Route::get('/approved', [ MethodologyController::class, 'list_approved' ]);
         Route::get('/approved/{id}', [ MethodologyController::class, 'show_approved' ]);
         Route::get('/best/{id}', [ MethodologyController::class, 'show_best' ]);
     });

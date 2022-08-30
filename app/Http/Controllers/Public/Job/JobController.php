@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Public\Job\ListRequest;
 use App\Http\Resources\Public\Job\ListResource;
 use App\Http\Responses\Resources\ResourceOKResponse;
-use App\Http\Services\Public\JobService;
+use App\Http\Services\Public\Job\JobService;
 
 class JobController extends Controller
 {

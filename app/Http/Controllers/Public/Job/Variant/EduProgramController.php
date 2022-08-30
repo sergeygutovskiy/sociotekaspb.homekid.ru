@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Public\Job\Variant;
 
 use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Public\Job\EduProgram\ListRequest;
+use App\Http\Resources\Public\Job\ListApprovedResource;
 use App\Http\Resources\Public\Job\Variant\EduProgram\Resource;
 use App\Http\Responses\Resources\ResourceOKResponse;
-use App\Http\Services\Public\JobService;
+use App\Http\Services\Public\Job\JobService;
+use App\Http\Services\Public\Job\Variant\EduProgramService;
 
 class EduProgramController extends Controller
 {
@@ -20,5 +23,14 @@ class EduProgramController extends Controller
     {
         $job = JobService::best(JobVariant::EDU_PROGRAM, $id)->firstOrFail();
         return ResourceOKResponse::response(new Resource($job->edu_program));
+    }
+
+    public function list_approved(ListRequest $request)
+    {
+        $paginated = EduProgramService::list($request);
+        return ResourceOKResponse::response([
+            'total' => $paginated->total,
+            'items' => ListApprovedResource::collection($paginated->items),
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\Public;
+namespace App\Http\Services\Public\Job;
 
 use App\Http\Services\Client\Job\JobService as ClientJobService;
 use App\Http\Validators\Validator;
@@ -25,6 +25,57 @@ class JobService
             ->where('is_favorite', true)
             ->whereHas($job_variant, fn($q) => $q->where('id', $id))
             ;
+    }
+
+    public static function list_approved_with_approved_company(Request $request, string $job_variant, $initial_query)
+    {
+        $name_filter = $request->input('filter_name');
+        $rating_filter = $request->input('filter_rating');
+        $year_filter = $request->input('filter_year');
+
+        $is_any_review_filter = $request->input('filter_is_any_review');
+        $is_approbation_filter = $request->input('filter_is_approbation');
+        $is_remote_format_filter = $request->input('filter_is_remote_format');
+        $is_favorite_filter = $request->input('filter_is_favorite');
+        $is_publication_filter = $request->input('filter_is_publication');
+        $volunteer_id_filter = $request->input('filter_volunteer_id');
+        $filter_district_id = $request->input('filter_district_id');
+
+        $rnsu_category_ids_filter = Validator::parse_query_ids($request->input('filter_rnsu_category_ids'));
+        $needy_category_ids_filter = Validator::parse_query_ids($request->input('filter_needy_category_ids'));
+        $needy_category_target_group_ids_filter = Validator::parse_query_ids($request->input('filter_needy_category_target_group_ids'));
+        $social_service_ids_filter = Validator::parse_query_ids($request->input('filter_social_service_ids'));
+        $need_recognition_ids_filter = Validator::parse_query_ids($request->validated('filter_need_recognition_ids'));
+
+        $is_practice_placed_in_asi_smarteka_filter = $request->input('filter_is_practice_placed_in_asi_smarteka');
+
+        $sort_by = $request->input('sort_by');
+        $sort_direction = $request->input('sort_direction');
+
+        $query = $initial_query
+            ->whereHas($job_variant)
+            ->approved()
+            ->withApprovedCompany()
+            ->optionalHasNameLike($name_filter)
+            ->optionalHasRating($rating_filter)
+            ->optionalWithCompanyWithDistrict($filter_district_id)
+            ->optionalHasReportingPeriodOfYear($year_filter)
+            ->optionalHasVolunteer($volunteer_id_filter)
+            ->optionalHasAnyReview($is_any_review_filter)
+            ->optionalHasApprobation($is_approbation_filter)
+            ->optionalHasPublication($is_publication_filter)
+            ->optionalIsRemoteFormat($is_remote_format_filter)
+            ->optionalHasRnsuCategories($rnsu_category_ids_filter)
+            ->optionalHasNeedyCategories($needy_category_ids_filter)
+            ->optionalHasNeedyCategoryTargetGroups($needy_category_target_group_ids_filter)
+            ->optionalHasSocialServices($social_service_ids_filter)
+            ->optionalHasNeedRecognitions($need_recognition_ids_filter)
+            ->optionalIsFavorite($is_favorite_filter)
+            ->optionalIsPracticePlacedInAsiSmarteka($is_practice_placed_in_asi_smarteka_filter)
+            ->optionalOrderBy($sort_by, $sort_direction)
+        ;
+
+        return ClientJobService::paginate($request, $query);
     }
 
     public static function list_best(Request $request)
