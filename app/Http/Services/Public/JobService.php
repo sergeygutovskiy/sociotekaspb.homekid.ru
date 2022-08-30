@@ -5,6 +5,7 @@ namespace App\Http\Services\Public;
 use App\Http\Services\Client\Job\JobService as ClientJobService;
 use App\Http\Validators\Validator;
 use App\Models\Job\Job;
+use App\Models\RnsuCategoryGroup;
 use Illuminate\Http\Request;
 
 class JobService
@@ -30,6 +31,7 @@ class JobService
     {
         $filter_variant = $request->input('filter_variant');
 
+        $filter_name = $request->input('filter_name');
         $filter_district_id = $request->input('filter_district_id');
         $filter_organization_type_id = $request->input('filter_organization_type_id');
         $filter_year = $request->input('filter_year');
@@ -41,9 +43,19 @@ class JobService
         $filter_needy_category_target_group_ids = Validator::parse_query_ids($request->input('filter_needy_category_target_group_ids'));
         $filter_social_service_ids = Validator::parse_query_ids($request->input('filter_social_service_ids'));
 
+        $filter_rnsu_category_group_ids = Validator::parse_query_ids($request->input('filter_rnsu_category_group_ids'));
+        $groups = $filter_rnsu_category_group_ids
+            ? RnsuCategoryGroup::whereIn('id', $filter_rnsu_category_group_ids)->get()->pluck('rnsu_ids')
+            : null;
+        $rnsu_ids = $groups 
+            ? $groups->flatten()->unique()->toArray() 
+            : null;
+
         $query = Job::approved()
             ->withApprovedCompany()
             ->where('is_favorite', true)
+            ->optionalHasNameLike($filter_name)
+            ->optionalHasRnsuCategories($rnsu_ids)
             ->optionalHasVariant($filter_variant)
             ->optionalWithCompanyWithDistrict($filter_district_id)
             ->optionalWithCompanyWithOrganisationType($filter_organization_type_id)

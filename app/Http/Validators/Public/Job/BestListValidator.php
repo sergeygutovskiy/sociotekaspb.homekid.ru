@@ -22,6 +22,8 @@ class BestListValidator extends Validator
                 JobVariant::EDU_PROGRAM,
             ]),
 
+            'filter_rnsu_category_group_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
+            'filter_name' => ['sometimes', 'string'],
             'filter_district_id' => ['sometimes', 'integer'],
             'filter_organization_type_id' => ['sometimes', 'integer'],
             'filter_year' => ['sometimes', 'digits:4', 'integer', 'min:1900'],

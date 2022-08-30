@@ -2347,6 +2347,8 @@ paths:
         - $ref: "#/components/parameters/ListPage"
         - $ref: "#/components/parameters/ListLimit"
 
+        - $ref: "#/components/parameters/JobListFilterName"
+        - $ref: "#/components/parameters/JobListFilterRrnsuCategoryGroupIds"
         - $ref: "#/components/parameters/JobListFilterVariant"
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryIds"
         - $ref: "#/components/parameters/JobListFilterNeedyCategoryTargetGroupIds"
@@ -3036,6 +3038,13 @@ components:
       in: query
       name: filter_rnsu_category_ids
       description: "[common] Категории РНСУ"
+      schema:
+        type: string
+        example: ""
+    JobListFilterRrnsuCategoryGroupIds:
+      in: query
+      name: filter_rnsu_category_group_ids
+      description: "[common] Группы категорий РНСУ"
       schema:
         type: string
         example: ""
