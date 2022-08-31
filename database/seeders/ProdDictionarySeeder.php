@@ -17,14 +17,6 @@ class ProdDictionarySeeder extends Seeder
         $items = $items->map(fn($item) => array_merge($item, [ 'category_id' => 3 ]));
         Dictionary::insert($items->toArray());
 
-        $items = collect([
-            [ 'label' => 'район 1' ], 
-            [ 'label' => 'район 2' ], 
-            [ 'label' => 'район 3' ], 
-        ]);
-        $items = $items->map(fn($item) => array_merge($item, [ 'category_id' => 2 ]));
-        Dictionary::insert($items->toArray());
-
         // 
 
         $items = collect([
@@ -472,6 +464,33 @@ class ProdDictionarySeeder extends Seeder
             [ 'label' => 'граждане трудоспособного возраста, полностью или частично утратившие способность самооблуживание, самостоятельно передвигаться, обеспечивать основные жизненные потребности в связи с заболеванием, травмой (расчетный период – 6 месяцев в год)' ],
         ]);
         $items = $items->map(fn($item) => array_merge($item, [ 'category_id' => 9 ]));
+        Dictionary::insert($items->toArray());
+
+        // 
+
+        $items = collect([
+            [ 'label' => 'Комитет по социальной политике Санкт-Петербурга' ],
+            [ 'label' => 'Негосударственные организации' ],
+            [ 'label' => 'Адмиралтейский район' ],
+            [ 'label' => 'Василеостровский район' ],
+            [ 'label' => 'Выборгский район' ],
+            [ 'label' => 'Калининский район' ],
+            [ 'label' => 'Кировский район' ],
+            [ 'label' => 'Колпинский район' ],
+            [ 'label' => 'Красногвардейский район' ],
+            [ 'label' => 'Красносельский район' ],
+            [ 'label' => 'Кронштадтcкий район' ],
+            [ 'label' => 'Курортный район' ],
+            [ 'label' => 'Московский район' ],
+            [ 'label' => 'Невский район' ],
+            [ 'label' => 'Петроградский район' ],
+            [ 'label' => 'Петродворцовый район' ],
+            [ 'label' => 'Приморский район' ],
+            [ 'label' => 'Пушкинский район' ],
+            [ 'label' => 'Фрунзенский район' ],
+            [ 'label' => 'Центральный район' ],
+        ]);
+        $items = $items->map(fn($item) => array_merge($item, [ 'category_id' => 2 ]));
         Dictionary::insert($items->toArray());
     }
 }
