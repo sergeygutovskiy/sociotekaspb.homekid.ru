@@ -16,10 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+
             DictionaryCategorySeeder::class,
             ProdDictionarySeeder::class,
+            ProdRnsuCategoryGroupsSeeder::class,
+
             CompanySeeder::class,
-            
+
             JobSeeder::class,
 
             SocialProjectSeeder::class,
@@ -27,7 +30,6 @@ class DatabaseSeeder extends Seeder
             SocialWorkSeeder::class,
             ClubSeeder::class,
             MethodologySeeder::class,
-            RnsuCategoryGroupSeeder::class,
         ]);
     }
 }
