@@ -9,6 +9,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/account/bundle.js') }}"></script>
 </body>
 </html>
