@@ -13,5 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('pages.landing.app'));
+Route::get('/{any}', fn() => view('pages.landing.app'))->where('any', '.*');
 Route::get('/account{any}', fn() => view('pages.account.app'))->where('any', '.*');
