@@ -32,7 +32,7 @@ return new class extends Migration
             $table->foreign('application_period_id')->references('id')->on('dictionaries');
 
             $table->text('authors')->nullable();
-            $table->string('publication_link')->nullable();
+            $table->text('publication_link')->nullable();
             
             $table->text('effectiveness_study')->nullable();
             $table->string('effectiveness_study_link')->nullable();
