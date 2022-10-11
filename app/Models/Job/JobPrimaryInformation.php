@@ -16,7 +16,6 @@ class JobPrimaryInformation extends Model
         'annotation',
         'objectives',
         'purpose',
-        'payment_method_id',
         'partnership',
         'volunteer_id',
         'needy_category_ids',
@@ -90,11 +89,6 @@ class JobPrimaryInformation extends Model
     public function need_recognitions()
     {
         return Dictionary::whereIn('id', $this->need_recognition_ids)->get();
-    }
-
-    public function payment()
-    {
-        return $this->belongsTo(Dictionary::class, 'payment_method_id');
     }
 
     public function volunteer()

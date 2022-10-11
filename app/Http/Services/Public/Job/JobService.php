@@ -86,7 +86,6 @@ class JobService
         $filter_district_id = $request->input('filter_district_id');
         $filter_organization_type_id = $request->input('filter_organization_type_id');
         $filter_year = $request->input('filter_year');
-        $filter_payment_id = $request->input('filter_payment_id');
         $filter_volunteer_id = $request->input('filter_volunteer_id');
         $filter_is_remote_format = $request->input('filter_is_remote_format');
 
@@ -116,7 +115,6 @@ class JobService
             ->optionalHasSocialServices($filter_social_service_ids)
             ->optionalHasVolunteer($filter_volunteer_id)
             ->optionalIsRemoteFormat($filter_is_remote_format)
-            ->optionalHasPayment($filter_payment_id)
             ;
 
         return ClientJobService::paginate($request, $query);

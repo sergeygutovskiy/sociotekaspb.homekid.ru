@@ -28,7 +28,6 @@ class BestListValidator extends Validator
             'filter_organization_type_id' => ['sometimes', 'integer'],
             'filter_year' => ['sometimes', 'digits:4', 'integer', 'min:1900'],
             'filter_social_service_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
-            'filter_payment_id' => ['sometimes', 'integer'],
             'filter_needy_category_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_needy_category_target_group_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_volunteer_id' => ['sometimes', 'integer'],

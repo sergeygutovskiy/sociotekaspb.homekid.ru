@@ -30,12 +30,6 @@
     </p>
 </div>
 <div class="text-block">
-    <h3>Реализация для гражданина бесплатно/платно</h3>
-    <p>
-        {{ $primary_information->payment->label }}
-    </p>
-</div>
-<div class="text-block">
     <h3>Возможность реализации в дистанционном формате</h3>
     <p>
         {{ $primary_information->is_remote_format_possible ? 'Да' : 'Нет' }}

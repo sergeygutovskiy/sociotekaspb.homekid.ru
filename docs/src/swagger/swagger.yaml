@@ -2573,10 +2573,6 @@ components:
           type: string
           description: "Цель *"
           example: "Цель"
-        payment_method_id:
-          type: number
-          description: "Реализация для гражданина бесплатно/платно *" 
-          example: 21
         partnership:
           type: object
           description: "Взаимодействие, партнерство с другими организациями"
@@ -3271,13 +3267,6 @@ components:
       description: "[common] Обстоятельства признания нуждаемости"
       schema:
         type: string
-        example: ""
-    JobListFilterPaymentId:
-      in: query
-      name: filter_payment_id
-      description: "[common] Реализация для гражданина"
-      schema:
-        type: number
         example: ""
     JobListFilterVariant:
       in: query

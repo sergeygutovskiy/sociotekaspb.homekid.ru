@@ -27,7 +27,6 @@ class PrimaryInformationResource extends JsonResource
             'annotation' => $this->annotation,
             'objectives' => $this->objectives,
             'purpose' => $this->purpose,
-            'payment_method_id' => $this->payment_method_id,
             'partnership' => $this->partnership,
             'volunteer_id' => $this->volunteer_id,
             'needy_category_ids' => $this->needy_category_ids,

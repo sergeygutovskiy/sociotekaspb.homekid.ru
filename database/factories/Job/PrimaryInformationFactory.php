@@ -25,7 +25,6 @@ class PrimaryInformationFactory extends Factory
             'annotation' => fake()->paragraph(),
             'objectives' => fake()->paragraph(),
             'purpose' => fake()->paragraph(),
-            'payment_method_id' => fake()->randomElement(Dictionary::where('category_id', 3)->pluck('id')),
             'partnership' => [ 'description' => fake()->paragraph() ],
             'volunteer_id' => fake()->randomElement(Dictionary::where('category_id', 4)->pluck('id')),
             'needy_category_ids' => fake()->randomElements(Dictionary::where('category_id', 5)->pluck('id'), 2),

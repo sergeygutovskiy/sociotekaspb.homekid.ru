@@ -14,8 +14,6 @@ class UpdateValidator extends Validator
             'primary.objectives' => ['required', 'string'],
             'primary.purpose' => ['required', 'string'],
             
-            'primary.payment_method_id' => ['required', 'integer', 'exists:dictionaries,id'],
-            
             'primary.partnership' => ['array', 'size:1', 'nullable', 'present'],
             'primary.partnership.description' => ['required_with:primary.partnership', 'string'],
 

@@ -18,7 +18,6 @@ class ListResource extends JsonResource
         return [
             'id' => $this->variant_id,
             'variant' => $this->variant,
-            'payment_id' => $this->primary_information->payment_method_id,
             'name' => $this->primary_information->name,
             'company' => $this->user->company->name,
             'year' => [

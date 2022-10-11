@@ -232,15 +232,6 @@ class Job extends Model
         );
     }
 
-    public function scopeOptionalHasPayment(Builder $query, ?int $payment_id)
-    {
-        if ( is_null($payment_id) ) return $query;
-        return $query->whereHas(
-            'primary_information', 
-            fn(Builder $q) => $q->where('payment_method_id', $payment_id)
-        );
-    }
-
     public function scopeOptionalHasRnsuCategories(Builder $query, ?array $ids)
     {
         if ( is_null($ids) ) return $query;
