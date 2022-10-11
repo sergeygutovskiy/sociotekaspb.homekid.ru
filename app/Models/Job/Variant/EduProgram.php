@@ -21,7 +21,6 @@ class EduProgram extends Model
     protected $fillable = [
         'direction_id',
         'conducting_classes_form_id',
-        'dates_and_mode_of_study',
     ];
 
     protected static function newFactory()

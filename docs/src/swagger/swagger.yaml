@@ -2915,9 +2915,6 @@ components:
           type: number
           description: "Форма проведения занятий *"
           example: 150
-        dates_and_mode_of_study:
-          type: string
-          description: "Сроки, режим занятий *"
     SocialWorkJobInfo:
       type: object
       description: ""
@@ -2952,9 +2949,6 @@ components:
           type: number
           description: "Форма проведения занятий *"
           example: 150
-        dates_and_mode_of_study:
-          type: string
-          description: "Сроки, режим занятий *"
     ClubJobInfo:
       type: object
       description: ""

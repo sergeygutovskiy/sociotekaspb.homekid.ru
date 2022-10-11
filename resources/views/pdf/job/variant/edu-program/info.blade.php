@@ -11,9 +11,3 @@
         {{ $edu_program->conducting_classes_form->label }}
     </p>
 </div>
-<div class="text-block">
-    <h3>Сроки, режим занятий</h3>
-    <p>
-        {{ $edu_program->dates_and_mode_of_study }}
-    </p>
-</div>

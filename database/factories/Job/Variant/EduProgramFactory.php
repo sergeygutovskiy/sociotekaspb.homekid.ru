@@ -23,7 +23,6 @@ class EduProgramFactory extends Factory
         return [
             'direction_id' => fake()->randomElement(Dictionary::where('category_id', 14)->pluck('id')),
             'conducting_classes_form_id' => fake()->randomElement(Dictionary::where('category_id', 15)->pluck('id')),
-            'dates_and_mode_of_study' => fake()->paragraph(),
         ];
     }
 }

@@ -24,7 +24,6 @@ class SocialWorkFactory extends Factory
             'program_type_id' => fake()->randomElement(Dictionary::where('category_id', 16)->pluck('id')),
             'direction_id' => fake()->randomElement(Dictionary::where('category_id', 14)->pluck('id')),
             'conducting_classes_form_id' => fake()->randomElement(Dictionary::where('category_id', 15)->pluck('id')),
-            'dates_and_mode_of_study' => fake()->paragraph(),
             'public_work_ids' => fake()->randomElements(Dictionary::where('category_id', 10)->pluck('id'), 2),
             'service_type_ids' => fake()->randomElements(Dictionary::where('category_id', 11)->pluck('id'), 2),
             'service_name_ids' => fake()->randomElements(Dictionary::where('category_id', 12)->pluck('id'), 2),

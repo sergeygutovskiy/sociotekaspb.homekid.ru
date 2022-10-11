@@ -30,7 +30,6 @@ class StoreRequest extends FormRequest
             [
                 'info.direction_id' => ['required', 'integer', 'exists:dictionaries,id'],
                 'info.conducting_classes_form_id' => ['required', 'integer', 'exists:dictionaries,id'],
-                'info.dates_and_mode_of_study' => ['required', 'string'],
             ],
             \App\Http\Validators\Client\Job\PrimaryInformation\StoreValidator::rules(),
             \App\Http\Validators\Client\Job\Experience\StoreValidator::rules(),

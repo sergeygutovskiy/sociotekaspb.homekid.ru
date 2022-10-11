@@ -18,12 +18,6 @@
     </p>
 </div>
 <div class="text-block">
-    <h3>Сроки, режим занятий</h3>
-    <p>
-        {{ $social_work->dates_and_mode_of_study }}
-    </p>
-</div>
-<div class="text-block">
     <h3>Вид услуги</h3>
     <p>
         @if ( $social_work->service_types()->isNotEmpty() )

@@ -27,7 +27,6 @@ class SocialWork extends Model
         'program_type_id',
         'direction_id',
         'conducting_classes_form_id',
-        'dates_and_mode_of_study',
         'public_work_ids',
         'service_type_ids',
         'service_name_ids',

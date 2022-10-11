@@ -32,7 +32,6 @@ class UpdateRequest extends FormRequest
 
                 'info.direction_id' => ['required', 'integer', 'exists:dictionaries,id'],
                 'info.conducting_classes_form_id' => ['required', 'integer', 'exists:dictionaries,id'],
-                'info.dates_and_mode_of_study' => ['required', 'string'],
             
                 'info.public_work_ids' => ['array', 'present'],
                 'info.public_work_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
