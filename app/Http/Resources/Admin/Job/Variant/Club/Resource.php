@@ -21,7 +21,6 @@ class Resource extends JsonResource
 
             'info' => [
                 'conducting_classes_form_id' => $this->conducting_classes_form_id,
-                'schedule' => $this->schedule,
                 'public_work_ids' => $this->public_work_ids,
                 'service_type_ids' => $this->service_type_ids,
                 'service_name_ids' => $this->service_name_ids,

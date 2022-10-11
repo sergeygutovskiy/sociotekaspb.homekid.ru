@@ -24,7 +24,6 @@ class Club extends Model
         'public_work_ids',
         'service_type_ids',
         'service_name_ids',
-        'schedule',
     ];
 
     protected $casts = [

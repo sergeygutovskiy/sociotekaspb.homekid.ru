@@ -2975,10 +2975,6 @@ components:
           type: number
           description: "Форма проведения занятий *"
           example: 150
-        schedule:
-          type: string
-          description: "График *"
-          example: "график"
     MethodologyJobInfo:
       type: object
       description: ""

@@ -22,7 +22,6 @@ class ClubFactory extends Factory
     {
         return [
             'conducting_classes_form_id' => fake()->randomElement(Dictionary::where('category_id', 15)->pluck('id')),
-            'schedule' => fake()->paragraph(),
 
             'public_work_ids' => fake()->randomElements(Dictionary::where('category_id', 10)->pluck('id'), 2),
             'service_type_ids' => fake()->randomElements(Dictionary::where('category_id', 11)->pluck('id'), 2),

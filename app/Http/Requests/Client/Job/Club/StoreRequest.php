@@ -29,7 +29,6 @@ class StoreRequest extends FormRequest
         return array_merge(
             [
                 'info.conducting_classes_form_id' => ['required', 'integer', 'exists:dictionaries,id'],
-                'info.schedule' => ['required', 'string'],
 
                 'info.public_work_ids' => ['array', 'present'],
                 'info.public_work_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],
