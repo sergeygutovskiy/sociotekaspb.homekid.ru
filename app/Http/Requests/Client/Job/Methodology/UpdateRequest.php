@@ -41,7 +41,6 @@ class UpdateRequest extends FormRequest
 
                 'info.realized_cycles' => ['required', 'string'],
                 'info.realized_cycles' => ['required', 'string'],
-                'info.cycle_duration' => ['required', 'string'],
 
                 'info.public_work_ids' => ['array', 'present'],
                 'info.public_work_ids.*' => ['required', 'integer', 'exists:dictionaries,id'],

@@ -28,7 +28,6 @@ class Resource extends JsonResource
                 'effectiveness_study' => $this->effectiveness_study,
                 'effectiveness_study_link' => $this->effectiveness_study_link,
                 'realized_cycles' => $this->realized_cycles,
-                'cycle_duration' => $this->cycle_duration,
                 'public_work_ids' => $this->public_work_ids,
                 'service_type_ids' => $this->service_type_ids,
                 'service_name_ids' => $this->service_name_ids,

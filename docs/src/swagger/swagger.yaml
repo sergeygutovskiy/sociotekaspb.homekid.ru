@@ -3014,10 +3014,6 @@ components:
           type: string
           description: "Количество реализованных полных циклов"
           example: "Количество реализованных полных циклов"
-        cycle_duration:
-          type: string
-          description: "Продолжительность одного цикла"
-          example: "Продолжительность одного цикла"
         public_work_ids:
           type: array
           description: "Наименование государственной работы"

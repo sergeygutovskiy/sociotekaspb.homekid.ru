@@ -30,12 +30,6 @@
     </p>
 </div>
 <div class="text-block">
-    <h3>Продолжительность одного цикла</h3>
-    <p>
-        {{ $methodology->cycle_duration }}
-    </p>
-</div>
-<div class="text-block">
     <h3>Автор(ы) (составитель) технологии/методики, информация о согласовании (при наличии)</h3>
     <p>
         {{ $methodology->authors ?? 'Нет' }}

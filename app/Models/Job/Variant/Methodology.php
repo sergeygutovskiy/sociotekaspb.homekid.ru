@@ -35,7 +35,6 @@ class Methodology extends Model
         'effectiveness_study',
         'effectiveness_study_link',
         'realized_cycles',
-        'cycle_duration',
         'public_work_ids',
         'service_type_ids',
         'service_name_ids',
