@@ -13,6 +13,9 @@ class ListValidator extends Validator
             'filter_service_type_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_service_name_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
             'filter_public_work_ids' => ['sometimes', 'regex:/^\d+(,\d+)*$/'],
+
+            'program_type_id' => ['sometimes', 'integer'],
+            'conducting_classes_form_id' => ['sometimes', 'integer'],
         ];
     }
 }

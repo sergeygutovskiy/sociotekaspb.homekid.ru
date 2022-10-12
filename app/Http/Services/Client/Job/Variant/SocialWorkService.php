@@ -36,11 +36,16 @@ class SocialWorkService
         $service_name_ids_filter = Validator::parse_query_ids($request->validated('filter_service_name_ids'));
         $public_work_ids_filter = Validator::parse_query_ids($request->validated('filter_public_work_ids'));
 
+        $program_type_id_filter = $request->validated('filter_program_type_id');
+        $conducting_classes_form_id_filter = $request->validated('filter_conducting_classes_form_id');
+
         $query = $jobs->whereHas(JobVariant::SOCIAL_WORK, fn($q) => $q
             ->optionalHasServiceTypes($service_type_ids_filter)
             ->optionalHasServiceNames($service_name_ids_filter)
             ->optionalHasPublicWorks($public_work_ids_filter)
             ->optionalHasDirection($direction_id_filter)
+            ->optionalHasProgramType($program_type_id_filter)
+            ->optionalHasConductingClasses($conducting_classes_form_id_filter)
         );
 
         return JobService::paginate($request, $query, JobVariant::SOCIAL_WORK);
