@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Job\EduProgramController;
 use App\Http\Controllers\Admin\Job\MethodologyController;
 use App\Http\Controllers\Admin\Job\SocialProjectController;
 use App\Http\Controllers\Admin\Job\SocialWorkController;
+use App\Http\Controllers\Admin\LibraryController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/users')->group(function() {
@@ -106,4 +107,13 @@ Route::prefix('/users')->group(function() {
     });
 
     Route::get('/companies', [ CompanyController::class, 'index' ]);
+});
+
+Route::prefix('/library')->group(function() {
+    Route::get('/', [ LibraryController::class, 'index' ]);
+    Route::post('/', [ LibraryController::class, 'store' ]);
+
+    Route::get('/{id}', [ LibraryController::class, 'show' ]);
+    Route::put('/{id}', [ LibraryController::class, 'update' ]);
+    Route::delete('/{id}', [ LibraryController::class, 'delete' ]);
 });
