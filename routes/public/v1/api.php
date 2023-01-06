@@ -8,6 +8,7 @@ use App\Http\Controllers\Public\Job\Variant\EduProgramController;
 use App\Http\Controllers\Public\Job\Variant\MethodologyController;
 use App\Http\Controllers\Public\Job\Variant\SocialProjectController;
 use App\Http\Controllers\Public\Job\Variant\SocialWorkController;
+use App\Http\Controllers\Public\LibraryController;
 use App\Http\Controllers\Public\RnsuCategoryGroupController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,4 +54,8 @@ Route::prefix('/users/jobs')->group(function () {
         Route::get('/approved/{id}', [ MethodologyController::class, 'show_approved' ]);
         Route::get('/best/{id}', [ MethodologyController::class, 'show_best' ]);
     });
+});
+
+Route::prefix('/library')->group(function() {
+    Route::get('/', [ LibraryController::class, 'index' ]);
 });
