@@ -27,7 +27,7 @@ class LibraryController extends Controller
         $limit = $request->input('limit');
         $search = $request->input('word');
 
-        $words = LibraryWord::skip(($page - 1) * $limit)->take($limit);
+        $words = LibraryWord::query();
         if ( $search )
         {
             $words = $words
@@ -35,9 +35,14 @@ class LibraryController extends Controller
                 ->orWhere('meaning', 'like', '%' . $search .'%')
                 ;
         }
-        $words = $words->get();
+   
+        $total = $words->count();
+        $words = $words->skip(($page - 1) * $limit)->take($limit)->get();
 
-        return ResourceOKResponse::response(LibraryWordResource::collection($words));
+        return ResourceOKResponse::response([
+            'items' => LibraryWordResource::collection($words),
+            'total' => $total,
+        ]);
     }
     
     public function store(Request $request)
