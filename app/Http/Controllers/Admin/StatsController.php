@@ -77,7 +77,7 @@ class StatsController extends Controller {
             $cache_data = json_decode($cache);
 
             $cached_date = Carbon::createFromTimestamp($cache_data->date);
-            $date_to_recache = Carbon::now()->addMinutes(-2);
+            $date_to_recache = Carbon::now()->addDays(-1);
             
             // update cache with new data
             if ( $date_to_recache->gt($cached_date) ) {
