@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Job\MethodologyController;
 use App\Http\Controllers\Admin\Job\SocialProjectController;
 use App\Http\Controllers\Admin\Job\SocialWorkController;
 use App\Http\Controllers\Admin\LibraryController;
+use App\Http\Controllers\Admin\StatsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/users')->group(function() {
@@ -117,3 +118,5 @@ Route::prefix('/library')->group(function() {
     Route::put('/{id}', [ LibraryController::class, 'update' ]);
     Route::delete('/{id}', [ LibraryController::class, 'delete' ]);
 });
+
+Route::get('/stats/orgs', [ StatsController::class, 'orgs' ]);
