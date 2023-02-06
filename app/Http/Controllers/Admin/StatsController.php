@@ -8,9 +8,11 @@ use App\Http\Responses\OKResponse;
 use App\Models\Company;
 use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\SocialProject;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class StatsController extends Controller {
-    public function orgs() {
+    private function get_orgs_stats() {
         $stats = Company::query()->with('user.jobs.reporting_periods')->get();
         $formatted_stats = $stats->map(function($company) {
             return [
@@ -48,7 +50,7 @@ class StatsController extends Controller {
             ];
         });
 
-        $result = [
+        return [
             'companies' => $formatted_stats,
             'meta' => (function () use ($formatted_stats) {
                 $get_job_info = fn($variant) => [
@@ -65,7 +67,43 @@ class StatsController extends Controller {
                 ];
             })()
         ];
+    }
+    
+    public function orgs() {
+        $result = null;
+        
+        $cache = Storage::disk('public')->get('stats-orgs.json');
+        if ( $cache ) {
+            $cache_data = json_decode($cache);
 
+            $cached_date = Carbon::createFromTimestamp($cache_data->date);
+            $date_to_recache = Carbon::now()->addMinutes(-2);
+            
+            // update cache with new data
+            if ( $date_to_recache->gt($cached_date) ) {
+                $result = $this->get_orgs_stats();
+                $this->saveOrgsStatsToCache($result);
+                return OKResponse::response($result);
+            }
+
+            // load data from cache
+            $cached_result = $cache_data->content;
+            return OKResponse::response($cached_result);
+        }
+
+        // create cache
+        $result = $this->get_orgs_stats();
+        $this->saveOrgsStatsToCache($result);
         return OKResponse::response($result);
+    }
+
+    private function saveOrgsStatsToCache($data) {
+        $file_content = [
+            'date' => Carbon::now()->timestamp,
+            'content' => $data,
+        ];
+
+        Storage::disk('public')->delete('stats-orgs.json');
+        Storage::disk('public')->put('stats-orgs.json', json_encode($file_content, JSON_PRETTY_PRINT));
     }
 }
