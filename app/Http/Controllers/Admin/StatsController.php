@@ -5,15 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\OKResponse;
+use App\Http\Validators\Validator;
 use App\Models\Company;
-use App\Models\Job\Variant\Club;
-use App\Models\Job\Variant\SocialProject;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class StatsController extends Controller {
-    private function get_orgs_stats() {
-        $stats = Company::query()->with('user.jobs.reporting_periods')->get();
+    private function load_orgs_from_db(Request $request) {
+        $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids'));
+
+        $query = Company::query();
+        if ( $org_type_ids ) $query = $query->whereIn('organization_type_id', $org_type_ids);
+
+        $stats = $query->with('user.jobs.reporting_periods')->get();
         $formatted_stats = $stats->map(function($company) {
             return [
                 'id' => $company->id,
@@ -68,42 +73,70 @@ class StatsController extends Controller {
             })()
         ];
     }
-    
-    public function orgs() {
-        $result = null;
-        
-        $cache = Storage::disk('public')->get('stats-orgs.json');
-        if ( $cache ) {
-            $cache_data = json_decode($cache);
 
-            $cached_date = Carbon::createFromTimestamp($cache_data->date);
+    private function load_orgs(Request $request)
+    {
+        $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids')) ?? [];
+        $org_type_ids = collect($org_type_ids)->sort()->values()->all();
+
+        $cache_file_name = 'stats-orgs-' . implode('-', $org_type_ids) . '.json';
+        $cache = Storage::disk('public')->get($cache_file_name);
+        if ( $cache ) {
+            $cache_data = json_decode($cache, true);
+
+            $cached_date = Carbon::createFromTimestamp($cache_data['date']);
             $date_to_recache = Carbon::now()->addDays(-1);
-            
+
             // update cache with new data
             if ( $date_to_recache->gt($cached_date) ) {
-                $result = $this->get_orgs_stats();
-                $this->saveOrgsStatsToCache($result);
-                return OKResponse::response($result);
+                $result = $this->get_orgs_stats($request);
+                $this->saveOrgsStatsToCache($result, $cache_file_name);
+                return $result;
             }
 
             // load data from cache
-            $cached_result = $cache_data->content;
-            return OKResponse::response($cached_result);
+            return $cache_data['content'];
         }
 
         // create cache
-        $result = $this->get_orgs_stats();
-        $this->saveOrgsStatsToCache($result);
-        return OKResponse::response($result);
+        $data = $this->load_orgs_from_db($request);
+        $this->saveOrgsStatsToCache($data, $cache_file_name);
+        return $data;
     }
 
-    private function saveOrgsStatsToCache($data) {
+    public function orgs(Request $request) 
+    {
+        $sort_by = $request->input('sort_by');
+        $sort_direction = $request->input('sort_direction');
+
+        $stats = $this->load_orgs($request);
+
+        if ( $sort_by && $sort_direction )
+        {
+            // social_project.count or social_project.member_count ( as example )
+            $sort_project_by = explode('.', $sort_by)[0]; // job variant
+            $sort_column_by = explode('.', $sort_by)[1]; // count or member_count
+
+            $sort_func = function($company) use ($sort_project_by, $sort_column_by) {
+                return $company['jobs'][$sort_project_by][$sort_column_by];
+            };
+
+            if ( $sort_direction === 'ASC' ) $stats['companies'] = collect($stats['companies'])->sortBy($sort_func);
+            else $stats['companies'] = collect($stats['companies'])->sortByDesc($sort_func);
+
+            $stats['companies'] = $stats['companies']->values()->all();
+        }
+
+        return OKResponse::response($stats);
+    }
+
+    private function saveOrgsStatsToCache($data, $file_name) {
         $file_content = [
             'date' => Carbon::now()->timestamp,
             'content' => $data,
         ];
 
-        Storage::disk('public')->delete('stats-orgs.json');
-        Storage::disk('public')->put('stats-orgs.json', json_encode($file_content, JSON_PRETTY_PRINT));
+        Storage::disk('public')->delete($file_name);
+        Storage::disk('public')->put($file_name, json_encode($file_content, JSON_PRETTY_PRINT));
     }
 }
