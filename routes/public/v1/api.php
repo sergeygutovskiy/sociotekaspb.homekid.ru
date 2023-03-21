@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\Public\DicionaryController;
 use App\Http\Controllers\Public\DictionaryCategoryController;
 use App\Http\Controllers\Public\Job\JobController;
