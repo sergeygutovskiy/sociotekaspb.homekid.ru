@@ -126,3 +126,4 @@ Route::get('/stats/csv/social-projects', [ StatsController::class, 'csv_social_p
 Route::get('/stats/csv/clubs', [ StatsController::class, 'csv_clubs' ]);
 Route::get('/stats/csv/methodologies', [ StatsController::class, 'csv_methodologies' ]);
 Route::get('/stats/csv/social-works', [ StatsController::class, 'csv_social_works' ]);
+Route::get('/stats/csv/edu-programs', [ StatsController::class, 'csv_edu_programs' ]);
