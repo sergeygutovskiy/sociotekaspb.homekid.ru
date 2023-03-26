@@ -74,7 +74,7 @@ class StatsController extends Controller {
     private function load_orgs_from_db(Request $request) {
         $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids'));
 
-        $query = Company::query();
+        $query = Company::query()->notTest();
         if ( $org_type_ids ) $query = $query->whereIn('organization_type_id', $org_type_ids);
 
         $stats = $query->with('user.jobs.reporting_periods')->get();
@@ -148,7 +148,7 @@ class StatsController extends Controller {
 
             // update cache with new data
             if ( $date_to_recache->gt($cached_date) ) {
-                $result = $this->get_orgs_stats($request);
+                $result = $this->load_orgs_from_db($request);
                 $this->saveOrgsStatsToCache($result, $cache_file_name);
                 return $result;
             }
@@ -201,7 +201,7 @@ class StatsController extends Controller {
 
     public function csv_companies()
     {
-        $companies = Company::all();
+        $companies = Company::query()->notTest()->get();
 
         $columns = array(
             'ID',
@@ -228,7 +228,8 @@ class StatsController extends Controller {
 
         $callback = function() use($companies, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+            fputs($file, $BOM = ( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+            fputcsv($file, $columns, chr(9));
         
             foreach ($companies as $company) {
                 fputcsv(
@@ -254,7 +255,8 @@ class StatsController extends Controller {
                         $company->medical_license ? $company->medical_license['date'] : '',
                         $company->is_has_innovative_platform ? 'Да' : '',
                         $company->status
-                    )
+                    ),
+                    chr(9)
                 );
             }
             fclose($file);
@@ -282,9 +284,12 @@ class StatsController extends Controller {
 
         $callback = function() use($jobs, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+            fputs($file, $BOM = ( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+            fputcsv($file, $columns, chr(9));
 
             foreach ($jobs as $job) {
+                if ( is_null($job->job) ) continue; // deleted
+
                 $pi = $job->job->primary_information;
                 fputcsv(
                     $file,
@@ -302,7 +307,8 @@ class StatsController extends Controller {
                             $this->get_csv_dictionaries_label($job->service_names()),
                             $this->get_csv_dictionaries_label($job->public_works())
                         )
-                    )
+                    ),
+                    chr(9)
                 );
             }
             fclose($file);
@@ -328,9 +334,12 @@ class StatsController extends Controller {
 
         $callback = function() use($jobs, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+            fputs($file, $BOM = ( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+            fputcsv($file, $columns, chr(9));
 
             foreach ($jobs as $job) {
+                if ( is_null($job->job) ) continue; // deleted
+
                 $pi = $job->job->primary_information;
                 fputcsv(
                     $file,
@@ -346,7 +355,8 @@ class StatsController extends Controller {
                             $this->get_csv_dictionaries_label($job->service_names()),
                             $this->get_csv_dictionaries_label($job->public_works())
                         )
-                    )
+                    ),
+                    chr(9)
                 );
             }
             fclose($file);
@@ -370,9 +380,12 @@ class StatsController extends Controller {
 
         $callback = function() use($jobs, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+            fputs($file, $BOM = ( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+            fputcsv($file, $columns, chr(9));
 
             foreach ($jobs as $job) {
+                if ( is_null($job->job) ) continue; // deleted
+
                 $pi = $job->job->primary_information;
                 fputcsv(
                     $file,
@@ -386,7 +399,8 @@ class StatsController extends Controller {
                             $job->direction->label,
                             $job->conducting_classes_form->label,
                         )
-                    )
+                    ),
+                    chr(9)
                 );
             }
             fclose($file);
@@ -424,9 +438,12 @@ class StatsController extends Controller {
 
         $callback = function() use($jobs, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+            fputs($file, $BOM = ( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+            fputcsv($file, $columns, chr(9));
 
             foreach ($jobs as $job) {
+                if ( is_null($job->job) ) continue; // deleted
+
                 $pi = $job->job->primary_information;
                 fputcsv(
                     $file,
@@ -450,7 +467,8 @@ class StatsController extends Controller {
                             $this->get_csv_dictionaries_label($job->service_names()),
                             $this->get_csv_dictionaries_label($job->public_works())
                         )
-                    )
+                    ),
+                    chr(9)
                 );
             }
             fclose($file);
@@ -482,9 +500,12 @@ class StatsController extends Controller {
 
         $callback = function() use($jobs, $columns) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
+            fputs($file, $BOM = ( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+            fputcsv($file, $columns, chr(9));
 
             foreach ($jobs as $job) {
+                if ( is_null($job->job) ) continue; // deleted
+
                 $pi = $job->job->primary_information;
                 fputcsv(
                     $file,
@@ -503,7 +524,8 @@ class StatsController extends Controller {
                             $this->get_csv_dictionaries_label($job->service_names()),
                             $this->get_csv_dictionaries_label($job->public_works())
                         )
-                    )
+                    ),
+                    chr(9)
                 );
             }
             fclose($file);

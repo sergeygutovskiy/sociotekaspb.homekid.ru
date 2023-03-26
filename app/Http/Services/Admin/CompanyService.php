@@ -16,7 +16,7 @@ class CompanyService
         $status_filter = $request->input('filter_status');
         $district_filter = $request->input('filter_district_id');
 
-        $query = Company::query();
+        $query = Company::query()->notTest();
         if ( $name_filter ) $query = $query->where('name', 'like', '%'.$name_filter.'%');
         if ( $status_filter ) $query = $query->where('status', $status_filter);
         if ( is_numeric($district_filter) ) $query = $query->where('district_id', $district_filter);

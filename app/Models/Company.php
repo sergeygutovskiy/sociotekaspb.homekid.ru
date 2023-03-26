@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Factories\CompanyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class Company extends Model
 {
@@ -62,5 +63,10 @@ class Company extends Model
     protected static function newFactory()
     {
         return CompanyFactory::new();
+    }
+
+    public function scopeNotTest(Builder $query): void
+    {
+        $query->where('name', '!=', 'Test');
     }
 }
