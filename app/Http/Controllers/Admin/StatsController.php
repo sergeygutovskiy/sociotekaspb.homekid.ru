@@ -43,10 +43,17 @@ class StatsController extends Controller {
         'Наличие экспертного заключения',
         'Наличие рецензии',
         'Наличие отзыва',
-        'Краткое описание необходимого ресурсного обеспечения'
+        'Краткое описание необходимого ресурсного обеспечения',
+        'Отчетные периоды',
+        'Женщин',
+        'Мужчин',
+        'Детей',
+        'Семей',
+        'Всего',
+        'Год'
     ); 
 
-    private function get_pi_scv_columns($pi) {
+    private function get_pi_scv_columns($pi, $reporting_periods) {
         return array(
             $pi->name,
             $pi->is_best_practice ? 'Да' : '',
@@ -70,6 +77,13 @@ class StatsController extends Controller {
             $pi->review ? $pi->review['description'] : '',
             $pi->comment ? $pi->comment['description'] : '',
             $pi->required_resources_description,
+            '',
+            $reporting_periods->count() ? $reporting_periods->first()->women : '',
+            $reporting_periods->count() ? $reporting_periods->first()->men : '',
+            $reporting_periods->count() ? $reporting_periods->first()->kids : '',
+            $reporting_periods->count() ? $reporting_periods->first()->families : '',
+            $reporting_periods->count() ? $reporting_periods->first()->total : '',
+            $reporting_periods->count() ? $reporting_periods->first()->year : '',
         );
     }
 
@@ -275,7 +289,7 @@ class StatsController extends Controller {
 
     public function csv_social_projects()
     {
-        $jobs = SocialProject::with('job', 'job.primary_information')->get();
+        $jobs = SocialProject::with('job', 'job.primary_information', 'job.reporting_periods')->get();
 
         $columns = array_merge(
             self::$JOB_CSV_HEADERS,
@@ -298,6 +312,8 @@ class StatsController extends Controller {
                 if ( is_null($job->job) ) continue; // deleted
 
                 $pi = $job->job->primary_information;
+                $reporting_periods = $job->job->reporting_periods()->orderBy('year', 'DESC')->get();
+
                 fputcsv(
                     $file,
                     array_merge(
@@ -305,7 +321,7 @@ class StatsController extends Controller {
                             $job->id,
                             $job->job->company->name,
                         ),
-                        $this->get_pi_scv_columns($pi),
+                        $this->get_pi_scv_columns($pi, $reporting_periods),
                         array(
                             $job->participant ? $job->participant['description'] : '',
                             $job->implementation_period,
@@ -317,6 +333,7 @@ class StatsController extends Controller {
                     ),
                     chr(9)
                 );
+                $this->put_reporting_periods_to_csv($file, $reporting_periods);
             }
             fclose($file);
         };
@@ -348,6 +365,8 @@ class StatsController extends Controller {
                 if ( is_null($job->job) ) continue; // deleted
 
                 $pi = $job->job->primary_information;
+                $reporting_periods = $job->job->reporting_periods()->orderBy('year', 'DESC')->get();
+
                 fputcsv(
                     $file,
                     array_merge(
@@ -355,7 +374,7 @@ class StatsController extends Controller {
                             $job->id,
                             $job->job->company->name,
                         ),
-                        $this->get_pi_scv_columns($pi),
+                        $this->get_pi_scv_columns($pi, $reporting_periods),
                         array(
                             $job->conducting_classes_form->label,
                             $this->get_csv_dictionaries_label($job->service_types()),
@@ -365,6 +384,7 @@ class StatsController extends Controller {
                     ),
                     chr(9)
                 );
+                $this->put_reporting_periods_to_csv($file, $reporting_periods);
             }
             fclose($file);
         };
@@ -394,6 +414,8 @@ class StatsController extends Controller {
                 if ( is_null($job->job) ) continue; // deleted
 
                 $pi = $job->job->primary_information;
+                $reporting_periods = $job->job->reporting_periods()->orderBy('year', 'DESC')->get();
+
                 fputcsv(
                     $file,
                     array_merge(
@@ -401,7 +423,7 @@ class StatsController extends Controller {
                             $job->id,
                             $job->job->company->name,
                         ),
-                        $this->get_pi_scv_columns($pi),
+                        $this->get_pi_scv_columns($pi, $reporting_periods),
                         array(
                             $job->direction->label,
                             $job->conducting_classes_form->label,
@@ -409,6 +431,7 @@ class StatsController extends Controller {
                     ),
                     chr(9)
                 );
+                $this->put_reporting_periods_to_csv($file, $reporting_periods);
             }
             fclose($file);
         };
@@ -452,6 +475,8 @@ class StatsController extends Controller {
                 if ( is_null($job->job) ) continue; // deleted
 
                 $pi = $job->job->primary_information;
+                $reporting_periods = $job->job->reporting_periods()->orderBy('year', 'DESC')->get();
+
                 fputcsv(
                     $file,
                     array_merge(
@@ -459,7 +484,7 @@ class StatsController extends Controller {
                             $job->id,
                             $job->job->company->name,
                         ),
-                        $this->get_pi_scv_columns($pi),
+                        $this->get_pi_scv_columns($pi, $reporting_periods),
                         array(
                             $job->direction->label,
                             $job->prevalence->label,
@@ -477,6 +502,7 @@ class StatsController extends Controller {
                     ),
                     chr(9)
                 );
+                $this->put_reporting_periods_to_csv($file, $reporting_periods);
             }
             fclose($file);
         };
@@ -514,6 +540,8 @@ class StatsController extends Controller {
                 if ( is_null($job->job) ) continue; // deleted
 
                 $pi = $job->job->primary_information;
+                $reporting_periods = $job->job->reporting_periods()->orderBy('year', 'DESC')->get();
+
                 fputcsv(
                     $file,
                     array_merge(
@@ -521,7 +549,7 @@ class StatsController extends Controller {
                             $job->id,
                             $job->job->company->name,
                         ),
-                        $this->get_pi_scv_columns($pi),
+                        $this->get_pi_scv_columns($pi, $reporting_periods),
                         array(
                             $job->direction->label,
                             $job->program_type->label,
@@ -534,6 +562,7 @@ class StatsController extends Controller {
                     ),
                     chr(9)
                 );
+                $this->put_reporting_periods_to_csv($file, $reporting_periods);
             }
             fclose($file);
         };
@@ -556,6 +585,31 @@ class StatsController extends Controller {
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
             "Expires"             => "0"
         );
+    }
+
+    private function put_reporting_periods_to_csv($file, $reporting_periods)
+    {
+        if ($reporting_periods->count() > 1)
+        {
+            for ($i = 1; $i < $reporting_periods->count(); $i++)
+            {
+                fputcsv(
+                    $file,
+                    array_merge(
+                        array_fill(0, count(self::$JOB_CSV_HEADERS) - 6, ''),
+                        array(
+                            $reporting_periods[$i]->women ?? '',
+                            $reporting_periods[$i]->men ?? '',
+                            $reporting_periods[$i]->kids ?? '',
+                            $reporting_periods[$i]->families ?? '',
+                            $reporting_periods[$i]->total ?? '',
+                            $reporting_periods[$i]->year ?? ''
+                        )
+                    ),
+                    chr(9)
+                );
+            }
+        }
     }
 
     public function numbers()
