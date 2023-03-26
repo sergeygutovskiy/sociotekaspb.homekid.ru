@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\JobVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\OKResponse;
+use App\Http\Responses\Resources\ResourceOKResponse;
 use App\Http\Validators\Validator;
 use App\Models\Company;
+use App\Models\Job\Job;
 use App\Models\Job\Variant\Club;
 use App\Models\Job\Variant\EduProgram;
 use App\Models\Job\Variant\Methodology;
@@ -75,7 +77,7 @@ class StatsController extends Controller {
         $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids'));
 
         $query = Company::query()->notTest();
-        if ( $org_type_ids ) $query = $query->whereIn('organization_type_id', $org_type_ids);
+        if ( $org_type_ids ) $query = $query->whereIn('district_id', $org_type_ids);
 
         $stats = $query->with('user.jobs.reporting_periods')->get();
         $formatted_stats = $stats->map(function($company) {
@@ -135,6 +137,7 @@ class StatsController extends Controller {
 
     private function load_orgs(Request $request)
     {
+        // на самом деле тут приходит справочник district_ids
         $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids')) ?? [];
         $org_type_ids = collect($org_type_ids)->sort()->values()->all();
 
@@ -549,5 +552,20 @@ class StatsController extends Controller {
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
             "Expires"             => "0"
         );
+    }
+
+    public function numbers()
+    {
+        $jobs_count = Job::count();
+        $companies_count = Company::notTest()->count();
+        $best_jobs_count = Job::where('is_favorite', true)->count();
+        $remote_format_jobs_count = Job::optionalIsRemoteFormat(true)->count();
+
+        return ResourceOKResponse::response([
+            'jobs_count' => $jobs_count,
+            'companies_count' => $companies_count,
+            'best_jobs_count' => $best_jobs_count,
+            'remote_format_jobs_count' => $remote_format_jobs_count,
+        ]);
     }
 }
