@@ -74,8 +74,8 @@ class StatsController extends Controller {
     }
 
     private function load_orgs_from_db(Request $request) {
-        $org_type_ids = Validator::parse_query_ids($request->input('filter_organization_type_ids'));
-        $district_ids = Validator::parse_query_ids($request->input('filter_district_ids'));
+        $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids'));
+        $district_ids = Validator::parse_query_ids($request->input('district_ids'));
 
         $query = Company::notTest();
         if ( $org_type_ids ) $query = $query->whereIn('organization_type_id', $org_type_ids);
@@ -139,10 +139,10 @@ class StatsController extends Controller {
 
     private function load_orgs(Request $request)
     {
-        $org_type_ids = Validator::parse_query_ids($request->input('filter_organization_type_ids')) ?? [];
+        $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids')) ?? [];
         $org_type_ids = collect($org_type_ids)->sort()->values()->all();
 
-        $district_ids = Validator::parse_query_ids($request->input('filter_district_ids')) ?? [];
+        $district_ids = Validator::parse_query_ids($request->input('district_ids')) ?? [];
         $district_ids = collect($district_ids)->sort()->values()->all();
 
         $cache_file_name = 'stats-orgs-(' . implode('-', $org_type_ids) . ')-(' .  implode('-', $district_ids)  .').json';
