@@ -74,10 +74,12 @@ class StatsController extends Controller {
     }
 
     private function load_orgs_from_db(Request $request) {
-        $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids'));
+        $org_type_ids = Validator::parse_query_ids($request->input('filter_organization_type_ids'));
+        $district_ids = Validator::parse_query_ids($request->input('filter_district_ids'));
 
-        $query = Company::query()->notTest();
-        if ( $org_type_ids ) $query = $query->whereIn('district_id', $org_type_ids);
+        $query = Company::notTest();
+        if ( $org_type_ids ) $query = $query->whereIn('organization_type_id', $org_type_ids);
+        if ( $district_ids ) $query = $query->whereIn('district_id', $district_ids);
 
         $stats = $query->with('user.jobs.reporting_periods')->get();
         $formatted_stats = $stats->map(function($company) {
@@ -137,11 +139,13 @@ class StatsController extends Controller {
 
     private function load_orgs(Request $request)
     {
-        // на самом деле тут приходит справочник district_ids
-        $org_type_ids = Validator::parse_query_ids($request->input('organization_type_ids')) ?? [];
+        $org_type_ids = Validator::parse_query_ids($request->input('filter_organization_type_ids')) ?? [];
         $org_type_ids = collect($org_type_ids)->sort()->values()->all();
 
-        $cache_file_name = 'stats-orgs-' . implode('-', $org_type_ids) . '.json';
+        $district_ids = Validator::parse_query_ids($request->input('filter_district_ids')) ?? [];
+        $district_ids = collect($district_ids)->sort()->values()->all();
+
+        $cache_file_name = 'stats-orgs-(' . implode('-', $org_type_ids) . ')-(' .  implode('-', $district_ids)  .').json';
         $cache = Storage::disk('public')->get($cache_file_name);
         if ( $cache ) {
             $cache_data = json_decode($cache, true);
